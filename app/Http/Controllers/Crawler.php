@@ -19,9 +19,9 @@ class Crawler extends Controller
 
     }
 
-    public function getOldResult(){
-
-
+    //Get old result from database are per required
+    public function getOldResult() {
+    	return "Old result";
     }
 
 }
