@@ -18,6 +18,7 @@ class Crawler extends Controller
 
         $url = "https://xosodaiphat.com/xsmb-xo-so-mien-bac.html";
         $resultData = crawlUrl($url);
+        echo "<pre>";
         print_r($resultData);
         exit();
     }
