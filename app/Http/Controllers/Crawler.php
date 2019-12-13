@@ -16,7 +16,10 @@ class Crawler extends Controller
 
     public function getCurrentResult(){
 
-
+        $url = "https://xosodaiphat.com/xsmb-xo-so-mien-bac.html";
+        $resultData = crawlUrl($url);
+        print_r($resultData);
+        exit();
     }
 
     //Get old result from database are per required

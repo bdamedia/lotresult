@@ -17,3 +17,5 @@ Route::get("/result", "Results@index");
 Route::get("/result/{region}", "Results@show");
 
 Route::get("crawler/old", "Crawler@getOldResult");
+Route::get("/crawler/current", "Crawler@getCurrentResult");
+
