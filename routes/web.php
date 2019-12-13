@@ -15,3 +15,4 @@ Route::get("/crawler", "Crawler@index");
 Route::get("/", "Home@index");
 Route::get("/result", "Results@index");
 Route::get("/result/{region}", "Results@show");
+Route::get("/crawler/current", "Crawler@getCurrentResult");
