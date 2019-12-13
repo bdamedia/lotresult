@@ -9,13 +9,22 @@ function crawlUrl($url=null){
     }
     $client = new Client();
     $crawler = $client->request('GET', $url);
+    $elements = array();
+    $elements = $crawler->filter('.class-title-list-link a:last-child')->each(function($node){
+        $resultSplitVal = explode(' ',$node->text());
 
+        $arrayName = str_replace(' ','',$node->text());
 
+        $resultsArray['lottery_region'] = $resultSplitVal[0];
+        $resultsArray['lottery_company'] = $resultSplitVal[1];
+        return $resultsArray;
+    });
 
     $links_count = $crawler->filter('table')->count();
     $all_links = [];
     if($links_count > 0){
         $links = $crawler->filter('table tr td');
+
         foreach ($links as $link) {
             $all_links[] = $link->textContent;
         }
@@ -23,17 +32,25 @@ function crawlUrl($url=null){
         $newValues = [];
         $new = [];
         $list = 0;
+        $i = 0;
         foreach ($all_links as $key=>$details) {
+
             $list++;
             if($key == 1 || $key == 39 || $key == 77 || $key == 115 || $key == 153 || $key == 191 || $key == 229) {
-                $newValues[] = $details;
-                $arr =  explode(" ", $details);
-                //print all the value which are in the array
-                foreach($arr as $v){
-                    if($v) {
-                        $newValues[$v] = $v;
-                    }
+                $newValues[] = json_encode($details);
+                //$arr =  explode(" ", $details);
+                if(isset($newValues[0])){
+                    $val = strval($newValues[0]);
+                    $newValues[$all_links[$key-1]] = array_filter(explode(' ', $details));
+                    unset($newValues[$key]);
+                    unset($newValues[0]);
+                }else{
+                    $val = $key-1;
+                    $newValues[$all_links[$val]] = array_filter(explode(' ', $details));
+                    unset($newValues[$key]);
+                    unset($newValues[$key-1]);
                 }
+
             }
             if($key == 0 || $key == 38 || $key == 76 || $key == 114 || $key == 152 || $key == 189 || $key == 228) {
                 $newValues[$details] = $details;
@@ -45,8 +62,6 @@ function crawlUrl($url=null){
 
             if($key == 3 || $key == 41 || $key == 79 || $key == 117 || $key == 155 || $key == 193 || $key == 231) {
                 $first400 = array(substr($details, 0, 400));
-                //print('Newwwwww');
-                //print_r($first400);
                 $newValues['G.DB'] = $first400[0];
             }
 
@@ -111,9 +126,9 @@ function crawlUrl($url=null){
             ) {
 
                 if($key == 21 || $key == 97 || $key == 135 || $key == 173 || $key == 211 || $key == 249) {
-                    $newValues['first'] = $details;
+                    $newValues['board']['first'] = $details;
                 } else {
-                    $newValues[] = $details;
+                    $newValues['board'][] = $details;
                 }
             }
 
@@ -126,7 +141,12 @@ function crawlUrl($url=null){
 
             }
 
+            $i++;
+        }
+
+        foreach ($elements as $key=>$rs){
+            $elements[$key]['data'] = $new[$key];
         }
     }
-    return $new;
+    return $elements;
 }
