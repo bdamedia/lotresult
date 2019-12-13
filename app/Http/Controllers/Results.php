@@ -12,8 +12,8 @@ class Results extends Controller
         echo "<pre>";
         print_r($result);
         return $result;
-       /* $result->lottery_region = 'North';
-        $result->lottery_company = 'VT';
+       /* $result->lottery_region = 'Northern';
+        $result->lottery_company = 'SXMB/XSMB';
         $result->prize_1 = '[ { "numbers": 18 } , { "prize_amount": 9 } ]';
         $result->prize_2 = '[ { "numbers": 82 } , { "prize_amount": 9 } ]';
         $result->prize_3 = '[ { "numbers": 81 } , { "prize_amount": 9 } ]';

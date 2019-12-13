@@ -24,7 +24,11 @@ class Crawler extends Controller
 
     //Get old result from database are per required
     public function getOldResult() {
-    	return "Old result";
+    	$url = "https://xosodaiphat.com/xsmb-xo-so-mien-bac.html";
+        $resultData = crawlUrlFirst($url);
+        echo "<pre>";
+        print_r($resultData);
+        exit();
     }
 
 }
