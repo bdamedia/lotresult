@@ -60,7 +60,7 @@ class Home extends Controller
               $newValues['G.DB'] = $first400[0];
             }
 
-            if($key == 5 || $key == 43 || $key == 91 || $key == 119 || $key == 157 || $key == 195 || $key == 233 ) {
+            if($key == 5 || $key == 43 || $key == 81 || $key == 119 || $key == 157 || $key == 195 || $key == 233 ) {
               $first400 = array(substr($details, 0, 400));
               $newValues['G.1'] = $first400[0];
             }
