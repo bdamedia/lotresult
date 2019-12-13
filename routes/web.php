@@ -11,5 +11,5 @@
 |
 */
 
-
+Route::get("/crawler", "Crawler@index");
 Route::get("/", "Home@index");
