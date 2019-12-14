@@ -11,7 +11,7 @@ class Crawler extends Controller
 {
     //
     public function index() {
-    	return "Not found";
+    	return view('index');
     }
 
     public function getCurrentResult(){

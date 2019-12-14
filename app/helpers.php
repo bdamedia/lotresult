@@ -160,6 +160,20 @@ function crawlUrlFirst($url=null)
     }
     $client = new Client();
     $crawler = $client->request('GET', $url);
+
+    // New code for date and response
+    $elements = array();
+    $elements = $crawler->filter('.class-title-list-link a:last-child')->each(function($node){
+        $resultSplitVal = explode(' ',$node->text());
+
+        $arrayName = str_replace(' ','',$node->text());
+
+        $resultsArray['lottery_region'] = $resultSplitVal[0];
+        $resultsArray['lottery_company'] = $resultSplitVal[1];
+        return $resultsArray;
+    });
+    // end code for date and time fixing
+
     $links_count = $crawler->filter('table')->count();
     $all_links = [];
     if($links_count > 0){
@@ -264,7 +278,11 @@ function crawlUrlFirst($url=null)
                 $newValues = [];
             }
         }
-        return $new;
+        // for my related .....
+        //return $new;
+        foreach ($elements as $key=>$rs){
+            $elements[$key]['data'] = $new[$key];
+        }
     }
-
+    return $elements;
 }
