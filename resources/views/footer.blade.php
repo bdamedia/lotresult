@@ -87,14 +87,14 @@
             </div><div style="text-align: right;"><a href="//www.dmca.com/Protection/Status.aspx?ID=2fe00d0c-59bc-4930-bde8-11153f7264ff" title="DMCA.com Protection Status" class="dmca-badge" rel="nofollow noopener"><img src ="/assets/images/dmca.png?ID=2fe00d0c-59bc-4930-bde8-11153f7264ff"  alt="DMCA.com Protection Status" /></a><script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js" async> </script></div>
         </div>
     </div>
-</footer>    
+</footer>
 <link href="https://cdn.xosodaiphat.com/assets/css/HomeCombined.css?v=1" rel="stylesheet"/>
 <script src="https://cdn.xosodaiphat.com/assets/js/jquerylib.js"></script>
 <script src="https://cdn.xosodaiphat.com/assets/libs/jquery/xsdp.min.js"></script>
 <script src="https://cdn.xosodaiphat.com/Notify/js/main.js"></script>
 
 <script src="https://cdn.xosodaiphat.com/Content/js/lotteryLiveMQMin-129-secu.js?v=1"></script>
-<script type="text/javascript">
+{{--<script type="text/javascript">
     var rootPath = 'https://emq46.icsoft.vn:3030/lotteryLive/';
     var appKey = '12923c46b192271b178b7e1b8c3e26cc';
     var headingTag = 'h1';
@@ -108,7 +108,7 @@
         interval = setInterval("LiveMB('" + appKey + "', '" + rootPath + "', '" + headingTag + "')", timeInter);
         intervalVariable = setInterval('getRandomTextMB()', 100);
     } catch (e) { console.log(e.message); }
-</script>
+</script>--}}
 
 </div>
 </body>
