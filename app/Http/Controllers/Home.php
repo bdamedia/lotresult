@@ -11,7 +11,7 @@ class Home extends Controller
 {
     //
     public function index() {
-	    $url = "https://xosodaiphat.com/xsmb-xo-so-mien-bac.html";
+	    /*$url = "https://xosodaiphat.com/xsmb-xo-so-mien-bac.html";
       $client = new Client();
       $crawler = $client->request('GET', $url);
 
@@ -64,9 +64,9 @@ class Home extends Controller
               $first400 = array(substr($details, 0, 400));
               $newValues['G.1'] = $first400[0];
             }
-           
-            if($key == 7 || $key == 9 || $key ==  45 || $key == 47 || 
-              $key == 83  || $key == 85  || $key == 121  || $key == 123  || $key == 159  
+
+            if($key == 7 || $key == 9 || $key ==  45 || $key == 47 ||
+              $key == 83  || $key == 85  || $key == 121  || $key == 123  || $key == 159
               || $key == 161 || $key == 197  || $key == 199  || $key == 235  || $key == 237
             ) {
               //$first400 = array(substr($details, 0, 400));
@@ -78,7 +78,7 @@ class Home extends Controller
               if($key == 7 || $key == 45 || $key == 83 || $key == 121 || $key == 159 || $key == 197 || $key == 235) {
                 $newValues['G.2'] = $mainValue;
               } else {
-                $newValues['G.3'] = $mainValue;  
+                $newValues['G.3'] = $mainValue;
               }
             }
 
@@ -108,17 +108,17 @@ class Home extends Controller
             }
 
             //New details for one
-            if($key == 19 || $key == 21 || $key == 23 || $key == 25 || $key == 27 || $key == 29 
-              || $key == 31 || $key == 33 || $key == 35 || $key == 37 
-              || $key == 57 || $key == 59 || $key == 61 || $key == 63 || $key == 65 || $key == 67  || $key == 69  
+            if($key == 19 || $key == 21 || $key == 23 || $key == 25 || $key == 27 || $key == 29
+              || $key == 31 || $key == 33 || $key == 35 || $key == 37
+              || $key == 57 || $key == 59 || $key == 61 || $key == 63 || $key == 65 || $key == 67  || $key == 69
               || $key == 71 || $key == 73 || $key == 75
               || $key == 95 || $key == 97 || $key == 99 || $key == 101 || $key == 103 || $key == 105 || $key == 107 || $key == 109 || $key == 111
-              || $key == 113 
+              || $key == 113
               || $key == 133 || $key == 135 || $key == 137 || $key == 139 || $key == 141 || $key == 143 || $key == 145 || $key == 147 || $key == 149 || $key == 151
 
               || $key == 171 || $key == 173 || $key == 175 || $key == 177 || $key == 179 || $key == 181 || $key == 183 || $key == 185 || $key == 187 || $key == 189
 
-              || $key == 209 || $key == 211 || $key == 213 || $key == 215 || $key == 217 || $key == 219 || $key == 221 || $key == 223 || $key == 225 || $key == 227 
+              || $key == 209 || $key == 211 || $key == 213 || $key == 215 || $key == 217 || $key == 219 || $key == 221 || $key == 223 || $key == 225 || $key == 227
 
               || $key == 247 || $key == 249 || $key == 251 || $key == 253 || $key == 255 || $key == 257 || $key == 259 || $key == 261 || $key == 263 || $key == 265
 
@@ -130,7 +130,7 @@ class Home extends Controller
                 $newValues[] = $details;
               }
             }
-          
+
            //print('.............');
            //print_r($key);
            if ($list == 38 || $list == 76 || $list == 114 || $list == 152 || $list == 190 || $list == 228 || $list == 270) {
@@ -140,17 +140,17 @@ class Home extends Controller
               $new[] = $newValues;
               $newValues = [];
               //break;
-              
+
            }
           //echo "Full records page $url Page<pre>";
           //print_r($all_links); echo "</pre>";
-       }
-       print_r($new);
-			
+       }*/
+      /* print_r($new);
+
 
 		  } else {
 			  echo "No Links Found";
-	   }
+	   }*/
 		 die();
      return view('home');
     }
