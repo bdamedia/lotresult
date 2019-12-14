@@ -27,15 +27,15 @@
 
 <div class="hidden-xs hidden-sm menu-lv2">
     <ul class="nav navbar-nav">
-        <li class="active"><a href="/crawler/xsmb-xo-so-mien-bac" title="XSMB">XSMB</a></li>
-        <li><a href="/crawler/xsmb-truc-tiep" title="Trực tiếp XSMB">Trực tiếp</a></li>
-        <li><a href="/crawler/xsmb-thu-2" title="XSMB Thứ 2">Thứ 2</a></li>
-        <li><a href="/crawler/xsmb-thu-3" title="XSMB Thứ 3">Thứ 3</a></li>
-        <li><a href="/crawler/xsmb-thu-4" title="XSMB Thứ 4">Thứ 4</a></li>
-        <li><a href="/crawler/xsmb-thu-5" title="XSMB Thứ 5">Thứ 5</a></li>
-        <li><a href="/crawler/xsmb-thu-6" title="XSMB Thứ 6">Thứ 6</a></li>
-        <li><a href="/crawler/xsmb-thu-7" title="XSMB Thứ 7">Thứ 7</a></li>
-        <li><a href="/crawler/xsmb-chu-nhat-cn" title="XSMB Chủ nhật">Chủ Nhật</a></li>
+        <li class="active"><a href="#xsmb-1" title="XSMB">XSMB</a></li>
+        <li><a href="#xsmb-2" title="Trực tiếp XSMB">Trực tiếp</a></li>
+        <li><a href="#xsmb-3" title="XSMB Thứ 2">Thứ 2</a></li>
+        <li><a href="#xsmb-4" title="XSMB Thứ 3">Thứ 3</a></li>
+        <li><a href="#xsmb-5" title="XSMB Thứ 4">Thứ 4</a></li>
+        <li><a href="#xsmb-6" title="XSMB Thứ 5">Thứ 5</a></li>
+        <li><a href="#xsmb-7" title="XSMB Thứ 6">Thứ 6</a></li>
+        <li><a href="#xsmb-8" title="XSMB Thứ 7">Thứ 7</a></li>
+        <li><a href="#xsmb-9" title="XSMB Chủ nhật">Chủ Nhật</a></li>
     </ul>
 </div>
 
@@ -105,10 +105,10 @@
 
     <div class="row">
     <div class="col-xs-12">
-
+        @php $g = 1; @endphp
         @foreach($content as $printresult)
            {{-- {{ print_r($printresult) }}--}}
-    <div class="block" id='kqngay_13122019'>
+    <div class="block" id='xsmb-{{ $g }}'>
         <div class="block-main-heading">
             <h1>{{ $printresult->lottery_region }}</h1>
             </div>
@@ -330,7 +330,7 @@
            role="button">In Vé Dò</a>
         </p>
         </div>
-
+            @php $g++; @endphp
     @endforeach
 
 
