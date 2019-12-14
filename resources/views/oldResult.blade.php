@@ -126,7 +126,7 @@
 
 <div class="hidden-xs hidden-sm menu-lv2">
     <ul class="nav navbar-nav">
-        <li class="active"><a href="crawler/xsmb-xo-so-mien-bac" title="XSMB">XSMB</a></li>
+        <li class="active"><a href="/crawler/xsmb-xo-so-mien-bac" title="XSMB">XSMB</a></li>
         <li><a href="/crawler/xsmb-truc-tiep" title="Trực tiếp XSMB">Trực tiếp</a></li>
         <li><a href="/crawler/xsmb-thu-2" title="XSMB Thứ 2">Thứ 2</a></li>
         <li><a href="/crawler/xsmb-thu-3" title="XSMB Thứ 3">Thứ 3</a></li>
