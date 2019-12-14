@@ -27,6 +27,7 @@ class CreateResultsTable extends Migration
             $table->json('prize_7');
             $table->json('prize_8');
             $table->json('prize_9');
+            $table->json('board');
             $table->dateTime('result_day_time');
             $table->timestamps('created_date');
         });

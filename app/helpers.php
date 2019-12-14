@@ -17,7 +17,8 @@ function crawlUrl($url=null){
         $arrayName = str_replace(' ','',$node->text());
 
         $resultsArray['lottery_region'] = $resultSplitVal[0];
-        $resultsArray['lottery_company'] = $resultSplitVal[1];
+        $resultsArray['lottery_company'] = $resultSplitVal[0];
+        $resultsArray['result_day_time'] = $resultSplitVal[1];
         return $resultsArray;
     });
 
@@ -169,7 +170,7 @@ function crawlUrlFirst($url=null)
         $newValues = [];
         $new = [];
         $list = 0;
-     
+
         foreach ($all_links as $key=>$details) {
             $list++;
             if($key == 1 || $key == 39 || $key == 77 || $key == 115 || $key == 153 || $key == 191 || $key == 229) {
@@ -177,15 +178,15 @@ function crawlUrlFirst($url=null)
                 //$arr =  explode(" ", $details);
                 if(isset($newValues[0])){
                     $val = strval($newValues[0]);
-                    $newValues[$all_links[$key-1]] = array_filter(explode(' ', $details)); 
+                    $newValues[$all_links[$key-1]] = array_filter(explode(' ', $details));
                     unset($newValues[$key]);
                     unset($newValues[0]);
                 }else{
                     $val = $key-1;
-                    $newValues[$all_links[$val]] = array_filter(explode(' ', $details)); 
+                    $newValues[$all_links[$val]] = array_filter(explode(' ', $details));
                     unset($newValues[$key]);
                     unset($newValues[$key-1]);
-                }               
+                }
             }
             if($key == 0 || $key == 38 || $key == 76 || $key == 114 || $key == 152 || $key == 189 || $key == 228) {
                 $newValues[$key] = $details;
@@ -265,5 +266,5 @@ function crawlUrlFirst($url=null)
         }
         return $new;
     }
-    
+
 }
