@@ -246,7 +246,7 @@
                     @endif
                 </td>
             </tr>
-            @if($printresult->prize_10)
+       {{--     @if($printresult->prize_10)
             <tr>
                 <td>@php $prize_10 = json_decode($printresult->prize_10);    @endphp {{ key($prize_10) }}</td>
                 <td class="text-center">
@@ -264,7 +264,7 @@
                     @endif
                 </td>
             </tr>
-            @endif
+            @endif--}}
 
             </tbody>
             </table>
