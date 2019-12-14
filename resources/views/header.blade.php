@@ -91,7 +91,7 @@
         <div class="hidden-xs hidden-sm col-md-2">
         <div class="logo">
             <h4 class="hide">Xổ Số Đại Phát</h4>
-            <a href="/"><img src="{{ URL::asset('images/logos/logo.png') }}" alt="logo" title="logo" class="img-responsive"></a>
+            <a href="/"><img src="{{ URL::asset('images/logos/logo.svg') }}" alt="logo" title="logo" class="img-responsive"></a>
         </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-10">
