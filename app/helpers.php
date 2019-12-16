@@ -191,7 +191,7 @@ function crawlUrlModified($url=null){
         $res[]['data'] = $res1;
 
         if(isset($res1['Giải'])){
-            $res[$i]['lottery_region'] = "XSMN";
+            $res[$i]['lottery_region'] = "XSMT";
             $res[$i]['lottery_company'] = $res1['Giải'][5] ? $res1['Giải'][5] :'';
             $res[$i]['result_day_time'] = $res1['Giải'][6] ? $res1['Giải'][6] : '';
             unset($res[$i]['data']['Giải']);
