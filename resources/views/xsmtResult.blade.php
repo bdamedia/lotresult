@@ -7,7 +7,7 @@
 <div class="collapse navbar-collapse">
     <ul class="main-menu">
         <!-- <li class=""><a href="/" title="Trang chủ"><i class="fa fa-home" aria-hidden="true"></i></a></li> -->
-        <li class="active"><a href="/xsmb" title="XSMB">XSMB</a>
+        <li><a href="/xsmb" title="XSMB">XSMB</a>
             <!-- <div class="menu-lv2-down">
                 <ul><li><a href="/xsmb-thu-2.html" title="XSMB Thứ 2">Thứ 2</a></li>
                     <li><a href="/xsmb-thu-3.html" title="XSMB Thứ 3">Thứ 3</a></li>
@@ -21,7 +21,7 @@
             </div> -->
         </li>
 
-        <li class=""><a href="/xsmn" title="XSMN">XSMN</a>
+        <li><a href="/xsmn" title="XSMN">XSMN</a>
             <!-- <div class="menu-lv2-down">
                 <ul>
                     <li><a href="/xsmn-thu-2.html" title="XSMN Thứ 2">Thứ 2</a></li
@@ -36,7 +36,7 @@
             </div>-->
         </li> 
 
-        <li class=""><a href="/xsmt" title="XSMN">XSMT</a>
+        <li class="active"><a href="/xsmt" title="XSMN">XSMT</a>
             <!-- <div class="menu-lv2-down">
                 <ul>
                     <li><a href="/xsmn-thu-2.html" title="XSMN Thứ 2">Thứ 2</a></li
