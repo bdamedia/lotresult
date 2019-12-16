@@ -48,7 +48,7 @@ class Crawler extends Controller
 
     public function xsmnCurrentResult(){
 
-        $url = "https://xosodaiphat.com/xstg-xo-so-tien-giang.html";
+        $url = "https://xosodaiphat.com/xshcm-xo-so-tphcm.html";
         $resultData = crawlUrlModified($url);
 
         $result = new Result();
@@ -74,7 +74,7 @@ class Crawler extends Controller
                             }
                         }
                         $result->save();
-                  
+
 
                 }
             }

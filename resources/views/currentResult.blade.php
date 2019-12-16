@@ -34,7 +34,7 @@
                     <li><a href="/xsmn-truc-tiep.html" title="Trực tiếp XSMN">Trực tiếp</a></li>
                 </ul>
             </div>-->
-        </li> 
+        </li>
 
         <li class=""><a href="/xsmt" title="XSMN">XSMT</a>
             <!-- <div class="menu-lv2-down">
@@ -49,7 +49,7 @@
                     <li><a href="/xsmn-truc-tiep.html" title="Trực tiếp XSMN">Trực tiếp</a></li>
                 </ul>
             </div>-->
-        </li> 
+        </li>
 
     </ul>
 </div>
