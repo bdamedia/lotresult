@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class Results extends Controller
 {
     public function index(){
-        $result = Result::orderBy('created_at', 'desc')->get();
+        $result = Result::where('lottery_region','XSMB')->orderBy('created_at', 'desc')->get();
         $data['content'] = $result;
         //return view('currentResult',$data)->render();
         return view('currentResult')->with($data);
@@ -20,10 +20,12 @@ class Results extends Controller
     }
 
 
-    public function xsmn(){
-        $result = Result::where('lottery_region', 'xsmn')->orderBy('created_at', 'desc')->get();
+    public function xsmn($company){
+        $result = Result::where('lottery_region', 'XSMN')->where('lottery_company', strtoupper($company))->orderBy('created_at', 'desc')->get();
+        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->get();
+        $data['comp'] = $comp;
         $data['content'] = $result;
-        //return view('currentResult',$data)->render();
+
         return view('xsmnResult')->with($data);
     }
 
