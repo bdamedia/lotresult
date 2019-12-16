@@ -20,7 +20,7 @@ Route::get("/xsmn", "Results@xsmn");
 Route::get("/xsmn/{region}", "Results@xsmn");
 
 Route::get("/xsmt", "Results@xsmt");
-Route::get("/xsmt/{region}", "Results@xsmtShow");
+Route::get("/xsmt/{region}", "Results@xsmt");
 
 Route::get("crawler/old", "Crawler@getOldResult");
 
