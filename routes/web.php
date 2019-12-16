@@ -13,8 +13,8 @@
 
 Route::get("/crawler", "Crawler@index");
 Route::get("/", "Home@index");
-Route::get("/result", "Results@index");
-Route::get("/result/{region}", "Results@show");
+Route::get("/xsmb", "Results@index");
+Route::get("/xsmb/{region}", "Results@show");
 
 Route::get("crawler/old", "Crawler@getOldResult");
 
