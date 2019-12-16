@@ -158,7 +158,7 @@
                                             </td>
                                         </tr>--}}
 
-                                        <tr>
+                                        {{--<tr>
                                             <td>@php $prize_2 = json_decode($printresult->prize_2);   @endphp {{ key($prize_2) }}</td>
                                             <td class="text-center">
                                                 @if(count((array) $prize_2) <= 1)
@@ -172,7 +172,7 @@
                                                     @endforeach
                                                 @endif
                                             </td>
-                                        </tr>
+                                        </tr>--}}
 
                                         <tr>
                                             <td>@php $prize_3 = json_decode($printresult->prize_3);  @endphp {{ key($prize_3) }}</td>
