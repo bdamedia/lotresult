@@ -59,8 +59,8 @@
     <ul class="nav navbar-nav">
 
         @foreach($comp as $k=>$compn)
-        @php  $end = strlen($compn)-4; @endphp
-        <li class=""><a href="/xsmn/{{ substr($compn,2,$end) }}" title="{{ substr($compn,2,$end) }}">{{ substr($compn,2,$end) }}</a></li>
+        @php  $end = strlen($compn)-4; if($companyName == substr($compn,2,$end)){ $active="active"; }else{ $active=""; } @endphp
+        <li class="{{ $active }}"><a href="/xsmn/{{ substr($compn,2,$end) }}" title="{{ substr($compn,2,$end) }}">{{ substr($compn,2,$end) }}</a></li>
             @endforeach
     </ul>
 </div>

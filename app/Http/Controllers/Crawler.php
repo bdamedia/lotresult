@@ -97,9 +97,7 @@ class Crawler extends Controller
         $url = "https://xosodaiphat.com/". $link;
         $resultData = crawlUrlModified($url);
         $result = new Result();
-        //echo "<pre>";
-        //print_r($resultData);
-        //exit();
+
         foreach ($resultData as $res){
             if(isset($res['lottery_region'])) {
                 $data = Result::where('lottery_region', $res['lottery_region'])->where('lottery_company', $res['lottery_company'])->where('result_day_time', $res['result_day_time'])->get();

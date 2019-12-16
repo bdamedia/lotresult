@@ -16,7 +16,7 @@ Route::get("/", "Home@index");
 Route::get("/xsmb", "Results@index");
 Route::get("/xsmb/{region}", "Results@show");
 
-/*Route::get("/xsmn", "Results@xsmn");*/
+Route::get("/xsmn", "Results@xsmn");
 Route::get("/xsmn/{region}", "Results@xsmn");
 
 Route::get("/xsmt", "Results@xsmt");

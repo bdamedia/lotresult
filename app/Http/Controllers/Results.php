@@ -20,10 +20,11 @@ class Results extends Controller
     }
 
 
-    public function xsmn($company){
+    public function xsmn($company='XSTG'){
         $result = Result::where('lottery_region', 'XSMN')->where('lottery_company', strtoupper($company))->orderBy('created_at', 'desc')->get();
-        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->get();
+        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
         $data['comp'] = $comp;
+        $data['companyName'] = strtoupper($company);
         $data['content'] = $result;
 
         return view('xsmnResult')->with($data);
