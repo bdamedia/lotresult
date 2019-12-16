@@ -30,3 +30,6 @@ Route::get("crawler/old", "Crawler@getOldResult");
 Route::get("/crawler/current", "Crawler@getCurrentResult");
 Route::get("/crawler/xsmn/current", "Crawler@xsmnCurrentResult");
 
+
+Route::get("/updatedatabase/{link}", "Crawler@saveDatabase");
+
