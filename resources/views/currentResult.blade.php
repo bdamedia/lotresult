@@ -55,7 +55,7 @@
 </div>
 </nav>
 
-<div class="hidden-xs hidden-sm menu-lv2">
+<!-- <div class="hidden-xs hidden-sm menu-lv2">
     <ul class="nav navbar-nav">
         <li class="active"><a href="#xsmb-1" title="XSMB">XSMB</a></li>
         <li><a href="#xsmb-2" title="Trực tiếp XSMB">Trực tiếp</a></li>
@@ -68,7 +68,8 @@
         <li><a href="#xsmb-9" title="XSMB Chủ nhật">Chủ Nhật</a></li>
     </ul>
 </div>
-
+ -->
+ 
 <div class="visible-xs visible-sm menu-mobile">
     <div class="col-xs-12">
         <ul class="col-xs-12">
