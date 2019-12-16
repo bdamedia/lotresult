@@ -50,12 +50,8 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-10">
             <div class="banner-adv-wrapper">
-            <div class="quangcao980x90_nomobile">
-            <script type="text/javascript">if ((window.mobileAndTabletcheck() && 'wap' == 'web') || (window.mobileAndTabletcheck() == false && 'web' == 'web') ) {document.write('<ins class="adsbygoogle"    style="display: inline-block; width: 728px; height: 90px"    data-ad-client="ca-pub-7078400245394460"    data-ad-slot="9034480559"></ins><scr' + 'ipt>    (adsbygoogle = window.adsbygoogle || []).push({});</scr' + 'ipt>');}</script>
-            </div>
-            <div class="quangcao980x90_nodesktop mrgbt5">
-            <script type="text/javascript">if ((window.mobileAndTabletcheck() && 'wap' == 'wap') || (window.mobileAndTabletcheck() == false && 'web' == 'wap') ) {document.write('<ins class="adsbygoogle"    style="display: inline-block; width: 320px; height: 100px"    data-ad-client="ca-pub-7078400245394460"    data-ad-slot="3753160039"></ins><scr' + 'ipt>    (adsbygoogle = window.adsbygoogle || []).push({});</scr' + 'ipt>');}</script>
-            </div>
+                @php $reload = explode('/',request()->fullUrl()); @endphp
+                <a href="/updatedatabase/{{ strtolower(end($reload)) }}" style="float: right;padding: 10px;background: red;color: white;font-weight: bold;">Reload</a>
             </div>
         </div>
     </div>

@@ -20,10 +20,11 @@ class Results extends Controller
     }
 
 
-    public function xsmn($company){
+    public function xsmn($company='XSTG'){
         $result = Result::where('lottery_region', 'XSMN')->where('lottery_company', strtoupper($company))->orderBy('created_at', 'desc')->get();
-        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->get();
+        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
         $data['comp'] = $comp;
+        $data['companyName'] = strtoupper($company);
         $data['content'] = $result;
 
         return view('xsmnResult')->with($data);
@@ -34,9 +35,12 @@ class Results extends Controller
         return $result;
     }
 
-    public function xsmt(){
-        $result = Result::where('lottery_region', 'xsmt')->orderBy('created_at', 'desc')->get();
+    public function xsmt($company='XSMT'){
+        $result = Result::where('lottery_region', 'XSMT')->orderBy('created_at', 'desc')->get();
         $data['content'] = $result;
+        $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+        $data['comp'] = $comp;
+        $data['companyName'] = strtoupper($company);
         //return view('currentResult',$data)->render();
         return view('xsmtResult')->with($data);
     }
