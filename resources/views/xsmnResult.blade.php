@@ -1,133 +1,9 @@
 @include('header')
 
-<div class="clearfix"></div>
-<div class="container">
-<nav class="hidden-xs hidden-sm navbar navbar-default">
-<h2 class="hide">Menu</h2>
-<div class="collapse navbar-collapse">
-    <ul class="main-menu">
-        <!-- <li class=""><a href="/" title="Trang chủ"><i class="fa fa-home" aria-hidden="true"></i></a></li> -->
-        <li><a href="/xsmb" title="XSMB">XSMB</a>
-            <!-- <div class="menu-lv2-down">
-                <ul><li><a href="/xsmb-thu-2.html" title="XSMB Thứ 2">Thứ 2</a></li>
-                    <li><a href="/xsmb-thu-3.html" title="XSMB Thứ 3">Thứ 3</a></li>
-                    <li><a href="/xsmb-thu-4.html" title="XSMB Thứ 4">Thứ 4</a></li>
-                    <li><a href="/xsmb-thu-5.html" title="XSMB Thứ 5">Thứ 5</a></li>
-                    <li><a href="/xsmb-thu-6.html" title="XSMB Thứ 6">Thứ 6</a></li>
-                    <li><a href="/xsmb-thu-7.html" title="XSMB Thứ 7">Thứ 7</a></li>
-                    <li><a href="/xsmb-chu-nhat-cn.html" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
-                    <li><a href="/xsmb-truc-tiep.html" title="Trực tiếp XSMB">Trực tiếp</a></li>
-                </ul>
-            </div> -->
-        </li>
-
-        <li class="active"><a href="/xsmn" title="XSMN">XSMN</a>
-            <!-- <div class="menu-lv2-down">
-                <ul>
-                    <li><a href="/xsmn-thu-2.html" title="XSMN Thứ 2">Thứ 2</a></li
-                    <li><a href="/xsmn-thu-3.html" title="XSMN Thứ 3">Thứ 3</a></li>
-                    <li><a href="/xsmn-thu-4.html" title="XSMN Thứ 4">Thứ 4</a></li>
-                    <li><a href="/xsmn-thu-5.html" title="XSMN Thứ 5">Thứ 5</a></li>
-                    <li><a href="/xsmn-thu-6.html" title="XSMN Thứ 6">Thứ 6</a></li>
-                    <li><a href="/xsmn-thu-7.html" title="XSMN Thứ 7">Thứ 7</a></li>
-                    <li><a href="/xsmn-chu-nhat-cn.html" title="XSMN Chủ Nhật">Chủ Nhật</a></li>
-                    <li><a href="/xsmn-truc-tiep.html" title="Trực tiếp XSMN">Trực tiếp</a></li>
-                </ul>
-            </div>-->
-        </li>
-
-        <li class=""><a href="/xsmt" title="XSMN">XSMT</a>
-            <!-- <div class="menu-lv2-down">
-                <ul>
-                    <li><a href="/xsmn-thu-2.html" title="XSMN Thứ 2">Thứ 2</a></li
-                    <li><a href="/xsmn-thu-3.html" title="XSMN Thứ 3">Thứ 3</a></li>
-                    <li><a href="/xsmn-thu-4.html" title="XSMN Thứ 4">Thứ 4</a></li>
-                    <li><a href="/xsmn-thu-5.html" title="XSMN Thứ 5">Thứ 5</a></li>
-                    <li><a href="/xsmn-thu-6.html" title="XSMN Thứ 6">Thứ 6</a></li>
-                    <li><a href="/xsmn-thu-7.html" title="XSMN Thứ 7">Thứ 7</a></li>
-                    <li><a href="/xsmn-chu-nhat-cn.html" title="XSMN Chủ Nhật">Chủ Nhật</a></li>
-                    <li><a href="/xsmn-truc-tiep.html" title="Trực tiếp XSMN">Trực tiếp</a></li>
-                </ul>
-            </div>-->
-        </li>
-
-    </ul>
-</div>
-</nav>
-
-<div class="hidden-xs hidden-sm menu-lv2">
-    <ul class="nav navbar-nav">
-
-        @foreach($comp as $k=>$compn)
-        @php  $end = strlen($compn)-4; if($companyName == substr($compn,2,$end)){ $active="active"; }else{ $active=""; } @endphp
-        <li class="{{ $active }}"><a href="/xsmn/{{ substr($compn,2,$end) }}" title="{{ substr($compn,2,$end) }}">{{ substr($compn,2,$end) }}</a></li>
-            @endforeach
-    </ul>
-</div>
-
-<div class="visible-xs visible-sm menu-mobile">
-    <div class="col-xs-12">
-        <ul class="col-xs-12">
-            <li class="col-xs-3 showmenu"><a href="#" title="Menu">
-                <i class="fa fa-bars" aria-hidden="true"></i></a>
-            </li>
-            <li class="col-xs-6">
-                <a href="/"><img src="https://cdn.xosodaiphat.com/assets/images/logo.png" alt="logo" title="logo"
-                                 class="logo-mb img-responsive"></a>
-            </li>
-            <li class="col-xs-3">
-                <a href="https://play.google.com/store/apps/details?id=com.icsoft.xosodaiphat" target="_blank"
-                   rel="nofollow,noopener" title="Tải ứng dụng trên Android" id="btntaiapp"><img
-                        src="/assets/images/app.png" style="height:35px;padding-right: 5px; float:right"
-                        alt="Tải ứng dụng"/></a></li>
-        </ul>
-
-        <ul class="col-xs-12 ul-lv2">
-            <li><a href="/crawler/xsmb-xo-so-mien-bac" title="XSMB">XSMB</a></li>
-            <li><a href="/crawler/xsmb-truc-tiep" title="XSMB Trực tiếp">Trực tiếp</a></li>
-            <li><a href="/crawler/thong-ke-xsmb-c2579-article" title="Thống kê XSMB">Thống kê XSMB</a></li>
-        </ul>
-        <ul class="col-xs-12 ul-xsmb-thu">
-            <li><a href="/crawler/xsmb-thu-2" title="XSMB Thứ 2">T2</a></li>
-            <li><a href="/crawler/xsmb-thu-3" title="XSMB Thứ 3">T3</a></li>
-            <li><a href="/crawler/xsmb-thu-4" title="XSMB Thứ 4">T4</a></li>
-            <li><a href="/crawler/xsmb-thu-5" title="XSMB Thứ 5">T5</a></li>
-            <li class=active><a href="/xsmb-thu-6" title="XSMB Thứ 6">T6</a></li>
-            <li><a href="/crawler/xsmb-thu-7" title="XSMB Thứ 7">T7</a></li>
-            <li><a href="/crawler/xsmb-chu-nhat-cn" title="XSMB Chủ nhật">CN</a></li>
-        </ul>
-    </div>
-</div>
-<div class="category-mobile hide">
-    <ul>
-        <li>
-            <a href="/" title="XSMB - SXMB - Kết Quả Xổ Số Miền Bắc H&#244;m Nay - KQXSMB"><span class="text"><i
-                        class="fa fa-home" aria-hidden="true"></i>Trang chủ</span></a>
-        </li>
-        <li><a href="/crawler/xsmb-xo-so-mien-bac" title="XSMB">XSMB</a></li>
-        <li><a href="/crawler/xsmn-xo-so-mien-nam" title="XSMN">XSMN</a></li>
-        <li><a href="/crawler/xsmt-xo-so-mien-trung" title="XSMT">XSMT</a></li>
-        <li><a href="/crawler/quay-thu-xo-so" title="Quay thử xổ số">Quay thử xổ số</a></li>
-        <li><a href="/crawler/xo-so-vietlott">Vietlott</a></li>
-
-        <li><a href="/crawler/cau-xo-so-cac-tinh" title="TK Cầu">TK Cầu</a></li>
-        <li><a href="/crawler/thong-ke-lo-gan" title="TK Lô">TK Lô</a></li>
-        <li><a href="/crawler/lo-to-mien-bac/ket-qua-lo-to-mien-bac" title="Lô Tô">Lô Tô</a></li>
-
-        <li><a href="/crawler/thong-ke-xo-so" title="Thống kê Xổ Số">Thống kê Xổ Số</a></li>
-        <li><a href="/crawler/xsmb-truc-tiep" title="Xổ số trực tiếp hôm nay">Xổ số trực tiếp hôm nay</a></li>
-        <li><a href="/crawler/xsmb-xo-so-mien-bac" title="Xổ số hôm qua">Xổ số hôm qua</a></li>
-        <li><a href="/crawler/xo-so-theo-dai" title="KQXS theo tỉnh">KQXS theo tỉnh</a></li>
-        <li><a href="/crawler/xo-so-dien-toan-123" title="XS điện toán">XS điện toán</a></li>
-        <li><a href="/crawler/do-so-trung" title="Dò vé số">Dò vé số</a></li>
-        <li class="btn-close"><i class="fa fa-times" aria-hidden="true"></i> Đóng danh mục</li>
-    </ul>
-</div>
-</div>
 <div class="main-content">
     <div class="container">
     <div class="row margin-b">
-    <div class="col-xs-12">
+    <div class="col-xs-12 col-sm-12 col-md-6">
 
     <div class="row">
     <div class="col-xs-12">
@@ -322,33 +198,7 @@
                 </tr>
                 @endforeach
                 @endif
-               {{-- <tr>
-                    <td class="text-center">1</td><td>17, 14, 13, 16</td>
-                </tr>
-                <tr>
-                    <td class="text-center">2</td><td>26, 28</td>
-                </tr>
-                <tr>
-                    <td class="text-center">3</td><td>32</td>
-                </tr>
-                <tr>
-                    <td class="text-center">4</td><td>49, 43, 48, 49</td>
-                </tr>
-                <tr>
-                    <td class="text-center">5</td><td>51</td>
-                </tr>
-                <tr>
-                    <td class="text-center">6</td><td>60, 60, 61, 60</td>
-                </tr>
-                <tr>
-                    <td class="text-center">7</td><td>76, 75, 76</td>
-                </tr>
-                <tr>
-                    <td class="text-center">8</td><td>88, 86, 84</td>
-                </tr>
-                <tr>
-                    <td class="text-center">9</td><td>96, 92, 93, 93</td>
-                </tr>--}}
+
             </table>
             </div>
             <div class="link-statistic">
@@ -538,6 +388,7 @@
                         </div>
                 </div>
             </div> -->
+        @include('sidebar')
     </div>
     </div>
 </div>
