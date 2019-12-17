@@ -21,7 +21,7 @@
                     </div> -->
                 </li>
 
-                <li class="active"><a href="/xsmn" title="XSMN">XSMN</a>
+                <li><a href="/xsmn" title="XSMN">XSMN</a>
                     <!-- <div class="menu-lv2-down">
                         <ul>
                             <li><a href="/xsmn-thu-2.html" title="XSMN Thứ 2">Thứ 2</a></li
@@ -36,7 +36,7 @@
                     </div>-->
                 </li>
 
-                <li class=""><a href="/xsmt" title="XSMN">XSMT</a>
+                <li class="active"><a href="/xsmt" title="XSMN">XSMT</a>
                     <!-- <div class="menu-lv2-down">
                         <ul>
                             <li><a href="/xsmn-thu-2.html" title="XSMN Thứ 2">Thứ 2</a></li
@@ -149,16 +149,16 @@
                                 <div class="block-main-content">
                                     <table class="table table-bordered table-striped table-xsmb">
                                         <tbody>
-                                     {{--   <tr>
+                                        <tr>
                                             <td style="width: 15%"> @php $prize_1 = json_decode($printresult->prize_1); @endphp {{ key($prize_1) }}</td>
                                             <td class="text-center">
                                                 @foreach($prize_1->{key($prize_1)} as $k=>$p1)
                                                     <span class=" special-code div-horizontal">{{ $p1 }} </span>
                                                 @endforeach
                                             </td>
-                                        </tr>--}}
+                                        </tr>
 
-                                        {{--<tr>
+                                        <tr>
                                             <td>@php $prize_2 = json_decode($printresult->prize_2);   @endphp {{ key($prize_2) }}</td>
                                             <td class="text-center">
                                                 @if(count((array) $prize_2) <= 1)
@@ -172,7 +172,7 @@
                                                     @endforeach
                                                 @endif
                                             </td>
-                                        </tr>--}}
+                                        </tr>
 
                                         <tr>
                                             <td>@php $prize_3 = json_decode($printresult->prize_3);  @endphp {{ key($prize_3) }}</td>
