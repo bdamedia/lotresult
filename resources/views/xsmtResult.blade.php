@@ -21,7 +21,7 @@
                     </div> -->
                 </li>
 
-                <li class="active"><a href="/xsmn" title="XSMN">XSMN</a>
+                <li><a href="/xsmn" title="XSMN">XSMN</a>
                     <!-- <div class="menu-lv2-down">
                         <ul>
                             <li><a href="/xsmn-thu-2.html" title="XSMN Thứ 2">Thứ 2</a></li
@@ -36,7 +36,7 @@
                     </div>-->
                 </li>
 
-                <li class=""><a href="/xsmt" title="XSMN">XSMT</a>
+                <li class="active"><a href="/xsmt" title="XSMN">XSMT</a>
                     <!-- <div class="menu-lv2-down">
                         <ul>
                             <li><a href="/xsmn-thu-2.html" title="XSMN Thứ 2">Thứ 2</a></li
