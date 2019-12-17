@@ -12,7 +12,8 @@
 */
 
 Route::get("/crawler", "Crawler@index");
-Route::get("/", "Results@index");
+
+Route::redirect('/','/xsmb');
 Route::get("/xsmb", "Results@index");
 Route::get("/xsmb/{region}", "Results@show");
 

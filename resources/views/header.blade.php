@@ -86,7 +86,7 @@
                             </ul>
                         </div-->
                     </li>
-                    <li class="@php if(in_array('xsmn',$reload)){ echo "active"; } @endphp"><a href="/" title="XSMN">XSMN</a>
+                    <li class="@php if(in_array('xsmn',$reload)){ echo "active"; } @endphp"><a href="/xsmn" title="XSMN">XSMN</a>
                        {{-- <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/xsmn-thu-2.html" title="XSMN Thứ 2">Thứ 2</a></li>
@@ -206,7 +206,7 @@
 
                 @foreach($comp as $k=>$compn)
                     @php  $end = strlen($compn)-4; if($companyName == substr($compn,2,$end)){ $active="active"; }else{ $active=""; } @endphp
-                    <li class="{{ $active }}"><a href="/xsmn/{{ substr($compn,2,$end) }}"
+                    <li class="{{ $active }}"><a href="/{{ $region }}/{{ substr($compn,2,$end) }}"
                                                  title="{{ substr($compn,2,$end) }}">{{ substr($compn,2,$end) }}</a>
                     </li>
                 @endforeach

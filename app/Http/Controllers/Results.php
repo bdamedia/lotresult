@@ -11,6 +11,7 @@ class Results extends Controller
         $data['content'] = $result;
         //$comp = Result::where('lottery_region', 'XSMB')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
         $data['comp'] = ["XSMB"];
+        $data['region'] = "xsmb";
         $data['companyName'] = strtoupper($company);
         //return view('currentResult',$data)->render();
         return view('currentResult')->with($data);
@@ -27,6 +28,7 @@ class Results extends Controller
         $result = Result::where('lottery_region', 'XSMN')->where('lottery_company', strtoupper($company))->orderBy('created_at', 'desc')->get();
         $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
         $data['comp'] = $comp;
+        $data['region'] = "xsmn";
         $data['companyName'] = strtoupper($company);
         $data['content'] = $result;
 
@@ -46,6 +48,7 @@ class Results extends Controller
         $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
         $data['comp'] = $comp;
         $data['companyName'] = strtoupper($company);
+        $data['region'] = "xsmt";
         //return view('currentResult',$data)->render();
         return view('xsmtResult')->with($data);
     }
