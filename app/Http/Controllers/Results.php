@@ -36,8 +36,10 @@ class Results extends Controller
     }
 
     public function xsmt($company='XSQNA'){
-        $result = Result::where('lottery_region', 'XSMT')->orderBy('created_at', 'desc')->get();
-        $data['content'] = $result;
+        $resultXsmt = Result::where('lottery_region', 'XSMT')->where('lottery_company', strtoupper($company))->orderBy('created_at', 'desc')->get();
+        /*echo "<pre>";
+        print_r($resultXsmt);*/
+        $data['content'] = $resultXsmt;
         $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
         $data['comp'] = $comp;
         $data['companyName'] = strtoupper($company);
