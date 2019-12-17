@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 
 class Results extends Controller
 {
-    public function index(){
-        $result = Result::where('lottery_region','XSMB')->orderBy('created_at', 'desc')->get();
+    public function index($company='XSMB'){
+        $result = Result::where('lottery_region','XSMB')->where('lottery_company', strtoupper($company))->orderBy('created_at', 'desc')->get();
         $data['content'] = $result;
+        //$comp = Result::where('lottery_region', 'XSMB')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+        $data['comp'] = ["XSMB"];
+        $data['companyName'] = strtoupper($company);
         //return view('currentResult',$data)->render();
         return view('currentResult')->with($data);
     }
