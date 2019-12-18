@@ -35,6 +35,71 @@ class Results extends Controller
         return view('xsmnResult')->with($data);
     }
 
+
+    public function xsmnIndex(){
+        $result = Result::where('lottery_region', 'XSMN')->orderBy('result_day_time', 'asc')->get();
+
+        $t = 0;
+        foreach ($result as $res){
+
+            $new[$res->result_day_time][$t]['lottery_region'] = $res->lottery_region;
+            $new[$res->result_day_time][$t]['lottery_company'] = $res->lottery_company;
+            $new[$res->result_day_time][$t]['result_day_time'] = $res->result_day_time;
+            $new[$res->result_day_time][$t]['prize_1'] = $res->prize_1;
+            $new[$res->result_day_time][$t]['prize_2'] = $res->prize_2;
+            $new[$res->result_day_time][$t]['prize_3'] = $res->prize_3;
+            $new[$res->result_day_time][$t]['prize_4'] = $res->prize_4;
+            $new[$res->result_day_time][$t]['prize_5'] = $res->prize_5;
+            $new[$res->result_day_time][$t]['prize_6'] = $res->prize_6;
+            $new[$res->result_day_time][$t]['prize_7'] = $res->prize_7;
+            $new[$res->result_day_time][$t]['prize_8'] = $res->prize_8;
+            $new[$res->result_day_time][$t]['prize_9'] = $res->prize_9;
+            $new[$res->result_day_time][$t]['board'] = $res->board;
+            $t++;
+
+        }
+
+        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+        $data['comp'] = $comp;
+        $data['region'] = "xsmn";
+        $data['companyName'] = strtoupper("xsmn");
+        $data['content'] = $new;
+
+        return view('xsmn')->with($data);
+    }
+
+    public function xsmtIndex(){
+        $result = Result::where('lottery_region', 'XSMT')->orderBy('result_day_time', 'asc')->get();
+
+        $t = 0;
+        foreach ($result as $res){
+
+            $new[$res->result_day_time][$t]['lottery_region'] = $res->lottery_region;
+            $new[$res->result_day_time][$t]['lottery_company'] = $res->lottery_company;
+            $new[$res->result_day_time][$t]['result_day_time'] = $res->result_day_time;
+            $new[$res->result_day_time][$t]['prize_1'] = $res->prize_1;
+            $new[$res->result_day_time][$t]['prize_2'] = $res->prize_2;
+            $new[$res->result_day_time][$t]['prize_3'] = $res->prize_3;
+            $new[$res->result_day_time][$t]['prize_4'] = $res->prize_4;
+            $new[$res->result_day_time][$t]['prize_5'] = $res->prize_5;
+            $new[$res->result_day_time][$t]['prize_6'] = $res->prize_6;
+            $new[$res->result_day_time][$t]['prize_7'] = $res->prize_7;
+            $new[$res->result_day_time][$t]['prize_8'] = $res->prize_8;
+            $new[$res->result_day_time][$t]['prize_9'] = $res->prize_9;
+            $new[$res->result_day_time][$t]['board'] = $res->board;
+            $t++;
+
+        }
+
+        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+        $data['comp'] = $comp;
+        $data['region'] = "xsmn";
+        $data['companyName'] = strtoupper("xsmn");
+        $data['content'] = $new;
+
+        return view('xsmn')->with($data);
+    }
+
     public function xsmnShow(Request $request,$region){
         $result = Result::where('lottery_region',$region)->get();
         return $result;

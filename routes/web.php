@@ -17,10 +17,10 @@ Route::redirect('/','/xsmb');
 Route::get("/xsmb", "Results@index");
 Route::get("/xsmb/{region}", "Results@show");
 
-Route::get("/xsmn", "Results@xsmn");
+Route::get("/xsmn", "Results@xsmnIndex");
 Route::get("/xsmn/{region}", "Results@xsmn");
 
-Route::get("/xsmt", "Results@xsmt");
+Route::get("/xsmt", "Results@xsmtIndex");
 Route::get("/xsmt/{region}", "Results@xsmt");
 
 Route::get("crawler/old", "Crawler@getOldResult");
