@@ -19,7 +19,7 @@
             <h2 class="class-title-list-link">
             {{--<a href="/xsmb-xo-so-mien-bac.html" title="XSMB" class="u-line">XSMB</a><span>»</span>
             <a href="/xsmb-thu-6.html" title="XSMB Thứ 6" class="u-line">XSMB Thứ 6</a><span>»</span>--}}
-            <a href="#" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time }}" class="u-line">{{ $printresult->lottery_region }}  {{ $printresult->result_day_time }}</a>
+            <a href="#" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/Y') }}" class="u-line">{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/Y') }}</a>
             </h2>
             </div>
             <div class="block-main-content">

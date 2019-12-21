@@ -213,4 +213,51 @@ class Crawler extends Controller
         }
          exit();
     }
+
+
+
+    public function reloadCurrentResult(Request $request, $link)
+    {
+        $url = "https://xosodaiphat.com/" . $link;
+        $resultData = crawlUrlModified($url);
+        $url = '';
+        foreach ($resultData as $res) {
+            if (isset($res['lottery_region'])) {
+                $result = new Result();
+                $da = explode('/', $res['result_day_time']);
+                 $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+                 $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+                 $orig_date1 = $orig_date1->addDay(1);
+                $data = Result::where('lottery_region', $res['lottery_region'])->where('lottery_company', $res['lottery_company'])->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->get();
+
+                if ($data->count() > 0) {
+                    continue;
+                } else {
+
+                    $result->lottery_region = $res['lottery_region'];
+                    $result->lottery_company = $res['lottery_company'];
+                    $orig_date = Carbon::createFromDate($da[2], $da[1], $da[0]);
+                    $result->result_day_time = new UTCDateTime($orig_date);
+                    $i = 1;
+                    foreach ($res['data'] as $key => $detailsData) {
+                        if ($key == 'board') {
+                            $name = $key;
+                            $result->{$name} = json_encode($res['data'][$key]);
+                        } else {
+                            $name = "prize_" . $i;
+                            $result->{$name} = json_encode(array($key => $res['data'][$key]));
+                            $i++;
+                        }
+                    }
+
+                    $result->save();
+                }
+            }
+            if(isset($res['lottery_region'])){
+                echo $url = strtolower($res['lottery_region']).'/'.$res['lottery_company'];
+            }
+
+        }
+        return redirect($url);
+    }
 }

@@ -29,7 +29,8 @@
                                      @endphp
                             @foreach($content[$key] as $lot)
 
-                              @php $th .= '<th class="text-center"><a href="'.strtolower($lot["lottery_region"]).'/'.$lot["lottery_company"].'" title="Xổ số '.$lot["lottery_company"].'">'. $lot["lottery_company"].'</a></th>'; @endphp
+                              @php $th .= '<th class="text-center"><a href="'.strtolower($lot["lottery_region"]).'/'.$lot["lottery_company"].'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+                              @endphp
                                 @php $prize_1 = json_decode($lot['prize_1']); @endphp
                                 @php $prize_2 = json_decode($lot['prize_2']); @endphp
                                 @php $prize_3 = json_decode($lot['prize_3']); @endphp
@@ -104,7 +105,7 @@
 
                                 @if($board)
                                     @php $boardRes = $board @endphp
-                                    @php $boards .= '<p class="padding10">Lô tô Bến Tre Thứ 3, '.$key.'</p> <table class="table table-bordered table-loto"><tbody><tr><th class="col-md-2" style="width: 10%;">Đầu</th><th class="col-md-4">Lô Tô</th></tr>'; @endphp
+                                    @php $boards .= '<p class="padding10">Lô tô Bến Tre '.date('D', $date).', '.date('d/m/Y',$date).'</p> <table class="table table-bordered table-loto"><tbody><tr><th class="col-md-2" style="width: 10%;">Đầu</th><th class="col-md-4">Lô Tô</th></tr>'; @endphp
                                     @foreach($boardRes as $ke=>$bingoData)
                                       @php  $boards .= '<tr><td class="text-center">'.$ke.'</td><td>'.$bingoData.'</td></tr>'; @endphp
                                     @endforeach
@@ -203,39 +204,12 @@
 
                                 </div>
                                 <hr class="line-header"/>
-                                <div class="block-main-content">
 
-                                    <span class="link-pad-left padding10">Lô tô miền Bắc</span>
 
-                                   {{-- <table class="table table-bordered table-loto" style="margin-bottom: 0;">
-                                        <tr>
-                                            <th class="col-md-2" style="width: 10%;">Đầu</th>
-                                            <th class="col-md-4">Lô Tô</th>
-                                        </tr>
-                                        @if($printresult->board)
-                                            @php $boardRes = json_decode($printresult->board) @endphp
-                                            @foreach($boardRes as $ke=>$bingoData)
-                                                <tr>
-                                                    <td class="text-center">{{ $ke }}</td><td>{{ $bingoData }}</td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
-
-                                    </table>--}}
-                                </div>
-                                <div class="link-statistic">
-                                    <ul>
-                                        <li>Xem thống kê <a href="/cau-mien-bac/cau-bach-thu.html" title="Cầu bạch thủ miền Bắc">Cầu bạch thủ miền Bắc</a></li>
-                                        <li>Xem thống kê <a href="/thong-ke-lo-xien.html" title="Lô xiên miền Bắc">Lô xiên miền Bắc</a></li>
-                                        <li>Tham khảo <a href="/thong-ke-xsmb-c2579-article.html" title="Thống kê XSMB">Thống kê XSMB</a></li>
-                                        <li><a href="/">KQXS</a> miền Bắc hôm nay siêu tốc - chính xác, trực tiếp <a
-                                                href="/xsmb-xo-so-mien-bac.html">XSMB</a> lúc 18h15 mỗi ngày</li>
-                                    </ul>
-                                </div>
-                                <p class="text-right margin-10 hidden-xs hidden-sm">
+                                {{--<p class="text-right margin-10 hidden-xs hidden-sm">
                                     <a href="/in-ve-do.html" data-date="13-12-2019" data-groupname="xsmb" class="btn btn-danger btn-invedo"
                                        role="button">In Vé Dò</a>
-                                </p>
+                                </p>--}}
 
                                 <div class="block-main-content view-loto">
 

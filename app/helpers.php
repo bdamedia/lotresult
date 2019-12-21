@@ -248,3 +248,18 @@ function checkList($region='XSMN'){
     $all = RegionCompany::where('lottery_region', $region)->get();
     return $all;
 }
+
+function getCompanyName($code=''){
+    $all = RegionCompany::where('lottery_company', $code)->get();
+    return collect($all)->first()->lottery_company_names;
+}
+
+function getCompanyUrl($code=''){
+    if(strtoupper($code) == 'XSMB' || strtoupper($code) == 'XSMT' || strtoupper($code) == 'XSMN'){
+       return '/'.$code;
+    }else{
+        $all = RegionCompany::where('lottery_company', $code)->get();
+        return collect($all)->first()->lottery_company_url;
+    }
+
+}
