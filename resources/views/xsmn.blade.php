@@ -10,6 +10,7 @@
                         @php $g = 1;  $tr ='<tr>'; @endphp
                         @foreach($content as $key=>$printresult)
                             {{--{{ $key }}--}}
+                        @php $date = $key; @endphp
                             @php    $th ='';
                                     $td1 = '';
                                     $td2 = '';
@@ -122,14 +123,14 @@
 
                             @endforeach
 
-                        @php $current = current($printresult); @endphp
+                        @php $current = current($printresult);   @endphp
                             <div class="block" id='xsmb-{{ $g }}'>
                                 <div class="block-main-heading">
                                     <h1>{{ $current['lottery_region'] }} </h1>
                                 </div>
                                 <div class="list-link">
                                     <h2 class="class-title-list-link">
-                                        <a href="#" title="{{ $current['lottery_region'] }}  {{ $key }}" class="u-line">{{ $current['lottery_region'] }}  {{ $current['result_day_time'] }}</a>
+                                        <a href="#" title="{{ $current['lottery_region'] }}  {{ $key }}" class="u-line">{{ $current['lottery_region'] }} >> {{ date('D', $date) }} >> {{ $current['result_day_time'] }}</a>
                                     </h2>
                                 </div>
                                 <div class="block-main-content">

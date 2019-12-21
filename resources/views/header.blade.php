@@ -73,46 +73,46 @@
 
                     <li class=""><a href="/" title="Trang chủ"><i class="fa fa-home" aria-hidden="true"></i></a></li>
                     <li class=" @php if(in_array('xsmb',$reload)){ echo "active"; } @endphp "><a href="/xsmb" title="XSMB">XSMB</a>
-                        <!--div class="menu-lv2-down">
+                        <div class="menu-lv2-down">
                             <ul>
-                                <li><a href="/xsmb-thu-2.html" title="XSMB Thứ 2">Thứ 2</a></li>
-                                <li><a href="/xsmb-thu-3.html" title="XSMB Thứ 3">Thứ 3</a></li>
-                                <li><a href="/xsmb-thu-4.html" title="XSMB Thứ 4">Thứ 4</a></li>
-                                <li><a href="/xsmb-thu-5.html" title="XSMB Thứ 5">Thứ 5</a></li>
-                                <li><a href="/xsmb-thu-6.html" title="XSMB Thứ 6">Thứ 6</a></li>
-                                <li><a href="/xsmb-thu-7.html" title="XSMB Thứ 7">Thứ 7</a></li>
-                                <li><a href="/xsmb-chu-nhat-cn.html" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
-                                <li><a href="/xsmb-truc-tiep.html" title="Trực tiếp XSMB">Trực tiếp</a></li>
+                                <li><a href="/xsmb" title="XSMB Thứ 2">Thứ 2</a></li>
+                                <li><a href="/xsmb" title="XSMB Thứ 3">Thứ 3</a></li>
+                                <li><a href="/xsmb" title="XSMB Thứ 4">Thứ 4</a></li>
+                                <li><a href="/xsmb" title="XSMB Thứ 5">Thứ 5</a></li>
+                                <li><a href="/xsmb" title="XSMB Thứ 6">Thứ 6</a></li>
+                                <li><a href="/xsmb" title="XSMB Thứ 7">Thứ 7</a></li>
+                                <li><a href="/xsmb" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
+                                <li><a href="/xsmb" title="Trực tiếp XSMB">Trực tiếp</a></li>
                             </ul>
-                        </div-->
+                        </div>
                     </li>
                     <li class="@php if(in_array('xsmn',$reload)){ echo "active"; } @endphp"><a href="/xsmn" title="XSMN">XSMN</a>
-                       {{-- <div class="menu-lv2-down">
+                        <div class="menu-lv2-down">
                             <ul>
-                                <li><a href="/xsmn-thu-2.html" title="XSMN Thứ 2">Thứ 2</a></li>
-                                <li><a href="/xsmn-thu-3.html" title="XSMN Thứ 3">Thứ 3</a></li>
-                                <li><a href="/xsmn-thu-4.html" title="XSMN Thứ 4">Thứ 4</a></li>
-                                <li><a href="/xsmn-thu-5.html" title="XSMN Thứ 5">Thứ 5</a></li>
-                                <li><a href="/xsmn-thu-6.html" title="XSMN Thứ 6">Thứ 6</a></li>
-                                <li><a href="/xsmn-thu-7.html" title="XSMN Thứ 7">Thứ 7</a></li>
-                                <li><a href="/xsmn-chu-nhat-cn.html" title="XSMN Chủ Nhật">Chủ Nhật</a></li>
-                                <li><a href="/xsmn-truc-tiep.html" title="Trực tiếp XSMN">Trực tiếp</a></li>
+                                <li><a href="/xsmn" title="XSMN Thứ 2">Thứ 2</a></li>
+                                <li><a href="/xsmn" title="XSMN Thứ 3">Thứ 3</a></li>
+                                <li><a href="/xsmn" title="XSMN Thứ 4">Thứ 4</a></li>
+                                <li><a href="/xsmn" title="XSMN Thứ 5">Thứ 5</a></li>
+                                <li><a href="/xsmn" title="XSMN Thứ 6">Thứ 6</a></li>
+                                <li><a href="/xsmn" title="XSMN Thứ 7">Thứ 7</a></li>
+                                <li><a href="/xsmn" title="XSMN Chủ Nhật">Chủ Nhật</a></li>
+                                <li><a href="/xsmn" title="Trực tiếp XSMN">Trực tiếp</a></li>
                             </ul>
-                        </div>--}}
+                        </div>
                     </li>
                     <li class="@php if(in_array('xsmt',$reload)){ echo "active"; } @endphp"><a href="/xsmt" title="XSMT">XSMT</a>
-                        {{--<div class="menu-lv2-down">
+                        <div class="menu-lv2-down">
                             <ul>
-                                <li><a href="/xsmt-thu-2.html" title="XSMT Thứ 2">Thứ 2</a></li>
-                                <li><a href="/xsmt-thu-3.html" title="XSMT Thứ 3">Thứ 3</a></li>
-                                <li><a href="/xsmt-thu-4.html" title="XSMT Thứ 4">Thứ 4</a></li>
-                                <li><a href="/xsmt-thu-5.html" title="XSMT Thứ 5">Thứ 5</a></li>
-                                <li><a href="/xsmt-thu-6.html" title="XSMT Thứ 6">Thứ 6</a></li>
-                                <li><a href="/xsmt-thu-7.html" title="XSMT Thứ 7">Thứ 7</a></li>
-                                <li><a href="/xsmt-chu-nhat-cn.html" title="XSMT Chủ Nhật">Chủ Nhật</a></li>
-                                <li><a href="/xsmt-truc-tiep.html" title="Trực tiếp XSMT">Trực tiếp</a></li>
+                                <li><a href="/xsmt" title="XSMT Thứ 2">Thứ 2</a></li>
+                                <li><a href="/xsmt" title="XSMT Thứ 3">Thứ 3</a></li>
+                                <li><a href="/xsmt" title="XSMT Thứ 4">Thứ 4</a></li>
+                                <li><a href="/xsmt" title="XSMT Thứ 5">Thứ 5</a></li>
+                                <li><a href="/xsmt" title="XSMT Thứ 6">Thứ 6</a></li>
+                                <li><a href="/xsmt" title="XSMT Thứ 7">Thứ 7</a></li>
+                                <li><a href="/xsmt" title="XSMT Chủ Nhật">Chủ Nhật</a></li>
+                                <li><a href="/xsmt" title="Trực tiếp XSMT">Trực tiếp</a></li>
                             </ul>
-                        </div>--}}
+                        </div>
                     </li>
                     <li class=""><a href="/xo-so-vietlott" title="Vietlott">Vietlott</a>
                         <div class="menu-lv2-down">
@@ -204,12 +204,12 @@
         <div class="col-xs-12 hidden-xs hidden-sm menu-lv2" >
             <ul class="nav navbar-nav">
 
-                @foreach($comp as $k=>$compn)
+               {{-- @foreach($comp as $k=>$compn)
                     @php  $end = strlen($compn)-4; if($companyName == substr($compn,2,$end)){ $active="active"; }else{ $active=""; } @endphp
                     <li class="{{ $active }}"><a href="/{{ $region }}/{{ substr($compn,2,$end) }}"
                                                  title="{{ substr($compn,2,$end) }}">{{ substr($compn,2,$end) }}</a>
                     </li>
-                @endforeach
+                @endforeach--}}
             </ul>
         </div>
 

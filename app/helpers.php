@@ -2,6 +2,7 @@
 
 use Goutte\Client;
 use App\Result;
+use App\RegionCompany;
 
 function crawlUrl($url=null){
 
@@ -161,6 +162,11 @@ function crawlUrlModified($url=null){
     @$dom->loadHTML($html);
 
     $links = $dom->getElementsByTagName('table');
+    $finder = new DomXPath($dom);
+
+    $regionName = $finder->query("//*[contains(@class, 'list-link')]")->item(0);
+    $regionName = explode(' ',$regionName->getElementsByTagName('a')->item(0)->nodeValue);
+    $regionName = $regionName[0];
 
     $res = [];
     $i = 0;
@@ -191,7 +197,7 @@ function crawlUrlModified($url=null){
         $res[]['data'] = $res1;
 
         if(isset($res1['Giải'])){
-            $res[$i]['lottery_region'] = "XSMT";
+            $res[$i]['lottery_region'] = $regionName;
             $res[$i]['lottery_company'] = $res1['Giải'][5] ? $res1['Giải'][5] :'';
             $res[$i]['result_day_time'] = $res1['Giải'][6] ? $res1['Giải'][6] : '';
             unset($res[$i]['data']['Giải']);
@@ -200,4 +206,45 @@ function crawlUrlModified($url=null){
         $i++;
     }
     return array_filter($res);
+}
+
+
+function getRegionsCompany(){
+
+    $html = file_get_contents('https://xosodaiphat.com/xsmn-xo-so-mien-nam.html');
+    $dom = new DOMDocument;
+
+    @$dom->loadHTML($html);
+
+    $finder = new DomXPath($dom);
+    $companyRegion = array();
+    $regionName = $finder->query("//*[contains(@class, 'table-xsmn')]");
+    $t = 0;
+    foreach ($regionName as $res){
+        $regionName1 = $res->getElementsByTagName('th');
+
+        foreach ($regionName1 as $res1){
+            $gf = $res1->getElementsByTagName('a');
+
+            foreach ($gf as $rf){
+                 $name = explode('-', $rf->getAttribute('href') );
+                $companyRegion[$t]['name'] = $rf->nodeValue;
+                $companyRegion[$t]['url'] = $rf->getAttribute('href');
+                $companyRegion[$t]['code'] = strtoupper(str_replace('/','',current($name)));
+
+                $t++;
+            }
+
+
+        }
+
+    }
+    return $companyRegion;
+
+
+}
+
+function checkList($region='XSMN'){
+    $all = RegionCompany::where('lottery_region', $region)->get();
+    return $all;
 }
