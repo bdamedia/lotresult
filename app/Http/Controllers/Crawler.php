@@ -46,7 +46,7 @@ class Crawler extends Controller
         $resultData = crawlUrl($url);
 
         foreach ($resultData as $res) {
-
+            $da = explode('/', $res['result_day_time']);
             $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
             $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
             $orig_date1 = $orig_date1->addDay(1);
