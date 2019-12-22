@@ -23,12 +23,12 @@ class Crawler extends Controller
         $allCompany = getRegionsCompany();
 
             foreach ($allCompany as $company){
-                $data = RegionCompany::where('lottery_region', 'XSMN')->where('lottery_company', $company['code'])->get();
+                $data = RegionCompany::where('lottery_region', 'XSMT')->where('lottery_company', $company['code'])->get();
                 if ($data->count()) {
                     continue;
                 }else{
                     $regionCompany = new RegionCompany();
-                    $regionCompany->lottery_region = 'XSMN';
+                    $regionCompany->lottery_region = 'XSMT';
                     $regionCompany->lottery_company = $company['code'];
                     $regionCompany->lottery_company_names = $company['name'];
                     $regionCompany->lottery_company_url = $company['url'];
