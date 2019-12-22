@@ -211,7 +211,7 @@ function crawlUrlModified($url=null){
 
 function getRegionsCompany(){
 
-    $html = file_get_contents('https://xosodaiphat.com/xsmn-xo-so-mien-nam.html');
+    $html = file_get_contents('https://xosodaiphat.com/xsmt-xo-so-mien-trung.html');
     $dom = new DOMDocument;
 
     @$dom->loadHTML($html);
