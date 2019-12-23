@@ -4,6 +4,7 @@ use Goutte\Client;
 use App\Result;
 use App\RegionCompany;
 
+
 function crawlUrl($url=null){
 
     if($url == null){
@@ -255,11 +256,39 @@ function getCompanyName($code=''){
 }
 
 function getCompanyUrl($code=''){
-    if(strtoupper($code) == 'XSMB' || strtoupper($code) == 'XSMT' || strtoupper($code) == 'XSMN'){
+      if(strtoupper($code) == 'XSMB' || strtoupper($code) == 'XSMT' || strtoupper($code) == 'XSMN'){
        return '/'.$code;
     }else{
         $all = RegionCompany::where('lottery_company', $code)->get();
-        return collect($all)->first()->lottery_company_url;
+        if($all->count() > 0){
+            return collect($all)->first()->lottery_company_url;
+        }
+
     }
 
+}
+
+function dayWiseArray($day='all'){
+    $bindArray = array();
+    $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','thu-nhat'=>'Sunday');
+    $result  = RegionCompany::all();
+    foreach ($result as $d){
+        if(in_array($d->lottery_company,array('XSKG','XSTG','XSDL','XSKT','XSKH'))){
+            $bindArray['Sunday'][]  = $d->lottery_company;
+        }elseif (in_array($d->lottery_company,array('XSLA','XSHCM','XSBP','XSHG','XSQNG','XSDNA','XSDNO'))){
+            $bindArray['Saturday'][]  = $d->lottery_company;
+        }elseif (in_array($d->lottery_company,array('XSVL','XSBD','XSTV','XSNT','XSGL'))){
+            $bindArray['Friday'][]  = $d->lottery_company;
+        }elseif (in_array($d->lottery_company,array('XSAG','XSTN','XSQB','XSBTH','XSBDI','XSQT'))){
+            $bindArray['Thursday'][]  = $d->lottery_company;
+        }elseif (in_array($d->lottery_company,array('XSDN','XSST','XSCT','XSKH','XSDNA'))){
+            $bindArray['Wednesday'][]  = $d->lottery_company;
+        }elseif (in_array($d->lottery_company,array('XSVT','XSBTR','XSBL','XSDLK','XSQNA'))){
+            $bindArray['Tuesday'][]  = $d->lottery_company;
+        }elseif (in_array($d->lottery_company,array('XSTTH','XSPY','XSDT','XSHCM','XSCM'))){
+            $bindArray['Monday'][]  = $d->lottery_company;
+        }
+    }
+
+    return $bindArray[$bindArrayDay[$day]];
 }

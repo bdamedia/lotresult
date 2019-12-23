@@ -13,7 +13,7 @@
 
                             <div class="block" id='xsmb-{{ $g }}'>
                                 <div class="block-main-heading">
-                                    <h1>{{ $printresult->lottery_region }} - {{ $printresult->lottery_company }}</h1>
+                                    <h1>{{ $printresult->lottery_region }} - {{ getCompanyName($printresult->lottery_company) }}</h1>
                                 </div>
                                 <div class="list-link">
                                     <h2 class="class-title-list-link">

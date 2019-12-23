@@ -20,6 +20,10 @@ Route::get("/xsmb/{region}", "Results@show");
 Route::get("/xsmn", "Results@xsmnIndex");
 Route::get("/xsmn/{region}", "Results@xsmn");
 
+Route::get("/kqxsmb/{day}", "Results@xsmbDay");
+Route::get("/kqxsmn/{day}", "Results@xsmnDay");
+Route::get("/kqxsmt/{day}", "Results@xsmtDay");
+
 Route::get("/xsmt", "Results@xsmtIndex");
 Route::get("/xsmt/{region}", "Results@xsmt");
 
