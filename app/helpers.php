@@ -270,7 +270,7 @@ function getCompanyUrl($code=''){
 
 function dayWiseArray($day='all'){
     $bindArray = array();
-    $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','thu-nhat'=>'Sunday');
+    $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
     $result  = RegionCompany::all();
     foreach ($result as $d){
         if(in_array($d->lottery_company,array('XSKG','XSTG','XSDL','XSKT','XSKH'))){

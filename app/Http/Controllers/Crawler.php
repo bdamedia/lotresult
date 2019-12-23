@@ -218,6 +218,7 @@ class Crawler extends Controller
 
     public function reloadCurrentResult(Request $request, $link)
     {
+        $reg = array('XSMN'=>'ket-qua-xo-so-mien-nam','XSMT'=>'ket-qua-xo-so-mien-trung','XSMB'=>'ket-qua-xo-so-mien-bac');
         $url = "https://xosodaiphat.com/" . $link;
         $resultData = crawlUrlModified($url);
         $url = '';
@@ -252,12 +253,15 @@ class Crawler extends Controller
 
                     $result->save();
                 }
-            }
-            if(isset($res['lottery_region'])){
-                echo $url = strtolower($res['lottery_region']).'/'.$res['lottery_company'];
+                if(isset($res['lottery_region'])){
+
+                     $url = strtolower($reg[$res['lottery_region']]).'/'.$res['lottery_company'];
+                }
             }
 
+
         }
+        //echo $url;
         return redirect($url);
     }
 }

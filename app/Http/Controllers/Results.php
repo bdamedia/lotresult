@@ -22,7 +22,7 @@ class Results extends Controller
 
     public function show(Request $request,$region){
         if(strpos($region,'qxsmb-') > 0) {
-            $bindArrayDay = array('thu-hai' => 'Monday', 'thu-ba' => 'Tuesday', 'thu-tu' => 'Wednesday', 'thu-nam' => 'Thursday', 'thu-sau' => 'Friday', 'thu-bay' => 'Saturday', 'thu-nhat' => 'Sunday');
+            $bindArrayDay = array('thu-hai' => 'Monday', 'thu-ba' => 'Tuesday', 'thu-tu' => 'Wednesday', 'thu-nam' => 'Thursday', 'thu-sau' => 'Friday', 'thu-bay' => 'Saturday', 'chu-nhat' => 'Sunday');
             $final = str_replace('kqxsmb-', '', $region);
             if ($bindArrayDay[$final]) {
                 return $this->xsmbDay($request, $final);
@@ -36,7 +36,7 @@ class Results extends Controller
 
     public function xsmn(Request $request,$company='XSTG'){
 
-        $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','thu-nhat'=>'Sunday');
+        $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
         if(strpos($company,'qxsmn-') > 0){
             $final = str_replace('kqxsmn-','',$company);
             if($bindArrayDay[$final]){
@@ -128,7 +128,7 @@ class Results extends Controller
     public function xsmt(Request $request,$company='XSQNA')
     {
         if(strpos($company,'qxsmt-') > 0){
-            $bindArrayDay = array('thu-hai' => 'Monday', 'thu-ba' => 'Tuesday', 'thu-tu' => 'Wednesday', 'thu-nam' => 'Thursday', 'thu-sau' => 'Friday', 'thu-bay' => 'Saturday', 'thu-nhat' => 'Sunday');
+            $bindArrayDay = array('thu-hai' => 'Monday', 'thu-ba' => 'Tuesday', 'thu-tu' => 'Wednesday', 'thu-nam' => 'Thursday', 'thu-sau' => 'Friday', 'thu-bay' => 'Saturday', 'chu-nhat' => 'Sunday');
             $final = str_replace('kqxsmt-', '', $company);
             if ($bindArrayDay[$final]) {
                 return $this->xsmtDay($request, $final);
@@ -154,7 +154,7 @@ class Results extends Controller
 
         $list = dayWiseArray($day);
         $result = Result::where('lottery_region','XSMB')->get();
-        $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','thu-nhat'=>'Sunday');
+        $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
 
         $t = 0;
         foreach ($result as $res){

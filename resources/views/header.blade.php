@@ -75,7 +75,7 @@
                 <ul class="main-menu">
 
                     <li class=""><a href="/" title="Trang chủ"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-                    <li class=" @php if(in_array('xsmb',$reload)){ echo "active"; } @endphp "><a href="/ket-qua-xo-so-mien-bac" title="XSMB">XSMB</a>
+                    <li class=" @php if(in_array('ket-qua-xo-so-mien-bac',$reload)){ echo "active"; } @endphp "><a href="/ket-qua-xo-so-mien-bac" title="XSMB">XSMB</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
@@ -84,12 +84,12 @@
                                 <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-nam" title="XSMB Thứ 5">Thứ năm</a></li>
                                 <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-sau" title="XSMB Thứ 6">Thứ sáu</a></li>
                                 <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
-                                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
-                                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-tiep" title="Trực tiếp XSMB">Trực tiếp</a></li>
+                                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
+                                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-truc-tiep" title="Trực tiếp XSMB">Trực tiếp</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="@php if(in_array('xsmn',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xo-so-mien-nam" title="XSMN">XSMN</a>
+                    <li class="@php if(in_array('ket-qua-xo-so-mien-nam',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xo-so-mien-nam" title="XSMN">XSMN</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
@@ -98,12 +98,12 @@
                                 <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-nam" title="XSMB Thứ 5">Thứ năm</a></li>
                                 <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-sau" title="XSMB Thứ 6">Thứ sáu</a></li>
                                 <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
-                                <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
-                                <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-tiep" title="Trực tiếp XSMB">Trực tiếp</a></li>
+                                <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
+                                <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-truc-tiep" title="Trực tiếp XSMN">Trực tiếp</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="@php if(in_array('xsmt',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xo-so-mien-trung" title="XSMT">XSMT</a>
+                    <li class="@php if(in_array('ket-qua-xo-so-mien-trung',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xo-so-mien-trung" title="XSMT">XSMT</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
@@ -112,8 +112,8 @@
                                 <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-nam" title="XSMB Thứ 5">Thứ năm</a></li>
                                 <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-sau" title="XSMB Thứ 6">Thứ sáu</a></li>
                                 <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
-                                <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
-                                <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-tiep" title="Trực tiếp XSMB">Trực tiếp</a></li>
+                                <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
+                                <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-truc-tiep" title="Trực tiếp XSMT">Trực tiếp</a></li>
                             </ul>
                         </div>
                     </li>
