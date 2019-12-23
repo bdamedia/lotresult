@@ -83,7 +83,7 @@
         </div>
         <div class="content-item"><ul>
 
-                    <li><a href="/xsmb" title="Xổ số miền Bắc">Miền Bắc</a></li>
+                    <li><a href="/ket-qua-xo-so-mien-bac" title="Xổ số miền Bắc">Miền Bắc</a></li>
 
             </ul>
         </div>
@@ -96,7 +96,7 @@
         </div>
         <div class="content-item"><ul>
                 @foreach($sidebar as $content)
-                    <li><a href="/{{ strtolower($content->lottery_region) }}/{{ $content->lottery_company }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
+                    <li><a href="/ket-qua-xo-so-mien-nam/{{ $content->lottery_company }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
                     @endforeach
             </ul>
         </div>
@@ -109,7 +109,7 @@
         </div>
         <div class="content-item"><ul>
                 @foreach($sidebarXsmt as $content)
-                    <li><a href="/{{ strtolower($content->lottery_region) }}/{{ $content->lottery_company }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
+                    <li><a href="/ket-qua-xo-so-mien-trung/{{ $content->lottery_company }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
                     @endforeach
             </ul>
         </div>

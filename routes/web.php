@@ -13,19 +13,19 @@
 
 Route::get("/crawler", "Crawler@index");
 
-Route::redirect('/','/xsmb');
-Route::get("/xsmb", "Results@index");
-Route::get("/xsmb/{region}", "Results@show");
+Route::redirect('/','/ket-qua-xo-so-mien-bac');
+Route::get("/ket-qua-xo-so-mien-bac", "Results@index");
+Route::get("/ket-qua-xo-so-mien-bac/{region}", "Results@show");
+Route::get("/ket-qua-xo-so-mien-trung/{region}", "Results@xsmt");
+Route::get("/ket-qua-xo-so-mien-nam", "Results@xsmnIndex");
+Route::get("/ket-qua-xo-so-mien-nam/{region}/", "Results@xsmn");
 
-Route::get("/xsmn", "Results@xsmnIndex");
-Route::get("/xsmn/{region}", "Results@xsmn");
+Route::get("/ket-qua-xo-so-mien-bac/kqxsmb-{day}", "Results@xsmbDay")->name('updateAvatar');
+Route::get("/ket-qua-xo-so-mien-nam/kqxsmn-{day}", "Results@xsmnDay");
+Route::get("/ket-qua-xo-so-mien-trung/kqxsmt-{day}", "Results@xsmtDay");
 
-Route::get("/kqxsmb/{day}", "Results@xsmbDay");
-Route::get("/kqxsmn/{day}", "Results@xsmnDay");
-Route::get("/kqxsmt/{day}", "Results@xsmtDay");
+Route::get("/ket-qua-xo-so-mien-trung", "Results@xsmtIndex");
 
-Route::get("/xsmt", "Results@xsmtIndex");
-Route::get("/xsmt/{region}", "Results@xsmt");
 
 Route::get("crawler/old", "Crawler@getOldResult");
 
