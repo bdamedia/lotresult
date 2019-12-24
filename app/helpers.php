@@ -256,6 +256,7 @@ function getCompanyName($code=''){
 }
 
 function getCompanyUrl($code=''){
+
       if(strtoupper($code) == 'XSMB' || strtoupper($code) == 'XSMT' || strtoupper($code) == 'XSMN'){
        return '/'.$code;
     }else{
@@ -263,9 +264,22 @@ function getCompanyUrl($code=''){
         if($all->count() > 0){
             return collect($all)->first()->lottery_company_url;
         }
-
     }
+}
 
+function getCompanyUrlHead($code=''){
+
+      if(strtoupper($code) == 'XSMB' || strtoupper($code) == 'XSMT' || strtoupper($code) == 'XSMN'){
+       return '/'.$code;
+    }else{
+          $code = str_replace('kqxsmn-','',$code);
+          $code = str_replace('kqxsmb-','',$code);
+          $code = str_replace('kqxsmt-','',$code);
+        $all = RegionCompany::where('lottery_company_slug', $code)->get();
+        if($all->count() > 0){
+            return collect($all)->first()->lottery_company_url;
+        }
+    }
 }
 
 function getCompanyCode($slug){

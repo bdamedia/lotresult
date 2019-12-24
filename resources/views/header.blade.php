@@ -3,6 +3,7 @@
 <head>
     @php
         $reload = explode('/',request()->fullUrl());
+
      @endphp
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport"
@@ -58,7 +59,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-10">
                     <div class="banner-adv-wrapper">
 
-                        <a href="/reload{{ getCompanyUrl(end($reload)) }}"
+                        <a href="/reload{{ getCompanyUrlHead(end($reload)) }}"
                            style="float: right;padding: 10px;background: red;color: white;font-weight: bold;">Reload</a>
                     </div>
                 </div>
