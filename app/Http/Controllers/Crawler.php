@@ -23,9 +23,9 @@ class Crawler extends Controller
         $allCompany = getRegionsCompany();
 
             foreach ($allCompany as $company){
-                $data = RegionCompany::where('lottery_region', 'XSMN')->where('lottery_company', $company['code'])->get();
+                $data = RegionCompany::where('lottery_region', 'XSMT')->where('lottery_company', $company['code'])->get();
                 if ($data->count()) {
-                    RegionCompany::where('lottery_region', 'XSMN')->where('lottery_company', $company['code'])->first()->update(['lottery_company_slug'=> seoUrl($company['name'])]);
+                    RegionCompany::where('lottery_region', 'XSMT')->where('lottery_company', $company['code'])->first()->update(['lottery_company_slug'=> seoUrl($company['name'])]);
                     continue;
                 }else{
                     $regionCompany = new RegionCompany();
