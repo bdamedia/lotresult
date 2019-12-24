@@ -35,10 +35,8 @@
     <meta property="og:locale" content="vi_VN"/>
     <meta property="og:description"
           content="XSMB - SXMB - XSTD - Kết quả xổ số miền Bắc hôm nay - KQXSMB - Tường thuật trực tiếp lúc 18h15 hàng ngày nhanh chóng, chính xác, cập nhật liên tục."/>
-    <meta property="og:image" content="https://xosodaiphat.com/assets/images/logo.png"/>
-    <meta name="author" content="xosodaiphat.com"/>
-    <link rel="manifest" href="/assets/Json/manifest.json"/>
 
+    <link href="{{ URL::asset('css/HomeCombined.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
 

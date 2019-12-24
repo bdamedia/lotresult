@@ -7,6 +7,7 @@
 
     <div class="row">
     <div class="col-xs-12">
+
         @php $g = 1; @endphp
         @foreach($content as $printresult)
 

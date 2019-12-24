@@ -50,7 +50,7 @@ class Results extends Controller
                 $data['region'] = "xsmn";
                 $data['companyName'] = strtoupper($company);
                 $data['content'] = $result;
-
+                $data['enableTab'] = false;
                 return view('xsmnResult')->with($data);
             }
         }
@@ -62,7 +62,7 @@ class Results extends Controller
         $data['region'] = "xsmn";
         $data['companyName'] = strtoupper($company);
         $data['content'] = $result;
-
+        $data['enableTab'] = false;
         return view('xsmnResult')->with($data);
     }
 
@@ -95,7 +95,7 @@ class Results extends Controller
         $data['region'] = "xsmn";
         $data['companyName'] = strtoupper("xsmn");
         $data['content'] = $new;
-
+        $data['enableTab'] = false;
         return view('xsmn')->with($data);
     }
 
@@ -122,12 +122,12 @@ class Results extends Controller
 
         }
 
-        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+        $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
         $data['comp'] = $comp;
-        $data['region'] = "xsmn";
-        $data['companyName'] = strtoupper("xsmn");
+        $data['region'] = "xsmt";
+        $data['companyName'] = strtoupper("xsmt");
         $data['content'] = $new;
-
+        $data['enableTab'] = false;
         return view('xsmn')->with($data);
     }
 
@@ -153,6 +153,7 @@ class Results extends Controller
                 $data['comp'] = $comp;
                 $data['companyName'] = strtoupper($company);
                 $data['region'] = "xsmt";
+                $data['enableTab'] = false;
                 //return view('currentResult',$data)->render();
                 return view('xsmtResult')->with($data);
             }
@@ -166,6 +167,7 @@ class Results extends Controller
         $data['comp'] = $comp;
         $data['companyName'] = strtoupper($company);
         $data['region'] = "xsmt";
+        $data['enableTab'] = false;
         //return view('currentResult',$data)->render();
         return view('xsmtResult')->with($data);
     }
@@ -207,7 +209,7 @@ class Results extends Controller
 
         $comp = Result::where('lottery_region', 'XSMB')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
         $data['comp'] = $comp;
-        $data['region'] = "xsmn";
+        $data['region'] = "xsmb";
         $data['companyName'] = strtoupper("xsmb");
         $data['content'] = $new;
 
@@ -241,6 +243,7 @@ class Results extends Controller
         $data['region'] = "xsmn";
         $data['companyName'] = strtoupper("xsmn");
         $data['content'] = $new;
+        $data['enableTab'] = true;
 
         return view('xsmn')->with($data);
     }
@@ -267,11 +270,12 @@ class Results extends Controller
 
         }
 
-        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+        $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
         $data['comp'] = $comp;
-        $data['region'] = "xsmn";
-        $data['companyName'] = strtoupper("xsmn");
+        $data['region'] = "xsmt";
+        $data['companyName'] = strtoupper("xsmt");
         $data['content'] = $new;
+        $data['enableTab'] = true;
 
         return view('xsmn')->with($data);
         //return view('xsmtResult')->with($result);

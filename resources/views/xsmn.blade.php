@@ -6,7 +6,41 @@
             <div class="col-xs-12 col-sm-12 col-md-6">
 
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 {{ $region }}">
+                        @if($enableTab == true)
+
+                            @if($region == 'xsmt')
+                                <div class="tab" role="tabpanel">
+                                    <ul class="nav-tabs day-selector">
+                                        <li><a href="/ket-qua-xo-so-mien-trung" title="XSMB Thứ 2">Miền Trung</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-ba" title="XSMB Thứ 3">Thứ ba</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-tu" title="XSMB Thứ 4">Thứ tư</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-nam" title="XSMB Thứ 5">Thứ năm</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-sau" title="XSMB Thứ 6">Thứ sáu</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
+                                    </ul>
+                                </div>
+                                @elseif($region == 'xsmn')
+                                <div class="tab" role="tabpanel">
+                                    <ul class="nav-tabs day-selector">
+                                        <li><a href="/ket-qua-xo-so-mien-nam" title="XSMB Thứ 2">Miền Nam</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-ba" title="XSMB Thứ 3">Thứ ba</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-tu" title="XSMB Thứ 4">Thứ tư</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-nam" title="XSMB Thứ 5">Thứ năm</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-sau" title="XSMB Thứ 6">Thứ sáu</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
+                                        <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
+
+                                    </ul>
+                                </div>
+                            @endif
+
+                        @endif
+
+
                         @php $g = 1;  $tr ='<tr>'; @endphp
                         @foreach($content as $key=>$printresult)
                             {{--{{ $key }}--}}
@@ -125,7 +159,8 @@
                             @endforeach
 
                         @php $current = current($printresult);   @endphp
-                            <div class="block" id='xsmb-{{ $g }}'>
+
+                            <div class="block remove-margin" id='xsmb-{{ $g }}'>
                                 <div class="block-main-heading">
                                     <h1>{{ $current['lottery_region'] }} </h1>
                                 </div>
