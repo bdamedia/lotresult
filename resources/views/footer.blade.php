@@ -88,27 +88,12 @@
         </div>
     </div>
 </footer>
-<link href="https://cdn.xosodaiphat.com/assets/css/HomeCombined.css?v=1" rel="stylesheet"/>
+<link href="{{ URL::asset('css/HomeCombined.css') }}" rel="stylesheet"/>
 <script src="https://cdn.xosodaiphat.com/assets/js/jquerylib.js"></script>
 <script src="https://cdn.xosodaiphat.com/assets/libs/jquery/xsdp.min.js"></script>
 <script src="https://cdn.xosodaiphat.com/Notify/js/main.js"></script>
 
 <script src="https://cdn.xosodaiphat.com/Content/js/lotteryLiveMQMin-129-secu.js?v=1"></script>
-{{--<script type="text/javascript">
-    var rootPath = 'https://emq46.icsoft.vn:3030/lotteryLive/';
-    var appKey = '12923c46b192271b178b7e1b8c3e26cc';
-    var headingTag = 'h1';
-    var interval;
-    var timeInter = 1357 * 4;
-    var currentdate = new Date();
-    var hours = currentdate.getHours();
-    var minute = currentdate.getMinutes();
-    try {
-        LiveMB(appKey, rootPath, headingTag);
-        interval = setInterval("LiveMB('" + appKey + "', '" + rootPath + "', '" + headingTag + "')", timeInter);
-        intervalVariable = setInterval('getRandomTextMB()', 100);
-    } catch (e) { console.log(e.message); }
-</script>--}}
 
 </div>
 </body>

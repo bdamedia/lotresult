@@ -12,13 +12,13 @@
            {{-- {{ print_r($printresult) }}--}}
     <div class="block" id='xsmb-{{ $g }}'>
         <div class="block-main-heading">
-            <h1>{{ $printresult->lottery_region }}</h1>
+            <h1>Kết quả Xổ Số Miền Bắc ({{ $printresult->lottery_region }})</h1>
             </div>
             <div class="list-link">
             <h2 class="class-title-list-link">
             {{--<a href="/xsmb-xo-so-mien-bac.html" title="XSMB" class="u-line">XSMB</a><span>»</span>
             <a href="/xsmb-thu-6.html" title="XSMB Thứ 6" class="u-line">XSMB Thứ 6</a><span>»</span>--}}
-            <a href="#" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}" class="u-line">{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a>
+            <a href="#" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}" class="u-line">Kết quả Xổ Số Miền Bắc({{ $printresult->lottery_region }})  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a>
             </h2>
             </div>
             <div class="block-main-content">
@@ -192,19 +192,8 @@
 
             </table>
             </div>
-            <div class="link-statistic">
-            <ul>
-            <li>Xem thống kê <a href="/cau-mien-bac/cau-bach-thu.html" title="Cầu bạch thủ miền Bắc">Cầu bạch thủ miền Bắc</a></li>
-            <li>Xem thống kê <a href="/thong-ke-lo-xien.html" title="Lô xiên miền Bắc">Lô xiên miền Bắc</a></li>
-            <li>Tham khảo <a href="/thong-ke-xsmb-c2579-article.html" title="Thống kê XSMB">Thống kê XSMB</a></li>
-            <li><a href="/">KQXS</a> miền Bắc hôm nay siêu tốc - chính xác, trực tiếp <a
-                    href="/xsmb-xo-so-mien-bac.html">XSMB</a> lúc 18h15 mỗi ngày</li>
-            </ul>
-            </div>
-        <p class="text-right margin-10 hidden-xs hidden-sm">
-        <a href="/in-ve-do.html" data-date="13-12-2019" data-groupname="xsmb" class="btn btn-danger btn-invedo"
-           role="button">In Vé Dò</a>
-        </p>
+
+
         </div>
             @php $g++; @endphp
     @endforeach

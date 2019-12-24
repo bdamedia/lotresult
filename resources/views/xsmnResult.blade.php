@@ -201,19 +201,7 @@
 
             </table>
             </div>
-            <div class="link-statistic">
-            <ul>
-            <li>Xem thống kê <a href="/cau-mien-bac/cau-bach-thu.html" title="Cầu bạch thủ miền Bắc">Cầu bạch thủ miền Bắc</a></li>
-            <li>Xem thống kê <a href="/thong-ke-lo-xien.html" title="Lô xiên miền Bắc">Lô xiên miền Bắc</a></li>
-            <li>Tham khảo <a href="/thong-ke-xsmb-c2579-article.html" title="Thống kê XSMB">Thống kê XSMB</a></li>
-            <li><a href="/">KQXS</a> miền Bắc hôm nay siêu tốc - chính xác, trực tiếp <a
-                    href="/xsmb-xo-so-mien-bac.html">XSMB</a> lúc 18h15 mỗi ngày</li>
-            </ul>
-            </div>
-        <p class="text-right margin-10 hidden-xs hidden-sm">
-        <a href="/in-ve-do.html" data-date="13-12-2019" data-groupname="xsmb" class="btn btn-danger btn-invedo"
-           role="button">In Vé Dò</a>
-        </p>
+
         </div>
             @php $g++; @endphp
     @endforeach
