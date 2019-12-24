@@ -243,7 +243,7 @@ a {
     position: absolute;
     z-index: 9999;
     background-color: #fff;
-    top: 49px;
+    top: 45px;
     margin-left: -10px;
     box-shadow: 2px 6px 12px rgba(0, 0, 0, .175);
     display: none;
