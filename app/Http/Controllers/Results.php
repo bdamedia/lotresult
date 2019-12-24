@@ -39,8 +39,19 @@ class Results extends Controller
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
         if(strpos($company,'qxsmn-') > 0){
             $final = str_replace('kqxsmn-','',$company);
-            if($bindArrayDay[$final]){
+            if(isset($bindArrayDay[$final])){
                 return $this->xsmnDay($request,$final);
+            }else{
+                $company = str_replace('kqxsmn-','',$company);
+                $code = getCompanyCode($company);
+                $result = Result::where('lottery_region', 'XSMN')->where('lottery_company', $code)->orderBy('created_at', 'desc')->get();
+                $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+                $data['comp'] = $comp;
+                $data['region'] = "xsmn";
+                $data['companyName'] = strtoupper($company);
+                $data['content'] = $result;
+
+                return view('xsmnResult')->with($data);
             }
         }
 
@@ -130,8 +141,20 @@ class Results extends Controller
         if(strpos($company,'qxsmt-') > 0){
             $bindArrayDay = array('thu-hai' => 'Monday', 'thu-ba' => 'Tuesday', 'thu-tu' => 'Wednesday', 'thu-nam' => 'Thursday', 'thu-sau' => 'Friday', 'thu-bay' => 'Saturday', 'chu-nhat' => 'Sunday');
             $final = str_replace('kqxsmt-', '', $company);
-            if ($bindArrayDay[$final]) {
+            if (isset($bindArrayDay[$final])) {
                 return $this->xsmtDay($request, $final);
+            }else{
+                $company = str_replace('kqxsmt-', '', $company);
+                $code = getCompanyCode($company);
+                $resultXsmt = Result::where('lottery_region', 'XSMT')->where('lottery_company', $code)->orderBy('created_at', 'desc')->get();
+
+                $data['content'] = $resultXsmt;
+                $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+                $data['comp'] = $comp;
+                $data['companyName'] = strtoupper($company);
+                $data['region'] = "xsmt";
+                //return view('currentResult',$data)->render();
+                return view('xsmtResult')->with($data);
             }
         }
 
