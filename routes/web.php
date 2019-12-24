@@ -15,10 +15,10 @@ Route::get("/crawler", "Crawler@index");
 
 Route::redirect('/','/ket-qua-xo-so-mien-bac');
 Route::get("/ket-qua-xo-so-mien-bac", "Results@index");
-Route::get("/ket-qua-xo-so-mien-bac/{region}", "Results@show");
-Route::get("/ket-qua-xo-so-mien-trung/{region}", "Results@xsmt");
+Route::get("/ket-qua-xo-so-mien-bac/{lottery_company_slug}", "Results@show");
+Route::get("/ket-qua-xo-so-mien-trung/{lottery_company_slug}", "Results@xsmt");
 Route::get("/ket-qua-xo-so-mien-nam", "Results@xsmnIndex");
-Route::get("/ket-qua-xo-so-mien-nam/{region}/", "Results@xsmn");
+Route::get("/ket-qua-xo-so-mien-nam/{lottery_company_slug}/", "Results@xsmn");
 
 Route::get("/ket-qua-xo-so-mien-bac/kqxsmb-{day}", "Results@xsmbDay")->name('updateAvatar');
 Route::get("/ket-qua-xo-so-mien-nam/kqxsmn-{day}", "Results@xsmnDay");

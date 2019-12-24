@@ -96,7 +96,7 @@
         </div>
         <div class="content-item"><ul>
                 @foreach($sidebar as $content)
-                    <li><a href="/ket-qua-xo-so-mien-nam/{{ $content->lottery_company }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
+                    <li><a href="/ket-qua-xo-so-mien-nam/{{ $content->lottery_company_slug }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
                     @endforeach
             </ul>
         </div>
@@ -109,7 +109,7 @@
         </div>
         <div class="content-item"><ul>
                 @foreach($sidebarXsmt as $content)
-                    <li><a href="/ket-qua-xo-so-mien-trung/{{ $content->lottery_company }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
+                    <li><a href="/ket-qua-xo-so-mien-trung/{{ $content->lottery_company_slug }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
                     @endforeach
             </ul>
         </div>

@@ -44,8 +44,8 @@ class Results extends Controller
             }
         }
 
-
-        $result = Result::where('lottery_region', 'XSMN')->where('lottery_company', strtoupper($company))->orderBy('created_at', 'desc')->get();
+        $code = getCompanyCode($company);
+        $result = Result::where('lottery_region', 'XSMN')->where('lottery_company', $code)->orderBy('created_at', 'desc')->get();
         $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
         $data['comp'] = $comp;
         $data['region'] = "xsmn";
@@ -134,7 +134,9 @@ class Results extends Controller
                 return $this->xsmtDay($request, $final);
             }
         }
-        $resultXsmt = Result::where('lottery_region', 'XSMT')->where('lottery_company', strtoupper($company))->orderBy('created_at', 'desc')->get();
+
+        $code = getCompanyCode($company);
+        $resultXsmt = Result::where('lottery_region', 'XSMT')->where('lottery_company', $code)->orderBy('created_at', 'desc')->get();
 
         $data['content'] = $resultXsmt;
         $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
