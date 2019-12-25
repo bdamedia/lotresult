@@ -137,14 +137,14 @@
                                     @endforeach
                                 @php $td10 .= '</td>'; @endphp
 
-                                @if($board)
+                               {{-- @if($board)
                                     @php $boardRes = $board @endphp
                                     @php $boards .= '<p class="padding10">Lô tô Bến Tre '.date('D', $date).', '.date('d/m/Y',$date).'</p> <table class="table table-bordered table-loto"><tbody><tr><th class="col-md-2" style="width: 10%;">Đầu</th><th class="col-md-4">Lô Tô</th></tr>'; @endphp
                                     @foreach($boardRes as $ke=>$bingoData)
                                       @php  $boards .= '<tr><td class="text-center">'.$ke.'</td><td>'.$bingoData.'</td></tr>'; @endphp
                                     @endforeach
                                      @php   $boards .=' </tbody></table>'; @endphp
-                                @endif
+                                @endif--}}
 
                                 @php $td1 = '<td style="width: 15%">'.key($prize_1).'</td>'; @endphp
                                 @php $tdr1 = '<td style="width: 15%">'.key($prize_2).'</td>'; @endphp
@@ -158,7 +158,7 @@
 
                             @endforeach
 
-                        @php $current = current($printresult);   @endphp
+                        @php $current = current($printresult);  @endphp
 
                             <div class="block remove-margin" id='xsmb-{{ $g }}'>
                                 <div class="block-main-heading">
@@ -166,7 +166,7 @@
                                 </div>
                                 <div class="list-link">
                                     <h2 class="class-title-list-link">
-                                        <a href="#" title="{{ $current['lottery_region'] }}  {{ $key }}" class="u-line">{{ $current['lottery_region'] }} >> {{ date('D', $date) }} >> {{ $current['result_day_time'] }}</a>
+                                        <a href="#" title="{{ $current['lottery_region'] }}  {{ $key }}" class="u-line">{{ $current['lottery_region'] }} >> {{ $current['day'] }} >> {{ $current['result_day_time'] }}</a>
                                     </h2>
                                 </div>
                                 <div class="block-main-content">
