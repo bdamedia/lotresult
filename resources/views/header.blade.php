@@ -116,7 +116,8 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="list_border"><a href="/xo-so-vietlott" title="Vietlott">Vietlott</a>
+                    
+                    {{-- <li class="list_border"><a href="/xo-so-vietlott" title="Vietlott">Vietlott</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/xo-so-dien-toan-tu-chon-mega-645.html" title="XS Mega 6/45">XS Mega
@@ -148,7 +149,7 @@
                         </div>
                     </li>
                     <li class="list_border"><a href="/lo-to-mien-bac/ket-qua-lo-to-mien-bac.html" title="Lô Tô">Tin tức</a>
-                        {{--<div class="menu-lv2-down">
+                        <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/lo-to-mien-bac/ket-qua-lo-to-mien-bac.html" title="Lô tô miền Bắc">Lô tô
                                         miền Bắc</a></li>
@@ -157,8 +158,9 @@
                                 <li><a href="/lo-to-mien-trung/ket-qua-lo-to-mien-trung.html" title="Lô tô miền Trung">Lô
                                         tô miền Trung</a></li>
                             </ul>
-                        </div>--}}
-                    </li>
+                        </div>
+                    </li>--}}
+                    
 
                    {{-- <li class="list_border"><a href="/quay-thu-xo-so.html" title="Quay thử">Tin tức</a>
                         <div class="menu-lv2-down">
