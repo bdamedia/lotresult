@@ -1294,3 +1294,14 @@ table.livetn4 td.tn_prize div.output {
 .fix-width-right {
     width: 330px
 }
+
+.menu-lv2-down{
+    width: auto!important;
+    min-width: 106px;
+}
+.list_border, .menu-lv2-down ul  li  {
+    border-width: 1px;
+    border-style: solid;
+    border-color:rgba(121, 121, 121, 1);
+    border-radius: 0px;
+}
