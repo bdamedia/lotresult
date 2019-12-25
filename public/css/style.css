@@ -264,8 +264,27 @@ ul.main-menu>li {
 
 /************************/
 .day-selector{
-    display: inline-flex;
+    display: inline-block;
+    border:none;
+}
 
+.day-selector li{
+    float: left;
+    margin-bottom: -1px;
+    width: 33%;
+    padding: 5px;
+    display: inline-table;
+    border: 1px solid #cccccc;
+    text-align: center;
+    border-radius:0px;
+}
+
+.day-selector li:hover,.table_cell:hover{
+    background-color: #cccccc;
+}
+.day-selector li a{
+    border:none;
+    color: #000000;
 }
 /*ul.day-selector li {
     padding: 2px;
@@ -407,11 +426,11 @@ a:hover,a:focus{
     text-decoration: none;
     outline: none;
 }
-.tab .nav-tabs {
+/*.tab .nav-tabs {
     border-bottom:0 none;
 }
 .tab .nav-tabs li{
-    /*margin-right: 10px;*/
+    !*margin-right: 10px;*!
 }
 .tab .nav-tabs li a{
     position: relative;
@@ -479,7 +498,7 @@ a:hover,a:focus{
         transform: none;
         border-bottom: 1px solid #d3d3d3;
     }
-}
+}*/
 
 /************************/
 
