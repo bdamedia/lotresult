@@ -74,7 +74,7 @@
                 <ul class="main-menu">
 
                    {{-- <li class=""><a href="/" title="Trang chủ"><i class="fa fa-home" aria-hidden="true"></i></a></li>--}}
-                    <li class=" @php if(in_array('ket-qua-xo-so-mien-bac',$reload)){ echo "active"; } @endphp "><a href="/ket-qua-xo-so-mien-bac" title="XSMB">XSMB</a>
+                    <li class="list_border @php if(in_array('ket-qua-xo-so-mien-bac',$reload)){ echo "active"; } @endphp "><a href="/ket-qua-xo-so-mien-bac" title="XSMB">XSMB</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
@@ -88,7 +88,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="@php if(in_array('ket-qua-xo-so-mien-nam',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xo-so-mien-nam" title="XSMN">XSMN</a>
+                    <li class="list_border  @php if(in_array('ket-qua-xo-so-mien-nam',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xo-so-mien-nam" title="XSMN">XSMN</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
@@ -102,7 +102,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="@php if(in_array('ket-qua-xo-so-mien-trung',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xo-so-mien-trung" title="XSMT">XSMT</a>
+                    <li class="list_border  @php if(in_array('ket-qua-xo-so-mien-trung',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xo-so-mien-trung" title="XSMT">XSMT</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
@@ -116,7 +116,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class=""><a href="/xo-so-vietlott" title="Vietlott">Vietlott</a>
+                    <li class="list_border"><a href="/xo-so-vietlott" title="Vietlott">Vietlott</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/xo-so-dien-toan-tu-chon-mega-645.html" title="XS Mega 6/45">XS Mega
@@ -127,7 +127,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class=""><a href="/cau-xo-so-cac-tinh.html" title="Thống kê cầu">TK Cầu</a>
+                    <li class="list_border"><a href="/cau-xo-so-cac-tinh.html" title="Thống kê cầu">TK Cầu</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/cau-mien-bac/cau-bach-thu.html" title="Cầu Bạch thủ">Bạch thủ (MB)</a>
@@ -143,7 +143,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class=""><a href="/thong-ke-lo-gan.html" title="Thống kê lô">TK Lô</a>
+                    <li class="list_border"><a href="/thong-ke-lo-gan.html" title="Thống kê lô">TK Lô</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/thong-ke-gan-cuc-dai.html" title="Lô gan">Lô gan</a></li>
@@ -159,7 +159,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class=""><a href="/lo-to-mien-bac/ket-qua-lo-to-mien-bac.html" title="Lô Tô">Lô Tô</a>
+                    <li class="list_border"><a href="/lo-to-mien-bac/ket-qua-lo-to-mien-bac.html" title="Lô Tô">Lô Tô</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/lo-to-mien-bac/ket-qua-lo-to-mien-bac.html" title="Lô tô miền Bắc">Lô tô
@@ -172,7 +172,7 @@
                         </div>
                     </li>
 
-                    <li class=""><a href="/quay-thu-xo-so.html" title="Quay thử">Quay thử</a>
+                    <li class="list_border"><a href="/quay-thu-xo-so.html" title="Quay thử">Quay thử</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/quay-thu-xo-so-mien-bac.html" title="Quay thử miền Bắc">Quay thử XSMB</a>
@@ -184,7 +184,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class=""><a href="/thong-ke-xo-so.html" title="Thống Kê Xổ Số">Thống Kê Xổ Số</a>
+                    <li class="list_border"><a href="/thong-ke-xo-so.html" title="Thống Kê Xổ Số">Thống Kê Xổ Số</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/thong-ke-xsmb-c2579-article.html" title="Thống kê XSMB">Thống kê XSMB</a>
