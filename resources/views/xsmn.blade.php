@@ -66,8 +66,10 @@
 
                               @php
                                   if($region == 'xsmt'){
+                            $title = "Xổ số miền Trung";
         $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
                                     }elseif ($region == 'xsmn'){
+    $title = "Xổ số miền Nam";
         $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
                                     }
 
@@ -169,7 +171,7 @@
 
                             <div class="block remove-margin" id='xsmb-{{ $g }}'>
                                 <div class="block-main-heading">
-                                    <h1>{{ $current['lottery_region'] }} </h1>
+                                    <h1>{{ $title }} ({{ $current['lottery_region'] }}) </h1>
                                 </div>
                                 <div class="list-link">
                                     <h2 class="class-title-list-link">
