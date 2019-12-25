@@ -279,6 +279,9 @@ ul.main-menu>li {
     border: 1px solid #000!important;
 }
 
+td.ĐB + td > span,td.ĐB + td + td > span,td.ĐB + td + td + td > span {
+    color: red;
+}
 
 a:hover,a:focus{
     text-decoration: none;
