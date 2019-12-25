@@ -1,4 +1,4 @@
-<footer>
+<!-- <footer>
     <div class="container">
 
     </div>
@@ -98,3 +98,4 @@
 </div>
 </body>
 </html>
+ -->
