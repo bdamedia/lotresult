@@ -314,19 +314,19 @@ function dayWiseArray($day='all'){
     $result  = RegionCompany::all();
     foreach ($result as $d){
         if(in_array($d->lottery_company,array('XSKG','XSTG','XSDL','XSKT','XSKH'))){
-            $bindArray['Sunday'][]  = $d->lottery_company;
+            $bindArray['Sunday']  = array('XSKG','XSTG','XSDL','XSKT','XSKH');
         }elseif (in_array($d->lottery_company,array('XSLA','XSHCM','XSBP','XSHG','XSQNG','XSDNA','XSDNO'))){
-            $bindArray['Saturday'][]  = $d->lottery_company;
+            $bindArray['Saturday']  = array('XSLA','XSHCM','XSBP','XSHG','XSQNG','XSDNA','XSDNO');
         }elseif (in_array($d->lottery_company,array('XSVL','XSBD','XSTV','XSNT','XSGL'))){
-            $bindArray['Friday'][]  = $d->lottery_company;
+            $bindArray['Friday']  = array('XSVL','XSBD','XSTV','XSNT','XSGL');
         }elseif (in_array($d->lottery_company,array('XSAG','XSTN','XSQB','XSBTH','XSBDI','XSQT'))){
-            $bindArray['Thursday'][]  = $d->lottery_company;
+            $bindArray['Thursday']  = array('XSAG','XSTN','XSQB','XSBTH','XSBDI','XSQT');
         }elseif (in_array($d->lottery_company,array('XSDN','XSST','XSCT','XSKH','XSDNA'))){
-            $bindArray['Wednesday'][]  = $d->lottery_company;
+            $bindArray['Wednesday']  = array('XSDN','XSST','XSCT','XSKH','XSDNA');
         }elseif (in_array($d->lottery_company,array('XSVT','XSBTR','XSBL','XSDLK','XSQNA'))){
-            $bindArray['Tuesday'][]  = $d->lottery_company;
+            $bindArray['Tuesday']  = array('XSVT','XSBTR','XSBL','XSDLK','XSQNA');
         }elseif (in_array($d->lottery_company,array('XSTTH','XSPY','XSDT','XSHCM','XSCM'))){
-            $bindArray['Monday'][]  = $d->lottery_company;
+            $bindArray['Monday']  = array('XSTTH','XSPY','XSDT','XSHCM','XSCM');
         }
     }
 
