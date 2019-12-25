@@ -205,18 +205,48 @@
                         }
                     }
                 }
+
                 //print_r($aa);
+                $newValues = [];
+                foreach($aa as $ke=>$bingoData) {
+                    foreach($aa[$ke] as $ke1=>$bingoData1) {
+                        if ( $bingoData1 <= 07) {
+                            $newValues[0][] = $bingoData1;
+                        } else if ( $bingoData1 >= 8 && $bingoData1 <= 19) {  
+                            $newValues[1][] = $bingoData1;
+                        } else if ( $bingoData1 >= 20 && $bingoData1 <= 29) {     
+                            $newValues[2][] = $bingoData1;
+                        } else if ( $bingoData1 >= 30 && $bingoData1 <= 39) {    
+                            $newValues[3][] = $bingoData1;
+                        } else if ( $bingoData1 >= 40 && $bingoData1 <= 49) {    
+                            $newValues[4][] = $bingoData1;
+                        } else if ( $bingoData1 >= 50 && $bingoData1 <= 59) { 
+                            $newValues[5][] = $bingoData1;
+                        } else if ( $bingoData1 >= 60 && $bingoData1 <= 69) {
+                            $newValues[6][] = $bingoData1;
+                        } else if ( $bingoData1 >= 70 && $bingoData1 <= 89) {
+                            $newValues[7][] = $bingoData1;
+                        } else {
+                            $newValues[8][] = $bingoData1;
+                        }
+                    }
+                }
+
+                //echo "<pre>";
+                //print_r(ksort($newValues));
+                ksort($newValues);
                 @endphp
 
-                @foreach($aa as $ke=>$bingoData)
+                @foreach($newValues as $ke=>$bingoData)
                 <tr>
                     <td class="text-center">{{ $ke }}</td>
                     <td>
-                        @foreach($aa[$ke] as $ke1=>$bingoData1)
+                        @foreach($newValues[$ke] as $ke1=>$bingoData1)
+                            {{ $loop->first ? '' : ', ' }}
                             {{ $bingoData1 }}
-                            @if (count($aa[$ke]) > 1)
+                            <!-- @if (count($newValues[$ke]) > 1)
                                 {{ ',' }}
-                            @endif
+                            @endif -->
                         @endforeach
                     </td>
                 </tr>
