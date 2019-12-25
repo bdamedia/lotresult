@@ -6,7 +6,10 @@
             <div class="col-xs-12 col-sm-12 col-md-6">
 
                 <div class="row">
+                    @include('todayResult')
                     <div class="col-xs-12 {{ $region }}">
+
+
                         @if($enableTab == true)
 
                             @if($region == 'xsmt')

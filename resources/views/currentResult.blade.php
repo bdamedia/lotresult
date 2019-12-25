@@ -6,7 +6,9 @@
     <div class="col-xs-12 col-sm-12 col-md-6">
 
     <div class="row">
+        @include('todayResult')
     <div class="col-xs-12">
+
         @php $g = 1; @endphp
         @foreach($content as $printresult)
            {{-- {{ print_r($printresult) }}--}}
@@ -181,8 +183,8 @@
             <th class="col-md-2" style="width: 10%;">Đầu</th>
             <th class="col-md-4">Lô Tô</th>
             </tr>
-                @php 
-                $aa = []; 
+                @php
+                $aa = [];
                 for ($it=1; $it< 10 ; $it++) {
                     $t= "prize_{$it}";
                     $f = json_decode($printresult->{$t});
@@ -193,7 +195,7 @@
                                 $aa[$it-2][] = substr($valSecond, -2, 2);
                             }
                         } else if ($keyValues == 'Mã ĐB') {
-                            //$aa['prize_1'][] = (array) $mainValue; 
+                            //$aa['prize_1'][] = (array) $mainValue;
                          } else if ($keyValues == 'G.DB') {
                             //$aa['prize_'.$it][] = substr($mainValue, -2, 2);
                             $aa[$it-2][] = substr($mainValue, -2, 2);
@@ -215,8 +217,8 @@
                             @if (count($aa[$ke]) > 1)
                                 {{ ',' }}
                             @endif
-                        @endforeach 
-                    </td>   
+                        @endforeach
+                    </td>
                 </tr>
                 @endforeach
 

@@ -6,6 +6,7 @@
     <div class="col-xs-12 col-sm-12 col-md-6">
 
     <div class="row">
+        @include('todayResult')
     <div class="col-xs-12">
 
         <div class="tab" role="tabpanel">
@@ -23,7 +24,7 @@
         @php $g = 1; @endphp
         @foreach($content as $printresult)
 
-    <div class="block" id='xsmb-{{ $g }}'>
+    <div class="block remove-margin" id='xsmb-{{ $g }}'>
         <div class="block-main-heading">
             <h1>{{ $printresult['lottery_region'] }}</h1>
             </div>

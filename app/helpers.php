@@ -369,3 +369,16 @@ function stripVN($str) {
     $str = preg_replace("/(Đ)/", 'D', $str);
     return $str;
 }
+
+
+function getTodayResultCompany(){
+
+    $mytime = Carbon\Carbon::now();
+    $dayName = $mytime->toDateTime()->format('l');
+    $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+    $key = array_search($dayName,$bindArrayDay);
+    $list = dayWiseArray($key);
+    $all = RegionCompany::whereIn('lottery_company', $list)->get();
+    return $all;
+
+}

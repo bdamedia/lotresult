@@ -279,6 +279,126 @@ ul.main-menu>li {
     border: 1px solid #000!important;
 }
 
+.color-orange{
+background-color: rgba(255, 183, 0, 1)
+}
+#u129 {
+    border-width: 0px;
+    text-align: center;
+    border: 1px solid #cccccc;
+
+    height: 43px;
+    display: flex;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    color: #D9001B;
+}
+#u129 .text {
+
+    align-self: flex-end    ;
+    padding: 2px 2px 2px 2px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#u129_text {
+    border-width: 0px;
+    word-wrap: break-word;
+    text-transform: none;
+}
+#u129_div {
+    border-width: 0px;
+
+
+    height: 43px;
+    background: inherit;
+    background-color: rgba(255, 255, 255, 1);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(121, 121, 121, 1);
+    border-radius: 0px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    color: #D9001B;
+}
+
+#u130 {
+    border-width: 0px;
+    background-color: rgba(255, 183, 0, 1);
+    text-align: center;
+    height: 43px;
+    display: flex;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    color: #000000;
+}
+
+#u118 {
+    border-width: 0px;
+
+
+    height: 85px;
+}
+.table_cell {
+    float: left;
+
+    border: 1px solid #ccc;
+    width: 185px;
+    text-align: center;
+
+}
+
+.table_cell a span {
+    color: #000000;
+}
+
+.table_cell div{
+    padding: 10px;
+}
+
+.margin-40{
+    margin-bottom: 50px;
+    margin-top: 10px;
+}
+#u130_div {
+    border-width: 0px;
+
+    width: 481px;
+    height: 43px;
+    background: inherit;
+    background-color: rgba(255, 183, 0, 1);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(121, 121, 121, 1);
+    border-radius: 0px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    color: #000000;
+}
+#u130 .text {
+
+    align-self: flex-end;
+    padding: 2px 2px 2px 2px;
+    box-sizing: border-box;
+    width: 100%;
+}
+#u130_text {
+    border-width: 0px;
+    word-wrap: break-word;
+    text-transform: none;
+}
 td.ĐB + td > span,td.ĐB + td + td > span,td.ĐB + td + td + td > span {
     color: red;
 }

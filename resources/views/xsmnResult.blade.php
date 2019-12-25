@@ -6,6 +6,7 @@
     <div class="col-xs-12 col-sm-12 col-md-6">
 
     <div class="row">
+        @include('todayResult')
     <div class="col-xs-12">
 
         @php $g = 1; @endphp
@@ -14,7 +15,7 @@
 
     <div class="block" id='xsmb-{{ $g }}'>
         <div class="block-main-heading">
-            <h1>{{ $printresult->lottery_region }} - {{ getCompanyName($printresult->lottery_company) }}</h1>
+            <h1>@if($printresult->lottery_region == 'XSMN') {{ "Xổ số miền Nam" }} ({{ $printresult->lottery_region }}) @elseif($printresult->lottery_region == 'XSMT') {{ "Xổ số miền Trung" }} ({{ $printresult->lottery_region }}) @elseif($printresult->lottery_region == 'XSMB') {{ "Xổ số miền Bắc" }} ({{ $printresult->lottery_region }}) @endif    - {{ getCompanyName($printresult->lottery_company) }}</h1>
             </div>
             <div class="list-link">
             <h2 class="class-title-list-link">
