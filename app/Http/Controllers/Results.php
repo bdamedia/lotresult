@@ -182,7 +182,7 @@ class Results extends Controller
         $list = dayWiseArray($day);
         $result = Result::where('lottery_region','XSMB')->get();
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
-
+        $new = array();
         $t = 0;
         foreach ($result as $res){
             $daySelected = $res->result_day_time->toDateTime()->format('l');
@@ -219,25 +219,32 @@ class Results extends Controller
         $list = dayWiseArray($day);
         $result = Result::where('lottery_region','XSMN')->whereIn('lottery_company',$list)->get();
         $t = 0;
+        $new = array();
+        $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
         foreach ($result as $res){
-            $k = $res->result_day_time->toDateTime()->getTimestamp();
-            $new[$k][$t]['lottery_region'] = $res->lottery_region;
-            $new[$k][$t]['lottery_company'] = $res->lottery_company;
-            $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/y');
-            $new[$k][$t]['prize_1'] = $res->prize_1;
-            $new[$k][$t]['prize_2'] = $res->prize_2;
-            $new[$k][$t]['prize_3'] = $res->prize_3;
-            $new[$k][$t]['prize_4'] = $res->prize_4;
-            $new[$k][$t]['prize_5'] = $res->prize_5;
-            $new[$k][$t]['prize_6'] = $res->prize_6;
-            $new[$k][$t]['prize_7'] = $res->prize_7;
-            $new[$k][$t]['prize_8'] = $res->prize_8;
-            $new[$k][$t]['prize_9'] = $res->prize_9;
-            $new[$k][$t]['board'] = $res->board;
-            $t++;
+            $daySelected = $res->result_day_time->toDateTime()->format('l');
 
+            if($bindArrayDay[$day] == $daySelected) {
+                $k = $res->result_day_time->toDateTime()->format('d/m/y');
+                $new[$k][$t]['lottery_region'] = $res->lottery_region;
+                $new[$k][$t]['lottery_company'] = $res->lottery_company;
+                $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/y');
+                $new[$k][$t]['prize_1'] = $res->prize_1;
+                $new[$k][$t]['prize_2'] = $res->prize_2;
+                $new[$k][$t]['prize_3'] = $res->prize_3;
+                $new[$k][$t]['prize_4'] = $res->prize_4;
+                $new[$k][$t]['prize_5'] = $res->prize_5;
+                $new[$k][$t]['prize_6'] = $res->prize_6;
+                $new[$k][$t]['prize_7'] = $res->prize_7;
+                $new[$k][$t]['prize_8'] = $res->prize_8;
+                $new[$k][$t]['prize_9'] = $res->prize_9;
+                $new[$k][$t]['board'] = $res->board;
+                $new[$k][$t]['day'] = $daySelected;
+                $t++;
+            }
         }
-
+      /*  echo "<pre>";
+        print_r($new);*/
         $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
         $data['comp'] = $comp;
         $data['region'] = "xsmn";
@@ -251,23 +258,28 @@ class Results extends Controller
         $list = dayWiseArray($day);
         $result = Result::where('lottery_region','XSMT')->whereIn('lottery_company',$list)->get();
         $t = 0;
+        $new = array();
+        $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
         foreach ($result as $res){
-            $k = $res->result_day_time->toDateTime()->getTimestamp();
-            $new[$k][$t]['lottery_region'] = $res->lottery_region;
-            $new[$k][$t]['lottery_company'] = $res->lottery_company;
-            $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/y');
-            $new[$k][$t]['prize_1'] = $res->prize_1;
-            $new[$k][$t]['prize_2'] = $res->prize_2;
-            $new[$k][$t]['prize_3'] = $res->prize_3;
-            $new[$k][$t]['prize_4'] = $res->prize_4;
-            $new[$k][$t]['prize_5'] = $res->prize_5;
-            $new[$k][$t]['prize_6'] = $res->prize_6;
-            $new[$k][$t]['prize_7'] = $res->prize_7;
-            $new[$k][$t]['prize_8'] = $res->prize_8;
-            $new[$k][$t]['prize_9'] = $res->prize_9;
-            $new[$k][$t]['board'] = $res->board;
-            $t++;
-
+            $daySelected = $res->result_day_time->toDateTime()->format('l');
+            if($bindArrayDay[$day] == $daySelected) {
+                $k = $res->result_day_time->toDateTime()->format('d/m/y');
+                $new[$k][$t]['lottery_region'] = $res->lottery_region;
+                $new[$k][$t]['lottery_company'] = $res->lottery_company;
+                $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/y');
+                $new[$k][$t]['prize_1'] = $res->prize_1;
+                $new[$k][$t]['prize_2'] = $res->prize_2;
+                $new[$k][$t]['prize_3'] = $res->prize_3;
+                $new[$k][$t]['prize_4'] = $res->prize_4;
+                $new[$k][$t]['prize_5'] = $res->prize_5;
+                $new[$k][$t]['prize_6'] = $res->prize_6;
+                $new[$k][$t]['prize_7'] = $res->prize_7;
+                $new[$k][$t]['prize_8'] = $res->prize_8;
+                $new[$k][$t]['prize_9'] = $res->prize_9;
+                $new[$k][$t]['board'] = $res->board;
+                $new[$k][$t]['day'] = $daySelected;
+                $t++;
+            }
         }
 
         $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
