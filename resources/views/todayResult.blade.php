@@ -21,7 +21,7 @@
         <div id="u119" class="ax_default table_cell" style="cursor: pointer;">
 
             <div id="u119_text" class="text ">
-                <a href="{{ "ket-qua-xo-so-mien-bac/" }}" ><span id="cache1" style="">{{ "Miền Bắc" }}</span></a>
+                <a href="/{{ "ket-qua-xo-so-mien-bac/" }}" ><span id="cache1" style="">{{ "Miền Bắc" }}</span></a>
             </div>
         </div>
         <!-- Unnamed (Table Cell) -->
@@ -29,7 +29,7 @@
         <div id="u119" class="ax_default table_cell" style="cursor: pointer;">
 
             <div id="u119_text" class="text ">
-                 <a href="@if($data->lottery_region == 'XSMN') {{ "ket-qua-xo-so-mien-nam/kqxsmn-" }}{{ $data->lottery_company_slug }}  @elseif($data->lottery_region == 'XSMT') {{ "ket-qua-xo-so-mien-trung/kqxsmt-" }}{{ $data->lottery_company_slug }}  @elseif($data->lottery_region == 'XSMB') {{ "ket-qua-xo-so-mien-bac/" }}{{ $data->lottery_company_slug }}  @endif" ><span id="cache1" style="">{{ $data->lottery_company_names }}</span></a>
+                 <a href="@if($data->lottery_region == 'XSMN') {{ "/ket-qua-xo-so-mien-nam/kqxsmn-" }}{{ $data->lottery_company_slug }}  @elseif($data->lottery_region == 'XSMT') {{ "/ket-qua-xo-so-mien-trung/kqxsmt-" }}{{ $data->lottery_company_slug }}  @elseif($data->lottery_region == 'XSMB') {{ "ket-qua-xo-so-mien-bac/" }}{{ $data->lottery_company_slug }}  @endif" ><span id="cache1" style="">{{ $data->lottery_company_names }}</span></a>
             </div>
         </div>
             @endforeach

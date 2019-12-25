@@ -28,7 +28,7 @@
             <table class="table table-bordered table-striped table-xsmb">
             <tbody>
             <tr>
-            <td style="width: 15%"> @php $prize_1 = json_decode($printresult->prize_1); @endphp {{ key($prize_1) }}</td>
+            <td class="{{ key($prize_1) }}" style="width: 15%"> @php $prize_1 = json_decode($printresult->prize_1); @endphp {{ key($prize_1) }}</td>
             <td class="text-center">
                 @foreach($prize_1->{key($prize_1)} as $k=>$p1)
                     <span class=" special-code div-horizontal">{{ $p1 }} </span>
@@ -37,7 +37,7 @@
             </tr>
 
             <tr>
-            <td>@php $prize_2 = json_decode($printresult->prize_2);   @endphp {{ key($prize_2) }}</td>
+            <td class="{{ key($prize_2) }}" >@php $prize_2 = json_decode($printresult->prize_2);   @endphp {{ key($prize_2) }}</td>
             <td class="text-center">
                 @if(count((array) $prize_2) <= 1)
                     @foreach($prize_2->{key($prize_2)} as $k=>$p2)
@@ -53,7 +53,7 @@
             </tr>
 
             <tr>
-            <td>@php $prize_3 = json_decode($printresult->prize_3);  @endphp {{ key($prize_3) }}</td>
+            <td class="{{ key($prize_3) }}" >@php $prize_3 = json_decode($printresult->prize_3);  @endphp {{ key($prize_3) }}</td>
             <td class="text-center">
                 @if(count((array) $prize_3) <= 1)
                     @foreach($prize_3->{key($prize_3)} as $k=>$p3)
@@ -68,7 +68,7 @@
             </tr>
 
             <tr>
-                <td>@php $prize_4 = json_decode($printresult->prize_4);  @endphp {{ key($prize_4) }}</td>
+                <td class="{{ key($prize_4) }}" >@php $prize_4 = json_decode($printresult->prize_4);  @endphp {{ key($prize_4) }}</td>
                 <td class="text-center">
                     @if(count((array) $prize_4) <= 1)
 
@@ -84,7 +84,7 @@
             </tr>
 
             <tr>
-                <td>@php $prize_5 = json_decode($printresult->prize_5);  @endphp {{ key($prize_5) }}</td>
+                <td class="{{ key($prize_5) }}" >@php $prize_5 = json_decode($printresult->prize_5);  @endphp {{ key($prize_5) }}</td>
                 <td class="text-center">
                     @if(count((array) $prize_5) <= 1)
                         @foreach($prize_5 as $k=>$p5)
@@ -100,7 +100,7 @@
             </tr>
 
             <tr>
-                <td>@php  $prize_6 = json_decode($printresult->prize_6);  @endphp {{ key($prize_6) }}</td>
+                <td class="{{ key($prize_6) }}" >@php  $prize_6 = json_decode($printresult->prize_6);  @endphp {{ key($prize_6) }}</td>
                 <td class="text-center">
                     @if(count((array) $prize_6) <= 1)
                         @foreach($prize_6 as $k=>$p6)
@@ -115,7 +115,7 @@
             </tr>
 
             <tr>
-                <td>@php $prize_7 = json_decode($printresult->prize_7);  @endphp {{ key($prize_7) }}</td>
+                <td class="{{ key($prize_7) }}" >@php $prize_7 = json_decode($printresult->prize_7);  @endphp {{ key($prize_7) }}</td>
                 <td class="text-center">
                     @if(count((array) $prize_7) <= 1)
                         @foreach($prize_7 as $k=>$p7)
@@ -130,7 +130,7 @@
             </tr>
 
             <tr>
-                <td>@php $prize_8 = json_decode($printresult->prize_8);   @endphp {{ key($prize_8) }}</td>
+                <td class="{{ key($prize_8) }}" >@php $prize_8 = json_decode($printresult->prize_8);   @endphp {{ key($prize_8) }}</td>
                 <td class="text-center">
                     @if(count((array) $prize_8) <= 1)
                         @foreach($prize_8 as $k=>$p8)
@@ -145,7 +145,7 @@
             </tr>
 
             <tr>
-                <td>@php $prize_9 = json_decode($printresult->prize_9);   @endphp {{ key($prize_9) }}</td>
+                <td class="{{ key($prize_9) }}" >@php $prize_9 = json_decode($printresult->prize_9);   @endphp {{ key($prize_9) }}</td>
                 <td class="text-center">
                     @if(count((array) $prize_9) <= 1)
                         @foreach($prize_9 as $k=>$p9)
@@ -159,25 +159,7 @@
                 </td>
             </tr>
 
-       {{--     @if($printresult->prize_10)
-            <tr>
-                <td>@php $prize_10 = json_decode($printresult->prize_10);    @endphp {{ key($prize_10) }}</td>
-                <td class="text-center">
-                    @if(count((array) $prize_10) <= 1)
-                        @foreach($prize_10 as $k=>$p10)
-                            <span class="col-xs-3 special-prize-sm div-horizontal">
-                                @php if(count((array) $p10) > 1 ){ $p10 = implode(', ',$p10); }elseif(count((array) $p10) == 1){  $p10 = $p10; }  @endphp
-                                {{ $p10 }}
-                            </span>
-                        @endforeach
-                    @else
-                        @foreach($prize_10->{key($prize_10)} as $k=>$p10)
-                            <span class="col-xs-3 special-prize-sm div-horizontal">{{ $p10 }} </span>
-                        @endforeach
-                    @endif
-                </td>
-            </tr>
-            @endif--}}
+
 
             </tbody>
             </table>
