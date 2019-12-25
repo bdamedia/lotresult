@@ -295,6 +295,19 @@ function getCompanyCode($slug){
     }
 }
 
+function getCompanySlug($code){
+
+    if(strtoupper($code) == 'XSMB' || strtoupper($code) == 'XSMT' || strtoupper($code) == 'XSMN'){
+        return '/'.$code;
+    }else{
+        $all = RegionCompany::where('lottery_company', $code)->get();
+        if($all->count() > 0){
+            return collect($all)->first()->lottery_company_slug;
+        }
+
+    }
+}
+
 function dayWiseArray($day='all'){
     $bindArray = array();
     $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');

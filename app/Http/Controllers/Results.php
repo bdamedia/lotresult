@@ -72,7 +72,7 @@ class Results extends Controller
 
         $t = 0;
         foreach ($result as $res){
-            $k = $res->result_day_time->toDateTime()->getTimestamp();
+            $k = $res->result_day_time->toDateTime()->format('d/m/y');
             $new[$k][$t]['lottery_region'] = $res->lottery_region;
             $new[$k][$t]['lottery_company'] = $res->lottery_company;
             $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/y');
@@ -86,6 +86,7 @@ class Results extends Controller
             $new[$k][$t]['prize_8'] = $res->prize_8;
             $new[$k][$t]['prize_9'] = $res->prize_9;
             $new[$k][$t]['board'] = $res->board;
+            $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
             $t++;
 
         }
@@ -104,7 +105,7 @@ class Results extends Controller
 
         $t = 0;
         foreach ($result as $res){
-            $k = $res->result_day_time->toDateTime()->getTimestamp();
+            $k = $res->result_day_time->toDateTime()->format('d/m/y')   ;
             $new[$k][$t]['lottery_region'] = $res->lottery_region;
             $new[$k][$t]['lottery_company'] = $res->lottery_company;
             $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/y');
@@ -118,6 +119,7 @@ class Results extends Controller
             $new[$k][$t]['prize_8'] = $res->prize_8;
             $new[$k][$t]['prize_9'] = $res->prize_9;
             $new[$k][$t]['board'] = $res->board;
+            $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
             $t++;
 
         }
@@ -154,6 +156,7 @@ class Results extends Controller
                 $data['companyName'] = strtoupper($company);
                 $data['region'] = "xsmt";
                 $data['enableTab'] = false;
+
                 //return view('currentResult',$data)->render();
                 return view('xsmtResult')->with($data);
             }
