@@ -224,10 +224,12 @@
                             $newValues[5][] = $bingoData1;
                         } else if ( $bingoData1 >= 60 && $bingoData1 <= 69) {
                             $newValues[6][] = $bingoData1;
-                        } else if ( $bingoData1 >= 70 && $bingoData1 <= 89) {
-                            $newValues[7][] = $bingoData1;
-                        } else {
+                        } else if ( $bingoData1 >= 70 && $bingoData1 <= 79) {
+                             $newValues[7][] = $bingoData1;
+                        } else if ( $bingoData1 >= 80 && $bingoData1 <= 89) {
                             $newValues[8][] = $bingoData1;
+                        } else {
+                            $newValues[9][] = $bingoData1;
                         }
                     }
                 }
