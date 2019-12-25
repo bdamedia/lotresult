@@ -94,7 +94,7 @@
 <script src="https://cdn.xosodaiphat.com/Notify/js/main.js"></script>
 
 <script src="https://cdn.xosodaiphat.com/Content/js/lotteryLiveMQMin-129-secu.js?v=1"></script>
-<script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+<script src="{{ URL::asset('js/yui-min.js') }}"></script>
 <script type="text/javascript">
     YUI().use('calendar', 'datatype-date', 'cssbutton',  function(Y) {
 
