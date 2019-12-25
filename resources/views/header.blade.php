@@ -127,7 +127,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="list_border"><a href="/cau-xo-so-cac-tinh.html" title="Thống kê cầu">TK Cầu</a>
+                    <li class="list_border"><a href="/cau-xo-so-cac-tinh.html" title="Thống kê cầu">XS Điện toán</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/cau-mien-bac/cau-bach-thu.html" title="Cầu Bạch thủ">Bạch thủ (MB)</a>
@@ -143,7 +143,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="list_border"><a href="/thong-ke-lo-gan.html" title="Thống kê lô">TK Lô</a>
+                    <li class="list_border"><a href="/thong-ke-lo-gan.html" title="Thống kê lô">Thống kê</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/thong-ke-gan-cuc-dai.html" title="Lô gan">Lô gan</a></li>
@@ -159,7 +159,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="list_border"><a href="/lo-to-mien-bac/ket-qua-lo-to-mien-bac.html" title="Lô Tô">Lô Tô</a>
+                    <li class="list_border"><a href="/lo-to-mien-bac/ket-qua-lo-to-mien-bac.html" title="Lô Tô">Tin tức</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/lo-to-mien-bac/ket-qua-lo-to-mien-bac.html" title="Lô tô miền Bắc">Lô tô
@@ -172,7 +172,7 @@
                         </div>
                     </li>
 
-                    <li class="list_border"><a href="/quay-thu-xo-so.html" title="Quay thử">Quay thử</a>
+                   {{-- <li class="list_border"><a href="/quay-thu-xo-so.html" title="Quay thử">Tin tức</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/quay-thu-xo-so-mien-bac.html" title="Quay thử miền Bắc">Quay thử XSMB</a>
@@ -183,8 +183,9 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
-                    <li class="list_border"><a href="/thong-ke-xo-so.html" title="Thống Kê Xổ Số">Thống Kê Xổ Số</a>
+                    </li>--}}
+
+                    {{--<li class="list_border"><a href="/thong-ke-xo-so.html" title="Thống Kê Xổ Số">Thống Kê Xổ Số</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/thong-ke-xsmb-c2579-article.html" title="Thống kê XSMB">Thống kê XSMB</a>
@@ -196,7 +197,8 @@
                                 <li><a href="/tin-tuc/tin-tuc-c2583-article.html" title="Tin xổ số">Tin xổ số</a></li>
                             </ul>
                         </div>
-                    </li>
+                    </li>--}}
+                    
                     {{--<li class=""><a href="/dang-nhap.html" title="Đăng nhập"><i class="fa fa-user"
                                                                                 aria-hidden="true"></i></a></li>--}}
                 </ul>
