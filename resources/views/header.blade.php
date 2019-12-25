@@ -127,40 +127,28 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="list_border"><a href="/cau-xo-so-cac-tinh.html" title="Thống kê cầu">TK Cầu</a>
+
+                    <li class="list_border"><a href="/cau-mien-bac/kqxs-dien_toan_first" title="Thống kê cầu">XS Điện toán</a>
                         <div class="menu-lv2-down">
                             <ul>
-                                <li><a href="/cau-mien-bac/cau-bach-thu.html" title="Cầu Bạch thủ">Bạch thủ (MB)</a>
-                                </li>
-                                <li><a href="/cau-mien-bac/cau-lat-lien-tuc.html" title="Cầu Lật liên tục">Lật liên tục
-                                        (MB)</a></li>
-                                <li><a href="/cau-mien-bac/cau-ve-ca-cap.html" title="Cầu Về cả cặp">Về cả cặp (MB)</a>
-                                </li>
-                                <li><a href="/cau-mien-bac/cau-ve-nhieu-nhay.html" title="Cầu Về nhiều nháy">Về nhiều
-                                        nháy (MB)</a></li>
-                                <li><a href="/cau-mien-nam.html" title="Cầu miền Nam">Cầu miền Nam</a></li>
-                                <li><a href="/cau-mien-trung.html" title="Cầu miền Trung">Cầu miền Trung</a></li>
+                                <li><a href="/cau-mien-bac/kqxs-dien_toan_first" title="Cầu Bạch thủ">XS Điện toán 6/36</a></li>
+                                <li><a href="/cau-mien-bac/kqxs-dien-toan_second" title="Cầu Lật liên tục">XS Điện toán 123</a></li>
+                                <li><a href="/cau-mien-bac/kqxs-dien-toan_third" title="Cầu Về cả cặp">XS Thần tài 4</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="list_border"><a href="/thong-ke-lo-gan.html" title="Thống kê lô">TK Lô</a>
+                    <li class="list_border"><a href="/thond-keys/thond-key-lo" title="Thống kê lô">Thống kê</a>
                         <div class="menu-lv2-down">
                             <ul>
-                                <li><a href="/thong-ke-gan-cuc-dai.html" title="Lô gan">Lô gan</a></li>
-                                <li><a href="/thong-ke-lo-xien.html" title="Lô xiên">Lô xiên</a></li>
-                                <li><a href="/thong-ke-lo-kep.html" title="Lô kép">Lô kép</a></li>
-                                <li><a href="/thong-ke-dau.html" title="TK đầu">TK đầu</a></li>
-                                <li><a href="/thong-ke-duoi.html" title="TK đuôi">TK đuôi</a></li>
-                                <li><a href="/thong-ke-giai-dac-biet.html" title="TK giải đặc biệt">TK giải đặc biệt</a>
-                                </li>
-                                <li><a href="/thong-ke-tan-suat.html" title="TK lần xuất hiện">TK lần xuất hiện</a></li>
-                                <li><a href="/thong-ke-00-99.html" title="TK 00-99">TK 00-99</a></li>
-                                <li><a href="/thong-ke-theo-chu-ky-5-1-0.html" title="TK chu kỳ">TK chu kỳ</a></li>
+                                <li><a href="/thond-keys/thond-key-lo" title="Lô gan">Thống kê lô</a></li>
+                                <li><a href="/thond-keys/thond-keys-gan" title="Lô xiên">Thống kê lô gan</a></li>
+                                <li><a href="/thond-keys/thond-keys-cang" title="Lô kép">Thống kê 3 càng</a></li>
+                                <li><a href="/thond-keys/thond-keys-biet" title="TK đầu">Thống kê đề đặc biệt</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="list_border"><a href="/lo-to-mien-bac/ket-qua-lo-to-mien-bac.html" title="Lô Tô">Lô Tô</a>
-                        <div class="menu-lv2-down">
+                    <li class="list_border"><a href="/lo-to-mien-bac/ket-qua-lo-to-mien-bac.html" title="Lô Tô">Tin tức</a>
+                        {{--<div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/lo-to-mien-bac/ket-qua-lo-to-mien-bac.html" title="Lô tô miền Bắc">Lô tô
                                         miền Bắc</a></li>
@@ -169,10 +157,10 @@
                                 <li><a href="/lo-to-mien-trung/ket-qua-lo-to-mien-trung.html" title="Lô tô miền Trung">Lô
                                         tô miền Trung</a></li>
                             </ul>
-                        </div>
+                        </div>--}}
                     </li>
 
-                    <li class="list_border"><a href="/quay-thu-xo-so.html" title="Quay thử">Quay thử</a>
+                   {{-- <li class="list_border"><a href="/quay-thu-xo-so.html" title="Quay thử">Tin tức</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/quay-thu-xo-so-mien-bac.html" title="Quay thử miền Bắc">Quay thử XSMB</a>
@@ -183,8 +171,9 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
-                    <li class="list_border"><a href="/thong-ke-xo-so.html" title="Thống Kê Xổ Số">Thống Kê Xổ Số</a>
+                    </li>--}}
+
+                    {{--<li class="list_border"><a href="/thong-ke-xo-so.html" title="Thống Kê Xổ Số">Thống Kê Xổ Số</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/thong-ke-xsmb-c2579-article.html" title="Thống kê XSMB">Thống kê XSMB</a>
@@ -196,7 +185,8 @@
                                 <li><a href="/tin-tuc/tin-tuc-c2583-article.html" title="Tin xổ số">Tin xổ số</a></li>
                             </ul>
                         </div>
-                    </li>
+                    </li>--}}
+
                     {{--<li class=""><a href="/dang-nhap.html" title="Đăng nhập"><i class="fa fa-user"
                                                                                 aria-hidden="true"></i></a></li>--}}
                 </ul>
