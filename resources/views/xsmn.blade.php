@@ -10,6 +10,7 @@
                         @if($enableTab == true)
 
                             @if($region == 'xsmt')
+
                                 <div class="tab" role="tabpanel">
                                     <ul class="nav-tabs day-selector">
                                         <li><a href="/ket-qua-xo-so-mien-trung" title="XSMB Thứ 2">Miền Trung</a></li>
@@ -63,7 +64,13 @@
                                      @endphp
                             @foreach($content[$key] as $lot)
 
-                              @php $th .= '<th class="text-center"><a href="'.strtolower($lot["lottery_region"]).'/'.$lot["lottery_company"].'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+                              @php
+                                  if($region == 'xsmt'){
+        $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+                                    }elseif ($region == 'xsmn'){
+        $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+                                    }
+
                               @endphp
                                 @php $prize_1 = json_decode($lot['prize_1']); @endphp
                                 @php $prize_2 = json_decode($lot['prize_2']); @endphp
@@ -146,15 +153,15 @@
                                      @php   $boards .=' </tbody></table>'; @endphp
                                 @endif--}}
 
-                                @php $td1 = '<td style="width: 15%">'.key($prize_1).'</td>'; @endphp
-                                @php $tdr1 = '<td style="width: 15%">'.key($prize_2).'</td>'; @endphp
-                                @php $tdr2 = '<td style="width: 15%">'.key($prize_3).'</td>'; @endphp
-                                @php $tdr3 = '<td style="width: 15%">'.key($prize_4).'</td>'; @endphp
-                                @php $tdr4 = '<td style="width: 15%">'.key($prize_5).'</td>'; @endphp
-                                @php $tdr5 = '<td style="width: 15%">'.key($prize_6).'</td>'; @endphp
-                                @php $tdr6 = '<td style="width: 15%">'.key($prize_7).'</td>'; @endphp
-                                @php $tdr7 = '<td style="width: 15%">'.key($prize_8).'</td>'; @endphp
-                                @php $tdr8 = '<td style="width: 15%">'.key($prize_9).'</td>'; @endphp
+                                @php $td1 = '<td class="'.key($prize_1).'" style="width: 15%">'.key($prize_1).'</td>'; @endphp
+                                @php $tdr1 = '<td class="'.key($prize_2).'" style="width: 15%">'.key($prize_2).'</td>'; @endphp
+                                @php $tdr2 = '<td class="'.key($prize_3).'" style="width: 15%">'.key($prize_3).'</td>'; @endphp
+                                @php $tdr3 = '<td class="'.key($prize_4).'" style="width: 15%">'.key($prize_4).'</td>'; @endphp
+                                @php $tdr4 = '<td class="'.key($prize_5).'" style="width: 15%">'.key($prize_5).'</td>'; @endphp
+                                @php $tdr5 = '<td class="'.key($prize_6).'" style="width: 15%">'.key($prize_6).'</td>'; @endphp
+                                @php $tdr6 = '<td class="'.key($prize_7).'" style="width: 15%">'.key($prize_7).'</td>'; @endphp
+                                @php $tdr7 = '<td class="'.key($prize_8).'" style="width: 15%">'.key($prize_8).'</td>'; @endphp
+                                @php $tdr8 = '<td class="'.key($prize_9).'" style="width: 15%">'.key($prize_9).'</td>'; @endphp
 
                             @endforeach
 
