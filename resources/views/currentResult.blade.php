@@ -181,14 +181,44 @@
             <th class="col-md-2" style="width: 10%;">Đầu</th>
             <th class="col-md-4">Lô Tô</th>
             </tr>
-                @if($printresult->board)
-                    @php $boardRes = json_decode($printresult->board) @endphp
-                @foreach($boardRes as $ke=>$bingoData)
+                @php 
+                $aa = []; 
+                for ($it=1; $it< 10 ; $it++) {
+                    $t= "prize_{$it}";
+                    $f = json_decode($printresult->{$t});
+                    foreach ($f as $keyValues => $mainValue) {
+                        if(is_array($mainValue)) {
+                            foreach ($mainValue as $keySecond => $valSecond) {
+                                //$aa['prize_'.$it][] = substr($valSecond, -2, 2);
+                                $aa[$it-2][] = substr($valSecond, -2, 2);
+                            }
+                        } else if ($keyValues == 'Mã ĐB') {
+                            //$aa['prize_1'][] = (array) $mainValue; 
+                         } else if ($keyValues == 'G.DB') {
+                            //$aa['prize_'.$it][] = substr($mainValue, -2, 2);
+                            $aa[$it-2][] = substr($mainValue, -2, 2);
+                        } else {
+                            //$aa['prize_'.$it][] = substr($mainValue, -2, 2);
+                            $aa[$it-2][] = substr($mainValue, -2, 2);
+                        }
+                    }
+                }
+                //print_r($aa);
+                @endphp
+
+                @foreach($aa as $ke=>$bingoData)
                 <tr>
-                    <td class="text-center">{{ $ke }}</td><td>{{ $bingoData }}</td>
+                    <td class="text-center">{{ $ke }}</td>
+                    <td>
+                        @foreach($aa[$ke] as $ke1=>$bingoData1)
+                            {{ $bingoData1 }}
+                            @if (count($aa[$ke]) > 1)
+                                {{ ',' }}
+                            @endif
+                        @endforeach 
+                    </td>   
                 </tr>
                 @endforeach
-                @endif
 
             </table>
             </div>
