@@ -296,4 +296,15 @@ class Results extends Controller
         //return view('xsmtResult')->with($result);
 
     }
+
+    public function kqxs(Request $request)
+    {
+        return view('kqxsResult');
+    }
+
+    public function thonds(Request $request)
+    {
+        return view('thondsResult');
+    }
+
 }

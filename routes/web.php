@@ -30,6 +30,8 @@ Route::get("/ket-qua-xo-so-mien-trung", "Results@xsmtIndex");
 Route::get("crawler/old", "Crawler@getOldResult");
 
 
+Route::get("/cau-mien-bac/{kqxs_dien_toan}", "Results@kqxs");
+Route::get("/thond-keys/{thond_keys}", "Results@thonds");
 
 
 Route::get("/crawler/current", "Crawler@getCurrentResult");
