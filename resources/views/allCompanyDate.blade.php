@@ -25,9 +25,9 @@
                                 </div>
                                 <div class="list-link">
                                     <h2 class="class-title-list-link">
-                                        @php $dayName = $printresult->result_day_time->toDateTime()->format('l'); $dayName = getDaySlug($dayName); @endphp
+                                        @php $dayName = $printresult->result_day_time->toDateTime()->format('l'); $dayNameSlug = getDaySlug($dayName); @endphp
                                         <a href="/{{ getRegionSlug($printresult->lottery_region) }}" title="XSMB" class="u-line">{{ $printresult->lottery_region }}</a><span>»</span>
-                                        <a href="{{ getRegionSlug($printresult->lottery_region) }}/kq{{ strtolower($printresult->lottery_region) }}-{{$dayName}}" title="{{ $printresult->lottery_region }} Thứ 6" class="u-line">{{ $printresult->lottery_region }} Thứ 6</a><span>»</span>
+                                        <a href="{{ getRegionSlug($printresult->lottery_region) }}/kq{{ strtolower($printresult->lottery_region) }}-{{$dayNameSlug}}" title="{{ $printresult->lottery_region }} {{$dayName}}" class="u-line">{{ $printresult->lottery_region }} {{ $dayName }}</a><span>»</span>
                                         <a href="kq{{ strtolower($printresult->lottery_region) }}-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}" class="u-line">  {{--{{ getCompanyName($printresult->lottery_company) }}--}} {{ $printresult->lottery_region }} {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a>
                                     </h2>
                                 </div>
@@ -102,7 +102,19 @@
                                             <td class="text-center">
                                                 @if(count((array) $prize_5) <= 1)
                                                     @foreach($prize_5->{key($prize_5)} as $k=>$p5)
-                                                        <span class="number-black-bold div-horizontal">{{ $p5  }} </span>
+                                                        @php
+                                                            $p5New = explode(' ',$p5);
+                                                            if(is_array($p5New)){
+                                                                foreach($p5New as $vb){
+                                                                     echo '<span class="col-xs-4 number-black-bold div-horizontal">'.$vb.'</span>';
+                                                                }
+
+
+                                                            }else{
+                                                                echo '<span class="number-black-bold div-horizontal">'.$p5.'</span>';
+                                                            }
+                                                        @endphp
+
                                                     @endforeach
 
                                                 @else
