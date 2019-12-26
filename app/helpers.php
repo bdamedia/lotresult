@@ -382,3 +382,12 @@ function getTodayResultCompany(){
     return $all;
 
 }
+
+function getDaySlug($dayName){
+$bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+return array_search($dayName,$bindArrayDay);
+}
+function getRegionSlug($code){
+    $reg = array('XSMN'=>'ket-qua-xo-so-mien-nam','XSMT'=>'ket-qua-xo-so-mien-trung','XSMB'=>'ket-qua-xo-so-mien-bac');
+    return $reg[$code];
+}

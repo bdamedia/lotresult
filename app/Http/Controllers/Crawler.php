@@ -213,7 +213,7 @@ class Crawler extends Controller
             }
 
         }
-         exit();
+
     }
 
 
@@ -221,7 +221,7 @@ class Crawler extends Controller
     public function reloadCurrentResult(Request $request, $link)
     {
         $reg = array('XSMN'=>'ket-qua-xo-so-mien-nam','XSMT'=>'ket-qua-xo-so-mien-trung','XSMB'=>'ket-qua-xo-so-mien-bac');
-        $url = "https://xosodaiphat.com/" . $link;
+        echo $url = "https://xosodaiphat.com/" . $link;
         $resultData = crawlUrlModified($url);
         $url = '';
         foreach ($resultData as $res) {
@@ -254,6 +254,7 @@ class Crawler extends Controller
                     }
 
                     $result->save();
+
                 }
                 if(isset($res['lottery_region'])){
 
@@ -264,6 +265,15 @@ class Crawler extends Controller
 
         }
         //echo $url;
-        return redirect($url);
+       // return redirect($url);
+    }
+
+    public function CroneJob(Request $request){
+        $all = RegionCompany::all();
+
+        foreach ($all as $c){
+            echo $c->lottery_company_url;
+            $this->xsmtCurrentResult($request,$c->lottery_company_url);
+        }
     }
 }
