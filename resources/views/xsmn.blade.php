@@ -62,10 +62,13 @@
                                     $td10 = '';
                                     $tdr1 = '';
                                     $tdr2 = '';
-                                    $boards = '';
-
+                                    $boards = [];
+                                    $boards1 = '';
+                                    $boards2 = '';
+$gh = count($content[$key]);
                                      @endphp
-                            @foreach($content[$key] as $lot)
+                                     
+                            @foreach($content[$key] as $g=>$lot)
 
                               @php
                                   if($region == 'xsmt'){
@@ -149,14 +152,14 @@
                                     @endforeach
                                 @php $td10 .= '</td>'; @endphp
 
-                               {{-- @if($board)
+                               @if($board)
                                     @php $boardRes = $board @endphp
-                                    @php $boards .= '<p class="padding10">Lô tô Bến Tre '.date('D', $date).', '.date('d/m/Y',$date).'</p> <table class="table table-bordered table-loto"><tbody><tr><th class="col-md-2" style="width: 10%;">Đầu</th><th class="col-md-4">Lô Tô</th></tr>'; @endphp
+                                   
                                     @foreach($boardRes as $ke=>$bingoData)
-                                      @php  $boards .= '<tr><td class="text-center">'.$ke.'</td><td>'.$bingoData.'</td></tr>'; @endphp
+                                      @php  $boards[$g][] = $bingoData; @endphp
                                     @endforeach
-                                     @php   $boards .=' </tbody></table>'; @endphp
-                                @endif--}}
+                                  
+                                @endif
 
                                 @php $td1 = '<td class="'.key($prize_1).'" style="width: 15%">'.key($prize_1).'</td>'; @endphp
                                 @php $tdr1 = '<td class="'.key($prize_2).'" style="width: 15%">'.key($prize_2).'</td>'; @endphp
@@ -259,9 +262,31 @@
                                 </p>--}}
 
                                 <div class="block-main-content view-loto">
+                                        <p class="padding10">Lô tô Bến Tre {{ $current['result_day_time'] }}</p> 
+                                    <table class="table table-bordered table-loto">
+                                        <tbody>
+                                            <tr>
+                                        <th class="col-md-2" style="width: 10%;">Đầu</th>
 
-
-                                   @php  echo $boards; @endphp
+                                            @php echo $th @endphp
+                                            </tr>
+                                 
+                                          @php $value = []; @endphp                                              
+                                          @php 
+                                            
+                                               for($m = 0; $m < 10; $m++)
+                                               {
+                                                 echo "<tr>"; 
+                                                 echo "<td>".$m."</td>";  
+                                                    foreach($boards as $kk=>$bb)
+                                                    {
+                                                        echo "<td>".$boards[$kk][$m]."</td>";
+                                                    }
+                                                    echo "</tr>";
+                                                } 
+                                            @endphp
+                                        
+                             </tbody></table>
                                 </div>
                             </div>
                             @php $g++; @endphp
