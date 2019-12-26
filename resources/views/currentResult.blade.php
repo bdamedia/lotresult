@@ -209,10 +209,11 @@
                 //print_r($aa);
                 $newValues = [];
                 foreach($aa as $ke=>$bingoData) {
+
                     foreach($aa[$ke] as $ke1=>$bingoData1) {
-                        if ( $bingoData1 <= 07) {
+                        if ( $bingoData1 <= 09) {
                             $newValues[0][] = $bingoData1;
-                        } else if ( $bingoData1 >= 8 && $bingoData1 <= 19) {
+                        } else if ( $bingoData1 >= 10 && $bingoData1 <= 19) {
                             $newValues[1][] = $bingoData1;
                         } else if ( $bingoData1 >= 20 && $bingoData1 <= 29) {
                             $newValues[2][] = $bingoData1;
@@ -233,27 +234,22 @@
                         }
                     }
                 }
-
-                //echo "<pre>";
-                //print_r(ksort($newValues));
                 ksort($newValues);
-                @endphp
-
-                @foreach($newValues as $ke=>$bingoData)
-                <tr>
-                    <td class="text-center">{{ $ke }}</td>
+                for($r = 0 ; $r <=9 ; $r++){  @endphp
+                    <tr>
+                    <td class="text-center">{{ $r }}</td>
                     <td>
-                        @foreach($newValues[$ke] as $ke1=>$bingoData1)
-                            {{ $loop->first ? '' : ', ' }}
-                            {{ $bingoData1 }}
-                            <!-- @if (count($newValues[$ke]) > 1)
-                                {{ ',' }}
-                            @endif -->
-                        @endforeach
+                        @php  if(isset($newValues[$r])){
+                            echo implode(',',$newValues[$r]);
+                        }else{
+                            echo "--";
+                        }
+                        @endphp
                     </td>
                 </tr>
-                @endforeach
-
+                @php
+                }
+                @endphp
             </table>
             </div>
 
