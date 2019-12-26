@@ -211,9 +211,9 @@
                 foreach($aa as $ke=>$bingoData) {
 
                     foreach($aa[$ke] as $ke1=>$bingoData1) {
-                        if ( $bingoData1 <= 07) {
+                        if ( $bingoData1 <= 09) {
                             $newValues[0][] = $bingoData1;
-                        } else if ( $bingoData1 >= 8 && $bingoData1 <= 19) {  
+                        } else if ( $bingoData1 >= 10 && $bingoData1 <= 19) {  
                             $newValues[1][] = $bingoData1;
                         } else if ( $bingoData1 >= 20 && $bingoData1 <= 29) {     
                             $newValues[2][] = $bingoData1;
