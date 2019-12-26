@@ -12,13 +12,13 @@
         <div class="tab" role="tabpanel">
             <ul class="nav-tabs day-selector">
                 <li><a href="/ket-qua-xo-so-mien-bac" title="XSMB Thứ 2">Miền Bắc</a></li>
-                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmt-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
-                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmt-thu-ba" title="XSMB Thứ 3">Thứ ba</a></li>
-                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmt-thu-tu" title="XSMB Thứ 4">Thứ tư</a></li>
-                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmt-thu-nam" title="XSMB Thứ 5">Thứ năm</a></li>
-                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmt-thu-sau" title="XSMB Thứ 6">Thứ sáu</a></li>
-                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmt-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
-                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmt-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
+                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
+                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-ba" title="XSMB Thứ 3">Thứ ba</a></li>
+                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-tu" title="XSMB Thứ 4">Thứ tư</a></li>
+                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-nam" title="XSMB Thứ 5">Thứ năm</a></li>
+                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-sau" title="XSMB Thứ 6">Thứ sáu</a></li>
+                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
+                <li><a href="/ket-qua-xo-so-mien-bac/kqxsmb-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
             </ul>
         </div>
 
