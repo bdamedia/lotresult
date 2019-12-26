@@ -176,80 +176,69 @@
             <hr class="line-header"/>
             <div class="block-main-content">
 
-            <span class="link-pad-left padding10">Lô tô miền Bắc</span>
+            <span class="link-pad-left padding10">Lô tô miền Bắc {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</span>
 
             <table class="table table-bordered table-loto" style="margin-bottom: 0;">
             <tr>
             <th class="col-md-2" style="width: 10%;">Đầu</th>
             <th class="col-md-4">Lô Tô</th>
             </tr>
-                @php
-                $aa = [];
-                for ($it=1; $it< 10 ; $it++) {
-                    $t= "prize_{$it}";
-                    $f = json_decode($printresult->{$t});
-                    foreach ($f as $keyValues => $mainValue) {
-                        if(is_array($mainValue)) {
-                            foreach ($mainValue as $keySecond => $valSecond) {
-                                //$aa['prize_'.$it][] = substr($valSecond, -2, 2);
-                                $aa[$it-2][] = substr($valSecond, -2, 2);
-                            }
-                        } else if ($keyValues == 'Mã ĐB') {
-                            //$aa['prize_1'][] = (array) $mainValue;
-                         } else if ($keyValues == 'G.DB') {
-                            //$aa['prize_'.$it][] = substr($mainValue, -2, 2);
-                            $aa[$it-2][] = substr($mainValue, -2, 2);
-                        } else {
-                            //$aa['prize_'.$it][] = substr($mainValue, -2, 2);
-                            $aa[$it-2][] = substr($mainValue, -2, 2);
+            @php
+            $fullValues = [];
+            $newFullValues = [];
+            $finalValues = [];
+            for ($it=1; $it< 10 ; $it++) {
+                $t= "prize_{$it}";
+                $fNewResult = json_decode($printresult->{$t});
+                foreach ($fNewResult as $keyValues => $mainValue) {
+                    if(is_array($mainValue)) {
+                        foreach ($mainValue as $keySecond => $valSecond) {
+                            $fullValues[$it-2][] = $valSecond;
                         }
+                    } else if ($keyValues == 'Mã ĐB') {
+                       
+                    } else if ($keyValues == 'G.DB') {
+                        $fullValues[$it-2][] = $mainValue;
+                    } else {
+                        $fullValues[$it-2][] = $mainValue;
                     }
                 }
+            }
+            
+            foreach ($fullValues as $index=>$values) {
+                foreach ($values as $in=>$val){
+                    $newFullValues[]= substr($val, -2);
+                }
+            }
 
-                //print_r($aa);
-                $newValues = [];
-                foreach($aa as $ke=>$bingoData) {
+            for ($i=0; $i<=9; $i++) {       
+               $selectlot = array();
+               foreach($newFullValues as $in=>$val) {
+                    if (substr($val,-2,1) == $i)
+                    $selectlot[] = $val;
+               }
+               $finalValues[] = $selectlot; 
+            }
 
-                    foreach($aa[$ke] as $ke1=>$bingoData1) {
-                        if ( $bingoData1 <= 09) {
-                            $newValues[0][] = $bingoData1;
-                        } else if ( $bingoData1 >= 10 && $bingoData1 <= 19) {  
-                            $newValues[1][] = $bingoData1;
-                        } else if ( $bingoData1 >= 20 && $bingoData1 <= 29) {     
-                            $newValues[2][] = $bingoData1;
-                        } else if ( $bingoData1 >= 30 && $bingoData1 <= 39) {    
-                            $newValues[3][] = $bingoData1;
-                        } else if ( $bingoData1 >= 40 && $bingoData1 <= 49) {    
-                            $newValues[4][] = $bingoData1;
-                        } else if ( $bingoData1 >= 50 && $bingoData1 <= 59) { 
-                            $newValues[5][] = $bingoData1;
-                        } else if ( $bingoData1 >= 60 && $bingoData1 <= 69) {
-                            $newValues[6][] = $bingoData1;
-                        } else if ( $bingoData1 >= 70 && $bingoData1 <= 79) {
-                             $newValues[7][] = $bingoData1;
-                        } else if ( $bingoData1 >= 80 && $bingoData1 <= 89) {
-                            $newValues[8][] = $bingoData1;
-                        } else {
-                            $newValues[9][] = $bingoData1;
-                        }
+            //echo "<pre>";
+            //print_r($finalValues);
+            for($r = 0 ; $r <=9 ; $r++){  @endphp
+                <tr>
+                <td class="text-center">{{ $r }}</td>
+                <td>
+                    @php  if(!empty($finalValues[$r])){
+                        echo implode(',',$finalValues[$r]);
+                    } else{
+                        echo "--";
                     }
-                }
-                ksort($newValues);
-                for($r = 0 ; $r <=9 ; $r++){  @endphp
-                    <tr>
-                    <td class="text-center">{{ $r }}</td>
-                    <td>
-                        @php  if(isset($newValues[$r])){
-                            echo implode(',',$newValues[$r]);
-                        }else{
-                            echo "--";
-                        }
-                        @endphp
-                    </td>
-                </tr>
-                @php
-                }
-                @endphp
+                    @endphp
+                </td>
+            </tr>
+            @php
+            }
+               
+            @endphp
+
             </table>
             </div>
 
