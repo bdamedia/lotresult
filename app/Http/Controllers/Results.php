@@ -14,7 +14,7 @@ class Results extends Controller
          $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
          $orig_date1 = Carbon::createFromFormat("!Y-m-d",$date);
          $orig_date = Carbon::createFromFormat("!Y-m-d",$orig_date->subDay(1)->format("Y-m-d"));
-        $result = Result::where('result_day_time' ,'>=', $orig_date)->get();
+        $result = Result::where('result_day_time' ,'>=', $orig_date)->orderBy('result_day_time', 'desc')->get();
         $data['region'] = "xsmt";
         $data['companyName'] = strtoupper("xsmt");
         $data['content'] = $result;
@@ -25,7 +25,7 @@ class Results extends Controller
 
     public function xsmb(Request $request,$company='XSMB'){
 
-        $result = Result::where('lottery_region','XSMB')->where('lottery_company', strtoupper($company))->orderBy('created_at', 'desc')->get();
+        $result = Result::where('lottery_region','XSMB')->where('lottery_company', strtoupper($company))->orderBy('result_day_time', 'desc')->get();
         $data['content'] = $result;
         //$comp = Result::where('lottery_region', 'XSMB')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
         $data['comp'] = ["XSMB"];
@@ -93,7 +93,7 @@ class Results extends Controller
                 return $this->xsmbDay($request, $final);
             }
         }
-        $result = Result::where('lottery_region',$region)->get();
+        $result = Result::where('lottery_region',$region)->orderBy('result_day_time', 'desc')->get();
 
         return $result;
     }
@@ -112,8 +112,8 @@ class Results extends Controller
             }else{
                 $company = str_replace('kqxsmn-','',$company);
                 $code = getCompanyCode($company);
-                $result = Result::where('lottery_region', 'XSMN')->where('lottery_company', $code)->orderBy('created_at', 'desc')->get();
-                $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+                $result = Result::where('lottery_region', 'XSMN')->where('lottery_company', $code)->orderBy('result_day_time', 'desc')->get();
+                $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('result_day_time', 'desc')->get();
                 $data['comp'] = $comp;
                 $data['region'] = "xsmn";
                 $data['companyName'] = strtoupper($company);
@@ -125,8 +125,8 @@ class Results extends Controller
         }
 
         $code = getCompanyCode($company);
-        $result = Result::where('lottery_region', 'XSMN')->where('lottery_company', $code)->orderBy('created_at', 'desc')->get();
-        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+        $result = Result::where('lottery_region', 'XSMN')->where('lottery_company', $code)->orderBy('result_day_time', 'desc')->get();
+        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('result_day_time', 'desc')->get();
         $data['comp'] = $comp;
         $data['region'] = "xsmn";
         $data['companyName'] = strtoupper($company);
@@ -137,7 +137,7 @@ class Results extends Controller
 
 
     public function xsmnIndex(){
-        $result = Result::where('lottery_region', 'XSMN')->orderBy('result_day_time', 'asc')->get();
+        $result = Result::where('lottery_region', 'XSMN')->orderBy('result_day_time', 'desc')->get();
 
         $t = 0;
         foreach ($result as $res){
@@ -160,7 +160,7 @@ class Results extends Controller
 
         }
 
-        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('result_day_time', 'desc')->get();
         $data['comp'] = $comp;
         $data['region'] = "xsmn";
         $data['companyName'] = strtoupper("xsmn");
@@ -170,7 +170,7 @@ class Results extends Controller
     }
 
     public function xsmtIndex(){
-        $result = Result::where('lottery_region', 'XSMT')->orderBy('result_day_time', 'asc')->get();
+        $result = Result::where('lottery_region', 'XSMT')->orderBy('result_day_time', 'desc')->get();
 
         $t = 0;
         foreach ($result as $res){
@@ -193,7 +193,7 @@ class Results extends Controller
 
         }
 
-        $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+        $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('result_day_time', 'desc')->get();
         $data['comp'] = $comp;
         $data['region'] = "xsmt";
         $data['companyName'] = strtoupper("xsmt");
@@ -219,10 +219,10 @@ class Results extends Controller
             }else{
                 $company = str_replace('kqxsmt-', '', $company);
                 $code = getCompanyCode($company);
-                $resultXsmt = Result::where('lottery_region', 'XSMT')->where('lottery_company', $code)->orderBy('created_at', 'desc')->get();
+                $resultXsmt = Result::where('lottery_region', 'XSMT')->where('lottery_company', $code)->orderBy('result_day_time', 'desc')->get();
 
                 $data['content'] = $resultXsmt;
-                $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+                $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('result_day_time', 'desc')->get();
                 $data['comp'] = $comp;
                 $data['companyName'] = strtoupper($company);
                 $data['region'] = "xsmt";
@@ -247,7 +247,7 @@ class Results extends Controller
         }
 
         $list = dayWiseArray($day);
-        $result = Result::where('lottery_region','XSMB')->get();
+        $result = Result::where('lottery_region','XSMB')->orderBy('result_day_time', 'desc')->get();
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
         $new = array();
         $t = 0;
@@ -274,7 +274,7 @@ class Results extends Controller
 
         }
 
-        $comp = Result::where('lottery_region', 'XSMB')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+        $comp = Result::where('lottery_region', 'XSMB')->distinct('lottery_company')->orderBy('result_day_time', 'desc')->get();
         $data['comp'] = $comp;
         $data['region'] = "xsmb";
         $data['companyName'] = strtoupper("xsmb");
@@ -284,7 +284,7 @@ class Results extends Controller
     }
     public function xsmnDay(Request $request,$day){
         $list = dayWiseArray($day);
-        $result = Result::where('lottery_region','XSMN')->whereIn('lottery_company',$list)->get();
+        $result = Result::where('lottery_region','XSMN')->whereIn('lottery_company',$list)->orderBy('result_day_time', 'desc')->get();
         $t = 0;
         $new = array();
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
@@ -311,7 +311,7 @@ class Results extends Controller
             }
         }
 
-        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+        $comp = Result::where('lottery_region', 'XSMN')->distinct('lottery_company')->orderBy('result_day_time', 'desc')->get();
         $data['comp'] = $comp;
         $data['region'] = "xsmn";
         $data['companyName'] = strtoupper("xsmn");
@@ -322,7 +322,7 @@ class Results extends Controller
     }
     public function xsmtDay(Request $request,$day){
         $list = dayWiseArray($day);
-        $result = Result::where('lottery_region','XSMT')->whereIn('lottery_company',$list)->get();
+        $result = Result::where('lottery_region','XSMT')->whereIn('lottery_company',$list)->orderBy('result_day_time', 'desc')->get();
         $t = 0;
         $new = array();
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
@@ -348,7 +348,7 @@ class Results extends Controller
             }
         }
 
-        $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+        $comp = Result::where('lottery_region', 'XSMT')->distinct('lottery_company')->orderBy('result_day_time', 'desc')->get();
         $data['comp'] = $comp;
         $data['region'] = "xsmt";
         $data['companyName'] = strtoupper("xsmt");
@@ -379,7 +379,7 @@ class Results extends Controller
         $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
         $orig_date1 = $orig_date1->addDay(1);
-        $result = Result::where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->get();
+        $result = Result::where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('result_day_time', 'desc')->get();
 
         $t = 0;
         foreach ($result as $res){
@@ -418,7 +418,7 @@ class Results extends Controller
         $orig_date = Carbon::createFromFormat("!Y-m-d",$da[count($da)-1].'-'.$da[count($da)-2].'-'.$da[count($da)-3]);
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[count($da)-1].'-'.$da[count($da)-2].'-'.$da[count($da)-3]);
         $orig_date1 = $orig_date1->addDay(1);
-        $result = Result::where('lottery_region',$region)->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->get();
+        $result = Result::where('lottery_region',$region)->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('result_day_time', 'desc')->get();
         $t = 0;
         foreach ($result as $res){
             $k = $res->result_day_time->toDateTime()->format('d/m/y');
@@ -456,7 +456,7 @@ class Results extends Controller
         $day = str_replace('kqltmn-','',$day);
         $day = str_replace('kqltmt-','',$day);
         $list = dayWiseArray($day);
-        $result = Result::where('lottery_region',$reg)->whereIn('lottery_company',$list)->get();
+        $result = Result::where('lottery_region',$reg)->whereIn('lottery_company',$list)->orderBy('result_day_time', 'desc')->get();
         $t = 0;
         $new = array();
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
