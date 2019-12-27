@@ -119,14 +119,8 @@ $gh = count($content[$key]);
                                 </div>
                                 <hr class="line-header"/>
 
-
-                                {{--<p class="text-right margin-10 hidden-xs hidden-sm">
-                                    <a href="/in-ve-do.html" data-date="13-12-2019" data-groupname="xsmb" class="btn btn-danger btn-invedo"
-                                       role="button">In Vé Dò</a>
-                                </p>--}}
-
                                 <div class="block-main-content view-loto">
-                                   
+
                                     <table class="table table-bordered table-loto">
                                         <tbody>
                                         <tr>

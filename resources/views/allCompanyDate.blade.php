@@ -71,12 +71,14 @@
                             @foreach($content[$key] as $g=>$lot)
 
                                 @php
-                                    if($region == 'xsmt'){
+                                    if($lot["lottery_region"] == 'XSMT'){
                               $title = "Xổ số miền Trung";
           $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
-                                      }elseif ($region == 'xsmn'){
+                                      }elseif ($lot["lottery_region"] == 'XSMN'){
       $title = "Xổ số miền Nam";
           $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+                                      }else{
+    $title ="Xổ số Miền Bắc";
                                       }
 
                                 @endphp
@@ -275,13 +277,17 @@
                                 </p>--}}
 
                                 <div class="block-main-content view-loto">
-                                    <p class="padding10">Lô tô Bến Tre {{ $current['result_day_time'] }}</p>
+                                    <p class="padding10">
+                                        <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ getRegionLotoSlug($current['lottery_region']) }}" >Lô tô {{ $current['lottery_region'] }}</a> >>
+                                        <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ getRegionLotoSlug($current['lottery_region']) }}/kqlt{{ substr(strtolower($current['lottery_region']),2,4) }}-{{ $dayName   }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line">Lô tô  ({{ $current['lottery_region'] }}) {{ $current['day'] }} </a>
+                                    </p>
                                     <table class="table table-bordered table-loto">
                                         <tbody>
                                         <tr>
                                             <th class="col-md-2" style="width: 10%;">Đầu</th>
 
-                                            @php echo $th @endphp
+                                            @php if($th){ echo $th; }else{ echo "<th> Lô tô  </th>"; } @endphp
+
                                         </tr>
 
                                         @php $value = []; @endphp

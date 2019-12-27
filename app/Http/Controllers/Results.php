@@ -82,7 +82,11 @@ class Results extends Controller
     }
 
     public function show(Request $request,$region){
-        if(strpos($region,'qxsmb-') > 0) {
+
+        if(strpos($region,'ngay') > 0){
+            $final = str_replace('ngay-', '', $region);
+            return $this->allRegionDate($request,$company,$region='XSMB');
+        }elseif(strpos($region,'qxsmb-') > 0) {
             $bindArrayDay = array('thu-hai' => 'Monday', 'thu-ba' => 'Tuesday', 'thu-tu' => 'Wednesday', 'thu-nam' => 'Thursday', 'thu-sau' => 'Friday', 'thu-bay' => 'Saturday', 'chu-nhat' => 'Sunday');
             $final = str_replace('kqxsmb-', '', $region);
             if ($bindArrayDay[$final]) {
@@ -236,6 +240,11 @@ class Results extends Controller
     }
 
     public function xsmbDay(Request $request,$day){
+
+        if(strpos($day,'gay-') > 0){
+            $final = str_replace('ngay-', '', $day);
+            return $this->allRegionDate($request,$final,$region='XSMB');
+        }
 
         $list = dayWiseArray($day);
         $result = Result::where('lottery_region','XSMB')->get();
