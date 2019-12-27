@@ -281,7 +281,7 @@ $gh = count($content[$key]);
                                                for($m = 0; $m < 10; $m++)
                                                {
                                                  echo "<tr>"; 
-                                                 echo "<td>".$m."</td>";  
+                                                 echo "<td class='show_center'>".$m."</td>";  
                                                     foreach($boards as $kk=>$bb)
                                                     {
                                                         echo "<td>".$boards[$kk][$m]."</td>";

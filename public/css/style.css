@@ -1452,3 +1452,6 @@ table.table-bordered tbody tr th a {
 table.table-bordered tbody tr th.col-md-2{
     color:#000;
 }
+.show_center {
+    text-align: center;
+}
