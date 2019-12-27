@@ -65,7 +65,7 @@
                                     $boards = [];
                                     $boards1 = '';
                                     $boards2 = '';
-$gh = count($content[$key]);
+                       // $gh = count($content[$key]);
                             @endphp
 
                             @foreach($content[$key] as $g=>$lot)
