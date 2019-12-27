@@ -22,7 +22,7 @@
                 @php $dayName = $printresult->result_day_time->toDateTime()->format('l'); $dayName = getDaySlug($dayName); @endphp
                 <a href="/{{ getRegionSlug($printresult->lottery_region) }}" title="XSMB" class="u-line">{{ $printresult->lottery_region }}</a><span>»</span>
                 <a href="/{{ getRegionSlug($printresult->lottery_region) }}/kq{{ strtolower($printresult->lottery_region) }}-{{$dayName}}" title="{{ $printresult->lottery_region }} Thứ 6" class="u-line">{{ $printresult->lottery_region }} {{ $printresult->result_day_time->toDateTime()->format('l') }}</a><span>»</span>
-                <a href="/ket-qua-xo-so-mien-trung/kqxs-{{ getCompanySlug($printresult->lottery_company) }}-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}" class="u-line">  {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_region }}) {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a>
+                <a href="/{{ getRegionSlug($printresult->lottery_region) }}/kqxs-{{ getCompanySlug($printresult->lottery_company) }}-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}" class="u-line">  {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_region }}) {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a>
             </h2>
             </div>
             <div class="block-main-content">

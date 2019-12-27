@@ -174,7 +174,7 @@
                 <span class="link-pad-left padding10">
                     @php $dayName = $printresult['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$printresult['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
                       <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}" >Lô tô {{ $printresult['lottery_region'] }}</a> >>
-                                            <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}/kqlt{{ substr(strtolower($printresult['lottery_region']),2,4) }}-{{ $dayName   }}" title="{{ $printresult['lottery_region'] }}  {{ $printresult['day'] }}" class="u-line">Lô tô  ({{ $printresult['lottery_region'] }}) {{ $printresult['day'] }} </a>
+                    <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}/kqlt{{ substr(strtolower($printresult['lottery_region']),2,4) }}-{{ $dayName   }}" title="{{ $printresult['lottery_region'] }}  {{ $printresult['day'] }}" class="u-line">Lô tô  ({{ $printresult['lottery_region'] }}) {{ $printresult['day'] }} </a>
 
                 </span>
 
