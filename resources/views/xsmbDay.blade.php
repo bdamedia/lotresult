@@ -31,9 +31,10 @@
             </div>
             <div class="list-link">
             <h2 class="class-title-list-link">
-            {{--<a href="/xsmb-xo-so-mien-bac.html" title="XSMB" class="u-line">XSMB</a><span>»</span>
-            <a href="/xsmb-thu-6.html" title="XSMB Thứ 6" class="u-line">XSMB Thứ 6</a><span>»</span>--}}
-            <a href="#" title="{{ $printresult['lottery_region'] }}  {{ $printresult['result_day_time'] }}" class="u-line">{{ $printresult['lottery_region'] }} >> {{ $printresult['day'] }} >> {{ $printresult['result_day_time'] }}</a>
+                @php $dayName = $printresult['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$printresult['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
+                <a href="/{{ getRegionSlug($printresult['lottery_region']) }}" title="{{ $printresult['lottery_region'] }}" class="u-line">{{ $printresult['lottery_region'] }}</a><span>»</span>
+                <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/kq{{ strtolower($printresult['lottery_region']) }}-{{$dayName}}" title="{{ $printresult['lottery_region'] }} {{ $printresult['day'] }}" class="u-line">{{ $printresult['lottery_region'] }} Thứ 6</a><span>»</span>
+                <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/kq{{ strtolower($printresult['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $printresult['lottery_region'] }}  {{ $printresult['day'] }}" class="u-line">  {{ $printresult['lottery_region'] }} {{ $printresult['result_day_time'] }}</a>
             </h2>
             </div>
             <div class="block-main-content">
@@ -163,25 +164,6 @@
                     @endif
                 </td>
             </tr>
-       {{--     @if($printresult->prize_10)
-            <tr>
-                <td>@php $prize_10 = json_decode($printresult->prize_10);    @endphp {{ key($prize_10) }}</td>
-                <td class="text-center">
-                    @if(count((array) $prize_10) <= 1)
-                        @foreach($prize_10 as $k=>$p10)
-                            <span class="col-xs-3 special-prize-sm div-horizontal">
-                                @php if(count((array) $p10) > 1 ){ $p10 = implode(', ',$p10); }elseif(count((array) $p10) == 1){  $p10 = $p10; }  @endphp
-                                {{ $p10 }}
-                            </span>
-                        @endforeach
-                    @else
-                        @foreach($prize_10->{key($prize_10)} as $k=>$p10)
-                            <span class="col-xs-3 special-prize-sm div-horizontal">{{ $p10 }} </span>
-                        @endforeach
-                    @endif
-                </td>
-            </tr>
-            @endif--}}
 
             </tbody>
             </table>
@@ -189,7 +171,12 @@
             <hr class="line-header"/>
             <div class="block-main-content">
 
-            <span class="link-pad-left padding10">Lô tô miền Bắc</span>
+                <span class="link-pad-left padding10">
+                    @php $dayName = $printresult['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$printresult['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
+                      <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}" >Lô tô {{ $printresult['lottery_region'] }}</a> >>
+                                            <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}/kqlt{{ substr(strtolower($printresult['lottery_region']),2,4) }}-{{ $dayName   }}" title="{{ $printresult['lottery_region'] }}  {{ $printresult['day'] }}" class="u-line">Lô tô  ({{ $printresult['lottery_region'] }}) {{ $printresult['day'] }} </a>
+
+                </span>
 
             <table class="table table-bordered table-loto" style="margin-bottom: 0;">
             <tr>
