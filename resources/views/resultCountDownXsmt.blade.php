@@ -26,7 +26,7 @@
                                         <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
                                     </ul>
                                 </div>
-                                @elseif($region == 'xsmn')
+                            @elseif($region == 'xsmn')
                                 <div class="tab" role="tabpanel">
                                     <ul class="nav-tabs day-selector">
                                         <li><a href="/ket-qua-xo-so-mien-nam" title="XSMB Thứ 2">Miền Nam</a></li>
@@ -48,7 +48,7 @@
                         @php $g = 1;  $tr ='<tr>'; @endphp
                         @foreach($content as $key=>$printresult)
                             {{--{{ $key }}--}}
-                        @php $date = $key; @endphp
+                            @php $date = $key; @endphp
                             @php    $th ='';
                                     $td1 = '';
                                     $td2 = '';
@@ -66,20 +66,20 @@
                                     $boards1 = '';
                                     $boards2 = '';
 $gh = count($content[$key]);
-                                     @endphp
+                            @endphp
 
                             @foreach($content[$key] as $g=>$lot)
 
-                              @php
-                                  if($lot["lottery_region"] == 'XSMT'){
-                            $title = "Xổ số miền Trung";
-        $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
-                                    }elseif ($lot["lottery_region"] == 'XSMN'){
-    $title = "Xổ số miền Nam";
-        $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
-                                    }
+                                @php
+                                    if($lot["lottery_region"] == 'XSMT'){
+                              $title = "Xổ số miền Trung";
+          $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+                                      }elseif ($lot["lottery_region"] == 'XSMN'){
+      $title = "Xổ số miền Nam";
+          $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+                                      }
 
-                              @endphp
+                                @endphp
                                 @php $prize_1 = json_decode($lot['prize_1']); @endphp
                                 @php $prize_2 = json_decode($lot['prize_2']); @endphp
                                 @php $prize_3 = json_decode($lot['prize_3']); @endphp
@@ -92,71 +92,71 @@ $gh = count($content[$key]);
                                 @php $board = json_decode($lot['board']); @endphp
 
                                 @php $td2 .= '<td class="text-center">'; @endphp
-                                    @foreach($prize_1->{key($prize_1)} as $k=>$p1)
+                                @foreach($prize_1->{key($prize_1)} as $k=>$p1)
                                     @php $td2 .= '<span class=" number-black-bold div-horizontal">'.$p1.'</span></br>'; @endphp
-                                    @endforeach
+                                @endforeach
                                 @php $td2 .= '</td>'; @endphp
 
-                                 @php $td3 .= '<td class="text-center">'; @endphp
-                                    @foreach($prize_2->{key($prize_2)} as $k=>$p2)
+                                @php $td3 .= '<td class="text-center">'; @endphp
+                                @foreach($prize_2->{key($prize_2)} as $k=>$p2)
                                     @php $td3 .= '<span class=" number-black-bold div-horizontal">'.$p2.'</span></br>'; @endphp
-                                    @endforeach
+                                @endforeach
                                 @php $td3 .= '</td>'; @endphp
 
-                                 @php $td4 .= '<td class="text-center">'; @endphp
-                                    @foreach($prize_3->{key($prize_3)} as $k=>$p3)
+                                @php $td4 .= '<td class="text-center">'; @endphp
+                                @foreach($prize_3->{key($prize_3)} as $k=>$p3)
 
                                     @php $td4 .= '<span class=" number-black-bold div-horizontal">'.$p3.'</span></br>'; @endphp
-                                    @endforeach
+                                @endforeach
                                 @php $td4 .= '</td>'; @endphp
 
                                 @php $td5 .= '<td class="text-center">'; @endphp
-                                    @foreach($prize_4->{key($prize_4)} as $k=>$p4)
+                                @foreach($prize_4->{key($prize_4)} as $k=>$p4)
 
                                     @php $td5 .= '<span class=" number-black-bold div-horizontal">'.$p4.'</span></br>'; @endphp
-                                    @endforeach
+                                @endforeach
                                 @php $td5 .= '</td>'; @endphp
 
                                 @php $td6 .= '<td class="text-center">'; @endphp
-                                    @foreach($prize_5->{key($prize_5)} as $k=>$p5)
+                                @foreach($prize_5->{key($prize_5)} as $k=>$p5)
 
                                     @php $td6 .= '<span class=" number-black-bold div-horizontal">'.$p5.'</span></br>'; @endphp
-                                    @endforeach
+                                @endforeach
                                 @php $td6 .= '</td>'; @endphp
 
                                 @php $td7 .= '<td class="text-center">'; @endphp
-                                    @foreach($prize_6->{key($prize_6)} as $k=>$p6)
+                                @foreach($prize_6->{key($prize_6)} as $k=>$p6)
 
                                     @php $td7 .= '<span class=" number-black-bold div-horizontal">'.$p6.'</span></br>'; @endphp
-                                    @endforeach
+                                @endforeach
                                 @php $td7 .= '</td>'; @endphp
 
                                 @php $td8 .= '<td class="text-center">'; @endphp
-                                    @foreach($prize_7->{key($prize_7)} as $k=>$p7)
+                                @foreach($prize_7->{key($prize_7)} as $k=>$p7)
 
                                     @php $td8 .= '<span class=" number-black-bold div-horizontal">'.$p7.'</span></br>'; @endphp
-                                    @endforeach
+                                @endforeach
                                 @php $td8 .= '</td>'; @endphp
 
                                 @php $td9 .= '<td class="text-center">'; @endphp
-                                    @foreach($prize_8->{key($prize_8)} as $k=>$p8)
+                                @foreach($prize_8->{key($prize_8)} as $k=>$p8)
 
                                     @php $td9 .= '<span class=" number-black-bold div-horizontal">'.$p8.'</span></br>'; @endphp
-                                    @endforeach
+                                @endforeach
                                 @php $td9 .= '</td>'; @endphp
 
                                 @php $td10 .= '<td class="text-center">'; @endphp
-                                    @foreach($prize_9->{key($prize_9)} as $k=>$p9)
+                                @foreach($prize_9->{key($prize_9)} as $k=>$p9)
 
                                     @php $td10 .= '<span class=" number-black-bold div-horizontal">'.$p9.'</span></br>'; @endphp
-                                    @endforeach
+                                @endforeach
                                 @php $td10 .= '</td>'; @endphp
 
-                               @if($board)
+                                @if($board)
                                     @php $boardRes = $board @endphp
 
                                     @foreach($boardRes as $ke=>$bingoData)
-                                      @php  $boards[$g][] = $bingoData; @endphp
+                                        @php  $boards[$g][] = $bingoData; @endphp
                                     @endforeach
 
                                 @endif
@@ -173,7 +173,7 @@ $gh = count($content[$key]);
 
                             @endforeach
 
-                        @php $current = current($printresult);  @endphp
+                            @php $current = current($printresult);  @endphp
 
                             <div class="block remove-margin" id='xsmb-{{ $g }}'>
                                 <div class="block-main-heading">
@@ -194,7 +194,7 @@ $gh = count($content[$key]);
                                         <tr>
                                             <th class="text-center">Giải</th>
                                             @php echo $th; @endphp
-                                              </tr>
+                                        </tr>
                                         </thead>
                                         <tbody>
 
@@ -266,34 +266,34 @@ $gh = count($content[$key]);
                                 </p>--}}
 
                                 <div class="block-main-content view-loto">
-                                        <p class="padding10">
-                                            <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ getRegionLotoSlug($current['lottery_region']) }}" >Lô tô {{ $current['lottery_region'] }}</a> >>
-                                            <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ getRegionLotoSlug($current['lottery_region']) }}/kqlt{{ substr(strtolower($current['lottery_region']),2,4) }}-{{ $dayName   }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line">Lô tô  ({{ $current['lottery_region'] }}) {{ $current['day'] }} </a>
-                                           </p>
+                                    <p class="padding10">
+                                        <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ getRegionLotoSlug($current['lottery_region']) }}" >Lô tô {{ $current['lottery_region'] }}</a> >>
+                                        <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ getRegionLotoSlug($current['lottery_region']) }}/kqlt{{ substr(strtolower($current['lottery_region']),2,4) }}-{{ $dayName   }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line">Lô tô  ({{ $current['lottery_region'] }}) {{ $current['day'] }} </a>
+                                    </p>
                                     <table class="table table-bordered table-loto">
                                         <tbody>
-                                            <tr>
-                                        <th class="col-md-2" style="width: 10%;">Đầu</th>
+                                        <tr>
+                                            <th class="col-md-2" style="width: 10%;">Đầu</th>
 
                                             @php echo $th @endphp
-                                            </tr>
+                                        </tr>
 
-                                          @php $value = []; @endphp
-                                          @php
+                                        @php $value = []; @endphp
+                                        @php
 
-                                               for($m = 0; $m < 10; $m++)
-                                               {
-                                                 echo "<tr>";
-                                                 echo "<td class='show_center'>".$m."</td>";
-                                                    foreach($boards as $kk=>$bb)
-                                                    {
-                                                        echo "<td>".$boards[$kk][$m]."</td>";
-                                                    }
-                                                    echo "</tr>";
-                                                }
-                                            @endphp
+                                            for($m = 0; $m < 10; $m++)
+                                            {
+                                              echo "<tr>";
+                                              echo "<td class='show_center'>".$m."</td>";
+                                                 foreach($boards as $kk=>$bb)
+                                                 {
+                                                     echo "<td>".$boards[$kk][$m]."</td>";
+                                                 }
+                                                 echo "</tr>";
+                                             }
+                                        @endphp
 
-                             </tbody></table>
+                                        </tbody></table>
                                 </div>
                             </div>
                             @php $g++; @endphp

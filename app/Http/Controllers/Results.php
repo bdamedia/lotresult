@@ -136,7 +136,7 @@ class Results extends Controller
     }
 
 
-    public function xsmnIndex(){
+    public function xsmnIndex(Request $request,$company='XSTG'){
         $result = Result::where('lottery_region', 'XSMN')->orderBy('result_day_time', 'desc')->get();
 
         $t = 0;
@@ -488,5 +488,27 @@ class Results extends Controller
         $data['enableTab'] = true;
 
         return view('dayLoto')->with($data);
+    }
+
+    public function trucTiep(Request $request,$company='XSMB'){
+        $checkUrl = explode('/',$request->url());
+        $url = explode('-',end($checkUrl));
+        $url = current($url);
+        $region  = strtoupper(str_replace('kq','',$url));
+        $result = Result::where('lottery_region',$region)->orderBy('result_day_time', 'desc')->get();
+        $data['content'] = $result;
+        //$comp = Result::where('lottery_region', 'XSMB')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
+        $data['comp'] = $region;
+        $data['region'] = strtolower($region);
+        $data['companyName'] = strtoupper($company);
+        if($region == 'XSMB'){
+            return view('resultCountDownXsmb')->with($data);
+        }elseif($region == 'XSMT'){
+
+            return $this->xsmnIndex($request,$region);
+        }elseif($region == 'XSMN'){
+            return $this->xsmtIndex($request,$region);
+        }
+
     }
 }

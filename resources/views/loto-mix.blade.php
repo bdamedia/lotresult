@@ -71,10 +71,10 @@ $gh = count($content[$key]);
                             @foreach($content[$key] as $g=>$lot)
 
                                 @php
-                                    if($region == 'xsmt'){
+                                    if($lot["lottery_region"] == 'XSMT'){
                               $title = "Xổ số miền Trung";
           $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
-                                      }elseif ($region == 'xsmn'){
+                                      }elseif ($lot["lottery_region"] == 'XSMN'){
       $title = "Xổ số miền Nam";
           $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
                                       }

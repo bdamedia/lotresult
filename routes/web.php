@@ -16,6 +16,11 @@ Route::get("/crawler/cJob", "Crawler@CroneJob");
 
 Route::get('/','Results@index');
 
+Route::get('/ket-qua-xo-so-mien-bac/kqxsmb-truc-tiep/','Results@trucTiep');
+Route::get('/ket-qua-xo-so-mien-trung/kqxsmt-truc-tiep/','Results@trucTiep');
+Route::get('/ket-qua-xo-so-mien-nam/kqxsmn-truc-tiep/','Results@trucTiep');
+
+
 Route::get('/ket-qua-xo-so-mien-bac/ket-qua-lo-to-mien-bac/{date}','Results@dateLoto');
 Route::get('/ket-qua-xo-so-mien-trung/ket-qua-lo-to-mien-trung/{date}','Results@dateLoto');
 Route::get('/ket-qua-xo-so-mien-nam/ket-qua-lo-to-mien-nam/{date}','Results@dateLoto');
