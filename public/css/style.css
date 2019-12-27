@@ -1518,3 +1518,10 @@ table.table-bordered tbody tr th.col-md-2{
 .margin-top-setting {
     margin: 10px 0!important;
 }
+.margin-b-20{
+    margin-bottom: 20px!important;
+}
+
+.active-tab-new {
+    background-color: #e8e8e8;
+}

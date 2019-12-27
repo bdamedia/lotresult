@@ -1,5 +1,5 @@
 @php $todayCompanies = getTodayResultCompany(); @endphp
-<div class="margin-40 col-md-12">
+<div class="margin-40 col-md-12 margin-b-20">
 
     <div id="u129" class="ax_default box_2">
 
