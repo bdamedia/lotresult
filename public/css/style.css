@@ -296,6 +296,8 @@ ul.main-menu>li {
 .remove-margin{
     margin: 0px!important;
     border: 1px solid #000!important;
+    margin-bottom: 60px!important;
+
 }
 
 .color-orange{

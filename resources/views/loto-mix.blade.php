@@ -126,8 +126,7 @@ $gh = count($content[$key]);
                                 </p>--}}
 
                                 <div class="block-main-content view-loto">
-                                    <p class="padding10">
-                                        <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ getRegionLotoSlug($current['lottery_region']) }}" >Lô tô {{ $current['lottery_region'] }}</a> >>  {{ $current['result_day_time'] }}</p>
+                                   
                                     <table class="table table-bordered table-loto">
                                         <tbody>
                                         <tr>
