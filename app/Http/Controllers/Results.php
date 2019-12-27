@@ -93,7 +93,7 @@ class Results extends Controller
                 return $this->xsmbDay($request, $final);
             }
         }
-        $result = Result::where('lottery_region',$region)->get();
+        $result = Result::where('lottery_region',$region)->orderBy('result_day_time', 'desc')->get();
 
         return $result;
     }
@@ -137,7 +137,7 @@ class Results extends Controller
 
 
     public function xsmnIndex(){
-        $result = Result::where('lottery_region', 'XSMN')->orderBy('result_day_time', 'asc')->get();
+        $result = Result::where('lottery_region', 'XSMN')->orderBy('result_day_time', 'desc')->get();
 
         $t = 0;
         foreach ($result as $res){
@@ -170,7 +170,7 @@ class Results extends Controller
     }
 
     public function xsmtIndex(){
-        $result = Result::where('lottery_region', 'XSMT')->orderBy('result_day_time', 'asc')->get();
+        $result = Result::where('lottery_region', 'XSMT')->orderBy('result_day_time', 'desc')->get();
 
         $t = 0;
         foreach ($result as $res){
