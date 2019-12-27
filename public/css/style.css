@@ -1436,14 +1436,29 @@ table.livetn4 td.tn_prize div.output {
 
 .menu-lv2-down{
     width: auto!important;
-    min-width: 373px;
+    min-width: 381px;
 }
-.list_border, .menu-lv2-down ul  li  {
+.last-ul-value .menu-lv2-down{
+  min-width: 372px;
+}
+
+.menu-lv2-down ul li a:hover, .menu-lv2-down ul li:hover a{
+    color: #000000!important;
+    background-color:#ffff80!important;
+}
+
+.menu-lv2-down ul li:hover{
+    background-color:#ffff80!important;
+}
+
+/*.list_border, .menu-lv2-down ul  li {
     border-width: 1px;
     border-style: solid;
     border-color:rgba(121, 121, 121, 1);
     border-radius: 0px;
-}
+}*/
+
+
 
 table.table-bordered tbody tr th a {
     color: #1f10e2;
