@@ -3,29 +3,9 @@
 <div class="hidden-xs hidden-sm col-md-3 center-side-bar fix-width-center">
     <h2 class="hide">Center side bar</h2>
     <!-- Add an additional blue button style -->
-    <style>
-        .yui3-button {
-            margin:10px 0px 10px 0px;
-            color: #fff;
-            background-color: #3476b7;
-        }
-    </style>
-    <div class="item-menu">
-    <div style="margin-bottom: 10px;" id="demo" class="yui3-skin-sam yui3-g"> <!-- You need this skin class -->
 
-        <div id="leftcolumn" class="yui3-u">
-            <!-- Container for the calendar -->
-            <div id="mycalendar"></div>
-        </div>
-       {{-- <div id="rightcolumn" class="yui3-u">
-            <div id="links" style="padding-left:20px;">
-                <!-- The buttons are created simply by assigning the correct CSS class -->
-                <button id="togglePrevMonth" class="yui3-button">Toggle Previous Month's Dates</button><br>
-                <button id="toggleNextMonth" class="yui3-button">Toggle Next Month's Dates</button><br>
-                Selected date: <span id="selecteddate"></span>
-            </div>
-        </div>--}}
-    </div>
+    <div style="    margin-bottom: 28px;" class="item-menu">
+        <div id="calcontainer"></div>
     </div>
 
     <div class="item-menu">
@@ -96,7 +76,4 @@
                 </div></div>
             <p class="text-12">( Có thể nhập tối thiểu 2 số, tối đa 17 số )</p>
         </div></div>
-
-
-
 </div>
