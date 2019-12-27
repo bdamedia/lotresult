@@ -20,7 +20,7 @@
             <h2 class="class-title-list-link">
             {{--<a href="/xsmb-xo-so-mien-bac.html" title="XSMB" class="u-line">XSMB</a><span>»</span>
             <a href="/xsmb-thu-6.html" title="XSMB Thứ 6" class="u-line">XSMB Thứ 6</a><span>»</span>--}}
-            <a href="kqxs-da-nang-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}" class="u-line">Kết quả Xổ Số Miền Bắc({{ $printresult->lottery_region }})  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a>
+            <a href="/kqxs-da-nang-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}" class="u-line">Kết quả Xổ Số Miền Bắc({{ $printresult->lottery_region }})  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a>
             </h2>
             </div>
             <div class="block-main-content">
@@ -176,7 +176,7 @@
             <hr class="line-header"/>
             <div class="block-main-content">
 
-            <span class="link-pad-left padding10">Lô tô miền Bắc {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</span>
+            <span class="link-pad-left padding10"><a href="/ket-qua-xo-so-mien-bac/ket-qua-lo-to-mien-bac" > Lô tô miền Bắc {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a></span>
 
             <table class="table table-bordered table-loto" style="margin-bottom: 0;">
             <tr>
@@ -196,7 +196,7 @@
                             $fullValues[$it-2][] = $valSecond;
                         }
                     } else if ($keyValues == 'Mã ĐB') {
-                       
+
                     } else if ($keyValues == 'G.DB') {
                         $fullValues[$it-2][] = $mainValue;
                     } else {
@@ -204,20 +204,20 @@
                     }
                 }
             }
-            
+
             foreach ($fullValues as $index=>$values) {
                 foreach ($values as $in=>$val){
                     $newFullValues[]= substr($val, -2);
                 }
             }
 
-            for ($i=0; $i<=9; $i++) {       
+            for ($i=0; $i<=9; $i++) {
                $selectlot = array();
                foreach($newFullValues as $in=>$val) {
                     if (substr($val,-2,1) == $i)
                     $selectlot[] = $val;
                }
-               $finalValues[] = $selectlot; 
+               $finalValues[] = $selectlot;
             }
 
             //echo "<pre>";
@@ -236,7 +236,7 @@
             </tr>
             @php
             }
-               
+
             @endphp
 
             </table>
