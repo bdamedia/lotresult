@@ -1455,3 +1455,42 @@ table.table-bordered tbody tr th.col-md-2{
 .show_center {
     text-align: center;
 }
+
+
+
+
+.margin-top-no {
+    margin-top: 0px;
+}
+.btn-red-new {
+    border: 1px solid #c00;
+    background-color:#c00;
+    font-weight: 700;
+    margin-top: -3px;
+    border-radius: 0;
+    color: #fff;
+    padding: 5px;
+    line-height: 12px!important;
+}
+.btn-red-new a{
+    color: white!important;
+    line-height: 12px!important;
+}
+.show-border-clor-left{
+    background-color: rgba(255, 183, 0, 1);
+    text-align: left;
+}
+.show-border-clor-left a{
+    color: #000000!important;
+    margin-left: 7px!important;
+}
+.btn-red-blue-lite {
+    width: 100px;
+    border: 1px solid #169BD5;
+    background-color: #169BD5;
+    font-weight: 700;
+    margin-top: -3px;
+    border-radius: 6px;
+    color: #fff;
+    padding: 5px
+}
