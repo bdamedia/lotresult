@@ -1511,3 +1511,7 @@ table.table-bordered tbody tr th.col-md-2{
     color: #fff;
     padding: 5px
 }
+.text-red-item {
+     color: red!important;
+     font-weight: bold;
+}

@@ -32,7 +32,7 @@
             <td class="{{ key($prize_1) }}" style="width: 15%">  {{ key($prize_1) }}</td>
             <td class="text-center">
                 @foreach($prize_1->{key($prize_1)} as $k=>$p1)
-                    <span class=" special-code div-horizontal">{{ $p1 }} </span>
+                    <span class=" special-code div-horizontal text-red-item">{{ $p1 }} </span>
                     @endforeach
             </td>
             </tr>
@@ -150,11 +150,11 @@
                 <td class="text-center">
                     @if(count((array) $prize_9) <= 1)
                         @foreach($prize_9 as $k=>$p9)
-                            <span class="number-black-bold div-horizontal">@php if(count((array) $p9) > 0 ){ $p9 = implode(', ',(array) $p9); }  @endphp {{ $p9 }} </span>
+                            <span class="number-black-bold div-horizontal text-red-item">@php if(count((array) $p9) > 0 ){ $p9 = implode(', ',(array) $p9); }  @endphp {{ $p9 }} </span>
                         @endforeach
                     @else
                         @foreach($prize_9->{key($prize_9)} as $k=>$p9)
-                            <span class="number-black-bold div-horizontal">{{ $p9 }} </span>
+                            <span class="number-black-bold div-horizontal text-red-item">{{ $p9 }} </span>
                         @endforeach
                     @endif
                 </td>
