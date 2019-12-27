@@ -221,7 +221,7 @@ class Crawler extends Controller
     public function reloadCurrentResult(Request $request, $link)
     {
         $reg = array('XSMN'=>'ket-qua-xo-so-mien-nam','XSMT'=>'ket-qua-xo-so-mien-trung','XSMB'=>'ket-qua-xo-so-mien-bac');
-        echo $url = "https://xosodaiphat.com/" . $link;
+        $url = "https://xosodaiphat.com/" . $link;
         $resultData = crawlUrlModified($url);
         $url = '';
         foreach ($resultData as $res) {
