@@ -21,7 +21,7 @@
                                     <h2 class="class-title-list-link">
                                         @php $dayName = $printresult->result_day_time->toDateTime()->format('l'); $dayName = getDaySlug($dayName); @endphp
                                         <a href="/{{ getRegionSlug($printresult->lottery_region) }}" title="XSMB" class="u-line">{{ $printresult->lottery_region }}</a><span>»</span>
-                                        <a href="/{{ getRegionSlug($printresult->lottery_region) }}/kq{{ strtolower($printresult->lottery_region) }}-{{$dayName}}" title="{{ $printresult->lottery_region }} Thứ 6" class="u-line">{{ $printresult->lottery_region }} Thứ 6</a><span>»</span>
+                                        <a href="/{{ getRegionSlug($printresult->lottery_region) }}/kq{{ strtolower($printresult->lottery_region) }}-{{$dayName}}" title="{{ $printresult->lottery_region }} Thứ 6" class="u-line">{{ $printresult->lottery_region }} {{ $printresult->result_day_time->toDateTime()->format('l') }}</a><span>»</span>
                                         <a href="/ket-qua-xo-so-mien-trung/kqxs-{{ getCompanySlug($printresult->lottery_company) }}-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}" class="u-line">  {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_region }}) {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a>
 
                                     </h2>
@@ -178,7 +178,10 @@
                                 <hr class="line-header"/>
                                 <div class="block-main-content">
 
-                                    <span class="link-pad-left padding10">Lô tô miền Bắc</span>
+                                    <span class="link-pad-left padding10">
+                                        <a href="/{{ getRegionSlug($printresult->lottery_region) }}/{{ getRegionLotoSlug($printresult->lottery_region) }}" >Lô tô {{ $printresult->lottery_region }}</a> >>
+                                            <a href="/{{ getRegionSlug($printresult->lottery_region) }}/{{ getRegionLotoSlug($printresult->lottery_region) }}/kqlt{{ substr(strtolower($printresult->lottery_region),2,4) }}-{{ $dayName   }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('l') }}" class="u-line">Lô tô  ({{ $printresult->lottery_region }}) {{ $printresult->result_day_time->toDateTime()->format('l') }} </a>
+                                    </span>
 
                                     <table class="table table-bordered table-loto" style="margin-bottom: 0;">
                                         <tr>

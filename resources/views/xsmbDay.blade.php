@@ -163,25 +163,6 @@
                     @endif
                 </td>
             </tr>
-       {{--     @if($printresult->prize_10)
-            <tr>
-                <td>@php $prize_10 = json_decode($printresult->prize_10);    @endphp {{ key($prize_10) }}</td>
-                <td class="text-center">
-                    @if(count((array) $prize_10) <= 1)
-                        @foreach($prize_10 as $k=>$p10)
-                            <span class="col-xs-3 special-prize-sm div-horizontal">
-                                @php if(count((array) $p10) > 1 ){ $p10 = implode(', ',$p10); }elseif(count((array) $p10) == 1){  $p10 = $p10; }  @endphp
-                                {{ $p10 }}
-                            </span>
-                        @endforeach
-                    @else
-                        @foreach($prize_10->{key($prize_10)} as $k=>$p10)
-                            <span class="col-xs-3 special-prize-sm div-horizontal">{{ $p10 }} </span>
-                        @endforeach
-                    @endif
-                </td>
-            </tr>
-            @endif--}}
 
             </tbody>
             </table>
@@ -189,7 +170,7 @@
             <hr class="line-header"/>
             <div class="block-main-content">
 
-            <span class="link-pad-left padding10">Lô tô miền Bắc</span>
+                <span class="link-pad-left padding10"><a href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}" >Lô tô {{ $printresult['lottery_region'] }}</a></span>
 
             <table class="table table-bordered table-loto" style="margin-bottom: 0;">
             <tr>

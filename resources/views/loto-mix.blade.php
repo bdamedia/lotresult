@@ -80,7 +80,7 @@ $gh = count($content[$key]);
                                       }
 
                                 @endphp
-                            
+
                                 @php $board = json_decode($lot['board']); @endphp
 
 
@@ -108,7 +108,7 @@ $gh = count($content[$key]);
                                     <h2 class="class-title-list-link">
                                         @php $dayName = $current['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$current['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
                                         <a href="/{{ getRegionSlug($current['lottery_region']) }}" title="{{ $current['lottery_region'] }}" class="u-line">{{ $current['lottery_region'] }}</a><span>»</span>
-                                        <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} Thứ 6" class="u-line">{{ $current['lottery_region'] }} Thứ 6</a><span>»</span>
+                                        <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ $current['day'] }}" class="u-line">{{ $current['lottery_region'] }} {{ $current['day'] }}</a><span>»</span>
                                         <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line">  {{ $current['lottery_region'] }} {{ $current['result_day_time'] }}</a>
                                         {{--<a href="#" title="{{ $current['lottery_region'] }}  {{ $key }}" class="u-line">{{ $current['lottery_region'] }} >> {{ $current['day'] }} >> {{ $current['result_day_time'] }}</a>--}}
                                     </h2>
@@ -126,7 +126,8 @@ $gh = count($content[$key]);
                                 </p>--}}
 
                                 <div class="block-main-content view-loto">
-                                    <p class="padding10">Lô tô Bến Tre {{ $current['result_day_time'] }}</p>
+                                    <p class="padding10">
+                                        <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ getRegionLotoSlug($current['lottery_region']) }}" >Lô tô {{ $current['lottery_region'] }}</a> >>  {{ $current['result_day_time'] }}</p>
                                     <table class="table table-bordered table-loto">
                                         <tbody>
                                         <tr>

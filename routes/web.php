@@ -19,7 +19,7 @@ Route::get("/ket-qua-xo-so-mien-bac", "Results@xsmb");
 Route::get('/ket-qua-xo-so-mien-nam/ket-qua-lo-to-mien-nam','Results@regionLoto');
 Route::get('/ket-qua-xo-so-mien-trung/ket-qua-lo-to-mien-trung','Results@regionLoto');
 Route::get('/ket-qua-xo-so-mien-bac/ket-qua-lo-to-mien-bac','Results@regionLoto');
-Route::get("/ket-qua-xo-so-mien-bac/{lottery_company_slug}", "Results@show");
+
 Route::get("/ket-qua-xo-so-mien-trung/{lottery_company_slug}", "Results@xsmt");
 Route::get("/ket-qua-xo-so-mien-trung/{lottery_company_slug}/{date}", "Results@xsmt");
 Route::get("/ket-qua-xo-so-mien-nam", "Results@xsmnIndex");

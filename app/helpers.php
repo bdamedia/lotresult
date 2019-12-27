@@ -391,3 +391,8 @@ function getRegionSlug($code){
     $reg = array('XSMN'=>'ket-qua-xo-so-mien-nam','XSMT'=>'ket-qua-xo-so-mien-trung','XSMB'=>'ket-qua-xo-so-mien-bac');
     return $reg[$code];
 }
+
+function getRegionLotoSlug($code){
+    $reg = array('XSMN'=>'ket-qua-lo-to-mien-nam','XSMT'=>'ket-qua-lo-to-mien-trung','XSMB'=>'ket-qua-lo-to-mien-bac');
+    return $reg[$code];
+}
