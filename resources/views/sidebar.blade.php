@@ -10,7 +10,7 @@
 
     <div class="item-menu center-side-bar">
         <div class="title-item">
-            <h3 class="btn-red-new"><a href="xsmn" title="xổ số miền Bắc">Xổ số miền Bắc</a></h3>
+            <h3 class="btn-red-new"><a href="/ket-qua-xo-so-mien-bac" title="xổ số miền Bắc">Xổ số miền Bắc</a></h3>
         </div>
         <div class="content-item"><ul>
 
@@ -23,7 +23,7 @@
 
     <div class="item-menu center-side-bar margin-top-no">
         <div class="title-item">
-            <h3 class="btn-red-new"><a href="xsmn" title="xổ số miền Nam">Xổ số miền Nam</a></h3>
+            <h3 class="btn-red-new"><a href="/ket-qua-xo-so-mien-nam/" title="xổ số miền Nam">Xổ số miền Nam</a></h3>
         </div>
         <div class="content-item"><ul>
                 @foreach($sidebar as $content)
@@ -36,7 +36,7 @@
 
     <div class="item-menu center-side-bar margin-top-no">
         <div class="title-item">
-            <h3 class="btn-red-new"><a href="xsmt" title="xổ số miền Trung">Xổ số miền Trung</a></h3>
+            <h3 class="btn-red-new"><a href="/ket-qua-xo-so-mien-trung" title="xổ số miền Trung">Xổ số miền Trung</a></h3>
         </div>
         <div class="content-item"><ul>
                 @foreach($sidebarXsmt as $content)
