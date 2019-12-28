@@ -35,13 +35,13 @@
                                     <table class="table table-bordered table-striped table-xsmb">
                                         <tbody>
                                         <tr>
-                                            <td style="width: 15%"> @php $prize_1 = json_decode($printresult->prize_1); @endphp {{ key($prize_1) }}</td>
+                                            <td class="ĐB" style="width: 15%"> @php $prize_1 = json_decode($printresult->prize_1); @endphp {{ key($prize_1) }}</td>
                                             <td class="text-center">
                                                 @foreach($prize_1->{key($prize_1)} as $k=>$p1)
                                                     @if(count((array)$prize_1->{key($prize_1)}) > 1)
-                                                        <span class="col-xs-4 special-code div-horizontal">{{ $p1 }} </span>
+                                                        <span class="number-black-bold div-horizontal">{{ $p1 }} </span>
                                                     @else
-                                                        <span class="col-xs-12 special-code div-horizontal">{{ $p1 }} </span>
+                                                        <span class="number-black-bold div-horizontal">{{ $p1 }} </span>
                                                     @endif
 
                                                 @endforeach
@@ -164,7 +164,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>@php $prize_9 = json_decode($printresult->prize_9);   @endphp {{ key($prize_9) }}</td>
+                                            <td class="ĐB">@php $prize_9 = json_decode($printresult->prize_9);   @endphp {{ key($prize_9) }}</td>
                                             <td class="text-center">
                                                 @if(count((array) $prize_9) <= 1)
                                                     @foreach($prize_9->{key($prize_9)} as $k=>$p9)
