@@ -70,7 +70,7 @@
                 <td class="text-center">
                     @if(count((array) $prize_4) <= 1)
                         @foreach($prize_4 as $k=>$p4)
-                            <span class="number-black-bold div-horizontal">@php if(count($p4) > 0 ){ $p4 = implode(', ',$p4); }  @endphp {{ $p4 }} </span>
+                            <span class="number-black-bold div-horizontal">@php if(count($p4) > 0 ){ foreach ($p4 as $p41) { echo "<span class='col-xs-6' >$p41</span>"; } }  @endphp  </span>
                         @endforeach
                     @else
                         @foreach($prize_4->{key($prize_4)} as $k=>$p4)
@@ -85,7 +85,7 @@
                 <td class="text-center">
                     @if(count((array) $prize_5) <= 1)
                         @foreach($prize_5 as $k=>$p5)
-                            <span class="number-black-bold div-horizontal">@php if(count($p5) > 0 ){ $p5 = implode(', ',$p5); }  @endphp {{ $p5  }} </span>
+                            <span class="number-black-bold div-horizontal">@php if(count($p5) > 0 ){ foreach ($p5 as $p51) { echo "<span class='col-xs-4' >$p51</span>"; } }  @endphp </span>
                         @endforeach
 
                     @else
@@ -100,7 +100,7 @@
                 <td class="text-center">
                     @if(count((array) $prize_6) <= 1)
                         @foreach($prize_6 as $k=>$p6)
-                            <span class="number-black-bold div-horizontal">@php if(count($p6) > 0 ){ $p6 = implode(', ',$p6); }  @endphp {{ $p6 }} </span>
+                            <span class="number-black-bold div-horizontal">@php if(count($p6) > 0 ){ foreach ($p6 as $p61) { echo "<span class='col-xs-3' >$p61</span>"; } }  @endphp </span>
                         @endforeach
                     @else
                         @foreach($prize_6->{key($prize_6)} as $k=>$p6)
@@ -114,7 +114,7 @@
                 <td class="text-center">
                     @if(count((array) $prize_7) <= 1)
                         @foreach($prize_7 as $k=>$p7)
-                            <span class="number-black-bold div-horizontal">@php if(count($p7) > 0 ){ $p7 = implode(', ',$p7); }  @endphp {{ $p7 }} </span>
+                            <span class="number-black-bold div-horizontal">@php if(count($p7) > 0 ){ foreach ($p7 as $p71) { echo "<span class='col-xs-4' >$p71</span>"; } }  @endphp </span>
                         @endforeach
                     @else
                         @foreach($prize_7->{key($prize_7)} as $k=>$p7)
@@ -128,7 +128,7 @@
                 <td class="text-center">
                     @if(count((array) $prize_8) <= 1)
                         @foreach($prize_8 as $k=>$p8)
-                            <span class="number-black-bold div-horizontal">@php if(count($p8) > 0 ){ $p8 = implode(', ',$p8); }  @endphp {{ $p8 }} </span>
+                            <span class="number-black-bold div-horizontal">@php if(count($p8) > 0 ){ foreach ($p8 as $p81) { echo "<span class='col-xs-4' >$p81</span>"; } }  @endphp </span>
                         @endforeach
                     @else
                         @foreach($prize_8->{key($prize_8)} as $k=>$p8)
@@ -142,7 +142,7 @@
                 <td class="text-center">
                     @if(count((array) $prize_9) <= 1)
                         @foreach($prize_9 as $k=>$p9)
-                            <span class="number-black-bold div-horizontal ">@php if(count($p9) > 0 ){ $p9 = implode(', ',$p9); }  @endphp {{ $p9 }} </span>
+                            <span class="number-black-bold div-horizontal ">@php if(count($p9) > 0 ){ foreach ($p9 as $p91) { echo "<span class='col-xs-3' >$p91</span>"; } }  @endphp  </span>
                         @endforeach
                     @else
                         @foreach($prize_9->{key($prize_9)} as $k=>$p9)
