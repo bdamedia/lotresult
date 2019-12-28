@@ -59,8 +59,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-10">
-                    <div class="col-xs-12 banner-adv-wrapper">
-
+                    <div>
                         <a href="/reload{{ getCompanyUrlHead(end($reload)) }}"
                            style="float: right;padding: 10px;background: red;color: white;font-weight: bold;">Reload</a>
                     </div>
