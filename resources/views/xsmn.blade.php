@@ -3,7 +3,7 @@
 <div class="main-content">
     <div class="container">
         <div class="row margin-b">
-            <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="col-xs-12 col-sm-12 col-md-6 xsmn">
 
                 <div class="row">
                     @include('todayResult')

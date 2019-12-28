@@ -7369,9 +7369,6 @@ table.table-xsmn thead th a {
     text-decoration: underline
 }
 
-table.table-xsmn tbody tr td {
-    text-align: right
-}
 
 .mega-detail ul, .mega-detail ul li, .prize-detail table td:first-child, .prize-value, .title-result-jackpot {
     text-align: center
