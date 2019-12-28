@@ -1544,3 +1544,6 @@ table.table-bordered tbody tr th.col-md-2{
 .list-link a, .table-loto th { 
     color: #337ab7;
 }
+#u129_text span a{
+    color: red!important;
+}

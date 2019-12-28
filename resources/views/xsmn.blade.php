@@ -72,10 +72,10 @@ $gh = count($content[$key]);
 
                               @php
                                   if($lot["lottery_region"] == 'XSMT'){
-                            $title = "Xổ số miền Trung";
+                            $title = "Kết Quả Xổ số miền Trung";
         $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
                                     }elseif ($lot["lottery_region"] == 'XSMN'){
-    $title = "Xổ số miền Nam";
+    $title = "Kết Quả Xổ số miền Nam";
         $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kq'.$region.'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
                                     }
 
