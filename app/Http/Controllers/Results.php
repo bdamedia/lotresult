@@ -381,11 +381,10 @@ class Results extends Controller
         if($today == $orig_date){
             $orig_date = $orig_date->subDays(1);
         }
-        $orig_date = $orig_date->subDays(1);
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
         $orig_date1 = $orig_date1->addDay(1);
         $result = Result::where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('result_day_time', 'desc')->get();
-
+        $new = array();
         $t = 0;
         foreach ($result as $res){
             $k = $res->lottery_region;
