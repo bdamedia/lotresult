@@ -1121,7 +1121,7 @@ table.livetn4 td.tn_prize {
 .title-item h3 a {
     color: #900;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 15px;
     line-height: 2;
     margin: 0
 }
@@ -1502,7 +1502,7 @@ table.table-bordered tbody tr th.col-md-2{
 }
 .show-border-clor-left{
     background-color: rgba(255, 183, 0, 1);
-    text-align: left;
+    /*text-align: left;*/
 }
 .show-border-clor-left a{
     color: #000000!important;

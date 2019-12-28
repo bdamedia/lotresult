@@ -55,7 +55,7 @@
     <h2 class="hide">Right side bar</h2>
 
     <div class="item-menu border-margin margin-top-setting">
-        <div class="title-item"><h3 class="show-border-clor-left list_border"><a href="/do-so-trung.html">Dò Vé Số</a></h3></div>
+        <div class="title-item"><h3 class="show-border-clor-left list_border"><a href="/do-so-trung.html">Dò vé số - May mắn mỗi ngày</a></h3></div>
         <div class="form-doveso">
             <div class="form-inline">
                 <div class="form-group"><label for="ngaydoheader" class="lable-text">Chọn ngày:</label>
