@@ -49,15 +49,15 @@
             </td>
             </tr>
             <tr>
-            <td>@php $prize_2 = json_decode($printresult['prize_2']);  @endphp {{ key($prize_2) }}</td>
+            <td class="ĐB">@php $prize_2 = json_decode($printresult['prize_2']);  @endphp {{ key($prize_2) }}</td>
             <td class="text-center">
                 @if(count((array) $prize_2) <= 1)
                 @foreach($prize_2 as $k=>$p2)
-                    <span class="number-black-bold div-horizontal text-red-item">{{ $p2 }} </span>
+                    <span class="number-black-bold div-horizontal">{{ $p2 }} </span>
                 @endforeach
                 @else
                     @foreach($prize_2->{key($prize_2)} as $k=>$p2)
-                        <span class="col-xs-4 special-code div-horizontal text-red-item">{{ $p2 }} </span>
+                        <span class="col-xs-4 special-code div-horizontal">{{ $p2 }} </span>
                     @endforeach
                 @endif
             </td>
@@ -151,15 +151,15 @@
                 </td>
             </tr>
             <tr>
-                <td>@php $prize_9 = json_decode($printresult['prize_9']);   @endphp {{ key($prize_9) }}</td>
+                <td class="ĐB">@php $prize_9 = json_decode($printresult['prize_9']);   @endphp {{ key($prize_9) }}</td>
                 <td class="text-center">
                     @if(count((array) $prize_9) <= 1)
                         @foreach($prize_9 as $k=>$p9)
-                            <span class="number-black-bold div-horizontal text-red-item">@php if(count($p9) > 0 ){ $p9 = implode(', ',$p9); }  @endphp {{ $p9 }} </span>
+                            <span class="number-black-bold div-horizontal">@php if(count($p9) > 0 ){ $p9 = implode(', ',$p9); }  @endphp {{ $p9 }} </span>
                         @endforeach
                     @else
                         @foreach($prize_9->{key($prize_9)} as $k=>$p9)
-                            <span class="number-black-bold div-horizontal text-red-item">{{ $p9 }} </span>
+                            <span class="number-black-bold div-horizontal">{{ $p9 }} </span>
                         @endforeach
                     @endif
                 </td>

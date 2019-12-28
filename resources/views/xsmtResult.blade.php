@@ -31,7 +31,7 @@
                                         <tbody>
                                         <tr>
                                             @php $prize_1 = json_decode($printresult->prize_1); @endphp
-                                            <td class="{{ key($prize_1) }}" style="width: 15%">  {{ key($prize_1) }}</td>
+                                            <td class="ĐB {{ key($prize_1) }}" style="width: 15%">  {{ key($prize_1) }}</td>
                                             <td class="text-center">
                                                 @foreach($prize_1->{key($prize_1)} as $k=>$p1)
                                                     <span class=" number-black-bold div-horizontal">{{ $p1 }} </span>

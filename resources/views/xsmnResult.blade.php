@@ -29,7 +29,7 @@
             <table class="table table-bordered table-striped table-xsmb">
             <tbody>
             <tr> @php $prize_1 = json_decode($printresult->prize_1); @endphp
-            <td class="{{ key($prize_1) }}" style="width: 15%">  {{ key($prize_1) }}</td>
+            <td class="ĐB {{ key($prize_1) }}" style="width: 15%">  {{ key($prize_1) }}</td>
             <td class="text-center">
                 @foreach($prize_1->{key($prize_1)} as $k=>$p1)
                     <span class=" number-black-bold div-horizontal ">{{ $p1 }} </span>
@@ -146,15 +146,15 @@
             </tr>
 
             <tr> @php $prize_9 = json_decode($printresult->prize_9);   @endphp
-                <td class="{{ key($prize_9) }}" > {{ key($prize_9) }}</td>
+                <td class="ĐB {{ key($prize_9) }}" > {{ key($prize_9) }}</td>
                 <td class="text-center">
                     @if(count((array) $prize_9) <= 1)
                         @foreach($prize_9 as $k=>$p9)
-                            <span class="number-black-bold div-horizontal text-red-item">@php if(count((array) $p9) > 0 ){ $p9 = implode(', ',(array) $p9); }  @endphp {{ $p9 }} </span>
+                            <span class="number-black-bold div-horizontal">@php if(count((array) $p9) > 0 ){ $p9 = implode(', ',(array) $p9); }  @endphp {{ $p9 }} </span>
                         @endforeach
                     @else
                         @foreach($prize_9->{key($prize_9)} as $k=>$p9)
-                            <span class="number-black-bold div-horizontal text-red-item">{{ $p9 }} </span>
+                            <span class="number-black-bold div-horizontal">{{ $p9 }} </span>
                         @endforeach
                     @endif
                 </td>
