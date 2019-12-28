@@ -1541,3 +1541,6 @@ table.table-bordered tbody tr th.col-md-2{
 .remove-line-height div{
    padding: 2px;
 }
+.list-link a, .table-loto th { 
+    color: #337ab7;
+}

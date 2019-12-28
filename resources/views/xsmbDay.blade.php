@@ -22,18 +22,20 @@
             </ul>
         </div>
 
+        @php $title = "Kết Quả Xổ Số Miền Bắc"; @endphp
+
         @php $g = 1; @endphp
         @foreach($content as $printresult)
 
     <div class="block remove-margin" id='xsmb-{{ $g }}'>
         <div class="block-main-heading">
-            <h1>{{ $printresult['lottery_region'] }}</h1>
+            <h1>{{ $title }} ({{ $printresult['lottery_region'] }})</h1>
             </div>
             <div class="list-link">
             <h2 class="class-title-list-link">
                 @php $dayName = $printresult['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$printresult['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
-                <a href="/{{ getRegionSlug($printresult['lottery_region']) }}" title="{{ $printresult['lottery_region'] }}" class="u-line">{{ $printresult['lottery_region'] }}</a><span>»</span>
-                <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/kq{{ strtolower($printresult['lottery_region']) }}-{{$dayName}}" title="{{ $printresult['lottery_region'] }} {{ $printresult['day'] }}" class="u-line">{{ $printresult['lottery_region'] }} Thứ 6</a><span>»</span>
+                <a href="/{{ getRegionSlug($printresult['lottery_region']) }}" title="{{ $printresult['lottery_region'] }}" class="u-line">{{ $printresult['lottery_region'] }}</a><span> » </span>
+                <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/kq{{ strtolower($printresult['lottery_region']) }}-{{$dayName}}" title="{{ $printresult['lottery_region'] }} {{ $printresult['day'] }}" class="u-line">{{ $printresult['lottery_region'] }} {{ $printresult['day'] }}</a><span> » </span>
                 <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/kq{{ strtolower($printresult['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $printresult['lottery_region'] }}  {{ $printresult['day'] }}" class="u-line">  {{ $printresult['lottery_region'] }} {{ $printresult['result_day_time'] }}</a>
             </h2>
             </div>
@@ -171,10 +173,10 @@
             <hr class="line-header"/>
             <div class="block-main-content">
 
-                <span class="link-pad-left padding10">
+                <span class="link-pad-left padding10 class-title-list-link">
                     @php $dayName = $printresult['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$printresult['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
-                      <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}" >Lô tô {{ $printresult['lottery_region'] }}</a> >>
-                    <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}/kqlt{{ substr(strtolower($printresult['lottery_region']),2,4) }}-{{ $dayName   }}" title="{{ $printresult['lottery_region'] }}  {{ $printresult['day'] }}" class="u-line">Lô tô  ({{ $printresult['lottery_region'] }}) {{ $printresult['day'] }} </a>
+                      <a class="u-line" href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}" >Lô tô {{ $printresult['lottery_region'] }}</a> >>
+                    <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}/kqlt{{ substr(strtolower($printresult['lottery_region']),2,4) }}-{{ $dayName   }}" title="{{ $printresult['lottery_region'] }}  {{ $printresult['day'] }}" class="u-line">Lô tô  {{ $printresult['lottery_region'] }} {{ $printresult['day'] }} </a>
 
                 </span>
 
