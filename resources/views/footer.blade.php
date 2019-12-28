@@ -104,12 +104,13 @@
    Calendar.setup ({
        cont: 'calcontainer',
        showTime: true,
+       max : Calendar.dateToInt(new Date()),
        onSelect: function() {
            var date = this.selection.get();
            date     = Calendar.intToDate(date);
            date     = Calendar.printDate(date,"%d-%m-%Y");
            window.location.href='/kqxs-' + date;
-           document.getElementById('calinfo').value = date;
+
        }
    })
 
