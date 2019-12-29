@@ -10,23 +10,16 @@ class Results extends Controller
 {
     public function index(Request $request){
 
-        /*   $date = Carbon::now()->format('Y-m-d');
-             $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
-             $orig_date1 = Carbon::createFromFormat("!Y-m-d",$date);
-             $orig_date = Carbon::createFromFormat("!Y-m-d",$orig_date->subDay(1)->format("Y-m-d"));
-            $result = Result::where('result_day_time' ,'>=', $orig_date)->orderBy('result_day_time', 'desc')->get();
-            $data['region'] = "xsmt";
-            $data['companyName'] = strtoupper("xsmt");
-            $data['content'] = $result;
-            $data['enableTab'] = true;*/
+
         $date = Carbon::now()->format('Y-m-d');
          $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
-        $orig_date1 = Carbon::createFromFormat("!Y-m-d",$orig_date->subDay(1)->format("Y-m-d"));
-         $count = Result::where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date)->count();
+        $orig_date1 = Carbon::createFromFormat("!Y-m-d",$date);
+        $orig_date1 = Carbon::createFromFormat("!Y-m-d",$orig_date1->subDay(1)->format("Y-m-d"));
+        $count = Result::where('result_day_time' ,'>=', $orig_date)->count();
             if($count > 0){
                 $result = Result::where('result_day_time' ,'>=', $orig_date)->get();
             }else{
-                $result = Result::where('result_day_time' ,'>=', $orig_date1)->where('result_day_time' ,'>=', $orig_date)->orderBy('result_day_time', 'desc')->get();
+                $result = Result::where('result_day_time' ,'>=', $orig_date1)->orderBy('result_day_time', 'desc')->get();
 
             }
         $new = array();
