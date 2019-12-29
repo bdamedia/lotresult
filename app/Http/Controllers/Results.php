@@ -56,7 +56,7 @@ class Results extends Controller
         $data['content'] = $new;
         $data['enableTab'] = true;
 
-        return view('allCompanyDate')->with($data);
+        return view('home')->with($data);
     }
 
     public function xsmb(Request $request,$company='XSMB'){
