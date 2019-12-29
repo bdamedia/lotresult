@@ -13,6 +13,7 @@
 
 Route::get("/crawler", "Crawler@index");
 Route::get("/crawler/cJob", "Crawler@CroneJob");
+Route::get("/crawler/cJob/all/", "Crawler@CroneJobFull");
 
 Route::get('/','Results@index');
 

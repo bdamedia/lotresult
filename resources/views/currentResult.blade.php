@@ -253,6 +253,7 @@
             @php $g++; @endphp
     @endforeach
 
+       {{-- {{ $printresult->links() }}--}}
 
     </div>
     </div>

@@ -149,7 +149,10 @@ function crawlUrl($url=null){
         }
 
         foreach ($elements as $key=>$rs){
-            $elements[$key]['data'] = $new[$key];
+            if(isset($elements[$key]) && isset($new[$key])){
+                $elements[$key]['data'] = $new[$key];
+            }
+
         }
     }
     return $elements;
@@ -166,7 +169,10 @@ function crawlUrlModified($url=null){
     $finder = new DomXPath($dom);
 
     $regionName = $finder->query("//*[contains(@class, 'list-link')]")->item(0);
+    $date = $finder->query("//*[contains(@class, 'class-title-list-link')]")->item(0);
     $regionName = explode(' ',$regionName->getElementsByTagName('a')->item(0)->nodeValue);
+    $date = explode(' ',$date->getElementsByTagName('a')->item(2)->nodeValue);
+    $date = $date[2];
     $regionName = $regionName[0];
 
     $res = [];
@@ -202,6 +208,30 @@ function crawlUrlModified($url=null){
             $res[$i]['lottery_company'] = $res1['Giải'][5] ? $res1['Giải'][5] :'';
             $res[$i]['result_day_time'] = $res1['Giải'][6] ? $res1['Giải'][6] : '';
             unset($res[$i]['data']['Giải']);
+        }else{
+           /* $client = new Client();
+            $crawler = $client->request('GET', $url);
+            $elements = array();
+            $elements = $crawler->filter('.class-title-list-link a:last-child')->each(function($node){
+                $resultSplitVal = explode(' ',$node->text());
+
+                $arrayName = str_replace(' ','',$node->text());
+
+                $resultsArray['lottery_region'] = $resultSplitVal[0];
+                $resultsArray['lottery_company'] = $resultSplitVal[0];
+                $resultsArray['result_day_time'] = $resultSplitVal[1];
+                return $resultsArray;
+            });
+
+            foreach ($elements as $key=>$rs){
+                if(isset($elements[$key]) && isset($new[$key])){
+                    $elements[$key]['data'] = $new[$key];
+                }
+
+            }*/
+            $res[$i]['lottery_region'] = $regionName;
+            $res[$i]['lottery_company'] = $regionName;
+            $res[$i]['result_day_time'] = $date;
         }
 
         $i++;
@@ -398,7 +428,6 @@ function getRegionLotoSlug($code){
 }
 
 function engToVit($day){
-
     $bindVitDay = array('Monday'=>'Thứ hai','Tuesday'=>'Thứ ba','Wednesday'=>'Thứ tư','Thursday'=>'Thứ năm','Friday'=>'Thứ sáu','Saturday'=>'Thứ bảy','Sunday'=>'Chủ Nhật');
     return $bindVitDay[$day];
 }

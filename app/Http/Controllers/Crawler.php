@@ -41,21 +41,30 @@ class Crawler extends Controller
             }
         }
 
-    public function getCurrentResult()
+    public function getCurrentResult($url1='')
     {
 
-        $url = "https://xosodaiphat.com/xsmb-xo-so-mien-bac.html";
-        $resultData = crawlUrl($url);
+        if($url1){
+            $url = "https://xosodaiphat.com/".$url1;
+        }else{
+            $url = "https://xosodaiphat.com/xsmb-xo-so-mien-bac.html";
+        }
 
-        foreach ($resultData as $res) {
-            $da = explode('/', $res['result_day_time']);
-            $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
-            $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+        //$url = "https://xosodaiphat.com/xsmb-xo-so-mien-bac.html";
+        $resultData = crawlUrlModified($url);
+
+        foreach ($resultData as $k=>$res) {
+            if (isset($res['data']) && count($res['data']) > 1){
+
+
+                $da = explode('/', $res['result_day_time']);
+            $orig_date = Carbon::createFromFormat("!Y-m-d", $da[2] . '-' . $da[1] . '-' . $da[0]);
+            $orig_date1 = Carbon::createFromFormat("!Y-m-d", $da[2] . '-' . $da[1] . '-' . $da[0]);
             $orig_date1 = $orig_date1->addDay(1);
-            $data = Result::where('lottery_region', $res['lottery_region'])->where('lottery_company', $res['lottery_company'])->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->get();
+            $data = Result::where('lottery_region', $res['lottery_region'])->where('lottery_company', $res['lottery_company'])->where('result_day_time', '>=', $orig_date)->where('result_day_time', '<', $orig_date1)->get();
 
             if ($data->count()) {
-                Result::where('lottery_region', $res['lottery_region'])->where('lottery_company', $res['lottery_company'])->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->first()->delete();
+                Result::where('lottery_region', $res['lottery_region'])->where('lottery_company', $res['lottery_company'])->where('result_day_time', '>=', $orig_date)->where('result_day_time', '<', $orig_date1)->first()->delete();
                 $result = new Result();
                 $result->lottery_region = $res['lottery_region'];
                 $result->lottery_company = $res['lottery_company'];
@@ -95,7 +104,7 @@ class Crawler extends Controller
                 }
                 $result->save();
             }
-
+        }
         }
         // exit();
     }
@@ -311,5 +320,19 @@ class Crawler extends Controller
             echo $c->lottery_company_url;
             $this->xsmtCurrentResult($request,$c->lottery_company_url);
         }
+    }
+
+    public function CroneJobFull(Request $request){
+       
+        for($j=1;$j<36;$j++){
+            for($i=2;$i<100;$i++){
+               $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=$j&pageIndex=".$i);
+                //echo "loadmore-lottery-mb.html?pageIndex=".$i;
+                //$this->getCurrentResult("loadmore-lottery-mb.html?pageIndex=$i");
+            }
+        }
+
+
+
     }
 }

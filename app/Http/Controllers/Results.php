@@ -54,7 +54,7 @@ class Results extends Controller
 
     public function xsmb(Request $request,$company='XSMB'){
 
-        $result = Result::where('lottery_region','XSMB')->where('lottery_company', strtoupper($company))->orderBy('result_day_time', 'desc')->get();
+        $result = Result::where('lottery_region','XSMB')->where('lottery_company', strtoupper($company))->orderBy('result_day_time', 'desc')->paginate(10);
         $data['content'] = $result;
         //$comp = Result::where('lottery_region', 'XSMB')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
         $data['comp'] = ["XSMB"];
