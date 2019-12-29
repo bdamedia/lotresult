@@ -212,7 +212,7 @@ function crawlUrlModified($url=null){
 
 function getRegionsCompany(){
 
-    $html = file_get_contents('https://xosodaiphat.com/xsmt-xo-so-mien-trung.html');
+    $html = file_get_contents('https://xosodaiphat.com/xsmn-xo-so-mien-nam.html');
     $dom = new DOMDocument;
 
     @$dom->loadHTML($html);
@@ -395,4 +395,10 @@ function getRegionSlug($code){
 function getRegionLotoSlug($code){
     $reg = array('XSMN'=>'ket-qua-lo-to-mien-nam','XSMT'=>'ket-qua-lo-to-mien-trung','XSMB'=>'ket-qua-lo-to-mien-bac');
     return $reg[$code];
+}
+
+function engToVit($day){
+
+    $bindVitDay = array('Monday'=>'Thứ hai','Tuesday'=>'Thứ ba','Wednesday'=>'Thứ tư','Thursday'=>'Thứ năm','Friday'=>'Thứ sáu','Saturday'=>'Thứ bảy','Sunday'=>'Chủ Nhật');
+    return $bindVitDay[$day];
 }

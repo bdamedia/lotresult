@@ -34,9 +34,11 @@
             <div class="list-link">
             <h2 class="class-title-list-link">
                 @php $dayName = $printresult['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$printresult['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
-                <a href="/{{ getRegionSlug($printresult['lottery_region']) }}" title="{{ $printresult['lottery_region'] }}" >{{ $printresult['lottery_region'] }}</a><span> » </span>
-                <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/kq{{ strtolower($printresult['lottery_region']) }}-{{$dayName}}" title="{{ $printresult['lottery_region'] }} {{ $printresult['day'] }}" >{{ $printresult['lottery_region'] }} {{ $printresult['day'] }}</a><span> » </span>
-                <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/kq{{ strtolower($printresult['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $printresult['lottery_region'] }}  {{ $printresult['day'] }}" >  {{ $printresult['lottery_region'] }} {{ $printresult['result_day_time'] }}</a>
+
+                <a href="/{{ getRegionSlug($printresult['lottery_region']) }}" title="{{ $printresult['lottery_region'] }}">{{ $printresult['lottery_region'] }}</a><span> » </span>
+                <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/kq{{ strtolower($printresult['lottery_region']) }}-{{$dayName}}" title="{{ $printresult['lottery_region'] }} {{ $printresult['day'] }}" >{{ $printresult['lottery_region'] }} {{ engToVit($printresult['day']) }}</a><span> » </span>
+                <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/kq{{ strtolower($printresult['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $printresult['lottery_region'] }}  {{ $printresult['day'] }}">  {{ $printresult['lottery_region'] }} {{ $printresult['result_day_time'] }}</a>
+
             </h2>
             </div>
             <div class="block-main-content">
@@ -175,8 +177,10 @@
 
                 <span class="link-pad-left padding10 class-title-list-link">
                     @php $dayName = $printresult['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$printresult['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
-                      <a class="" href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}" >Lô tô {{ $printresult['lottery_region'] }}</a><span> » </span>
-                    <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}/kqlt{{ substr(strtolower($printresult['lottery_region']),2,4) }}-{{ $dayName   }}" title="{{ $printresult['lottery_region'] }}  {{ $printresult['day'] }}" class="">Lô tô  {{ $printresult['lottery_region'] }} {{ $printresult['day'] }} </a>
+
+                      <a  href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}" >Lô tô {{ $printresult['lottery_region'] }}</a> >>
+                    <a href="/{{ getRegionSlug($printresult['lottery_region']) }}/{{ getRegionLotoSlug($printresult['lottery_region']) }}/kqlt{{ substr(strtolower($printresult['lottery_region']),2,4) }}-{{ $dayName   }}" title="{{ $printresult['lottery_region'] }}  {{ engToVit($printresult['day']) }}">Lô tô  {{ $printresult['lottery_region'] }} {{ $printresult['day'] }} </a>
+
 
                 </span>
 

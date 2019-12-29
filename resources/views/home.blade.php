@@ -10,41 +10,6 @@
                     <div class="col-xs-12 {{ $region }}">
 
 
-                        @if($enableTab == true)
-
-                            @if($region == 'xsmt')
-
-                                <div class="tab" role="tabpanel">
-                                    <ul class="nav-tabs day-selector">
-                                        <li class={{ request()->segment(count(request()->segments())) == 'ket-qua-xo-so-mien-trung' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-trung" title="XSMB Thứ 2">Miền Trung</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmt-thu-hai' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmt-thu-ba' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-ba" title="XSMB Thứ 3">Thứ ba</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmt-thu-tu' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-tu" title="XSMB Thứ 4">Thứ tư</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmt-thu-nam' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-nam" title="XSMB Thứ 5">Thứ năm</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmt-thu-sau' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-sau" title="XSMB Thứ 6">Thứ sáu</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmt-thu-bay' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmt-chu-nhat' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-trung/kqxsmt-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
-                                    </ul>
-                                </div>
-                            @elseif($region == 'xsmn')
-                                <div class="tab" role="tabpanel">
-                                    <ul class="nav-tabs day-selector">
-                                        <li class={{ request()->segment(count(request()->segments())) == 'ket-qua-xo-so-mien-nam' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-nam" title="XSMB Thứ 2">Miền Nam</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmn-thu-hai' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmn-thu-ba' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-ba" title="XSMB Thứ 3">Thứ ba</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmn-thu-tu' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-tu" title="XSMB Thứ 4">Thứ tư</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmn-thu-nam' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-nam" title="XSMB Thứ 5">Thứ năm</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmn-thu-sau' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-sau" title="XSMB Thứ 6">Thứ sáu</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmn-thu-bay' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
-                                        <li class={{ request()->segment(count(request()->segments())) == 'kqxsmn-chu-nhat' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-nam/kqxsmn-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
-
-                                    </ul>
-                                </div>
-                            @endif
-
-                        @endif
-
-
                         @php $g = 1;  $tr ='<tr>'; @endphp
                         @foreach($content as $key=>$printresult)
                             {{--{{ $key }}--}}
@@ -217,7 +182,7 @@
                                     <h2 class="class-title-list-link">
                                         @php $dayName = $current['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$current['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
                                         <a href="/{{ getRegionSlug($current['lottery_region']) }}" title="{{ $current['lottery_region'] }}" class="u-line">{{ $current['lottery_region'] }}</a><span>»</span>
-                                        <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} Thứ 6" class="u-line">{{ $current['lottery_region'] }} Thứ 6</a><span>»</span>
+                                        <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} Thứ 6" class="u-line">{{ $current['lottery_region'] }} {{ engToVit($current['day'])  }}</a><span>»</span>
                                         <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line">  {{ $current['lottery_region'] }} {{ $current['result_day_time'] }}</a>
                                         {{--<a href="#" title="{{ $current['lottery_region'] }}  {{ $key }}" class="u-line">{{ $current['lottery_region'] }} >> {{ $current['day'] }} >> {{ $current['result_day_time'] }}</a>--}}
                                     </h2>
@@ -302,7 +267,7 @@
                                 <div class="block-main-content view-loto">
                                     <p class="padding10">
                                         <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ getRegionLotoSlug($current['lottery_region']) }}" >Lô tô {{ $current['lottery_region'] }}</a> >>
-                                        <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ getRegionLotoSlug($current['lottery_region']) }}/kqlt{{ substr(strtolower($current['lottery_region']),2,4) }}-{{ $dayName   }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line">Lô tô  ({{ $current['lottery_region'] }}) {{ $current['day'] }} </a>
+                                        <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ getRegionLotoSlug($current['lottery_region']) }}/kqlt{{ substr(strtolower($current['lottery_region']),2,4) }}-{{ $dayName   }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line">Lô tô  ({{ $current['lottery_region'] }}) {{ engToVit($current['day']) }} </a>
                                     </p>
                                     <table class="table table-bordered table-loto">
                                         <tbody>

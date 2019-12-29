@@ -20,8 +20,9 @@
                                 <div class="list-link">
                                     <h2 class="class-title-list-link">
                                         @php $dayName = $printresult->result_day_time->toDateTime()->format('l'); $dayName = getDaySlug($dayName); @endphp
+
                                         <a href="/{{ getRegionSlug($printresult->lottery_region) }}" title="XSMB" >{{ $printresult->lottery_region }}</a><span> » </span>
-                                        <a href="/{{ getRegionSlug($printresult->lottery_region) }}/kq{{ strtolower($printresult->lottery_region) }}-{{$dayName}}" title="{{ $printresult->lottery_region }} Thứ 6" >{{ $printresult->lottery_region }} {{ $printresult->result_day_time->toDateTime()->format('l') }}</a><span> » </span>
+                                        <a href="/{{ getRegionSlug($printresult->lottery_region) }}/kq{{ strtolower($printresult->lottery_region) }}-{{$dayName}}" title="{{ $printresult->lottery_region }} Thứ 6" >{{ $printresult->lottery_region }} {{ engToVit($printresult->result_day_time->toDateTime()->format('l')) }}</a><span> » </span>
                                         <a href="/ket-qua-xo-so-mien-trung/kqxsmn-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}">{{ $printresult->lottery_region }} {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a>
 
                                     </h2>
@@ -34,26 +35,26 @@
                                 </div>
 
                                 <div class="block-main-content">
-                                    <table class="table table-bordered table-striped table-xsmb">
+                                    <table class="table table-bordered table-striped table-xsmt">
                                         <tbody>
                                         <tr>
                                             @php $prize_1 = json_decode($printresult->prize_1); @endphp
                                             <td class="ĐB {{ key($prize_1) }}" style="width: 15%">  {{ key($prize_1) }}</td>
                                             <td class="text-center">
                                                 @foreach($prize_1->{key($prize_1)} as $k=>$p1)
-                                                    <span class=" number-black-bold div-horizontal">{{ $p1 }} </span>
+                                                    <span class="col-xs-12 number-black-bold div-horizontal">{{ $p1 }} </span>
                                                 @endforeach
                                             </td>
                                         </tr>
 
                                         <tr>
                                             @php $prize_2 = json_decode($printresult->prize_2); @endphp
-                                            <td class="{{ key($prize_2) }}" >    {{ key($prize_2) }}</td>
+                                            <td class="" >    {{ key($prize_2) }}</td>
                                             <td class="text-center">
                                                 @if(count((array) $prize_2) <= 1)
                                                     @foreach($prize_2->{key($prize_2)} as $k=>$p2)
 
-                                                        <span class="number-black-bold div-horizontal">{{ $p2 }} </span>
+                                                        <span class="col-xs-12 number-black-bold div-horizontal">{{ $p2 }} </span>
                                                     @endforeach
                                                 @else
                                                     @foreach($prize_2->{key($prize_2)} as $k=>$p2)
@@ -69,11 +70,11 @@
                                             <td class="text-center">
                                                 @if(count((array) $prize_3) <= 1)
                                                     @foreach($prize_3->{key($prize_3)} as $k=>$p3)
-                                                        <span class="number-black-bold div-horizontal">{{ $p3 }} </span>
+                                                        <span class="col-xs-4 number-black-bold div-horizontal">{{ $p3 }} </span>
                                                     @endforeach
                                                 @else
                                                     @foreach($prize_3->{key($prize_3)} as $k=>$p3)
-                                                        <span class="number-black-bold div-horizontal">{{ $p3 }} </span>
+                                                        <span class="col-xs-4 number-black-bold div-horizontal">{{ $p3 }} </span>
                                                     @endforeach
                                                 @endif
                                             </td>
@@ -90,7 +91,7 @@
                                                     @endforeach
                                                 @else
                                                     @foreach($prize_4->{key($prize_4)} as $k=>$p4)
-                                                        <span class="number-black-bold div-horizontal">{{ $p4 }} </span>
+                                                        <span class="col-xs-4 number-black-bold div-horizontal">{{ $p4 }} </span>
                                                     @endforeach
                                                 @endif
                                             </td>
@@ -102,7 +103,7 @@
                                             <td class="text-center">
                                                 @if(count((array) $prize_5) <= 1)
                                                     @foreach($prize_5 as $k=>$p5)
-                                                        <span class="number-black-bold div-horizontal">@php if(count((array) $p5) > 0 ){ $p5 = implode(', ',(array) $p5); }  @endphp {{ $p5  }} </span>
+                                                        <span class="number-black-bold div-horizontal">@php if(count((array) $p5) > 0 ){ $tp = 1; foreach ($p5 as $p51) { if($tp > 3){ echo "<span class='col-xs-3' >$p51</span>"; }else{ echo "<span class='col-xs-4' >$p51</span>";  } $tp++; } }  @endphp </span>
                                                     @endforeach
 
                                                 @else
@@ -119,7 +120,7 @@
                                             <td class="text-center">
                                                 @if(count((array) $prize_6) <= 1)
                                                     @foreach($prize_6 as $k=>$p6)
-                                                        <span class="number-black-bold div-horizontal">@php if(count((array) $p6) > 0 ){ $p6 = implode(', ',(array) $p6); }  @endphp {{ $p6 }} </span>
+                                                        <span class="number-black-bold div-horizontal">@php if(count((array) $p6) > 0 ){ foreach ($p6 as $p61) { echo "<span class='col-xs-6' >$p61</span>"; } }  @endphp  </span>
                                                     @endforeach
                                                 @else
                                                     @foreach($prize_6->{key($prize_6)} as $k=>$p6)
@@ -135,7 +136,7 @@
                                             <td class="text-center">
                                                 @if(count((array) $prize_7) <= 1)
                                                     @foreach($prize_7 as $k=>$p7)
-                                                        <span class="number-black-bold div-horizontal">@php if(count((array) $p7) > 0 ){ $p7 = implode(', ',(array) $p7); }  @endphp {{ $p7 }} </span>
+                                                        <span class="number-black-bold div-horizontal">@php if(count((array) $p7) > 0 ){ foreach ($p7 as $p71) { echo "<span class='col-xs-12' >$p71</span>"; } }  @endphp </span>
                                                     @endforeach
                                                 @else
                                                     @foreach($prize_7->{key($prize_7)} as $k=>$p7)
@@ -185,8 +186,11 @@
                                 <hr class="line-header"/>
                                 <div class="block-main-content">
 
-                                    <span class="link-pad-left padding10 class-title-list-link link-pad-left">
-                                        <a class="" href="/{{ getRegionSlug($printresult->lottery_region) }}/{{ getRegionLotoSlug($printresult->lottery_region) }}" >Lô tô {{ $printresult->lottery_region }}</a> <span> » </span>                                            <a href="/{{ getRegionSlug($printresult->lottery_region) }}/{{ getRegionLotoSlug($printresult->lottery_region) }}/kqlt{{ substr(strtolower($printresult->lottery_region),2,4) }}-{{ $dayName   }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('l') }}" class="">Lô tô  ({{ $printresult->lottery_region }}) {{ $printresult->result_day_time->toDateTime()->format('l') }} </a>
+
+                                    <span class="link-pad-left padding10 class-title-list-link">
+                                        <a  href="/{{ getRegionSlug($printresult->lottery_region) }}/{{ getRegionLotoSlug($printresult->lottery_region) }}" >Lô tô {{ $printresult->lottery_region }}</a> >>
+                                            <a href="/{{ getRegionSlug($printresult->lottery_region) }}/{{ getRegionLotoSlug($printresult->lottery_region) }}/kqlt{{ substr(strtolower($printresult->lottery_region),2,4) }}-{{ $dayName   }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('l') }}">Lô tô  ({{ $printresult->lottery_region }}) {{ engToVit($printresult->result_day_time->toDateTime()->format('l')) }} </a>
+
                                     </span>
 
                                     <table class="table table-bordered table-loto" style="margin-bottom: 0;">
