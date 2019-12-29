@@ -28,7 +28,7 @@
                                 </div>
 
                                  <div id="u129" class="ax_default box_2">
-                                    <div id="u129_text" class="text">
+                                    <div id="u129_text" class="text"> 
                                         <p><span><a href="/ket-qua-xo-so-mien-trung/kqxs-{{ getCompanySlug($printresult->lottery_company) }}-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}">Kết quả Xổ số {{ getCompanyName($printresult->lottery_company) }} {{ $printresult->lottery_region }} {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a></span></p>
                                     </div>
                                 </div>
