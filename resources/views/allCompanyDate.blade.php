@@ -79,7 +79,7 @@
           $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
                                       }else{
     $title ="Kết quả Xổ số Miền Bắc";
-    $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/" title="Xổ số '.$lot["lottery_company"].'"></a></th>';
+    $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/" title="Xổ số '.$lot["lottery_region"].'"></a></th>';
                                       }
 
                                 @endphp
