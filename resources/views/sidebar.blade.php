@@ -59,7 +59,7 @@
         <div class="form-doveso">
             <div class="form-inline">
                 <div class="form-group"><label for="ngaydoheader" class="lable-text">Chọn ngày:</label>
-                    <input type="text" id="ngaydoheader" value="16-12-2019" class="form-control form-group" required="required" placeholder="Chọn ngày" onchange="xsdp.getTinhtheoNgay(this.value);" size="9" title="Ngày dò">
+                    <input style="line-height: 21px" type="date" id="ngaydoheader" value="16-12-2019" class="form-control form-group" required="required" placeholder="Chọn ngày" onchange="xsdp.getTinhtheoNgay(this.value);" size="9" title="Ngày dò">
                 </div>
                 <div class="form-group"><label for="tinhheader" class="lable-text">Chọn tỉnh:</label>
                     <select class="form-control form-group" id="tinhheader">
