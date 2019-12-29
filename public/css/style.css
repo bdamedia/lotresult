@@ -1513,7 +1513,8 @@ table.livetn4 td.tn_prize {
 .tab li a {
     display: block;
     text-decoration: none;
-    font-weight: 700
+    /*font-weight: 700*/
+    font-weight: normal;
 }
 .form-control {
     width: 100%;
