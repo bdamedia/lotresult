@@ -282,7 +282,9 @@ function checkList($region='XSMN'){
 
 function getCompanyName($code=''){
     $all = RegionCompany::where('lottery_company', $code)->get();
-    return collect($all)->first()->lottery_company_names;
+    if($all->count() > 0) {
+        return collect($all)->first()->lottery_company_names;
+    }
 }
 
 function getCompanyUrl($code=''){
