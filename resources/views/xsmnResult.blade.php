@@ -33,7 +33,7 @@
             </div>
 
             <div class="block-main-content">
-            <table class="table table-bordered table-striped table-xsmb">
+            <table class="table table-bordered table-striped table-xsmn">
             <tbody>
             <tr> @php $prize_1 = json_decode($printresult->prize_1); @endphp
             <td class="ĐB {{ key($prize_1) }}" style="width: 15%">  {{ key($prize_1) }}</td>
@@ -96,7 +96,7 @@
                 <td class="text-center">
                     @if(count((array) $prize_5) <= 1)
                         @foreach($prize_5 as $k=>$p5)
-                            <span class="number-black-bold div-horizontal">@php if(count((array) $p5) > 0 ){ $p5 = implode(', ',(array) $p5); }  @endphp {{ $p5  }} </span>
+                            <span class="number-black-bold div-horizontal">@php if(count((array) $p5) > 0 ){ $tp = 1; foreach ($p5 as $p51) { if($tp > 3){ echo "<span class='col-xs-3' >$p51</span>"; }else{ echo "<span class='col-xs-4' >$p51</span>";  } $tp++; } }  @endphp </span>
                         @endforeach
 
                     @else
@@ -112,7 +112,7 @@
                 <td class="text-center">
                     @if(count((array) $prize_6) <= 1)
                         @foreach($prize_6 as $k=>$p6)
-                            <span class="number-black-bold div-horizontal">@php if(count((array) $p6) > 0 ){ $p6 = implode(', ',(array) $p6); }  @endphp {{ $p6 }} </span>
+                            <span class="number-black-bold div-horizontal">@php if(count((array) $p6) > 0 ){ foreach ($p6 as $p61) { echo "<span class='col-xs-6' >$p61</span>"; } }  @endphp  </span>
                         @endforeach
                     @else
                         @foreach($prize_6->{key($prize_6)} as $k=>$p6)
@@ -127,7 +127,7 @@
                 <td class="text-center">
                     @if(count((array) $prize_7) <= 1)
                         @foreach($prize_7 as $k=>$p7)
-                            <span class="number-black-bold div-horizontal">@php if(count((array) $p7) > 0 ){ $p7 = implode(', ',(array) $p7); }  @endphp {{ $p7 }} </span>
+                            <span class="number-black-bold div-horizontal">@php if(count((array) $p7) > 0 ){ foreach ($p7 as $p71) { echo "<span class='col-xs-12' >$p71</span>"; } }  @endphp </span>
                         @endforeach
                     @else
                         @foreach($prize_7->{key($prize_7)} as $k=>$p7)
