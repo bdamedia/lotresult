@@ -55,7 +55,26 @@ class Crawler extends Controller
             $data = Result::where('lottery_region', $res['lottery_region'])->where('lottery_company', $res['lottery_company'])->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->get();
 
             if ($data->count()) {
-                continue;
+                Result::where('lottery_region', $res['lottery_region'])->where('lottery_company', $res['lottery_company'])->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->first()->delete();
+                $result = new Result();
+                $result->lottery_region = $res['lottery_region'];
+                $result->lottery_company = $res['lottery_company'];
+                $da = explode('/', $res['result_day_time']);
+                $orig_date = Carbon::createFromDate($da[2], $da[1], $da[0]);
+                $result->result_day_time = new UTCDateTime($orig_date);
+                $i = 1;
+                foreach ($res['data'] as $key => $detailsData) {
+                    if ($key == 'board') {
+                        $name = $key;
+                        $result->{$name} = json_encode($res['data'][$key]);
+                    } else {
+                        $name = "prize_" . $i;
+                        $result->{$name} = json_encode(array($key => $res['data'][$key]));
+                        $i++;
+                    }
+                }
+                $result->save();
+
             } else {
                 $result = new Result();
                 $result->lottery_region = $res['lottery_region'];
