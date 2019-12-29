@@ -10,17 +10,53 @@ class Results extends Controller
 {
     public function index(Request $request){
 
-       $date = Carbon::now()->format('Y-m-d');
+        /*   $date = Carbon::now()->format('Y-m-d');
+             $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
+             $orig_date1 = Carbon::createFromFormat("!Y-m-d",$date);
+             $orig_date = Carbon::createFromFormat("!Y-m-d",$orig_date->subDay(1)->format("Y-m-d"));
+            $result = Result::where('result_day_time' ,'>=', $orig_date)->orderBy('result_day_time', 'desc')->get();
+            $data['region'] = "xsmt";
+            $data['companyName'] = strtoupper("xsmt");
+            $data['content'] = $result;
+            $data['enableTab'] = true;*/
+        $date = Carbon::now()->format('Y-m-d');
          $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
-         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$date);
-         $orig_date = Carbon::createFromFormat("!Y-m-d",$orig_date->subDay(1)->format("Y-m-d"));
-        $result = Result::where('result_day_time' ,'>=', $orig_date)->orderBy('result_day_time', 'desc')->get();
+        $orig_date1 = Carbon::createFromFormat("!Y-m-d",$orig_date->subDay(1)->format("Y-m-d"));
+         $count = Result::where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date)->count();
+            if($count > 0){
+                $result = Result::where('result_day_time' ,'>=', $orig_date)->get();
+            }else{
+                $result = Result::where('result_day_time' ,'>=', $orig_date1)->where('result_day_time' ,'>=', $orig_date)->orderBy('result_day_time', 'desc')->get();
+
+            }
+        $new = array();
+        $t = 0;
+        foreach ($result as $res){
+            $k = $res->lottery_region;
+            $new[$k][$t]['lottery_region'] = $res->lottery_region;
+            $new[$k][$t]['lottery_company'] = $res->lottery_company;
+            $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+            $new[$k][$t]['prize_1'] = $res->prize_1;
+            $new[$k][$t]['prize_2'] = $res->prize_2;
+            $new[$k][$t]['prize_3'] = $res->prize_3;
+            $new[$k][$t]['prize_4'] = $res->prize_4;
+            $new[$k][$t]['prize_5'] = $res->prize_5;
+            $new[$k][$t]['prize_6'] = $res->prize_6;
+            $new[$k][$t]['prize_7'] = $res->prize_7;
+            $new[$k][$t]['prize_8'] = $res->prize_8;
+            $new[$k][$t]['prize_9'] = $res->prize_9;
+            $new[$k][$t]['board'] = $res->board;
+            $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
+            $t++;
+
+        }
+
         $data['region'] = "xsmt";
         $data['companyName'] = strtoupper("xsmt");
-        $data['content'] = $result;
+        $data['content'] = $new;
         $data['enableTab'] = true;
 
-        return view('home')->with($data);
+        return view('allCompanyDate')->with($data);
     }
 
     public function xsmb(Request $request,$company='XSMB'){
