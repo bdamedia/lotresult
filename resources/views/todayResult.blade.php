@@ -7,7 +7,7 @@
             @php $mytime = Carbon\Carbon::now();
 
                 @endphp
-            <p><span>Hôm nay - {{ $mytime->toDateTime()->format('l') }} - {{ $mytime->toDateTime()->format('d/m/Y') }}</span></p>
+            <p><span>Hôm nay - {{ engToVit($mytime->toDateTime()->format('l')) }} - {{ $mytime->toDateTime()->format('d/m/Y') }}</span></p>
         </div>
     </div>
 
