@@ -96,7 +96,7 @@
 <script src="https://cdn.xosodaiphat.com/Content/js/lotteryLiveMQMin-129-secu.js?v=1"></script>
 
 <script type="text/javascript" src="{{ URL::asset('js/jscal2.js') }}"></script>
-<script type="text/javascript" src="https://londatiga.net/tutorials/jscal2/js/lang/en.js"></script>
+<script type="text/javascript" src="{{ URL::asset('js/en.js') }}"></script>
 
 
 <script type="text/javascript">
