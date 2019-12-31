@@ -71,14 +71,7 @@
 
                                 @php $td3 .= '<td class="text-center">'; @endphp
                                 @if($lot["lottery_company"] == 'XSMB')
-                                    @if(count((array)$prize_2->{key($prize_2)}) > 0 )
-                                        @foreach($prize_2->{key($prize_2)} as $k=>$p2)
-                                            @php $td3 .= '<span class=" number-black-bold div-horizontal">'.$p2.'</span></br>'; @endphp
-                                        @endforeach
-                                    @else
-                                        @php $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_2->{key($prize_2)}.'</span></br>'; @endphp
-                                        @endif
-
+                                    @php $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_2->{key($prize_2)}.'</span></br>'; @endphp
                                 @else
                                     @foreach($prize_2->{key($prize_2)} as $k=>$p2)
                                         @php $td3 .= '<span class=" number-black-bold div-horizontal">'.$p2.'</span></br>'; @endphp
@@ -89,14 +82,7 @@
 
                                 @php $td4 .= '<td class="text-center">'; @endphp
                                 @if($lot["lottery_company"] == 'XSMB')
-                                    @if(count((array)$prize_3->{key($prize_3)}) > 0 )
-                                    @foreach($prize_3->{key($prize_3)} as $k=>$p3)
-                                        @php $td4 .= '<span class=" number-black-bold div-horizontal">'.$p3.'</span></br>'; @endphp
-                                    @endforeach
-
-                                    @else
-                                        @php $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_3->{key($prize_3)}.'</span></br>'; @endphp
-                                        @endif
+                                    @php $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_3->{key($prize_3)}.'</span></br>'; @endphp
                                 @else
                                     @foreach($prize_3->{key($prize_3)} as $k=>$p3)
                                         @php $td4 .= '<span class=" number-black-bold div-horizontal">'.$p3.'</span></br>'; @endphp
@@ -155,20 +141,14 @@
                                 @endforeach
                                 @php $td9 .= '</td>'; @endphp
 
-                                @php $td10 .= '<td class="text-center">'; print_r($prize_9); @endphp
-                               {{-- @foreach($prize_9->{key($prize_9)} as $k=>$p9)
+                                @php $td10 .= '<td class="text-center">'; @endphp
+                                @foreach($prize_9->{key($prize_9)} as $k=>$p9)
                                     @if($lot["lottery_company"] == 'XSMB')
-                                        @if(count((array)$prize_9->{key($prize_9)}) > 0 )
-                                            @foreach($prize_9->{key($prize_9)} as $p91)
-                                        @php $td10 .= '<span class="col-xs-3 number-black-bold div-horizontal">'.$p91.'</span>'; @endphp
-                                            @endforeach
-                                            @else
-                                            @php $td10 .= '<span class="col-xs-3 number-black-bold div-horizontal">'.$p9.'</span>'; @endphp
-                                            @endif
+                                        @php $td10 .= '<span class="col-xs-3 number-black-bold div-horizontal">'.$p9.'</span>'; @endphp
                                     @else
                                         @php $td10 .= '<span class=" number-black-bold div-horizontal">'.$p9.'</span></br>'; @endphp
                                     @endif
-                                @endforeach--}}
+                                @endforeach
                                 @php $td10 .= '</td>'; @endphp
 
                                 @if($board)
@@ -188,9 +168,7 @@
                                 @php $tdr5 = '<td class="'.key($prize_6).'" style="width: 15%">'.key($prize_6).'</td>'; @endphp
                                 @php $tdr6 = '<td class="'.key($prize_7).'" style="width: 15%">'.key($prize_7).'</td>'; @endphp
                                 @php $tdr7 = '<td class="'.key($prize_8).'" style="width: 15%">'.key($prize_8).'</td>'; @endphp
-                               {{-- @php $tdr8 = '<td class="'.key($prize_9).'" style="width: 15%">'.key($prize_9).'</td>'; @endphp
-                               --}}
-                                @php $tdr8 = '<td class="'.print_r($prize_9).'" style="width: 15%">'.print_r($prize_9).'</td>'; @endphp
+                                @php $tdr8 = '<td class="'.key($prize_9).'" style="width: 15%">'.key($prize_9).'</td>'; @endphp
 
                             @endforeach
 
