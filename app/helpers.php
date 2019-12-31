@@ -189,6 +189,8 @@ function crawlUrlModified($url=null){
             }
 
         }
+    }elseif(stripos($link->getAttribute('class'),'table-award') !== false){
+        continue;
     }else{
 
         foreach ($link->getElementsByTagName('tr') as $key => $value) {
