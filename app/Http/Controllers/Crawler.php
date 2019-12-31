@@ -46,12 +46,15 @@ class Crawler extends Controller
 
         if($url1){
             $url = "https://xosodaiphat.com/".$url1;
+            $resultData = crawlUrlModified($url);
         }else{
             $url = "https://xosodaiphat.com/xsmb-xo-so-mien-bac.html";
+            $resultData = crawlUrl($url);
         }
 
         //$url = "https://xosodaiphat.com/xsmb-xo-so-mien-bac.html";
-        $resultData = crawlUrlModified($url);
+
+
 
         foreach ($resultData as $k=>$res) {
             if (isset($res['data']) && count($res['data']) > 1){
