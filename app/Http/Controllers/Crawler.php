@@ -318,7 +318,7 @@ class Crawler extends Controller
 
         foreach ($all as $c){
             echo $c->lottery_company_url;
-            $this->xsmtCurrentResult($request,$c->lottery_company_url);
+           // $this->xsmtCurrentResult($request,$c->lottery_company_url);
         }
     }
 
