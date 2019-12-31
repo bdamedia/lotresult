@@ -71,7 +71,14 @@
 
                                 @php $td3 .= '<td class="text-center">'; @endphp
                                 @if($lot["lottery_company"] == 'XSMB')
-                                    @php $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_2->{key($prize_2)}.'</span></br>'; @endphp
+                                    @if(count((array)$prize_2->{key($prize_2)}) > 0 )
+                                        @foreach($prize_2->{key($prize_2)} as $k=>$p2)
+                                            @php $td3 .= '<span class=" number-black-bold div-horizontal">'.$p2.'</span></br>'; @endphp
+                                        @endforeach
+                                    @else
+                                        @php $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_2->{key($prize_2)}.'</span></br>'; @endphp
+                                        @endif
+
                                 @else
                                     @foreach($prize_2->{key($prize_2)} as $k=>$p2)
                                         @php $td3 .= '<span class=" number-black-bold div-horizontal">'.$p2.'</span></br>'; @endphp
@@ -82,7 +89,14 @@
 
                                 @php $td4 .= '<td class="text-center">'; @endphp
                                 @if($lot["lottery_company"] == 'XSMB')
-                                    @php $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_3->{key($prize_3)}.'</span></br>'; @endphp
+                                    @if(count((array)$prize_3->{key($prize_3)}) > 0 )
+                                    @foreach($prize_3->{key($prize_3)} as $k=>$p3)
+                                        @php $td4 .= '<span class=" number-black-bold div-horizontal">'.$p3.'</span></br>'; @endphp
+                                    @endforeach
+
+                                    @else
+                                        @php $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_3->{key($prize_3)}.'</span></br>'; @endphp
+                                        @endif
                                 @else
                                     @foreach($prize_3->{key($prize_3)} as $k=>$p3)
                                         @php $td4 .= '<span class=" number-black-bold div-horizontal">'.$p3.'</span></br>'; @endphp
