@@ -158,7 +158,13 @@
                                 @php $td10 .= '<td class="text-center">'; @endphp
                                 @foreach($prize_9->{key($prize_9)} as $k=>$p9)
                                     @if($lot["lottery_company"] == 'XSMB')
-                                        @php $td10 .= '<span class="col-xs-3 number-black-bold div-horizontal">'.$p9.'</span>'; @endphp
+                                        @if(count((array)$prize_9->{key($prize_9)}) > 0 )
+                                            @foreach($prize_9->{key($prize_9)} as $p91)
+                                        @php $td10 .= '<span class="col-xs-3 number-black-bold div-horizontal">'.$p91.'</span>'; @endphp
+                                            @endforeach
+                                            @else
+                                            @php $td10 .= '<span class="col-xs-3 number-black-bold div-horizontal">'.$p9.'</span>'; @endphp
+                                            @endif
                                     @else
                                         @php $td10 .= '<span class=" number-black-bold div-horizontal">'.$p9.'</span></br>'; @endphp
                                     @endif
