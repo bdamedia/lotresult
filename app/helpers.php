@@ -171,11 +171,10 @@ function crawlUrlModified($url=null){
     $regionName = $finder->query("//*[contains(@class, 'list-link')]")->item(0);
     $date = $finder->query("//*[contains(@class, 'class-title-list-link')]")->item(0);
     $regionName = explode(' ',$regionName->getElementsByTagName('a')->item(0)->nodeValue);
-    if($date == ''){
-
+   /* if($date == ''){
        $date = explode(' ',$date->getElementsByTagName('a')->item(2)->nodeValue);
       $date = $date[2];
-    }
+    }*/
     $regionName = $regionName[0];
 
     $res = [];
