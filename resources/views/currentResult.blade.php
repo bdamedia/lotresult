@@ -42,7 +42,7 @@
             <td class="text-center">
                 @if(count((array) $prize_2) <= 1)
                 @foreach($prize_2 as $k=>$p2)
-                    <span class="number-black-bold div-horizontal">{{ $p2 }} </span>
+                    <span class="number-black-bold div-horizontal">@php if(count($p2) > 0 ){ foreach ($p2 as $p21) { echo "<span class='col-xs-6' >$p21</span>"; } }  @endphp </span>
                 @endforeach
                 @else
                     @foreach($prize_2->{key($prize_2)} as $k=>$p2)
