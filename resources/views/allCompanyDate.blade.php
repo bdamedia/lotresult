@@ -116,7 +116,7 @@
                                                 @php $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$p2.'</span></br>'; @endphp
                                             @endforeach
                                         @else
-                                            @php $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_2->{key($prize_2)}.'</span></br>'; @endphp
+                                            @php if(count((array)$prize_2->{key($prize_2)}) == 1) { foreach ($prize_2->{key($prize_2)} as $p21){ $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$p21.'</span></br>'; } }else{ $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_2->{key($prize_2)}.'</span></br>'; } @endphp
                                         @endif
 
                                 @else
@@ -135,7 +135,9 @@
                                                 @php $td4 .= '<span class=" number-black-bold div-horizontal">'.$p3.'</span></br>'; @endphp
                                             @endforeach
                                         @else
-                                            @php $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_3->{key($prize_3)}.'</span></br>'; @endphp
+                                            @php if(count((array)$prize_3->{key($prize_3)}) == 1) { foreach ($prize_3->{key($prize_3)} as $p31){ $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$p31.'</span></br>'; } }else{ $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_3->{key($prize_3)}.'</span></br>'; } @endphp
+
+                                           {{-- @php $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_3->{key($prize_3)}.'</span></br>'; @endphp--}}
                                         @endif
 
                                 @else
