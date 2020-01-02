@@ -328,7 +328,7 @@ class Crawler extends Controller
     public function CroneJobFull(Request $request){
 
        // for($j=1;$j<36;$j++){
-            for($i=2;$i<100;$i++){
+            for($i=2;$i<80;$i++){
                $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=30&pageIndex=".$i);
                $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=34&pageIndex=".$i);
                $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=35&pageIndex=".$i);
