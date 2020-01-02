@@ -171,8 +171,11 @@ function crawlUrlModified($url=null){
     $regionName = $finder->query("//*[contains(@class, 'list-link')]")->item(0);
     $date = $finder->query("//*[contains(@class, 'class-title-list-link')]")->item(0);
     $regionName = explode(' ',$regionName->getElementsByTagName('a')->item(0)->nodeValue);
-    $date = explode(' ',$date->getElementsByTagName('a')->item(2)->nodeValue);
-    $date = $date[2];
+    if($date == ''){
+
+       $date = explode(' ',$date->getElementsByTagName('a')->item(2)->nodeValue);
+      $date = $date[2];
+    }
     $regionName = $regionName[0];
 
     $res = [];
@@ -197,47 +200,56 @@ function crawlUrlModified($url=null){
             $idElem = $value->getElementsByTagName('td');
 
             if($idElem->length > 0){
-                $res1[$idElem->item(0)->nodeValue] = array_filter(explode(',',preg_replace('/\s+/', ',',  $idElem->item(1)->nodeValue)));
+
+                $res1[utf8_decode($idElem->item(0)->nodeValue)] = array_filter(explode(',',preg_replace('/\s+/', ',',  $idElem->item(1)->nodeValue)));
             }
 
         }
     }
 
-        $res[]['data'] = $res1;
+        if(count($res1) > 0){
+            $res[]['data'] = $res1;
+            if(isset($res1['Giải'])){
 
-        if(isset($res1['Giải'])){
-            $res[$i]['lottery_region'] = $regionName;
-            $res[$i]['lottery_company'] = $res1['Giải'][5] ? $res1['Giải'][5] :'';
-            $res[$i]['result_day_time'] = $res1['Giải'][6] ? $res1['Giải'][6] : '';
-            unset($res[$i]['data']['Giải']);
-        }else{
-           /* $client = new Client();
-            $crawler = $client->request('GET', $url);
-            $elements = array();
-            $elements = $crawler->filter('.class-title-list-link a:last-child')->each(function($node){
-                $resultSplitVal = explode(' ',$node->text());
+                $res[$i]['lottery_region'] = $regionName;
+                $res[$i]['lottery_company'] = $res1['Giải'][5] ? $res1['Giải'][5] : '';
+                $res[$i]['result_day_time'] = $res1['Giải'][6] ? $res1['Giải'][6] : '';
+                unset($res[$i]['data']['Giải']);
 
-                $arrayName = str_replace(' ','',$node->text());
+            }else{
+                /* $client = new Client();
+                 $crawler = $client->request('GET', $url);
+                 $elements = array();
+                 $elements = $crawler->filter('.class-title-list-link a:last-child')->each(function($node){
+                     $resultSplitVal = explode(' ',$node->text());
 
-                $resultsArray['lottery_region'] = $resultSplitVal[0];
-                $resultsArray['lottery_company'] = $resultSplitVal[0];
-                $resultsArray['result_day_time'] = $resultSplitVal[1];
-                return $resultsArray;
-            });
+                     $arrayName = str_replace(' ','',$node->text());
 
-            foreach ($elements as $key=>$rs){
-                if(isset($elements[$key]) && isset($new[$key])){
-                    $elements[$key]['data'] = $new[$key];
-                }
+                     $resultsArray['lottery_region'] = $resultSplitVal[0];
+                     $resultsArray['lottery_company'] = $resultSplitVal[0];
+                     $resultsArray['result_day_time'] = $resultSplitVal[1];
+                     return $resultsArray;
+                 });
 
-            }*/
-            $res[$i]['lottery_region'] = $regionName;
-            $res[$i]['lottery_company'] = $regionName;
-            $res[$i]['result_day_time'] = $date;
+                 foreach ($elements as $key=>$rs){
+                     if(isset($elements[$key]) && isset($new[$key])){
+                         $elements[$key]['data'] = $new[$key];
+                     }
+
+                 }*/
+                $res[$i]['lottery_region'] = $regionName;
+                $res[$i]['lottery_company'] = $regionName;
+                $res[$i]['result_day_time'] = $date;
+            }
+
+            $i++;
         }
 
-        $i++;
+
+
     }
+    echo "<pre>";
+    print_r($res);
     return array_filter($res);
 }
 

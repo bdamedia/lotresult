@@ -346,7 +346,7 @@ class Crawler extends Controller
                $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=13&pageIndex=".$i);
                $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=15&pageIndex=".$i);
                 //echo "loadmore-lottery-mb.html?pageIndex=".$i;
-                $this->getCurrentResult("loadmore-lottery-mb.html?pageIndex=$i");
+               // $this->getCurrentResult("loadmore-lottery-mb.html?pageIndex=$i");
             }
        // }
 
