@@ -167,15 +167,22 @@ function crawlUrlModified($url=null){
 
     $links = $dom->getElementsByTagName('table');
     $finder = new DomXPath($dom);
-
+    $date3 = '';
     $regionName = $finder->query("//*[contains(@class, 'list-link')]")->item(0);
     $date = $finder->query("//*[contains(@class, 'class-title-list-link')]")->item(0);
+
     $regionName = explode(' ',$regionName->getElementsByTagName('a')->item(0)->nodeValue);
-   /* if($date == ''){
-       $date = explode(' ',$date->getElementsByTagName('a')->item(2)->nodeValue);
-      $date = $date[2];
-    }*/
+    //echo $regionName;
     $regionName = $regionName[0];
+    if(isset($regionName) && $regionName == 'XSMB'){
+
+        $d = explode(' ',$date->getElementsByTagName('a')->item(2)->nodeValue);
+        $date = $d[2];
+
+      /*  $date2 = explode(' ',$date1->getElementsByTagName('a')->item(2)->nodeValue);
+      $date3 = $date2[2];*/
+    }
+
 
     $res = [];
     $i = 0;
@@ -216,26 +223,7 @@ function crawlUrlModified($url=null){
                 unset($res[$i]['data']['Giải']);
 
             }else{
-                /* $client = new Client();
-                 $crawler = $client->request('GET', $url);
-                 $elements = array();
-                 $elements = $crawler->filter('.class-title-list-link a:last-child')->each(function($node){
-                     $resultSplitVal = explode(' ',$node->text());
 
-                     $arrayName = str_replace(' ','',$node->text());
-
-                     $resultsArray['lottery_region'] = $resultSplitVal[0];
-                     $resultsArray['lottery_company'] = $resultSplitVal[0];
-                     $resultsArray['result_day_time'] = $resultSplitVal[1];
-                     return $resultsArray;
-                 });
-
-                 foreach ($elements as $key=>$rs){
-                     if(isset($elements[$key]) && isset($new[$key])){
-                         $elements[$key]['data'] = $new[$key];
-                     }
-
-                 }*/
                 $res[$i]['lottery_region'] = $regionName;
                 $res[$i]['lottery_company'] = $regionName;
                 $res[$i]['result_day_time'] = $date;
@@ -247,8 +235,7 @@ function crawlUrlModified($url=null){
 
 
     }
-    echo "<pre>";
-    print_r($res);
+
     return array_filter($res);
 }
 

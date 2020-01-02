@@ -328,7 +328,7 @@ class Crawler extends Controller
     public function CroneJobFull(Request $request){
 
        // for($j=1;$j<36;$j++){
-            for($i=2;$i<13;$i++){
+            for($i=1;$i<52;$i++){
              /*  $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=30&pageIndex=".$i);
                $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=34&pageIndex=".$i);
                $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=35&pageIndex=".$i);
@@ -346,7 +346,7 @@ class Crawler extends Controller
                $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=13&pageIndex=".$i);
                $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=15&pageIndex=".$i);*/
 
-                $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=31&pageIndex=".$i);
+                /*$this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=31&pageIndex=".$i);
                 $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=32&pageIndex=".$i);
                 $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=33&pageIndex=".$i);
                 $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=10&pageIndex=".$i);
@@ -365,9 +365,9 @@ class Crawler extends Controller
                 $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=26&pageIndex=".$i);
                 $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=27&pageIndex=".$i);
                 $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=28&pageIndex=".$i);
-                $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=29&pageIndex=".$i);
+                $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=29&pageIndex=".$i);*/
                 //echo "loadmore-lottery-mb.html?pageIndex=".$i;
-               // $this->getCurrentResult("loadmore-lottery-mb.html?pageIndex=$i");
+                $this->getCurrentResult("loadmore-lottery-mb.html?pageIndex=$i");
             }
        // }
 
