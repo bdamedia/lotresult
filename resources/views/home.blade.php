@@ -44,7 +44,7 @@
           $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
                                       }else{
     $title ="Xổ số Miền Bắc";
-    $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/">'.$lot["lottery_company"].'</a></th>';
+    $th .= ''; /*'<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/">'.$lot["lottery_company"].'</a></th>';*/
                                       }
 
                                 @endphp
@@ -191,8 +191,12 @@
                                     <table class="table table-bordered table-striped table-{{ strtolower($lot["lottery_region"]) }} text-table livetn3">
                                         <thead>
                                         <tr>
+                                            @php if($th){
+                                             echo $th; @endphp
                                             <th class="text-center">Giải</th>
-                                            @php echo $th; @endphp
+                                            @php } @endphp
+
+
                                         </tr>
                                         </thead>
                                         <tbody>
