@@ -100,15 +100,24 @@
 
 
 <script type="text/javascript">
-
+    if(localStorage.getItem('date')){
+        var date1 = Calendar.dateToInt(localStorage.getItem('date'));
+    }else{
+       var date1 = Calendar.dateToInt(new Date());
+    }
+    console.log(date1);
    Calendar.setup ({
        cont: 'calcontainer',
        showTime: true,
        max : Calendar.dateToInt(new Date()),
+       date : date1,
        onSelect: function() {
            var date = this.selection.get();
+           localStorage.setItem("date", date);
+
            date     = Calendar.intToDate(date);
            date     = Calendar.printDate(date,"%d-%m-%Y");
+
            window.location.href='/kqxs-' + date;
 
        }
