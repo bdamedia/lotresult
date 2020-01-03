@@ -46,7 +46,7 @@
             <td class="text-center">
                 @if(count((array) $prize_2) == 1)
                 @foreach($prize_2 as $k=>$p2)
-                    <span class="number-black-bold div-horizontal">@php if( is_array($p2) && count((array)$p2) > 0){ foreach ($p2 as $p21) { echo "<span class='col-xs-6' >$p21</span>"; } }else{ echo $p2; }  @endphp </span>
+                    @php if( is_array($p2) && count((array)$p2) > 0){ foreach ($p2 as $p21) { echo "<span class='col-xs-12 number-black-bold div-horizontal' >$p21</span>"; } }else{ echo "<span class='col-xs-12 number-black-bold div-horizontal' >$p2</span>"; }  @endphp
                 @endforeach
                 @else
                     @foreach($prize_2->{key($prize_2)} as $k=>$p2)
@@ -61,7 +61,7 @@
             <td class="text-center">
                 @if(count((array) $prize_3) <= 1)
                 @foreach($prize_3 as $k=>$p3)
-                    <span class="number-black-bold div-horizontal">@php if(is_array($p3) && count((array)$p3) > 0 ){ foreach ($p3 as $p31) { echo "<span class='col-xs-6' >$p31</span>"; } }else{ echo $p3; }  @endphp </span>
+                    @php if(is_array($p3) && count((array)$p3) > 0 ){ foreach ($p3 as $p31) { echo "<span class='col-xs-12 number-black-bold div-horizontal' >$p31</span>"; } }else{ echo "<span class='col-xs-12 number-black-bold div-horizontal' >$p3</span>"; }  @endphp
                 @endforeach
                    @else
                     @foreach($prize_3->{key($prize_3)} as $k=>$p3)
@@ -76,8 +76,7 @@
                 <td class="text-center">
                     @if(count((array) $prize_4) <= 1)
                         @foreach($prize_4 as $k=>$p4)
-                            <span class="number-black-bold div-horizontal">@php if(count((array)$p4) > 0 ){ foreach ($p4 as $p41) { echo "<span class='col-xs-6' >$p41</span>"; } }  @endphp  </span>
-                        @endforeach
+                          @php if(count((array)$p4) > 0 ){ foreach ($p4 as $p41) { echo "<span class='col-xs-6 number-black-bold div-horizontal' >$p41</span>"; } }  @endphp                        @endforeach
                     @else
                         @foreach($prize_4->{key($prize_4)} as $k=>$p4)
                             <span class="number-black-bold div-horizontal">{{ $p4 }} </span>
@@ -157,25 +156,7 @@
                     @endif
                 </td>
             </tr>
-       {{--     @if($printresult->prize_10)
-            <tr>
-                <td>@php $prize_10 = json_decode($printresult->prize_10);    @endphp {{ key($prize_10) }}</td>
-                <td class="text-center">
-                    @if(count((array) $prize_10) <= 1)
-                        @foreach($prize_10 as $k=>$p10)
-                            <span class="col-xs-3 special-prize-sm div-horizontal">
-                                @php if(count((array) $p10) > 1 ){ $p10 = implode(', ',$p10); }elseif(count((array) $p10) == 1){  $p10 = $p10; }  @endphp
-                                {{ $p10 }}
-                            </span>
-                        @endforeach
-                    @else
-                        @foreach($prize_10->{key($prize_10)} as $k=>$p10)
-                            <span class="col-xs-3 special-prize-sm div-horizontal">{{ $p10 }} </span>
-                        @endforeach
-                    @endif
-                </td>
-            </tr>
-            @endif--}}
+
 
             </tbody>
             </table>
@@ -185,7 +166,7 @@
 
 
                 <span class="link-pad-left padding10 class-title-list-link">
-                    <a href="/{{ getRegionSlug($printresult->lottery_region) }}/{{ getRegionLotoSlug($printresult->lottery_region) }}" >Lô tô {{ $printresult->lottery_region }}</a> 
+                    <a href="/{{ getRegionSlug($printresult->lottery_region) }}/{{ getRegionLotoSlug($printresult->lottery_region) }}" >Lô tô {{ $printresult->lottery_region }}</a>
                     <span> » </span>
                     <a href="/{{ getRegionSlug($printresult->lottery_region) }}/{{ getRegionLotoSlug($printresult->lottery_region) }}/kqlt{{ substr(strtolower($printresult->lottery_region),2,4) }}-{{ $dayName   }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('l') }}" >Lô tô  {{ $printresult->lottery_region }} {{ engToVit($printresult->result_day_time->toDateTime()->format('l')) }} </a>
 
@@ -197,46 +178,48 @@
             <th class="col-md-2" style="width: 10%;">Đầu</th>
             <th class="col-md-4">Lô Tô</th>
             </tr>
-          {{--  @php
-            $fullValues = [];
-            $newFullValues = [];
-            $finalValues = [];
-            for ($it=1; $it< 10 ; $it++) {
-                $t= "prize_{$it}";
-                $fNewResult = json_decode($printresult->{$t});
-                foreach ($fNewResult as $keyValues => $mainValue) {
-                    if(is_array($mainValue)) {
-                        foreach ($mainValue as $keySecond => $valSecond) {
-                            $fullValues[$it-2][] = $valSecond;
-                        }
-                    } else if ($keyValues == 'Mã ĐB') {
+            @php
 
-                    } else if ($keyValues == 'G.DB') {
-                        $fullValues[$it-2][] = $mainValue;
-                    } else {
-                        $fullValues[$it-2][] = $mainValue;
+                $fullValues = [];
+                $newFullValues = [];
+                $finalValues = [];
+                for ($it=1; $it< 10 ; $it++) {
+                    $t= "prize_{$it}";
+                    $fNewResult = json_decode($printresult->{$t});
+                    foreach ($fNewResult as $keyValues => $mainValue) {
+
+                        if(count((array)$mainValue) == 1 && is_array($mainValue)) {
+                            $fullValues[] = array_values((array) $mainValue);
+
+                        } else if ($keyValues == 'Mã ĐB') {
+
+                        }else if ($keyValues == 'G.DB') {
+                            $fullValues[] = array_values((array) $mainValue);
+                        } else {
+                            $fullValues[] = array_values((array) $mainValue);
+                        }
                     }
                 }
-            }
 
-            foreach ($fullValues as $index=>$values) {
-                foreach ($values as $in=>$val){
-                    $newFullValues[]= substr($val, -2);
+                foreach ($fullValues as $index=>$values) {
+                    foreach ($values as $in=>$val){
+
+                    //print_r($val);
+                       // array_push($newFullValues,array_values((array)$val));
+                        $newFullValues[]= substr($val, -2);
+                    }
                 }
-            }
 
-            for ($i=0; $i<=9; $i++) {
-               $selectlot = array();
-               foreach($newFullValues as $in=>$val) {
-                    if (substr($val,-2,1) == $i)
-                    $selectlot[] = $val;
-               }
-               $finalValues[] = $selectlot;
-            }
+                for ($i=0; $i<=9; $i++) {
+                    $selectlot = array();
+                                               foreach($newFullValues as $in=>$val) {
+                                                    if (substr($val,-2,1) == $i)
+                                                    $selectlot[] = $val;
+                                               }
+                                               $finalValues[] = $selectlot;
+                                            }
 
-            //echo "<pre>";
-            //print_r($finalValues);
-            for($r = 0 ; $r <=9 ; $r++){  @endphp
+                for($r = 0 ; $r <=9 ; $r++){  @endphp
                 <tr>
                 <td class="text-center">{{ $r }}</td>
                 <td>
@@ -251,7 +234,7 @@
             @php
             }
 
-            @endphp--}}
+            @endphp
 
             </table>
 
