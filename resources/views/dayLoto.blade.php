@@ -112,7 +112,6 @@ $gh = count($content[$key]);
                                         <a href="/{{ getRegionSlug($current['lottery_region']) }}" title="{{ $current['lottery_region'] }}" class="u-line">{{ $current['lottery_region'] }}</a><span> » </span>
                                         <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ $current['day'] }}" class="u-line">{{ $current['lottery_region'] }} {{ engToVit($current['day']) }} </a><span> » </span>
                                         <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line">  {{ $current['lottery_region'] }} {{ $current['result_day_time'] }}</a>
-                                        {{--<a href="#" title="{{ $current['lottery_region'] }}  {{ $key }}" class="u-line">{{ $current['lottery_region'] }} >> {{ $current['day'] }} >> {{ $current['result_day_time'] }}</a>--}}
                                     </h2>
                                 </div>
                                 <div class="block-main-content">
