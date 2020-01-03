@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Result;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use DateTime;
 use Illuminate\Http\Request;
 use MongoDB\BSON\UTCDateTime;
@@ -326,7 +327,18 @@ class Crawler extends Controller
     }
 
     public function CroneJobFull(Request $request){
+        $period = CarbonPeriod::create('2019-01-01', '2020-01-01');
 
+// Iterate over the period
+        foreach ($period as $date) {
+            $d = $date->format('d-m-Y');
+
+            $this->getCurrentResult("xsmb-$d.html");
+        }
+
+// Convert the period to an array of dates
+        $dates = $period->toArray();
+       // print_r($dates);
        // for($j=1;$j<36;$j++){
             for($i=1;$i<7;$i++){
              /*  $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=30&pageIndex=".$i);
@@ -367,13 +379,14 @@ class Crawler extends Controller
                 $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=28&pageIndex=".$i);
                 $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=29&pageIndex=".$i);*/
                 //echo "loadmore-lottery-mb.html?pageIndex=".$i;
-                $this->getCurrentResult("loadmore-lottery-mb-theo-thu.html?pageIndex=$i&dayofWeek=cn");
+                //$this->getCurrentResult("loadmore-lottery-mb-theo-thu.html?pageIndex=$i&dayofWeek=cn");
+                /*$this->getCurrentResult("loadmore-lottery-mb-theo-thu.html?pageIndex=$i&dayofWeek=cn");
                 $this->getCurrentResult("loadmore-lottery-mb-theo-thu.html?pageIndex=$i&dayofWeek=7");
                 $this->getCurrentResult("loadmore-lottery-mb-theo-thu.html?pageIndex=$i&dayofWeek=6");
                 $this->getCurrentResult("loadmore-lottery-mb-theo-thu.html?pageIndex=$i&dayofWeek=5");
                 $this->getCurrentResult("loadmore-lottery-mb-theo-thu.html?pageIndex=$i&dayofWeek=4");
                 $this->getCurrentResult("loadmore-lottery-mb-theo-thu.html?pageIndex=$i&dayofWeek=3");
-                $this->getCurrentResult("loadmore-lottery-mb-theo-thu.html?pageIndex=$i&dayofWeek=2");
+                $this->getCurrentResult("loadmore-lottery-mb-theo-thu.html?pageIndex=$i&dayofWeek=2");*/
                 //$this->getCurrentResult("loadmore-lottery-mb.html?pageIndex=$i");
             }
        // }
