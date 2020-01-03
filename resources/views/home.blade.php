@@ -1,6 +1,6 @@
 @include('header')
 
-<div class="main-content">
+<div class="main-content home">
     <div class="container">
         <div class="row margin-b">
             <div class="col-xs-12 col-sm-12 col-md-6">
@@ -8,9 +8,7 @@
                 <div class="row">
                     @include('todayResult')
                     <div class="col-xs-12 {{ $region }}">
-
-
-                        @php $g = 1;  $tr ='<tr>'; @endphp
+                                                @php $g = 1;  $tr ='<tr>'; @endphp
                         @foreach($content as $key=>$printresult)
                             {{--{{ $key }}--}}
                             @php $date = $key; @endphp
@@ -192,9 +190,9 @@
                                         <thead>
                                         <tr>
                                             @php if($th){
-                                             echo $th; @endphp
+                                              @endphp
                                             <th class="text-center">Giải</th>
-                                            @php } @endphp
+                                            @php echo $th; } @endphp
 
 
                                         </tr>
