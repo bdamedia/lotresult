@@ -16,11 +16,11 @@
     <div class="block" id='xsmb-{{ $g }}'>
         <div class="block-main-heading">
             <h1>
-                @if($printresult->lottery_region == 'XSMN') {{ "Kết Quả Xổ số" }} {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_region }})
+                @if($printresult->lottery_region == 'XSMN') {{ "Kết Quả Xổ số miền Nam" }}  ({{ $printresult->lottery_region }}) - {{ getCompanyName($printresult->lottery_company) }}
 
-                @elseif($printresult->lottery_region == 'XSMT') {{ "Xổ số miền Trung" }} {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_region }})
+                @elseif($printresult->lottery_region == 'XSMT') {{ "Kết Quả Xổ số miền Trung" }} ({{ $printresult->lottery_region }}) - {{ getCompanyName($printresult->lottery_company) }}
 
-                @elseif($printresult->lottery_region == 'XSMB') {{ "Kết Quả Xổ số miền Bắc" }} {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_region }})
+                @elseif($printresult->lottery_region == 'XSMB') {{ "Kết Quả Xổ số miền Bắc" }} ({{ $printresult->lottery_region }}) - {{ getCompanyName($printresult->lottery_company) }}
 
                 @endif </h1>
             </div>
@@ -37,7 +37,7 @@
 
             <div id="u129" class="ax_default box_2">
                 <div id="u129_text" class="text">
-                    <p><span><a href="/ket-qua-xo-so-mien-trung/kqxs-{{ getCompanySlug($printresult->lottery_company) }}-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}">Kết quả Xổ số {{ getCompanyName($printresult->lottery_company) }} {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a></span></p>
+                    <p><span><a href="/ket-qua-xo-so-mien-trung/kqxs-{{ getCompanySlug($printresult->lottery_company) }}-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}">Kết quả Xổ số {{ getCompanyName($printresult->lottery_company) }} {{ $printresult->lottery_region }} {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a></span></p>
                 </div>
             </div>
 
