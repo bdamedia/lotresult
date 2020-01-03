@@ -16,11 +16,11 @@
     <div class="block" id='xsmb-{{ $g }}'>
         <div class="block-main-heading">
             <h1>
-                @if($printresult->lottery_region == 'XSMN') {{ "Kết Quả Xổ số miền Nam" }}  ({{ $printresult->lottery_region }}) - {{ getCompanyName($printresult->lottery_company) }}
+                @if($printresult->lottery_region == 'XSMN') {{ "Kết Quả Xổ số " }}  {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_company }}) 
 
-                @elseif($printresult->lottery_region == 'XSMT') {{ "Kết Quả Xổ số miền Trung" }} ({{ $printresult->lottery_region }}) - {{ getCompanyName($printresult->lottery_company) }}
+                @elseif($printresult->lottery_region == 'XSMT') {{ "Kết Quả Xổ số " }} {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_company }})
 
-                @elseif($printresult->lottery_region == 'XSMB') {{ "Kết Quả Xổ số miền Bắc" }} ({{ $printresult->lottery_region }}) - {{ getCompanyName($printresult->lottery_company) }}
+                @elseif($printresult->lottery_region == 'XSMB') {{ "Kết Quả Xổ số " }} {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_company }})
 
                 @endif </h1>
             </div>
