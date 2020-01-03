@@ -55,8 +55,6 @@ class Crawler extends Controller
 
         //$url = "https://xosodaiphat.com/xsmb-xo-so-mien-bac.html";
 
-
-
         foreach ($resultData as $k=>$res) {
             if (isset($res['data']) && count($res['data']) > 1){
 
@@ -333,7 +331,7 @@ class Crawler extends Controller
         foreach ($period as $date) {
             $d = $date->format('d-m-Y');
 
-            $this->getCurrentResult("xsmb-$d.html");
+           // $this->getCurrentResult("xsmb-$d.html");
         }
 
 // Convert the period to an array of dates
