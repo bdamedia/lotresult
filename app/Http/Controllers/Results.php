@@ -541,8 +541,11 @@ class Results extends Controller
         $url = explode('-',end($checkUrl));
         $url = current($url);
         $region  = strtoupper(str_replace('kq','',$url));
-        $result = Result::where('lottery_region',$region)->orderBy('result_day_time', 'desc')->get();
 
+        $date = Carbon::now()->format('Y-m-d');
+        $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
+        $result = Result::where('lottery_region',$region)->where('result_day_time' ,'>=', $orig_date)->orderBy('result_day_time', 'desc')->limit(2)->get();
+        $new = array();
         $data['region'] = strtolower($region);
         $data['companyName'] = strtoupper($company);
         if($region == 'XSMB'){

@@ -4,13 +4,16 @@
     <div class="container">
         <div class="row margin-b">
             <div class="col-xs-12 col-sm-12 col-md-6 xsmn">
-                <div style="min-height: 163px;text-align: center;" class="margin-40 col-xs-12 margin-b-20">
-
-                    <div class="clock" data-time="16-15-00" id="container"></div>
+                <div style="border: 1px solid #060606;min-height: 163px;text-align: center;" class="margin-40  margin-b-20">
+                    <div style="width: 100%" class="block-main-heading">
+                        @php $mytime = Carbon\Carbon::now(); @endphp
+                        <h1>Kết Quả Xổ Số miền Nam Trực Tiếp {{ engToVit($mytime->toDateTime()->format('l')) }} {{ $mytime->toDateTime()->format('d/m/Y') }}</h1>
+                    </div>
+                    <div class="clock" data-time="16-15-00" ></div>
 
                 </div>
                 <div class="row">
-                    @include('todayResult')
+
                     <div class="col-xs-12 {{ $region }}">
                         @php $g = 1;  $tr ='<tr>'; @endphp
                         @foreach($content as $key=>$printresult)

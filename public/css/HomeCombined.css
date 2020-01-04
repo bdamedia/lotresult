@@ -8342,9 +8342,10 @@ table.livetn4 td.tn_prize {
     color: #fff;
     text-shadow: 0 1px 2px #000;
     text-align: center;
-    background-color: #6d6e71;
+    background-color: #cd0000;
     border-radius: 6px;
-    font-size: 58px
+    /*font-size: 58px;*/
+    font-size: 38px
 }
 
 .flip-clock-wrapper ul li a div.up div.inn {
@@ -8384,7 +8385,7 @@ table.livetn4 td.tn_prize {
 
 .flip-clock-dot {
     display: block;
-    background: #58595b;
+    background: #cd0000;
     width: 10px;
     height: 10px;
     position: absolute;
