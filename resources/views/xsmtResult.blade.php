@@ -16,11 +16,11 @@
                             <div class="block" id='xsmb-{{ $g }}'>
                                 <div class="block-main-heading">
                                     <h1>
-                                        @if($printresult->lottery_region == 'XSMN') {{ "Kết Quả Xổ số" }} {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_region }})
+                                        @if($printresult->lottery_region == 'XSMN') {{ "Kết Quả Xổ số" }} {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_company }})
 
-                                        @elseif($printresult->lottery_region == 'XSMT') {{ "Kết Quả Xổ số miền Trung" }} {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_region }})
+                                        @elseif($printresult->lottery_region == 'XSMT') {{ "Kết Quả Xổ số " }} {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_company }})
 
-                                        @elseif($printresult->lottery_region == 'XSMB') {{ "Kết Quả Xổ số miền Bắc" }} {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_region }})
+                                        @elseif($printresult->lottery_region == 'XSMB') {{ "Kết Quả Xổ số " }} {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_company }})
 
                                     @endif </h1>
                                 </div>
@@ -28,7 +28,7 @@
                                     <h2 class="class-title-list-link">
                                         @php $dayName = $printresult->result_day_time->toDateTime()->format('l'); $dayName = getDaySlug($dayName); @endphp
 
-                                        <a href="/{{ getRegionSlug($printresult->lottery_region) }}" title="XSMB" >{{ $printresult->lottery_region }}</a><span> » </span>
+                                        <a href="/{{ getRegionSlug($printresult->lottery_region) }}" title="{{ $printresult->lottery_region }}" >{{ $printresult->lottery_region }}</a><span> » </span>
                                         <a href="/{{ getRegionSlug($printresult->lottery_region) }}/kq{{ strtolower($printresult->lottery_region) }}-{{$dayName}}" title="{{ $printresult->lottery_region }} Thứ 6" >{{ $printresult->lottery_region }} {{ engToVit($printresult->result_day_time->toDateTime()->format('l')) }}</a><span> » </span>
                                         <a href="/ket-qua-xo-so-mien-trung/kq{{ strtolower($printresult->lottery_region) }}-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}">{{ $printresult->lottery_region }} {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a>
 
