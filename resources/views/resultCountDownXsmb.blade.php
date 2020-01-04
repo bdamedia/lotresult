@@ -8,7 +8,7 @@
         <div style="border: 1px solid #060606;min-height: 163px;text-align: center;" class="margin-40  margin-b-20">
             <div style="width: 100%" class="block-main-heading">
                 @php $mytime = Carbon\Carbon::now(); @endphp
-                <h1>Kết Quả Xổ Số Miền Bắc Trực Tiếp {{ engToVit($mytime->toDateTime()->format('l')) }} {{ $mytime->toDateTime()->format('d/m/Y') }}</h1>
+                <h1>Trực Tiếp XSMB - {{ engToVit($mytime->toDateTime()->format('l')) }} {{ $mytime->toDateTime()->format('d/m/Y') }}</h1>
             </div>
             <h5 style="color: #cd0000;font-weight: 700;">Kết quả xổ số miền Bắc hôm nay được tường thuật trực tiếp lúc 18h10</h5>
             <div class="clock" data-time="18-10-00" ></div>

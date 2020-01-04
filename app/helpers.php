@@ -415,6 +415,18 @@ function getTodayResultCompany(){
 
 }
 
+function getTodayResultCompanyRegion($region){
+
+    $mytime = Carbon\Carbon::now();
+    $dayName = $mytime->toDateTime()->format('l');
+    $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+    $key = array_search($dayName,$bindArrayDay);
+    $list = dayWiseArray($key);
+    $all = RegionCompany::where('lottery_region',$region)->whereIn('lottery_company', $list)->get();
+    return $all;
+
+}
+
 function getDaySlug($dayName){
 $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
 return array_search($dayName,$bindArrayDay);

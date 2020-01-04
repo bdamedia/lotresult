@@ -7,14 +7,17 @@
                 <div style="border: 1px solid #060606;min-height: 163px;text-align: center;" class="margin-40  margin-b-20">
                     <div style="width: 100%" class="block-main-heading">
                         @php $mytime = Carbon\Carbon::now(); @endphp
-                        <h1>Kết Quả Xổ Số miền Nam Trực Tiếp {{ engToVit($mytime->toDateTime()->format('l')) }} {{ $mytime->toDateTime()->format('d/m/Y') }}</h1>
+                        <h1>Trực Tiếp XSMN - {{ engToVit($mytime->toDateTime()->format('l')) }} {{ $mytime->toDateTime()->format('d/m/Y') }}</h1>
                     </div>
+                    <h5 style="color: #cd0000;font-weight: 700;">Kết quả xổ số miền Nam hôm nay được tường thuật trực tiếp lúc 16h15</h5>
+
                     <div class="clock" data-time="16-15-00" ></div>
 
                 </div>
                 <div class="row">
 
                     <div class="col-xs-12 {{ $region }}">
+                        @if(count($content) > 0)
                         @php $g = 1;  $tr ='<tr>'; @endphp
                         @foreach($content as $key=>$printresult)
                             {{--{{ $key }}--}}
@@ -272,7 +275,105 @@
                             </div>
                             @php $g++; @endphp
                         @endforeach
+                        @else
+                            <div style="border: 1px solid #000000;" class="block remove-margin1" id="xsmb-2">
+                                <div class="block-main-heading">
+                                    <h1>Kết Quả Xổ số miền Nam (XSMN) </h1>
+                                </div>
+                                <div class="list-link">
+                                    <h2 class="class-title-list-link">
 
+                                        <a href="/ket-qua-xo-so-mien-nam" title="XSMN">XSMN</a><span> » </span>
+                                        <a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-nam" title="XSMN Thursday">XSMN Thứ năm </a><span> » </span>
+                                        <a href="/ket-qua-xo-so-mien-nam/kqxsmn-ngay-02-01-2020" title="XSMN  Thursday">  XSMN 02/01/2020</a>
+
+
+                                    </h2>
+                                </div>
+                                <div class="block-main-content">
+                                    <table class="table table-bordered table-striped table-xsmn text-table livetn3">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">Giải</th>
+
+                                            @foreach($companies as $comp)
+                                                <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-{{ $comp->lottery_company_slug }}" title="Xổ số XSBTH">{{ $comp->lottery_company_names }}</a></th>
+                                                @endforeach
+                                            {{--<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-binh-thuan" title="Xổ số XSBTH">Bình Thuận</a></th>
+                                            <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-an-giang" title="Xổ số XSAG">An Giang</a></th>
+                                            <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-tay-ninh" title="Xổ số XSTN">Tây Ninh</a></th>--}}
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @for($i=9;$i >= 1;$i--)
+                                            <tr>
+                                                @if($i == 1)
+                                                    <td class="ĐB" style="width: 15%">ĐB</td>
+                                                @else
+                                                    <td class="G.{{ $i }}" style="width: 15%">G.{{ $i-1 }}</td>
+                                                    @endif
+
+                                                @for($j=1;$j<=$companies->count();$j++)
+                                                    <td class="text-center">
+                                                        @if($i == 7)
+                                                        <span class=" number-black-bold div-horizontal">...</span><br>
+                                                        <span class=" number-black-bold div-horizontal">...</span><br>
+                                                        <span class=" number-black-bold div-horizontal">...</span><br>
+                                                        @elseif($i == 5)
+                                                            <span class=" number-black-bold div-horizontal">...</span><br>
+                                                            <span class=" number-black-bold div-horizontal">...</span><br>
+                                                            <span class=" number-black-bold div-horizontal">...</span><br>
+                                                            <span class=" number-black-bold div-horizontal">...</span><br>
+                                                            <span class=" number-black-bold div-horizontal">...</span><br>
+                                                            <span class=" number-black-bold div-horizontal">...</span><br>
+                                                            <span class=" number-black-bold div-horizontal">...</span><br>
+                                                        @elseif($i == 4)
+                                                            <span class=" number-black-bold div-horizontal">...</span><br>
+                                                            <span class=" number-black-bold div-horizontal">...</span><br>
+
+                                                        @else
+                                                            <span class=" number-black-bold div-horizontal">...</span><br>
+
+                                                        @endif
+                                                    </td>
+                                                @endfor
+                                               {{-- <td class="text-center"><span class=" number-black-bold div-horizontal">69</span><br></td>
+                                                <td class="text-center"><span class=" number-black-bold div-horizontal">91</span><br></td>
+                                                <td class="text-center"><span class=" number-black-bold div-horizontal">70</span><br></td>--}}
+                                            </tr>
+                                        @endfor
+
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <hr class="line-header">
+
+
+
+
+                                <div class="block-main-content view-loto">
+
+                                    <p class="padding10">
+                                        <a href="/ket-qua-xo-so-mien-nam/ket-qua-lo-to-mien-nam">Lô tô XSMN</a><span> » </span>
+                                        <a href="/ket-qua-xo-so-mien-nam/ket-qua-lo-to-mien-nam/kqltmn-thu-nam" title="XSMN  Thursday">Lô tô  XSMN Thứ năm </a>
+
+                                    </p>
+                                    <table class="table table-bordered table-loto">
+                                        <tbody>
+                                        <tr>
+                                            <th class="col-md-2" style="width: 10%;">Đầu</th>
+
+                                            <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-binh-thuan" title="Xổ số XSBTH">Bình Thuận</a></th><th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-an-giang" title="Xổ số XSAG">An Giang</a></th><th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-tay-ninh" title="Xổ số XSTN">Tây Ninh</a></th>                                            </tr>
+
+                                        <tr><td class="show_center">0</td><td>05,05,00</td><td>05,01,09</td><td>01,07,05</td></tr><tr><td class="show_center">1</td><td>-</td><td>14</td><td>-</td></tr><tr><td class="show_center">2</td><td>25,21</td><td>22,26</td><td>27</td></tr><tr><td class="show_center">3</td><td>37</td><td>37,32,34,30</td><td>34</td></tr><tr><td class="show_center">4</td><td>40</td><td>42,42</td><td>46,40</td></tr><tr><td class="show_center">5</td><td>53,53</td><td>-</td><td>57,50,58,53,58</td></tr><tr><td class="show_center">6</td><td>69,63,63,61</td><td>64</td><td>64</td></tr><tr><td class="show_center">7</td><td>-</td><td>77</td><td>70</td></tr><tr><td class="show_center">8</td><td>80</td><td>83</td><td>87,85,86</td></tr><tr><td class="show_center">9</td><td>98,96,99,96</td><td>91,90,98</td><td>92</td></tr>
+                                        </tbody></table>
+                                </div>
+                            </div>
+                        @endif
 
                     </div>
 
