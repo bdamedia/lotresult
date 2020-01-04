@@ -3,7 +3,7 @@
 <div class="main-content">
     <div class="container">
         <div class="row margin-b">
-            <div class="col-xs-12 col-sm-12 col-md-6 xsmn">
+            <div class="col-xs-12 col-sm-12 col-md-6 xsmt">
                 <div style="border: 1px solid #060606;min-height: 163px;text-align: center;" class="margin-40  margin-b-20">
                     <div style="width: 100%" class="block-main-heading">
                         @php $mytime = Carbon\Carbon::now(); @endphp
@@ -46,9 +46,9 @@ $gh = count($content[$key]);
                                     if($lot["lottery_region"] == 'XSMT'){
                               $title = "Kết Quả Xổ số miền Trung";
           $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
-                                      }elseif ($lot["lottery_region"] == 'XSMN'){
+                                      }elseif ($lot["lottery_region"] == 'XSMT'){
       $title = "Kết Quả Xổ số miền Nam";
-          $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+          $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
                                       }
 
                                 @endphp
@@ -158,12 +158,12 @@ $gh = count($content[$key]);
                                         <a href="/{{ getRegionSlug($current['lottery_region']) }}" title="{{ $current['lottery_region'] }}">{{ $current['lottery_region'] }}</a><span> » </span>
                                         <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ $current['day'] }}" >{{ $current['lottery_region'] }} {{ engToVit($current['day']) }} </a><span> » </span>
                                         <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" >  {{ $current['lottery_region'] }} {{ $current['result_day_time'] }}</a>
-                                        {{--<a href="#" title="{{ $current['lottery_region'] }}  {{ $key }}">{{ $current['lottery_region'] }} >> {{ $current['day'] }} >> {{ $current['result_day_time'] }}</a>--}}
+
 
                                     </h2>
                                 </div>
                                 <div class="block-main-content">
-                                    <table class="table table-bordered table-striped table-xsmn text-table livetn3">
+                                    <table class="table table-bordered table-striped table-xsmt text-table livetn3">
                                         <thead>
                                         <tr>
                                             <th class="text-center">Giải</th>
@@ -277,30 +277,28 @@ $gh = count($content[$key]);
                         @else
                             <div style="border: 1px solid #000000;" class="block remove-margin1" id="xsmb-2">
                                 <div class="block-main-heading">
-                                    <h1>Kết Quả Xổ số miền Nam (XSMN) </h1>
+                                    <h1>Kết Quả Xổ số miền Nam (XSMT) </h1>
                                 </div>
                                 <div class="list-link">
                                     <h2 class="class-title-list-link">
 
-                                        <a href="/ket-qua-xo-so-mien-nam" title="XSMN">XSMN</a><span> » </span>
-                                        <a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-nam" title="XSMN Thursday">XSMN Thứ năm </a><span> » </span>
-                                        <a href="/ket-qua-xo-so-mien-nam/kqxsmn-ngay-02-01-2020" title="XSMN  Thursday">  XSMN 02/01/2020</a>
+                                        <a href="/ket-qua-xo-so-mien-trung" title="XSMT">XSMT</a><span> » </span>
+                                        <a href="/ket-qua-xo-so-mien-trung/kqxsmt-{{ getDaySlug($mytime->toDateTime()->format('l')) }}" title="XSMT {{ engToVit($mytime->toDateTime()->format('l')) }}">XSMT {{ engToVit($mytime->toDateTime()->format('l')) }} </a><span> » </span>
+                                        <a href="/ket-qua-xo-so-mien-trung/kqxsmt-ngay-{{ $mytime->toDateTime()->format('d-m-Y') }}" title="XSMT  {{ engToVit($mytime->toDateTime()->format('l')) }}">  XSMT {{ $mytime->toDateTime()->format('d/m/Y') }}</a>
 
 
                                     </h2>
                                 </div>
                                 <div class="block-main-content">
-                                    <table class="table table-bordered table-striped table-xsmn text-table livetn3">
+                                    <table class="table table-bordered table-striped table-xsmt text-table livetn3">
                                         <thead>
                                         <tr>
                                             <th class="text-center">Giải</th>
 
                                             @foreach($companies as $comp)
-                                                <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-{{ $comp->lottery_company_slug }}" title="Xổ số XSBTH">{{ $comp->lottery_company_names }}</a></th>
+                                                <th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kqxsmt-{{ $comp->lottery_company_slug }}" title="Xổ số XSBTH">{{ $comp->lottery_company_names }}</a></th>
                                             @endforeach
-                                            {{--<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-binh-thuan" title="Xổ số XSBTH">Bình Thuận</a></th>
-                                            <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-an-giang" title="Xổ số XSAG">An Giang</a></th>
-                                            <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-tay-ninh" title="Xổ số XSTN">Tây Ninh</a></th>--}}
+
 
                                         </tr>
                                         </thead>
@@ -357,8 +355,8 @@ $gh = count($content[$key]);
                                 <div class="block-main-content view-loto">
 
                                     <p class="padding10">
-                                        <a href="/ket-qua-xo-so-mien-nam/ket-qua-lo-to-mien-nam">Lô tô XSMN</a><span> » </span>
-                                        <a href="/ket-qua-xo-so-mien-nam/ket-qua-lo-to-mien-nam/kqltmn-thu-nam" title="XSMN  Thursday">Lô tô  XSMN Thứ năm </a>
+                                        <a href="/ket-qua-xo-so-mien-trung/ket-qua-lo-to-mien-nam">Lô tô XSMT</a><span> » </span>
+                                        <a href="/ket-qua-xo-so-mien-trung/ket-qua-lo-to-mien-nam/kqltmn-thu-nam" title="XSMT  Thursday">Lô tô  XSMT Thứ năm </a>
 
                                     </p>
                                     <table class="table table-bordered table-loto">
@@ -366,7 +364,7 @@ $gh = count($content[$key]);
                                         <tr>
                                             <th class="col-md-2" style="width: 10%;">Đầu</th>
 
-                                            <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-binh-thuan" title="Xổ số XSBTH">Bình Thuận</a></th><th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-an-giang" title="Xổ số XSAG">An Giang</a></th><th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-tay-ninh" title="Xổ số XSTN">Tây Ninh</a></th>                                            </tr>
+                                            <th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kqxsmt-binh-thuan" title="Xổ số XSBTH">Bình Thuận</a></th><th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kqxsmt-an-giang" title="Xổ số XSAG">An Giang</a></th><th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kqxsmt-tay-ninh" title="Xổ số XSTN">Tây Ninh</a></th>                                            </tr>
 
                                         <tr><td class="show_center">0</td><td>05,05,00</td><td>05,01,09</td><td>01,07,05</td></tr><tr><td class="show_center">1</td><td>-</td><td>14</td><td>-</td></tr><tr><td class="show_center">2</td><td>25,21</td><td>22,26</td><td>27</td></tr><tr><td class="show_center">3</td><td>37</td><td>37,32,34,30</td><td>34</td></tr><tr><td class="show_center">4</td><td>40</td><td>42,42</td><td>46,40</td></tr><tr><td class="show_center">5</td><td>53,53</td><td>-</td><td>57,50,58,53,58</td></tr><tr><td class="show_center">6</td><td>69,63,63,61</td><td>64</td><td>64</td></tr><tr><td class="show_center">7</td><td>-</td><td>77</td><td>70</td></tr><tr><td class="show_center">8</td><td>80</td><td>83</td><td>87,85,86</td></tr><tr><td class="show_center">9</td><td>98,96,99,96</td><td>91,90,98</td><td>92</td></tr>
                                         </tbody></table>

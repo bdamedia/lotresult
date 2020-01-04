@@ -284,8 +284,8 @@
                                     <h2 class="class-title-list-link">
 
                                         <a href="/ket-qua-xo-so-mien-nam" title="XSMN">XSMN</a><span> » </span>
-                                        <a href="/ket-qua-xo-so-mien-nam/kqxsmn-thu-nam" title="XSMN Thursday">XSMN Thứ năm </a><span> » </span>
-                                        <a href="/ket-qua-xo-so-mien-nam/kqxsmn-ngay-02-01-2020" title="XSMN  Thursday">  XSMN 02/01/2020</a>
+                                        <a href="/ket-qua-xo-so-mien-nam/kqxsmn-{{ getDaySlug($mytime->toDateTime()->format('l')) }}" title="XSMN {{ engToVit($mytime->toDateTime()->format('l')) }}">XSMN {{ engToVit($mytime->toDateTime()->format('l')) }} </a><span> » </span>
+                                        <a href="/ket-qua-xo-so-mien-nam/kqxsmn-ngay-{{ $mytime->toDateTime()->format('d-m-Y') }}" title="XSMN  {{ engToVit($mytime->toDateTime()->format('l')) }}">  XSMN {{ $mytime->toDateTime()->format('d/m/Y') }}</a>
 
 
                                     </h2>
