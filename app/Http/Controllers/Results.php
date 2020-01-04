@@ -544,7 +544,8 @@ class Results extends Controller
 
         $date = Carbon::now()->format('Y-m-d');
         $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
-        $result = Result::where('lottery_region',$region)->where('result_day_time' ,'>=', $orig_date)->orderBy('result_day_time', 'desc')->limit(2)->get();
+        $c = getTodayResultCompanyRegion($region);
+        $result = Result::where('lottery_region',$region)->where('result_day_time' ,'>=', $orig_date)->orderBy('result_day_time', 'desc')->limit($c->count)->get();
 
         $new = array();
 
