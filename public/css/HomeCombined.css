@@ -8230,9 +8230,8 @@ table.livetn4 td.tn_prize {
     -webkit-user-select: none;
     text-align: center;
     position: relative;
-    width: 100%;
-    max-width: 460px;
-    /*margin: -3em auto -2em 116px*/
+    max-width: 347px;
+    margin: 0 auto;
 }
 
 .flip-clock-meridium {
