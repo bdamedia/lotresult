@@ -540,7 +540,7 @@ class Results extends Controller
         $checkUrl = explode('/',$request->url());
         $url = explode('-',end($checkUrl));
         $url = current($url);
-        echo $region  = strtoupper(str_replace('kq','',$url));
+         $region  = strtoupper(str_replace('kq','',$url));
 
         $date = Carbon::now()->format('Y-m-d');
         $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
