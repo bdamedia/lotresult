@@ -326,8 +326,9 @@ class Crawler extends Controller
 
     public function CroneJobFull(Request $request){
 
-        $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=13&pageIndex=1");
-        $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=15&pageIndex=1");
+
+        $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=33&pageIndex=1");
+        $this->xsmtCurrentResult($request,"getmore-kqdai-ajax.html?lotteryId=32&pageIndex=1");
        // $period = CarbonPeriod::create('2019-01-01', '2020-01-01');
 
 // Iterate over the period

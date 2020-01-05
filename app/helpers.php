@@ -207,7 +207,7 @@ function crawlUrlModified($url=null){
 
             if($idElem->length > 0){
 
-                $res1[$idElem->item(0)->nodeValue] = array_filter(explode(',',preg_replace('/\s+/', ',',  $idElem->item(1)->nodeValue)));
+                $res1[utf8_decode($idElem->item(0)->nodeValue)] = array_filter(explode(',',preg_replace('/\s+/', ',',  $idElem->item(1)->nodeValue)));
             }
 
         }
