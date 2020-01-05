@@ -195,14 +195,63 @@
             <th class="col-md-2" style="width: 10%;">Đầu</th>
             <th class="col-md-4">Lô Tô</th>
             </tr>
-                @if($printresult['board'])
-                    @php $boardRes = json_decode($printresult['board']) @endphp
-                @foreach($boardRes as $ke=>$bingoData)
+                @php
+
+                    $fullValues = [];
+                    $newFullValues = [];
+                    $finalValues = [];
+                    for ($it=1; $it< 10 ; $it++) {
+                        $t= "prize_{$it}";
+                        $fNewResult = json_decode($printresult[$t]);
+                        foreach ($fNewResult as $keyValues => $mainValue) {
+
+                            if(count((array)$mainValue) == 1 && is_array($mainValue)) {
+                                $fullValues[] = array_values((array) $mainValue);
+
+                            } else if ($keyValues == 'Mã ĐB') {
+
+                            }else if ($keyValues == 'G.DB') {
+                                $fullValues[] = array_values((array) $mainValue);
+                            } else {
+                                $fullValues[] = array_values((array) $mainValue);
+                            }
+                        }
+                    }
+
+                    foreach ($fullValues as $index=>$values) {
+                        foreach ($values as $in=>$val){
+
+                        //print_r($val);
+                           // array_push($newFullValues,array_values((array)$val));
+                            $newFullValues[]= substr($val, -2);
+                        }
+                    }
+
+                    for ($i=0; $i<=9; $i++) {
+                        $selectlot = array();
+                                                   foreach($newFullValues as $in=>$val) {
+                                                        if (substr($val,-2,1) == $i)
+                                                        $selectlot[] = $val;
+                                                   }
+                                                   $finalValues[] = $selectlot;
+                                                }
+
+                    for($r = 0 ; $r <=9 ; $r++){  @endphp
                 <tr>
-                    <td class="text-center">{{ $ke }}</td><td>{{ $bingoData }}</td>
+                    <td class="text-center">{{ $r }}</td>
+                    <td>
+                        @php  if(!empty($finalValues[$r])){
+                        echo implode(',',$finalValues[$r]);
+                    } else{
+                        echo "--";
+                    }
+                        @endphp
+                    </td>
                 </tr>
-                @endforeach
-                @endif
+                @php
+                    }
+
+                @endphp
 
             </table>
             </div>
