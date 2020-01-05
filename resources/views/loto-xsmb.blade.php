@@ -37,6 +37,7 @@
                                             <th class="col-md-4">Lô Tô</th>
                                         </tr>
                                         @php
+
                                             $fullValues = [];
                                             $newFullValues = [];
                                             $finalValues = [];
@@ -44,37 +45,38 @@
                                                 $t= "prize_{$it}";
                                                 $fNewResult = json_decode($printresult->{$t});
                                                 foreach ($fNewResult as $keyValues => $mainValue) {
-                                                    if(is_array($mainValue)) {
-                                                        foreach ($mainValue as $keySecond => $valSecond) {
-                                                            $fullValues[$it-2][] = $valSecond;
-                                                        }
+
+                                                    if(count((array)$mainValue) == 1 && is_array($mainValue)) {
+                                                        $fullValues[] = array_values((array) $mainValue);
+
                                                     } else if ($keyValues == 'Mã ĐB') {
 
-                                                    } else if ($keyValues == 'G.DB') {
-                                                        $fullValues[$it-2][] = $mainValue;
+                                                    }else if ($keyValues == 'G.DB') {
+                                                        $fullValues[] = array_values((array) $mainValue);
                                                     } else {
-                                                        $fullValues[$it-2][] = $mainValue;
+                                                        $fullValues[] = array_values((array) $mainValue);
                                                     }
                                                 }
                                             }
 
                                             foreach ($fullValues as $index=>$values) {
                                                 foreach ($values as $in=>$val){
+
+                                                //print_r($val);
+                                                   // array_push($newFullValues,array_values((array)$val));
                                                     $newFullValues[]= substr($val, -2);
                                                 }
                                             }
 
                                             for ($i=0; $i<=9; $i++) {
-                                               $selectlot = array();
-                                               foreach($newFullValues as $in=>$val) {
-                                                    if (substr($val,-2,1) == $i)
-                                                    $selectlot[] = $val;
-                                               }
-                                               $finalValues[] = $selectlot;
-                                            }
+                                                $selectlot = array();
+                                                                           foreach($newFullValues as $in=>$val) {
+                                                                                if (substr($val,-2,1) == $i)
+                                                                                $selectlot[] = $val;
+                                                                           }
+                                                                           $finalValues[] = $selectlot;
+                                                                        }
 
-                                            //echo "<pre>";
-                                            //print_r($finalValues);
                                             for($r = 0 ; $r <=9 ; $r++){  @endphp
                                         <tr>
                                             <td class="text-center">{{ $r }}</td>
