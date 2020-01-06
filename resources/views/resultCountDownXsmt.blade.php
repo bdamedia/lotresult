@@ -147,7 +147,7 @@ $gh = count($content[$key]);
 
                             @php $current = current($printresult);  @endphp
 
-                            <div class="block remove-margin" id='xsmb-{{ $g }}'>
+                            <div class="block" id='xsmb-{{ $g }}'>
                                 <div class="block-main-heading">
                                     <h1>{{ $title }} ({{ $current['lottery_region'] }}) </h1>
                                 </div>
