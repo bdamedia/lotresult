@@ -1878,6 +1878,9 @@ table.livetn4 td.tn_prize div.output {
         text-align: center;
         display: inline-block;
     }
+    #u118 {
+        padding-left: 7px;
+    }
     .fix-width-right {
         width: 100%!important;
     }
