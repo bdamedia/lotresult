@@ -366,11 +366,29 @@
                                         <tbody>
                                         <tr>
                                             <th class="col-md-2" style="width: 10%;">Đầu</th>
+                                            @foreach($companies as $comp)
+                                                <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-{{ $comp->lottery_company_slug }}" title="Xổ số {{ $comp->lottery_company }}">{{ $comp->lottery_company_names }}</a></th>
 
-                                            <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-binh-thuan" title="Xổ số XSBTH">Bình Thuận</a></th><th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-an-giang" title="Xổ số XSAG">An Giang</a></th><th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-tay-ninh" title="Xổ số XSTN">Tây Ninh</a></th>                                            </tr>
 
-                                        <tr><td class="show_center">0</td><td>05,05,00</td><td>05,01,09</td><td>01,07,05</td></tr><tr><td class="show_center">1</td><td>-</td><td>14</td><td>-</td></tr><tr><td class="show_center">2</td><td>25,21</td><td>22,26</td><td>27</td></tr><tr><td class="show_center">3</td><td>37</td><td>37,32,34,30</td><td>34</td></tr><tr><td class="show_center">4</td><td>40</td><td>42,42</td><td>46,40</td></tr><tr><td class="show_center">5</td><td>53,53</td><td>-</td><td>57,50,58,53,58</td></tr><tr><td class="show_center">6</td><td>69,63,63,61</td><td>64</td><td>64</td></tr><tr><td class="show_center">7</td><td>-</td><td>77</td><td>70</td></tr><tr><td class="show_center">8</td><td>80</td><td>83</td><td>87,85,86</td></tr><tr><td class="show_center">9</td><td>98,96,99,96</td><td>91,90,98</td><td>92</td></tr>
-                                        </tbody></table>
+                                            @endforeach
+                                        </tr>
+                                        @for($i=0;$i < 9;$i++)
+                                            <tr>
+                                                <td class="show_center">{{ $i }}</td>
+                                         @for($j=1;$j<=$companies->count();$j++)
+
+
+                                                <td>--</td>
+
+
+                                            @endfor
+                                            </tr>
+                                        @endfor
+
+
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         @endif
