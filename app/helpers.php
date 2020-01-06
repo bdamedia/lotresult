@@ -448,6 +448,11 @@ function engToVit($day){
 
 function metaData(){
     $metaData = array();
+
+    $metaData['home']['title'] = 'KQXS - Kết Quả Xổ Số 3 Miền Hôm Nay - Tường thuật trực tiếp kqxs';
+    $metaData['home']['keywords'] = 'kqxs, xo so, ket qua xo so, xoso, xskt, kết quả xổ số, xo so hom nay, xo so truc tiep';
+    $metaData['home']['description'] = 'KQXS - Xo So - Tường thuật kết quả xổ số hôm nay trực tiếp từ trường quay, nhanh chóng, chính xác cho cả 3 miền Bắc, Trung, Nam và XS Mega. XSKT, Dự đoán xổ số, Soi cầu hàng ngày.';
+
     $metaData['ket-qua-xo-so-mien-nam']['title'] = 'XSMN - Kết Quả Xổ Số Miền Nam Hôm Nay - KQXSMN';
     $metaData['ket-qua-xo-so-mien-nam']['keywords'] = 'xsmn, xo so mien nam, sxmn, xổ số miền nam, xs mn, xs mien nam, xosomien nam, xo so truc tiep mien nam, xsmn hom nay';
     $metaData['ket-qua-xo-so-mien-nam']['description'] = 'XSMN - Xổ Số Miền Nam được cập nhật trực tiếp lúc 16h10 hàng ngày nhanh chóng, chính xác. SXMN, ket qua xo so mien nam, xs mien nam, xsmn hom nay, XSMN';
@@ -459,5 +464,33 @@ function metaData(){
     $metaData['ket-qua-xo-so-mien-trung']['title'] = 'XSMT - Kết Quả Xổ Số Miền Trung Hôm Nay - KQXSMT';
     $metaData['ket-qua-xo-so-mien-trung']['keywords'] = 'xsmt, sxmt, xs mien trung, xổ số miền trung, xo so mien trung hom nay, kqxs mien trung';
     $metaData['ket-qua-xo-so-mien-trung']['description'] = 'XSMT - SXMT - Kết quả xổ số miền Trung được cập nhật trực tiếp lúc 17h15 hàng ngày nhanh chóng, chính xác. XS Mien Trung, Xo so mien Trung hom nay.';
+
+    $metaData['thu-hai']['title'] = 'XSMN Thứ hai - Kết Quả Xổ Số Miền Nam Thứ hai Hàng Tuần - KQXSMN Thứ hai';
+    $metaData['thu-hai']['keywords'] = 'XSMN Thứ hai, XSMN Thứ hai Hang Tuan, SXMN Thứ hai, KQXSMN Thứ hai';
+    $metaData['thu-hai']['description'] = 'XSMN Thứ hai - Kết quả xổ số miền Nam Thứ hai hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
+
+    $metaData['thu-ba']['title'] = 'XSMN Thứ ba - Kết Quả Xổ Số Miền Nam Thứ ba Hàng Tuần - KQXSMN Thứ ba';
+    $metaData['thu-ba']['keywords'] = 'XSMN Thứ ba, XSMN Thứ ba Hang Tuan, SXMN Thứ ba, KQXSMN Thứ ba';
+    $metaData['thu-ba']['description'] = 'XSMN Thứ ba - Kết quả xổ số miền Nam Thứ ba hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
+
+    $metaData['thu-tu']['title'] = 'XSMN Thứ tư - Kết Quả Xổ Số Miền Nam Thứ tư Hàng Tuần - KQXSMN Thứ tư';
+    $metaData['thu-tu']['keywords'] = 'XSMN Thứ tư, XSMN Thứ tư Hang Tuan, SXMN Thứ tư, KQXSMN Thứ tư';
+    $metaData['thu-tu']['description'] = 'XSMN Thứ tư - Kết quả xổ số miền Nam Thứ tư hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
+
+    $metaData['thu-nam']['title'] = 'XSMN Thứ năm - Kết Quả Xổ Số Miền Nam Thứ năm Hàng Tuần - KQXSMN Thứ năm';
+    $metaData['thu-nam']['keywords'] = 'XSMN Thứ năm, XSMN Thứ năm Hang Tuan, SXMN Thứ năm, KQXSMN Thứ năm';
+    $metaData['thu-nam']['description'] = 'XSMN Thứ năm - Kết quả xổ số miền Nam Thứ năm hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
+
+    $metaData['thu-sau']['title'] = 'XSMN Thứ sáu - Kết Quả Xổ Số Miền Nam Thứ sáu Hàng Tuần - KQXSMN Thứ sáu';
+    $metaData['thu-sau']['keywords'] = 'XSMN Thứ sáu, XSMN Thứ sáu Hang Tuan, SXMN Thu 2, KQXSMN Thứ sáu';
+    $metaData['thu-sau']['description'] = 'XSMN Thứ sáu - Kết quả xổ số miền Nam Thứ sáu hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
+
+    $metaData['thu-bay']['title'] = 'XSMN Thứ bảy - Kết Quả Xổ Số Miền Nam Thứ bảy Hàng Tuần - KQXSMN Thứ bả';
+    $metaData['thu-bay']['keywords'] = 'XSMN Thứ bảy, XSMN Thu 2 Hang Tuan, SXMN Thứ bảy, KQXSMN Thứ bả';
+    $metaData['thu-bay']['description'] = 'XSMN Thứ bảy - Kết quả xổ số miền Nam Thứ bảy hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
+
+    $metaData['chu-nhat']['title'] = 'XSMN Chủ Nhật - Kết Quả Xổ Số Miền Nam Chủ Nhật Hàng Tuần - KQXSMN Chủ Nhật';
+    $metaData['chu-nhat']['keywords'] = 'XSMN Chủ Nhật, XSMN Thu 2 Hang Tuan, SXMN Chủ Nhật, KQXSMN Chủ Nhật';
+    $metaData['chu-nhat']['description'] = 'XSMN Chủ Nhật - Kết quả xổ số miền Nam Chủ Nhật hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
 return $metaData;
 }
