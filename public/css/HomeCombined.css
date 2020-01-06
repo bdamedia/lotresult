@@ -3147,11 +3147,7 @@ select[multiple].input-lg, textarea.input-lg {
         vertical-align: middle
     }
 
-    .form-inline .form-control {
-        display: inline-block;
-        width: auto;
-        vertical-align: middle
-    }
+
 
     .form-inline .input-group {
         display: inline-table;

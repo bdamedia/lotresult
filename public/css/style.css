@@ -146,11 +146,14 @@ ul.main-menu>li {
     padding: 10px
 }
 .form-doveso .form-group {
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    padding: 6px 0px;
+    width: 136px;
 }
 .form-group {
     margin-bottom: 15px
 }
+
 .form-control,
 output {
     font-size: 14px;
@@ -1727,7 +1730,7 @@ table.livetn4 td.tn_prize div.output {
     }
     .form-inline .form-control {
         display: inline-block;
-        width: auto;
+       /* width: auto;*/
         vertical-align: middle
     }
     .navbar-nav {
