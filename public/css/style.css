@@ -1854,8 +1854,20 @@ table.livetn4 td.tn_prize div.output {
         font-size: 14px
     }
     .list-link {
+        text-align: center;
         font-size: 13px;
-        padding: 3px 0
+        padding: 3px 0;
+        float: left;
+        width: 100%;
+
+    }
+    .class-title-list-link {
+        text-align: center;
+        display: inline-block;
+    }
+    .list-link h2 span, .list-link h3 span{
+        float: left;
+        display: inline-block;
     }
     .sub-heading h3,
     table.table-statistic tbody tr td:nth-child(even) {
@@ -2009,7 +2021,7 @@ table.table-bordered tbody tr th.col-md-2{
 .remove-line-height div{
    padding: 2px;
 }
-.list-link a, .table-loto th { 
+.list-link a, .table-loto th {
     color: #337ab7;
 }
 #u129_text span a{
