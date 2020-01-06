@@ -133,8 +133,12 @@ class Results extends Controller
     public function xsmn(Request $request,$company='XSTG'){
 
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+        if(strpos($company,'qxs-') > 0){
+            $final = str_replace('kqxs-','',str_replace('-ngay-','/',$company));
+            $data = explode('/',$final);
+            return $this->singleDateResult($data);
 
-        if(strpos($company,'ngay') > 0){
+        }elseif(strpos($company,'ngay') > 0){
             return $this->allRegionDate($request,$company,$region='XSMN');
         }elseif(strpos($company,'qxsmn-') > 0){
             $final = str_replace('kqxsmn-','',$company);
@@ -166,6 +170,22 @@ class Results extends Controller
         return view('xsmnResult')->with($data);
     }
 
+    public function singleDateResult($slug=null){
+
+        $code = getCompanyCode(current($slug));
+        $date = end($slug);
+        $da = explode('-', $date);
+        $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+        $orig_dateNew = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+        $orig_dateNew = $orig_dateNew->addDay(1);
+        $result = Result::where('lottery_company', $code)->where('result_day_time','>=',$orig_date)->where('result_day_time','<',$orig_dateNew)->orderBy('result_day_time', 'desc')->get();
+        $data['region'] = "xsmn";
+        $data['companyName'] = $code;
+        $data['content'] = $result;
+        $data['enableTab'] = false;
+
+        return view('xsmnResult')->with($data);
+    }
 
     public function xsmnIndex(Request $request,$company='XSTG'){
         $result = Result::where('lottery_region', 'XSMN')->orderBy('result_day_time', 'desc')->get();
@@ -246,7 +266,12 @@ class Results extends Controller
 
     public function xsmt(Request $request,$company='XSQNA')
     {
-        if(strpos($company,'ngay') > 0) {
+        if(strpos($company,'qxs-') > 0){
+            $final = str_replace('kqxs-','',str_replace('-ngay-','/',$company));
+            $data = explode('/',$final);
+            return $this->singleDateResult($data);
+
+        }elseif(strpos($company,'ngay') > 0) {
             return $this->allRegionDate($request, $company, $region = 'XSMT');
         }elseif(strpos($company,'qxsmt-') > 0){
             $bindArrayDay = array('thu-hai' => 'Monday', 'thu-ba' => 'Tuesday', 'thu-tu' => 'Wednesday', 'thu-nam' => 'Thursday', 'thu-sau' => 'Friday', 'thu-bay' => 'Saturday', 'chu-nhat' => 'Sunday');
