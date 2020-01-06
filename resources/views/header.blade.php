@@ -16,18 +16,11 @@
           content="{{ end($reload) }}, {{ end($reload) }}, {{ end($reload) }}, {{ end($reload) }}, xổ số miền bắc, ket qua xsmb, xo so mien bac, xsmb hom nay, kết quả xổ số miền bắc"/>
     <link rel='canonical' href='https://xosodaiphat.com/xsmb-xo-so-mien-bac.html'/>
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-    <meta name="COPYRIGHT" content="Copyright (C) 2015 xosodaiphat.com"/>
+    <meta name="COPYRIGHT" content="Copyright (C) 2020 xosodaiphat.com"/>
     <meta name="RATING" content="GENERAL"/>
     <meta name="revisit-after" content="1 days"/>
     <meta name="DC.title" content="xo so, ket qua xo so, {{ end($reload) }}, xsmn, kqxs, xo so 3 mien nhanh nhat"/>
-    <meta name="geo.region" content="VN-HN"/>
-    <meta name="geo.placename" content="ha noi"/>
-    <meta name="geo.position" content="21.0312486,105.7823703"/>
-    <meta name="ICBM" content="21.0312486,105.7823703"/>
-    <meta name="y_key" content=""/>
-    <meta name="msvalidate.01" content="620A159A1964104173AA8028E443F628"/>
     <meta name="robots" content="index, follow"/>
-    <meta property="fb:app_id" content="1468450940082700"/>
     <meta property="og:site_name" content="Xổ số Đại Phát"/>
     <meta property="og:title" content="XSMB - SXMB - Kết Quả Xổ Số Miền Bắc Hôm Nay - KQXSMB"/>
     <meta property="og:url" content="{{ request()->fullUrl() }}"/>

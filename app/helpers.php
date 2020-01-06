@@ -445,3 +445,19 @@ function engToVit($day){
     $bindVitDay = array('Monday'=>'Thứ hai','Tuesday'=>'Thứ ba','Wednesday'=>'Thứ tư','Thursday'=>'Thứ năm','Friday'=>'Thứ sáu','Saturday'=>'Thứ bảy','Sunday'=>'Chủ Nhật');
     return $bindVitDay[$day];
 }
+
+function metaData(){
+    $metaData = array();
+    $metaData['ket-qua-xo-so-mien-nam']['title'] = 'XSMN - Kết Quả Xổ Số Miền Nam Hôm Nay - KQXSMN';
+    $metaData['ket-qua-xo-so-mien-nam']['keywords'] = 'xsmn, xo so mien nam, sxmn, xổ số miền nam, xs mn, xs mien nam, xosomien nam, xo so truc tiep mien nam, xsmn hom nay';
+    $metaData['ket-qua-xo-so-mien-nam']['description'] = 'XSMN - Xổ Số Miền Nam được cập nhật trực tiếp lúc 16h10 hàng ngày nhanh chóng, chính xác. SXMN, ket qua xo so mien nam, xs mien nam, xsmn hom nay, XSMN';
+
+    $metaData['ket-qua-xo-so-mien-bac']['title'] = 'XSMB - Kết Quả Xổ Số Miền Bắc Hôm Nay - KQXSMB';
+    $metaData['ket-qua-xo-so-mien-bac']['keywords'] = 'xsmb, sxmb, kqxsmb, xstd, xổ số miền bắc, ket qua xsmb, xo so mien bac, xsmb hom nay, kết quả xổ số miền bắc';
+    $metaData['ket-qua-xo-so-mien-bac']['description'] = 'XSMB - Kết quả xổ số miền Bắc hôm nay - KQXSMB - Tường thuật trực tiếp lúc 18h15 hàng ngày nhanh chóng, chính xác, cập nhật liên tục.';
+
+    $metaData['ket-qua-xo-so-mien-trung']['title'] = 'XSMT - Kết Quả Xổ Số Miền Trung Hôm Nay - KQXSMT';
+    $metaData['ket-qua-xo-so-mien-trung']['keywords'] = 'xsmt, sxmt, xs mien trung, xổ số miền trung, xo so mien trung hom nay, kqxs mien trung';
+    $metaData['ket-qua-xo-so-mien-trung']['description'] = 'XSMT - SXMT - Kết quả xổ số miền Trung được cập nhật trực tiếp lúc 17h15 hàng ngày nhanh chóng, chính xác. XS Mien Trung, Xo so mien Trung hom nay.';
+return $metaData;
+}
