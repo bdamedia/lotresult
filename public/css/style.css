@@ -1869,6 +1869,12 @@ table.livetn4 td.tn_prize div.output {
         float: left;
         display: inline-block;
     }
+    .table_cell {
+        margin-left: 2px;
+    }
+    .fix-width-right {
+        width: 100%!important;
+    }
     .sub-heading h3,
     table.table-statistic tbody tr td:nth-child(even) {
         font-size: 15px

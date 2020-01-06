@@ -58,12 +58,7 @@
                                          class="img-responsive"></a>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-10">
-                    <div>
-                        <a href="/reload{{ getCompanyUrlHead(end($reload)) }}"
-                           style="float: right;padding: 10px;background: red;color: white;font-weight: bold;">Reload</a>
-                    </div>
-                </div>
+
             </div>
         </div>
     </header>
@@ -119,81 +114,8 @@
                             </ul>
                         </div>
                     </li>
-                    
-                    {{-- <li class="list_border"><a href="/xo-so-vietlott" title="Vietlott">Vietlott</a>
-                        <div class="menu-lv2-down">
-                            <ul>
-                                <li><a href="/xo-so-dien-toan-tu-chon-mega-645.html" title="XS Mega 6/45">XS Mega
-                                        6/45</a></li>
-                                <li><a href="/xo-so-max4d.html" title="XS Max 4D">XS Max 4D</a></li>
-                                <li><a href="/xs-power-xo-so-power-655.html" title="Power 6/55">Power 6/55</a></li>
-                                <li><a href="/xo-so-max3d.html" title="XS Max 3D">XS Max 3D</a></li>
-                            </ul>
-                        </div>
-                    </li>
 
-                    <li class="list_border"><a href="/cau-mien-bac/kqxs-dien_toan_first" title="Thống kê cầu">XS Điện toán</a>
-                        <div class="menu-lv2-down">
-                            <ul>
-                                <li><a href="/cau-mien-bac/kqxs-dien_toan_first" title="Cầu Bạch thủ">XS Điện toán 6/36</a></li>
-                                <li><a href="/cau-mien-bac/kqxs-dien-toan_second" title="Cầu Lật liên tục">XS Điện toán 123</a></li>
-                                <li><a href="/cau-mien-bac/kqxs-dien-toan_third" title="Cầu Về cả cặp">XS Thần tài 4</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="list_border"><a href="/thond-keys/thond-key-lo" title="Thống kê lô">Thống kê</a>
-                        <div class="menu-lv2-down">
-                            <ul>
-                                <li><a href="/thond-keys/thond-key-lo" title="Lô gan">Thống kê lô</a></li>
-                                <li><a href="/thond-keys/thond-keys-gan" title="Lô xiên">Thống kê lô gan</a></li>
-                                <li><a href="/thond-keys/thond-keys-cang" title="Lô kép">Thống kê 3 càng</a></li>
-                                <li><a href="/thond-keys/thond-keys-biet" title="TK đầu">Thống kê đề đặc biệt</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="list_border"><a href="/lo-to-mien-bac/ket-qua-lo-to-mien-bac.html" title="Lô Tô">Tin tức</a>
-                        <div class="menu-lv2-down">
-                            <ul>
-                                <li><a href="/lo-to-mien-bac/ket-qua-lo-to-mien-bac.html" title="Lô tô miền Bắc">Lô tô
-                                        miền Bắc</a></li>
-                                <li><a href="/lo-to-mien-nam/ket-qua-lo-to-mien-nam.html" title="Lô tô miền Nam">Lô tô
-                                        miền Nam</a></li>
-                                <li><a href="/lo-to-mien-trung/ket-qua-lo-to-mien-trung.html" title="Lô tô miền Trung">Lô
-                                        tô miền Trung</a></li>
-                            </ul>
-                        </div>
-                    </li>--}}
-                    
 
-                   {{-- <li class="list_border"><a href="/quay-thu-xo-so.html" title="Quay thử">Tin tức</a>
-                        <div class="menu-lv2-down">
-                            <ul>
-                                <li><a href="/quay-thu-xo-so-mien-bac.html" title="Quay thử miền Bắc">Quay thử XSMB</a>
-                                </li>
-                                <li><a href="/quay-thu-xo-so-mien-trung.html" title="Quay thử miền Trung">Quay thử
-                                        XSMT</a></li>
-                                <li><a href="/quay-thu-xo-so-mien-nam.html" title="Quay thử miền Nam">Quay thử XSMN</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>--}}
-
-                    {{--<li class="list_border"><a href="/thong-ke-xo-so.html" title="Thống Kê Xổ Số">Thống Kê Xổ Số</a>
-                        <div class="menu-lv2-down">
-                            <ul>
-                                <li><a href="/thong-ke-xsmb-c2579-article.html" title="Thống kê XSMB">Thống kê XSMB</a>
-                                </li>
-                                <li><a href="/thong-ke-xsmn-c2581-article.html" title="Thống kê XSMN">Thống kê XSMN</a>
-                                </li>
-                                <li><a href="/thong-ke-xsmt-c2582-article.html" title="Thống kê XSMT">Thống kê XSMT</a>
-                                </li>
-                                <li><a href="/tin-tuc/tin-tuc-c2583-article.html" title="Tin xổ số">Tin xổ số</a></li>
-                            </ul>
-                        </div>
-                    </li>--}}
-
-                    {{--<li class=""><a href="/dang-nhap.html" title="Đăng nhập"><i class="fa fa-user"
-                                                                                aria-hidden="true"></i></a></li>--}}
                 </ul>
             </div>
         </nav>
@@ -372,4 +294,10 @@
                 <li class="btn-close"><i class="fa fa-times" aria-hidden="true"></i> Đóng danh mục</li>
             </ul>
         </div>
+        {{--<div class="col-xs-12 col-sm-12 col-md-10">
+            <div>
+                <a href="/reload{{ getCompanyUrlHead(end($reload)) }}"
+                   style="float: right;padding: 10px;background: red;color: white;font-weight: bold;">Reload</a>
+            </div>
+        </div>--}}
     </div>
