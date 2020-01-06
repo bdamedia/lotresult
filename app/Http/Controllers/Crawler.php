@@ -316,7 +316,8 @@ class Crawler extends Controller
     }
 
     public function CroneJob(Request $request){
-        $all = RegionCompany::all();
+
+        $all = getTodayResultCompany();
 
         foreach ($all as $c){
             echo $c->lottery_company_url;
