@@ -1874,6 +1874,9 @@ table.livetn4 td.tn_prize div.output {
     }
     .table_cell {
         margin-left: 2px;
+        width: 32%;
+        text-align: center;
+        display: inline-block;
     }
     .fix-width-right {
         width: 100%!important;
