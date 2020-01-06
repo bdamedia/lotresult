@@ -1884,6 +1884,12 @@ table.livetn4 td.tn_prize div.output {
     .fix-width-right {
         width: 100%!important;
     }
+    .form-doveso .form-group {
+        width: 100%;
+    }
+    .text-12{
+        text-align: center;
+    }
     .sub-heading h3,
     table.table-statistic tbody tr td:nth-child(even) {
         font-size: 15px
