@@ -5,6 +5,7 @@ use App\Result;
 use App\RegionCompany;
 
 
+
 function crawlUrl($url=null){
 
     if($url == null){
@@ -475,12 +476,26 @@ function metaData($key='home'){
     }else{
         $mainPage = 'Xổ Số 3 Miền';
     }
-    $key = $path;
 
+    $key = $path;
+    $d = new Carbon\Carbon();
+    if(strpos($key,'qxs-') > 0 ){
+        $date = str_replace('kqxs-','',$key);
+        $date =  $d::parse(strtotime($date))->format('d/m/Y');
+        $date2 = $d::parse(strtotime($date))->format('d/m');
+        $key = 'date';
+    }else{
+        $date = $d::today()->format('!d/m/Y');
+        $date2 = $d::today()->format('!d/m');
+    }
 
     $metaData['home']['title'] = 'KQXS - Kết Quả Xổ Số 3 Miền Hôm Nay - Tường thuật trực tiếp kqxs';
     $metaData['home']['keywords'] = 'kqxs, xo so, ket qua xo so, xoso, xskt, kết quả xổ số, xo so hom nay, xo so truc tiep';
     $metaData['home']['description'] = 'KQXS - Xo So - Tường thuật kết quả xổ số hôm nay trực tiếp từ trường quay, nhanh chóng, chính xác cho cả 3 miền Bắc, Trung, Nam và XS Mega. XSKT, Dự đoán xổ số, Soi cầu hàng ngày.';
+
+    $metaData['date']['title'] = "KQXS - Kết Quả Xổ Số 3 Miền Ngày $date";
+    $metaData['date']['keywords'] = "kqxs, xo so, ket qua xo so, xoso, xskt, kết quả xổ số, xo so hom nay, xo so truc tiep,kqxs ngày $date2";
+    $metaData['date']['description'] = 'KQXS - Xo So - Tường thuật kết quả xổ số hôm nay trực tiếp từ trường quay, nhanh chóng, chính xác cho cả 3 miền Bắc, Trung, Nam và XS Mega. XSKT, Dự đoán xổ số, Soi cầu hàng ngày.';
 
     $metaData['ket-qua-xo-so-mien-nam']['title'] = 'XSMN - Kết Quả Xổ Số Miền Nam Hôm Nay - KQXSMN';
     $metaData['ket-qua-xo-so-mien-nam']['keywords'] = 'xsmn, xo so mien nam, sxmn, xổ số miền nam, xs mn, xs mien nam, xosomien nam, xo so truc tiep mien nam, xsmn hom nay';
