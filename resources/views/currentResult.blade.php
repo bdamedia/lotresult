@@ -245,8 +245,6 @@
             @php $g++; @endphp
     @endforeach
 
-       {{-- {{ $printresult->links() }}--}}
-
     </div>
     </div>
 
@@ -259,3 +257,33 @@
     </div>
 </div>
 @include('footer')
+<script>
+    function loadMoreData(page){
+        $.ajax(
+            {
+                url: '?page=' + page,
+                type: "get",
+                beforeSend: function()
+                {
+                    $('.ajax-load').show();
+                }
+            })
+            .done(function(data)
+            {
+                if(data.html == " "){
+                    $('.ajax-load').html("No more records found");
+                    return;
+                }
+                $('.ajax-load').hide();
+                $("img").lazyload({
+                    effect : "fadeIn",
+                    effectTime: 1500
+                });
+                $("#post-data").append(data.html);
+            })
+            .fail(function(jqXHR, ajaxOptions, thrownError)
+            {
+                console.log('server not responding...');
+            });
+    }
+</script>

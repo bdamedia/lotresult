@@ -1057,6 +1057,17 @@ a:hover,a:focus{
 .menu-lv2-down ul li:hover a {
     color: #fff
 }*/
+
+/*.DynarchCalendar{
+    height: 188px;
+}
+.DynarchCalendar table{
+    height: 30px;
+}
+.DynarchCalendar-body {
+    height: 137px!important;
+}*/
+
 ul.main-menu li:hover .menu-lv2-down {
     display: block
 }

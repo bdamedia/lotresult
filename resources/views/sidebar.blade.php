@@ -4,7 +4,7 @@
     <h2 class="hide">Center side bar</h2>
     <!-- Add an additional blue button style -->
 
-    <div style="margin-bottom: 56px; margin-top: 11px;" class="item-menu">
+    <div style="margin-bottom: 21px; margin-top: 11px;" class="item-menu">
         <div id="calcontainer"></div>
     </div>
 

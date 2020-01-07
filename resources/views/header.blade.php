@@ -21,10 +21,11 @@
     <meta property="og:locale" content="vi_VN"/>
     <meta property="og:description" content="{{ $mData['description'] }}"/>
     <link href="{{ URL::asset('css/HomeCombined.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ URL::asset('css/steel.css') }}">
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ URL::asset('css/jscal2.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/border-radius.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('css/steel.css') }}">
+
 
 
 </head>
