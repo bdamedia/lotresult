@@ -446,8 +446,37 @@ function engToVit($day){
     return $bindVitDay[$day];
 }
 
-function metaData(){
+function metaData($key='home'){
     $metaData = array();
+    $keyup = Request::path();
+    $path = explode('/',$keyup);
+    $mainPage = current($path);
+    $path = end($path);
+    $region = current(explode('-',$path));
+    $region = str_replace('kq','',$region);
+    if($region){
+        $region = strtoupper($region);
+    }else{
+        $region = 'KQXS';
+    }
+    $path = str_replace('kqxsmb-','',$path);
+    $path = str_replace('kqxsmn-','',$path);
+    $path = str_replace('kqxsmt-','',$path);
+    if(Request::is('/')) {
+        $key = 'home';
+    }
+
+    if($mainPage == 'ket-qua-xo-so-mien-bac'){
+        $mainPage = 'Xổ Số Miền Bắc';
+    }elseif($mainPage == 'ket-qua-xo-so-mien-trung'){
+        $mainPage = 'Xổ Số Miền Trung';
+    }elseif($mainPage == 'ket-qua-xo-so-mien-nam'){
+        $mainPage = 'Xổ Số Miền Nam';
+    }else{
+        $mainPage = 'Xổ Số 3 Miền';
+    }
+    $key = $path;
+
 
     $metaData['home']['title'] = 'KQXS - Kết Quả Xổ Số 3 Miền Hôm Nay - Tường thuật trực tiếp kqxs';
     $metaData['home']['keywords'] = 'kqxs, xo so, ket qua xo so, xoso, xskt, kết quả xổ số, xo so hom nay, xo so truc tiep';
@@ -465,13 +494,13 @@ function metaData(){
     $metaData['ket-qua-xo-so-mien-trung']['keywords'] = 'xsmt, sxmt, xs mien trung, xổ số miền trung, xo so mien trung hom nay, kqxs mien trung';
     $metaData['ket-qua-xo-so-mien-trung']['description'] = 'XSMT - SXMT - Kết quả xổ số miền Trung được cập nhật trực tiếp lúc 17h15 hàng ngày nhanh chóng, chính xác. XS Mien Trung, Xo so mien Trung hom nay.';
 
-    $metaData['thu-hai']['title'] = 'XSMN Thứ hai - Kết Quả Xổ Số Miền Nam Thứ hai Hàng Tuần - KQXSMN Thứ hai';
-    $metaData['thu-hai']['keywords'] = 'XSMN Thứ hai, XSMN Thứ hai Hang Tuan, SXMN Thứ hai, KQXSMN Thứ hai';
-    $metaData['thu-hai']['description'] = 'XSMN Thứ hai - Kết quả xổ số miền Nam Thứ hai hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
+    $metaData['thu-hai']['title'] = "$region Thứ hai - Kết Quả $mainPage Thứ hai Hàng Tuần - KQ$region Thứ hai";
+    $metaData['thu-hai']['keywords'] = "$region Thứ hai, $region Thứ hai Hang Tuan, $region Thứ hai, KQ$region Thứ hai";
+    $metaData['thu-hai']['description'] = "$region Thứ hai - Kết quả $mainPage Thứ hai hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
 
-    $metaData['thu-ba']['title'] = 'XSMN Thứ ba - Kết Quả Xổ Số Miền Nam Thứ ba Hàng Tuần - KQXSMN Thứ ba';
-    $metaData['thu-ba']['keywords'] = 'XSMN Thứ ba, XSMN Thứ ba Hang Tuan, SXMN Thứ ba, KQXSMN Thứ ba';
-    $metaData['thu-ba']['description'] = 'XSMN Thứ ba - Kết quả xổ số miền Nam Thứ ba hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
+    $metaData['thu-ba']['title'] = "$region Thứ ba - Kết Quả $mainPage Thứ ba Hàng Tuần - KQ$region Thứ ba";
+    $metaData['thu-ba']['keywords'] = "$region Thứ ba, $region Thứ ba Hang Tuan, $region Thứ ba, KQ$region Thứ ba";
+    $metaData['thu-ba']['description'] = "$region Thứ ba - Kết quả $mainPage Thứ ba hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
 
     $metaData['thu-tu']['title'] = 'XSMN Thứ tư - Kết Quả Xổ Số Miền Nam Thứ tư Hàng Tuần - KQXSMN Thứ tư';
     $metaData['thu-tu']['keywords'] = 'XSMN Thứ tư, XSMN Thứ tư Hang Tuan, SXMN Thứ tư, KQXSMN Thứ tư';
@@ -492,5 +521,11 @@ function metaData(){
     $metaData['chu-nhat']['title'] = 'XSMN Chủ Nhật - Kết Quả Xổ Số Miền Nam Chủ Nhật Hàng Tuần - KQXSMN Chủ Nhật';
     $metaData['chu-nhat']['keywords'] = 'XSMN Chủ Nhật, XSMN Thu 2 Hang Tuan, SXMN Chủ Nhật, KQXSMN Chủ Nhật';
     $metaData['chu-nhat']['description'] = 'XSMN Chủ Nhật - Kết quả xổ số miền Nam Chủ Nhật hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
-return $metaData;
+
+    if(key_exists($key,$metaData)){
+        return $metaData[$key];
+    }else{
+        return $metaData['home'];
+    }
+
 }

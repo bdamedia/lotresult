@@ -3,33 +3,23 @@
 <head>
     @php
         $reload = explode('/',request()->fullUrl());
-
      @endphp
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="theme-color" content="#FFF"/>
-    <title>{{ end($reload) }} - Kết Quả Xổ Số Miền Bắc Hôm Nay - {{ end($reload) }}</title>
-    <meta name="description"
-          content="{{ end($reload) }} - {{ end($reload) }} - {{ end($reload) }} - Kết quả xổ số miền Bắc hôm nay - {{ end($reload) }} - Tường thuật trực tiếp lúc 18h15 hàng ngày nhanh chóng, chính xác, cập nhật liên tục."/>
-    <meta name="keywords"
-          content="{{ end($reload) }}, {{ end($reload) }}, {{ end($reload) }}, {{ end($reload) }}, xổ số miền bắc, ket qua xsmb, xo so mien bac, xsmb hom nay, kết quả xổ số miền bắc"/>
-    <link rel='canonical' href='https://xosodaiphat.com/xsmb-xo-so-mien-bac.html'/>
+    @php $mData = metaData(end($reload)); @endphp
+    <title>{{ $mData['title'] }}</title>
+    <meta name="description" content="{{ $mData['description'] }}"/>
+    <meta name="keywords" content="{{ $mData['keywords'] }}"/>
+    <link rel='canonical' href='{{ request()->fullUrl() }}'/>
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-    <meta name="COPYRIGHT" content="Copyright (C) 2020 xosodaiphat.com"/>
-    <meta name="RATING" content="GENERAL"/>
-    <meta name="revisit-after" content="1 days"/>
-    <meta name="DC.title" content="xo so, ket qua xo so, {{ end($reload) }}, xsmn, kqxs, xo so 3 mien nhanh nhat"/>
-    <meta name="robots" content="index, follow"/>
+     <meta name="robots" content="index, follow"/>
     <meta property="og:site_name" content="Xổ số Đại Phát"/>
-    <meta property="og:title" content="XSMB - SXMB - Kết Quả Xổ Số Miền Bắc Hôm Nay - KQXSMB"/>
+    <meta property="og:title" content="{{ $mData['title'] }}"/>
     <meta property="og:url" content="{{ request()->fullUrl() }}"/>
     <meta property="og:type" content="article"/>
     <meta property="og:locale" content="vi_VN"/>
-    <meta property="og:description"
-          content="XSMB - SXMB - XSTD - Kết quả xổ số miền Bắc hôm nay - KQXSMB - Tường thuật trực tiếp lúc 18h15 hàng ngày nhanh chóng, chính xác, cập nhật liên tục."/>
-
-
+    <meta property="og:description" content="{{ $mData['description'] }}"/>
     <link href="{{ URL::asset('css/HomeCombined.css') }}" rel="stylesheet"/>
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ URL::asset('css/jscal2.css') }}">
