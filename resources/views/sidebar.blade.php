@@ -72,7 +72,7 @@
                     </select></div>
                 <div class="form-group">
                     <input type="text" class="form-control form-group" name="nhapso" id="inputNumberDo" required="required" placeholder="Nhập dãy số" size="9" title="Nhập dãy số">
-                    <button type="submit" class="btn btn-red-blue-lite form-group" id="btndoSo" title="Kết quả">Kết quả</button>
+                    <button type="button" disabled class="btn btn-red-blue-lite form-group" id="btndoSo" title="Kết quả">Kết quả</button>
                 </div></div>
             <p class="text-12">( Có thể nhập tối thiểu 2 số, tối đa 17 số )</p>
         </div></div>
