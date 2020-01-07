@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="hidden-xs hidden-sm col-md-2">
                     <div class="logo">
-                        <h4 class="hide">Xổ Số Đại Phát</h4>
+                        <h4 class="hide">Asoicau</h4>
                         <a href="/"><img src="{{ URL::asset('images/logos/logo.png') }}" alt="logo" title="logo"
                                          class="img-responsive"></a>
                     </div>

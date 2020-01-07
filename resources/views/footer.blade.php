@@ -14,9 +14,9 @@
         </div>
     </div>
 </footer>
-<script src="https://cdn.xosodaiphat.com/assets/js/jquerylib.js"></script>
-<script src="https://cdn.xosodaiphat.com/assets/libs/jquery/xsdp.min.js"></script>
-<script src="https://cdn.xosodaiphat.com/Notify/js/main.js"></script>
+<script src="{{ URL::asset('js/jquerylib.js') }}"></script>
+<script src="{{ URL::asset('js/xsdp.min.js') }}"></script>
+<script src="{{ URL::asset('js/main.js') }}"></script>
 
 
 
