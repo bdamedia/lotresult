@@ -502,25 +502,25 @@ function metaData($key='home'){
     $metaData['thu-ba']['keywords'] = "$region Thứ ba, $region Thứ ba Hang Tuan, $region Thứ ba, KQ$region Thứ ba";
     $metaData['thu-ba']['description'] = "$region Thứ ba - Kết quả $mainPage Thứ ba hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
 
-    $metaData['thu-tu']['title'] = 'XSMN Thứ tư - Kết Quả Xổ Số Miền Nam Thứ tư Hàng Tuần - KQXSMN Thứ tư';
-    $metaData['thu-tu']['keywords'] = 'XSMN Thứ tư, XSMN Thứ tư Hang Tuan, SXMN Thứ tư, KQXSMN Thứ tư';
-    $metaData['thu-tu']['description'] = 'XSMN Thứ tư - Kết quả xổ số miền Nam Thứ tư hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
+    $metaData['thu-tu']['title'] = "$region Thứ tư - Kết Quả $mainPage Thứ tư Hàng Tuần - KQ$region Thứ tư";
+    $metaData['thu-tu']['keywords'] = "$region Thứ tư, $region Thứ tư Hang Tuan, $region Thứ tư, KQ$region Thứ tư";
+    $metaData['thu-tu']['description'] = "$region Thứ tư - Kết quả $mainPage Thứ tư hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
 
-    $metaData['thu-nam']['title'] = 'XSMN Thứ năm - Kết Quả Xổ Số Miền Nam Thứ năm Hàng Tuần - KQXSMN Thứ năm';
-    $metaData['thu-nam']['keywords'] = 'XSMN Thứ năm, XSMN Thứ năm Hang Tuan, SXMN Thứ năm, KQXSMN Thứ năm';
-    $metaData['thu-nam']['description'] = 'XSMN Thứ năm - Kết quả xổ số miền Nam Thứ năm hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
+    $metaData['thu-nam']['title'] = "$region Thứ năm - Kết Quả $mainPage Thứ năm Hàng Tuần - KQ$region Thứ năm";
+    $metaData['thu-nam']['keywords'] = "$region Thứ năm, $region Thứ năm Hang Tuan, $region Thứ năm, KQ$region Thứ năm";
+    $metaData['thu-nam']['description'] = "$region Thứ năm - Kết quả $mainPage Thứ năm hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
 
-    $metaData['thu-sau']['title'] = 'XSMN Thứ sáu - Kết Quả Xổ Số Miền Nam Thứ sáu Hàng Tuần - KQXSMN Thứ sáu';
-    $metaData['thu-sau']['keywords'] = 'XSMN Thứ sáu, XSMN Thứ sáu Hang Tuan, SXMN Thu 2, KQXSMN Thứ sáu';
-    $metaData['thu-sau']['description'] = 'XSMN Thứ sáu - Kết quả xổ số miền Nam Thứ sáu hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
+    $metaData['thu-sau']['title'] = "$region Thứ sáu - Kết Quả $mainPage Thứ sáu Hàng Tuần - KQ$region Thứ sáu";
+    $metaData['thu-sau']['keywords'] = "$region Thứ sáu, $region Thứ sáu Hang Tuan, $region Thu 2, KQ$region Thứ sáu";
+    $metaData['thu-sau']['description'] = "$region Thứ sáu - Kết quả $mainPage Thứ sáu hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
 
-    $metaData['thu-bay']['title'] = 'XSMN Thứ bảy - Kết Quả Xổ Số Miền Nam Thứ bảy Hàng Tuần - KQXSMN Thứ bả';
-    $metaData['thu-bay']['keywords'] = 'XSMN Thứ bảy, XSMN Thu 2 Hang Tuan, SXMN Thứ bảy, KQXSMN Thứ bả';
-    $metaData['thu-bay']['description'] = 'XSMN Thứ bảy - Kết quả xổ số miền Nam Thứ bảy hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
+    $metaData['thu-bay']['title'] = "$region Thứ bảy - Kết Quả $mainPage Thứ bảy Hàng Tuần - KQ$region Thứ ba";
+    $metaData['thu-bay']['keywords'] = "$region Thứ bảy, $region Thu 2 Hang Tuan, $region Thứ bảy, KQ$region Thứ bả";
+    $metaData['thu-bay']['description'] = "$region Thứ bảy - Kết quả $mainPage Thứ bảy hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
 
-    $metaData['chu-nhat']['title'] = 'XSMN Chủ Nhật - Kết Quả Xổ Số Miền Nam Chủ Nhật Hàng Tuần - KQXSMN Chủ Nhật';
-    $metaData['chu-nhat']['keywords'] = 'XSMN Chủ Nhật, XSMN Thu 2 Hang Tuan, SXMN Chủ Nhật, KQXSMN Chủ Nhật';
-    $metaData['chu-nhat']['description'] = 'XSMN Chủ Nhật - Kết quả xổ số miền Nam Chủ Nhật hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày';
+    $metaData['chu-nhat']['title'] = "$region Chủ Nhật - Kết Quả $mainPage Chủ Nhật Hàng Tuần - KQ$region Chủ Nhật";
+    $metaData['chu-nhat']['keywords'] = "$region Chủ Nhật, $region Thu 2 Hang Tuan, $region Chủ Nhật, KQ$region Chủ Nhật";
+    $metaData['chu-nhat']['description'] = "$region Chủ Nhật - Kết quả $mainPage Chủ Nhật hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
 
     if(key_exists($key,$metaData)){
         return $metaData[$key];
