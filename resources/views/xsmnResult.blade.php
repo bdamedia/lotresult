@@ -13,7 +13,7 @@
         @foreach($content as $printresult)
 
 
-    <div class="block" id='xsmb-{{ $g }}'>
+    <div class="remove-margin block" id='xsmb-{{ $g }}'>
         <div class="block-main-heading">
             <h1>
                 @if($printresult->lottery_region == 'XSMN') {{ "Kết Quả Xổ số " }}  {{ getCompanyName($printresult->lottery_company) }} ({{ $printresult->lottery_company }})
