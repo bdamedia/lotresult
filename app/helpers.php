@@ -489,13 +489,50 @@ function metaData($key='home'){
         $date2 = $d::today()->format('!d/m');
     }
 
+    if($key == 'truc-tiep'){
+        $key = strtolower($region).'-'.$key;
+    }
+
+    $all = RegionCompany::where('lottery_company_slug', $key)->get();
+    if($all->count() > 0){
+        $data = $all->toArray();
+        if(count($data) > 0 ){
+            $data = $data[0];
+        }
+       $company = $data['lottery_company_names'];
+        $companyCode =  $data['lottery_company'];
+        $key = 'single';
+    }else{
+        $company = '';
+        $companyCode =  '';
+    }
+
     $metaData['home']['title'] = 'KQXS - Kết Quả Xổ Số 3 Miền Hôm Nay - Tường thuật trực tiếp kqxs';
     $metaData['home']['keywords'] = 'kqxs, xo so, ket qua xo so, xoso, xskt, kết quả xổ số, xo so hom nay, xo so truc tiep';
     $metaData['home']['description'] = 'KQXS - Xo So - Tường thuật kết quả xổ số hôm nay trực tiếp từ trường quay, nhanh chóng, chính xác cho cả 3 miền Bắc, Trung, Nam và XS Mega. XSKT, Dự đoán xổ số, Soi cầu hàng ngày.';
 
+
+    $metaData['single']['title'] = "$companyCode - Xo So $company - Kết Quả Xổ Số $company";
+    $metaData['single']['keywords'] = "$companyCode,Xo So $company,S$company,KQ$companyCode,Kết Quả Xổ Số $companyCode, $companyCode thu 2 va thu 7";
+    $metaData['single']['description'] = "$companyCode - $companyCode - Xo So $company - Cập nhật kết quả xổ số $company thứ 2 và thứ 7 trực tiếp nhanh chóng, chính xác. KQ$companyCode, xổ số TP.HCM, $companyCode hom nay";
+
     $metaData['date']['title'] = "KQXS - Kết Quả Xổ Số 3 Miền Ngày $date";
     $metaData['date']['keywords'] = "kqxs, xo so, ket qua xo so, xoso, xskt, kết quả xổ số, xo so hom nay, xo so truc tiep,kqxs ngày $date2";
     $metaData['date']['description'] = 'KQXS - Xo So - Tường thuật kết quả xổ số hôm nay trực tiếp từ trường quay, nhanh chóng, chính xác cho cả 3 miền Bắc, Trung, Nam và XS Mega. XSKT, Dự đoán xổ số, Soi cầu hàng ngày.';
+
+    $metaData['xsmn-truc-tiep']['title'] = "XSMN Trực Tiếp - Trực Tiếp Xổ Số Miền Nam Hôm Nay Nhanh, Chính Xác";
+    $metaData['xsmn-truc-tiep']['keywords'] = "xsmn, xo so mien nam, sxmn, xổ số miền nam, xs mn, xs mien nam, xosomien nam, xo so truc tiep mien nam, xsmn hom nay";
+    $metaData['xsmn-truc-tiep']['description'] = "XSMN Trực Tiếp - Trực tiếp xổ số miền Nam hôm nay nhanh, chính xác nhất. KQXS miền Nam được tường thuật trực tiếp lúc 16h10 hàng ngày - truc tiep xsmn";
+
+
+    $metaData['xsmb-truc-tiep']['title'] = "XSMB Trực Tiếp - Trực Tiếp Xổ Số Miền Bắc Hôm Nay Nhanh, Chính Xác";
+    $metaData['xsmb-truc-tiep']['keywords'] = "xsmb truc tiep, truc tiep xsmb, truc tiep xo so mien bac, xo so truc tiep mien bac, xo so mien bac truc tiep, xsmb truc tiep hom nay";
+    $metaData['xsmb-truc-tiep']['description'] = "XSMB Trực Tiếp - Trực tiếp xổ số miền Bắc hôm nay nhanh, chính xác nhất. KQXS miền Nam được tường thuật trực tiếp lúc 18h15 hàng ngày - truc tiep xsmb";
+
+
+    $metaData['xsmt-truc-tiep']['title'] = "XSMT Trực Tiếp - Trực Tiếp Xổ Số Miền Trung Hôm Nay Nhanh, Chính Xác";
+    $metaData['xsmt-truc-tiep']['keywords'] = "xsmt truc tiep, xo so mien trung truc tiep, xo so truc tiep mien trung, truc tiep xsmt, xo so mien trung hom nay truc tiep";
+    $metaData['xsmt-truc-tiep']['description'] = "XSMT Trực Tiếp - Trực tiếp xổ số miền Trung nhanh chóng, chính xác nhất. KQXSMT được tường thuật trực tiếp lúc 17h15 hàng ngày - xo so mien trung truc tiep";
 
     $metaData['ket-qua-xo-so-mien-nam']['title'] = 'XSMN - Kết Quả Xổ Số Miền Nam Hôm Nay - KQXSMN';
     $metaData['ket-qua-xo-so-mien-nam']['keywords'] = 'xsmn, xo so mien nam, sxmn, xổ số miền nam, xs mn, xs mien nam, xosomien nam, xo so truc tiep mien nam, xsmn hom nay';
