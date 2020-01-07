@@ -150,7 +150,7 @@
             </div>
         </div>
         <div class="category-mobile hide">
-            <ul>
+            <ul class="menu">
                 <li class=" @php if(in_array('ket-qua-xo-so-mien-bac',$reload)){ echo "active"; } @endphp "><a href="/ket-qua-xo-so-mien-bac" title="XSMB">XSMB</a>
                     <div class="menu-lv2-down">
                         <ul>
@@ -193,7 +193,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class=""><a href="/xo-so-vietlott" title="Vietlott">Vietlott</a>
+               {{-- <li class=""><a href="/xo-so-vietlott" title="Vietlott">Vietlott</a>
                     <div class="menu-lv2-down">
                         <ul>
                             <li><a href="/xo-so-dien-toan-tu-chon-mega-645.html" title="XS Mega 6/45">XS Mega
@@ -273,7 +273,7 @@
                             <li><a href="/tin-tuc/tin-tuc-c2583-article.html" title="Tin xổ số">Tin xổ số</a></li>
                         </ul>
                     </div>
-                </li>
+                </li>--}}
                 <li class="btn-close"><i class="fa fa-times" aria-hidden="true"></i> Đóng danh mục</li>
             </ul>
         </div>

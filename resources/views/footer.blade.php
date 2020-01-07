@@ -47,7 +47,22 @@
 
        }
    })
+    $(document).ready(function(){
+    $('ul.menu > li').click(function(){
 
+        if($('ul.menu').find('div.menu-lv2-down').hasClass('active')){
+            $('ul.menu').find('div.active').removeClass('active');
+            $(this).find('div.menu-lv2-down').hide();
+        }else
+        {
+            //('ul.menu li').removeClass('active');
+            $(this).find('div.menu-lv2-down').addClass('active');
+            //$(this).find('div.menu-lv2-down').hide();
+            $(this).find('div.menu-lv2-down').show();
+        }
+
+    })
+    })
 </script>
 </div>
 </body>
