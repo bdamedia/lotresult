@@ -14,7 +14,7 @@
     <link rel='canonical' href='{{ request()->fullUrl() }}'/>
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
      <meta name="robots" content="index, follow"/>
-    <meta property="og:site_name" content="Xổ số Đại Phát"/>
+    <meta property="og:site_name" content="Asoicau"/>
     <meta property="og:title" content="{{ $mData['title'] }}"/>
     <meta property="og:url" content="{{ request()->fullUrl() }}"/>
     <meta property="og:type" content="article"/>
