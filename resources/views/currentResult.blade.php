@@ -12,7 +12,7 @@
         @php $g = 1; @endphp
         @foreach($content as $printresult)
            {{-- {{ print_r($printresult) }}--}}
-    <div class="block" id='xsmb-{{ $g }}'>
+    <div class="remove-margin block {{ $printresult->lottery_region }}" id='xsmb-{{ $g }}'>
         <div class="block-main-heading">
             <h1>Kết Quả Xổ Số Miền Bắc ({{ $printresult->lottery_region }})</h1>
             </div>
