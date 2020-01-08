@@ -352,6 +352,8 @@ $gh = count($content[$key]);
 
                 $("#post-data").append(data.html);
                 //page = parseInt(page) + 1;
+                var d = new Date(page);
+                    console.log(d.getMonth());
                 page = $('#loadmore').attr('data-date');
                 $('#loadmore').attr('data-date',page);
             })
