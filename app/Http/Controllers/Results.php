@@ -17,7 +17,7 @@ class Results extends Controller
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$orig_date1->subDay(6)->format("Y-m-d"));
         $count = Result::where('result_day_time' ,'>=', $orig_date)->count();
             if($count > 0){
-                $result = Result::where('result_day_time' ,'>=', $orig_date1)->get();
+                $result = Result::where('result_day_time' ,'>=', $orig_date1)->orderBy('result_day_time', 'desc')->get();
             }else{
                 $result = Result::where('result_day_time' ,'>=', $orig_date1)->orderBy('result_day_time', 'desc')->get();
 
