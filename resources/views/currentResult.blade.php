@@ -7,7 +7,7 @@
 
     <div class="row">
         @include('todayResult')
-    <div class="col-xs-12">
+    <div class="col-xs-12" id="post-data">
 
         @php $g = 1; @endphp
         @foreach($content as $printresult)
@@ -246,6 +246,7 @@
     @endforeach
 
     </div>
+
     </div>
 
 
@@ -254,11 +255,15 @@
 
         @include('sidebar')
     </div>
+        @php $page = 1; @endphp
+        <a id="loadmore" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
     </div>
 </div>
 @include('footer')
 <script>
+
     function loadMoreData(page){
+        var page = $('#loadmore').attr('data-page');
         $.ajax(
             {
                 url: '?page=' + page,
@@ -275,11 +280,10 @@
                     return;
                 }
                 $('.ajax-load').hide();
-                $("img").lazyload({
-                    effect : "fadeIn",
-                    effectTime: 1500
-                });
+
                 $("#post-data").append(data.html);
+                page = parseInt(page) + 1;
+                $('#loadmore').attr('data-page',page);
             })
             .fail(function(jqXHR, ajaxOptions, thrownError)
             {
