@@ -75,5 +75,23 @@
                     <button type="button" disabled class="btn btn-red-blue-lite form-group" id="btndoSo" title="Kết quả">Kết quả</button>
                 </div></div>
             <p class="text-12">( Có thể nhập tối thiểu 2 số, tối đa 17 số )</p>
-        </div></div>
+        </div>
+    </div>
+
+    <div class="item-menu border-margin margin-top-setting">
+        <!-- /21689237362/xoso-sidebar01 -->
+        <div id='div-gpt-ad-1578217830804-0' style='width: 300px; height: 600px;'>
+            <script>
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1578217830804-0'); });
+            </script>
+        </div>
+    </div>
+    <div class="item-menu border-margin margin-top-setting">
+        <!-- /21689237362/xoso-sidebar02 -->
+        <div id='div-gpt-ad-1578217870888-0' style='width: 300px; height: 600px;'>
+            <script>
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1578217870888-0'); });
+            </script>
+        </div>
+    </div>
 </div>

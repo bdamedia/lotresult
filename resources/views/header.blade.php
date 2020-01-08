@@ -25,11 +25,35 @@
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ URL::asset('css/jscal2.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/border-radius.css') }}">
-
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-M9Z4365');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Ads Manager -->
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>;
+    <script>
+        window.googletag = window.googletag || {cmd: []};
+        googletag.cmd.push(function() {
+            googletag.defineSlot('/21689237362/xoso-homepage-header', [728, 90], 'div-gpt-ad-1578217748213-0').addService(googletag.pubads());
+            googletag.defineSlot('/21689237362/xoso-sidebar01', [300, 600], 'div-gpt-ad-1578217830804-0').addService(googletag.pubads());
+            googletag.defineSlot('/21689237362/xoso-sidebar02', [300, 600], 'div-gpt-ad-1578217870888-0').addService(googletag.pubads());
+            googletag.defineSlot('/21689237362/xoso-content-ads', [336, 280], 'div-gpt-ad-1578217977238-0').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <!-- End Google Ads Manager -->
 
 
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M9Z4365";
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div id="top"></div>
 <div class="body-wrapper">
     <header>
