@@ -208,10 +208,6 @@ class Results extends Controller
             $dates1 = Carbon::createFromFormat('!Y-m-d',$da[2].'-'.$da[1].'-'.$da[0]);
             $dates2 = Carbon::createFromFormat('!Y-m-d',$da[2].'-'.$da[1].'-'.$da[0]);
             $dates2 = $dates2->subDay(1);
-            echo $dates2;
-            echo "</br>";
-            echo $dates1;
-
             $result = Result::where('lottery_region', 'XSMN')->where('result_day_time','>',$dates2)->where('result_day_time','=<',$dates1)->orderBy('result_day_time', 'desc')->get();
         }else{
            // $dates2 = Carbon::now()->format('d-m-Y');
