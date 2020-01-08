@@ -214,7 +214,7 @@
 
 
     </div>
-        <div class="col-xs-12">
+        <div class="top-margin col-xs-12">
             @php $page = 1; @endphp
             <a id="loadmore" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
         </div>
