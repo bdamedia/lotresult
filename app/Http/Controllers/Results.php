@@ -14,10 +14,10 @@ class Results extends Controller
         $date = Carbon::now()->format('Y-m-d');
          $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$date);
-        $orig_date1 = Carbon::createFromFormat("!Y-m-d",$orig_date1->subDay(4)->format("Y-m-d"));
+        $orig_date1 = Carbon::createFromFormat("!Y-m-d",$orig_date1->subDay(5)->format("Y-m-d"));
         $count = Result::where('result_day_time' ,'>=', $orig_date)->count();
             if($count > 0){
-                $result = Result::where('result_day_time' ,'>=', $orig_date)->get();
+                $result = Result::where('result_day_time' ,'>=', $orig_date1)->get();
             }else{
                 $result = Result::where('result_day_time' ,'>=', $orig_date1)->orderBy('result_day_time', 'desc')->get();
 
