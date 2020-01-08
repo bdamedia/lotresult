@@ -25,14 +25,11 @@
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ URL::asset('css/jscal2.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/border-radius.css') }}">
-    <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-M9Z4365');</script>
-    <!-- End Google Tag Manager -->
-    <!-- Google Ads Manager -->
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>;
     <script>
         window.googletag = window.googletag || {cmd: []};
@@ -45,9 +42,6 @@
             googletag.enableServices();
         });
     </script>
-    <!-- End Google Ads Manager -->
-
-
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -69,7 +63,7 @@
                     </div>
 
                 </div>
-                <div class="hidden-xs hidden-sm col-md-8" id='div-gpt-ad-1578217748213-0' style='width: 728px; height: 90px;'>
+                <div class="hidden-xs hidden-sm col-md-8" id='div-gpt-ad-1578217748213-0' style='float:right;    margin-right: 32px;width: 728px; height: 90px;'>
                     <script>
                         googletag.cmd.push(function() { googletag.display('div-gpt-ad-1578217748213-0'); });
                     </script>
