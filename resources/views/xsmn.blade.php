@@ -45,7 +45,7 @@
                         @endif
 
 
-                        @php $g = 1;  $tr ='<tr>'; @endphp
+                        @php $g = 1;  $tr ='<tr>'; $lastdate = ''; @endphp
                         @foreach($content as $key=>$printresult)
                             {{--{{ $key }}--}}
                         @php $date = $key; @endphp
@@ -300,14 +300,14 @@ $gh = count($content[$key]);
                              </tbody></table>
                                 </div>
                             </div>
-                            @php $g++; @endphp
+                            @php $g++; $lastdate = $current['result_day_time']; @endphp
                         @endforeach
 
 
                     </div>
                     <div class="top-margin col-xs-12">
                         @php $page = 1; @endphp
-                        <a id="loadmore" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
+                        <a id="loadmore" data-date="@php echo $lastdate; @endphp" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
                     </div>
                     <div class="col-xs-12">
                         <!-- /21689237362/xoso-content-ads -->
@@ -332,7 +332,7 @@ $gh = count($content[$key]);
 <script>
 
     function loadMoreData(page){
-        var page = $('#loadmore').attr('data-page');
+        var page = $('#loadmore').attr('data-date');
         $.ajax(
             {
                 url: '?page=' + page,
@@ -351,8 +351,9 @@ $gh = count($content[$key]);
                 $('.ajax-load').hide();
 
                 $("#post-data").append(data.html);
-                page = parseInt(page) + 1;
-                $('#loadmore').attr('data-page',page);
+                //page = parseInt(page) + 1;
+                page = $('#loadmore').attr('data-date');
+                $('#loadmore').attr('data-date',page);
             })
             .fail(function(jqXHR, ajaxOptions, thrownError)
             {

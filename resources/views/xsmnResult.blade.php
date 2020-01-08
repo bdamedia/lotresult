@@ -9,7 +9,7 @@
         @include('todayResult')
     <div id="post-data" class="col-xs-12">
 
-        @php $g = 1; @endphp
+        @php $g = 1; $lastdate = ''; @endphp
         @foreach($content as $printresult)
 
 
@@ -209,14 +209,14 @@
             </div>
 
         </div>
-            @php $g++; @endphp
+            @php $g++; $lastdate = $printresult->result_day_time->toDateTime()->format('d-m-Y'); @endphp
     @endforeach
 
 
     </div>
         <div class="top-margin col-xs-12">
             @php $page = 1; @endphp
-            <a id="loadmore" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
+            <a id="loadmore" data-date="@php echo $lastdate; @endphp" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
         </div>
         <div class="col-xs-12">
             <!-- /21689237362/xoso-content-ads -->
@@ -241,7 +241,7 @@
 <script>
 
     function loadMoreData(page){
-        var page = $('#loadmore').attr('data-page');
+        var page = $('#loadmore').attr('data-date');
         $.ajax(
             {
                 url: '?page=' + page,
@@ -261,7 +261,7 @@
 
                 $("#post-data").append(data.html);
                 page = parseInt(page) + 1;
-                $('#loadmore').attr('data-page',page);
+                $('#loadmore').attr('data-date',page);
             })
             .fail(function(jqXHR, ajaxOptions, thrownError)
             {
