@@ -45,7 +45,6 @@ class Results extends Controller
             }
 
         }
-    print_r($new);
         $data['region'] = "xsmt";
         $data['companyName'] = strtoupper("xsmt");
         $data['content'] = $new;
