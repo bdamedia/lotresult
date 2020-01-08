@@ -1070,11 +1070,13 @@ a:hover,a:focus{
 
 #loadmore{
     font-size: 18px;
-    color: #c00;
+    color: #fff;
     margin: 0 auto;
     text-align: center;
     width: 100%;
     float: left;
+    background: #c00;
+    padding: 10px;
 }
 ul.main-menu li:hover .menu-lv2-down {
     display: block

@@ -313,7 +313,7 @@ class Results extends Controller
         }
 
         $list = dayWiseArray($day);
-        $result = Result::where('lottery_region','XSMB')->orderBy('result_day_time', 'desc')->get();
+        $result = Result::where('lottery_region','XSMB')->orderBy('result_day_time', 'desc')->paginate(21);
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
         $new = array();
         $t = 0;
@@ -345,7 +345,10 @@ class Results extends Controller
         $data['region'] = "xsmb";
         $data['companyName'] = strtoupper("xsmb");
         $data['content'] = $new;
-
+        if ($request->ajax()) {
+            $view = view('xsmbDyaPaginate',$data)->render();
+            return response()->json(['html'=>$view]);
+        }
         return view('xsmbDay')->with($data);
     }
     public function xsmnDay(Request $request,$day){
