@@ -218,6 +218,15 @@
             @php $page = 1; @endphp
             <a id="loadmore" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
         </div>
+        <div class="col-xs-12">
+            <!-- /21689237362/xoso-content-ads -->
+            <div id='div-gpt-ad-1578217977238-0' style='margin: 0 auto; width: 336px; height: 280px;'>
+                <script>
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1578217977238-0'); });
+                </script>
+            </div>
+
+        </div>
     </div>
 
 
