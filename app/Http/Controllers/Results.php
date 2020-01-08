@@ -14,10 +14,10 @@ class Results extends Controller
         $date = Carbon::now()->format('Y-m-d');
          $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$date);
-        $orig_date1 = Carbon::createFromFormat("!Y-m-d",$orig_date1->subDay(4)->format("Y-m-d"));
+        $orig_date1 = Carbon::createFromFormat("!Y-m-d",$orig_date1->subDay(6)->format("Y-m-d"));
         $count = Result::where('result_day_time' ,'>=', $orig_date)->count();
             if($count > 0){
-                $result = Result::where('result_day_time' ,'>=', $orig_date)->get();
+                $result = Result::where('result_day_time' ,'>=', $orig_date1)->get();
             }else{
                 $result = Result::where('result_day_time' ,'>=', $orig_date1)->orderBy('result_day_time', 'desc')->get();
 
@@ -26,7 +26,7 @@ class Results extends Controller
         $t = 0;
         foreach ($result as $res){
             if($res->prize_1){
-                $k = $res->lottery_region;
+                $k = $res->lottery_region.'_'.$res->result_day_time->toDateTime()->format('d/m/Y');
                 $new[$k][$t]['lottery_region'] = $res->lottery_region;
                 $new[$k][$t]['lottery_company'] = $res->lottery_company;
                 $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
