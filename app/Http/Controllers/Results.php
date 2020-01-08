@@ -197,7 +197,9 @@ class Results extends Controller
     }
 
     public function xsmnIndex(Request $request,$company='XSTG'){
-        $result = Result::where('lottery_region', 'XSMN')->orderBy('result_day_time', 'desc')->paginate(6);
+
+
+        $result = Result::where('lottery_region', 'XSMN')->orderBy('result_day_time', 'desc')->paginate(7);
 
         $t = 0;
         foreach ($result as $res){
@@ -237,7 +239,7 @@ class Results extends Controller
     public function xsmtIndex(Request $request){
 
         //whereBetween
-        $result = Result::where('lottery_region', 'XSMT')->orderBy('result_day_time')->paginate(6);
+        $result = Result::where('lottery_region', 'XSMT')->orderBy('result_day_time')->paginate(7);
 
         $t = 0;
         foreach ($result as $res){

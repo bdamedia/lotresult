@@ -44,14 +44,15 @@
     </script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M9Z4365";
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M9Z4365" height="0" width="0" style="display:none;visibility:hidden;" >
+
+    </iframe>
+</noscript>
+
 <div id="top"></div>
 <div class="body-wrapper">
     <header>
-        <!-- /21689237362/xoso-homepage-header -->
 
         <div class="container">
             <div class="row">
