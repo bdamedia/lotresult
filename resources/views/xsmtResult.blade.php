@@ -7,7 +7,7 @@
 
                 <div class="row">
                     @include('todayResult')
-                    <div class="col-xs-12">
+                    <div id="post-data" class="col-xs-12">
 
                         @php $g = 1; @endphp
                         @foreach($content as $printresult)
@@ -224,6 +224,10 @@
 
 
                     </div>
+                    <div class="col-xs-12">
+                        @php $page = 1; @endphp
+                        <a id="loadmore" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
+                    </div>
                 </div>
 
 
@@ -234,3 +238,34 @@
     </div>
 </div>
 @include('footer')
+<script>
+
+    function loadMoreData(page){
+        var page = $('#loadmore').attr('data-page');
+        $.ajax(
+            {
+                url: '?page=' + page,
+                type: "get",
+                beforeSend: function()
+                {
+                    $('.ajax-load').show();
+                }
+            })
+            .done(function(data)
+            {
+                if(data.html == " "){
+                    $('.ajax-load').html("No more records found");
+                    return;
+                }
+                $('.ajax-load').hide();
+
+                $("#post-data").append(data.html);
+                page = parseInt(page) + 1;
+                $('#loadmore').attr('data-page',page);
+            })
+            .fail(function(jqXHR, ajaxOptions, thrownError)
+            {
+                console.log('server not responding...');
+            });
+    }
+</script>
