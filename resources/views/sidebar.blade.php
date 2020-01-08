@@ -78,7 +78,7 @@
         </div>
     </div>
 
-    <div class="item-menu border-margin margin-top-setting">
+    <div class="hidden-xs hidden-sm item-menu border-margin margin-top-setting">
         <!-- /21689237362/xoso-sidebar01 -->
         <div id='div-gpt-ad-1578217830804-0' style='width: 300px; height: 600px;'>
             <script>
@@ -86,7 +86,7 @@
             </script>
         </div>
     </div>
-    <div class="item-menu border-margin margin-top-setting">
+    <div class="hidden-xs hidden-sm item-menu border-margin margin-top-setting">
         <!-- /21689237362/xoso-sidebar02 -->
         <div id='div-gpt-ad-1578217870888-0' style='width: 300px; height: 600px;'>
             <script>

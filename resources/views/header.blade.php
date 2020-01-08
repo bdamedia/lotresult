@@ -57,6 +57,8 @@
 <div id="top"></div>
 <div class="body-wrapper">
     <header>
+        <!-- /21689237362/xoso-homepage-header -->
+
         <div class="container">
             <div class="row">
                 <div class="hidden-xs hidden-sm col-md-2">
@@ -65,8 +67,13 @@
                         <a href="/"><img src="{{ URL::asset('images/logos/logo.png') }}" alt="logo" title="logo"
                                          class="img-responsive"></a>
                     </div>
-                </div>
 
+                </div>
+                <div class="hidden-xs hidden-sm col-md-8" id='div-gpt-ad-1578217748213-0' style='width: 728px; height: 90px;'>
+                    <script>
+                        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1578217748213-0'); });
+                    </script>
+                </div>
             </div>
         </div>
     </header>
