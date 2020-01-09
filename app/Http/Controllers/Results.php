@@ -397,7 +397,21 @@ class Results extends Controller
     }
     public function xsmnDay(Request $request,$day){
         $list = dayWiseArray($day);
-        $result = Result::where('lottery_region','XSMN')->whereIn('lottery_company',$list)->orderBy('result_day_time', 'desc')->paginate(6);
+
+        if($request->input('page')){
+            $dates = $request->input('page');
+            $dates1 = Carbon::createFromFormat('!Y-m-d',$dates);
+            $dates2 = Carbon::createFromFormat('!Y-m-d',$dates);
+            $dates2 = $dates2->subDay(4);
+            $result = Result::where('lottery_region', 'XSMN')->whereIn('lottery_company',$list)->where('result_day_time','>=',$dates2)->where('result_day_time','<',$dates1)->orderBy('result_day_time', 'desc')->get();
+        }else{
+            $date = Carbon::today()->format('Y-m-d');
+            $dates2 = Carbon::createFromFormat("!Y-m-d",$date);
+            $dates2 = $dates2->subDay(4);
+            $result = Result::where('lottery_region', 'XSMN')->whereIn('lottery_company',$list)->where('result_day_time','>=',$dates2)->orderBy('result_day_time', 'desc')->get();
+        }
+
+        //$result = Result::where('lottery_region','XSMN')->whereIn('lottery_company',$list)->orderBy('result_day_time', 'desc')->paginate(6);
         $t = 0;
         $new = array();
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
@@ -437,7 +451,20 @@ class Results extends Controller
     }
     public function xsmtDay(Request $request,$day){
         $list = dayWiseArray($day);
-        $result = Result::where('lottery_region','XSMT')->whereIn('lottery_company',$list)->orderBy('result_day_time', 'desc')->paginate(6);
+
+        if($request->input('page')){
+            $dates = $request->input('page');
+            $dates1 = Carbon::createFromFormat('!Y-m-d',$dates);
+            $dates2 = Carbon::createFromFormat('!Y-m-d',$dates);
+            $dates2 = $dates2->subDay(4);
+            $result = Result::where('lottery_region', 'XSMT')->whereIn('lottery_company',$list)->where('result_day_time','>=',$dates2)->where('result_day_time','<',$dates1)->orderBy('result_day_time', 'desc')->get();
+        }else{
+            $date = Carbon::today()->format('Y-m-d');
+            $dates2 = Carbon::createFromFormat("!Y-m-d",$date);
+            $dates2 = $dates2->subDay(4);
+            $result = Result::where('lottery_region', 'XSMT')->whereIn('lottery_company',$list)->where('result_day_time','>=',$dates2)->orderBy('result_day_time', 'desc')->get();
+        }
+        //$result = Result::where('lottery_region','XSMT')->whereIn('lottery_company',$list)->orderBy('result_day_time', 'desc')->paginate(6);
         $t = 0;
         $new = array();
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
