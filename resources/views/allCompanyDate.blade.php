@@ -37,13 +37,13 @@
                                 @php
                                     if($lot["lottery_region"] == 'XSMT'){
                               $title = "Kết quả  Xổ số miền Trung";
-          $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+          $th .= '<th class="text-center"><a href="/ket-qua-xsmt/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
                                       }elseif ($lot["lottery_region"] == 'XSMN'){
       $title = "Kết quả Xổ số miền Nam";
-          $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+          $th .= '<th class="text-center"><a href="/ket-qua-xsmn/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
                                       }else{
     $title ="Kết quả Xổ số Miền Bắc";
-    $th .= ''; //'<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/" title="Xổ số '.$lot["lottery_region"].'"></a></th>';
+    $th .= ''; //'<th class="text-center"><a href="/ket-qua-xsmn/" title="Xổ số '.$lot["lottery_region"].'"></a></th>';
                                       }
 
                                 @endphp

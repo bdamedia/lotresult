@@ -7,18 +7,18 @@
 
     <div class="row">
         @include('todayResult')
-    <div class="col-xs-12">
+    <div class="col-xs-12" id="post-data">
 
         <div class="tab" role="tabpanel">
             <ul class="nav-tabs day-selector">
-                <li class={{ request()->segment(count(request()->segments())) == 'ket-qua-xo-so-mien-bac' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac" title="XSMB Thứ 2">Miền Bắc</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-hai' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-ba' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-ba" title="XSMB Thứ 3">Thứ ba</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-tu' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-tu" title="XSMB Thứ 4">Thứ tư</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-nam' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-nam" title="XSMB Thứ 5">Thứ năm</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-sau' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-sau" title="XSMB Thứ 6">Thứ sáu</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-bay' ? 'active-tab-new' : '' }} ><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-chu-nhat' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac/kqxsmb-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'ket-qua-xsmb' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb" title="XSMB Thứ 2">Miền Bắc</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-hai' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb/kqxsmb-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-ba' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb/kqxsmb-thu-ba" title="XSMB Thứ 3">Thứ ba</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-tu' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb/kqxsmb-thu-tu" title="XSMB Thứ 4">Thứ tư</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-nam' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb/kqxsmb-thu-nam" title="XSMB Thứ 5">Thứ năm</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-sau' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb/kqxsmb-thu-sau" title="XSMB Thứ 6">Thứ sáu</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-bay' ? 'active-tab-new' : '' }} ><a href="/ket-qua-xsmb/kqxsmb-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-chu-nhat' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb/kqxsmb-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
             </ul>
         </div>
 
@@ -263,6 +263,19 @@
 
 
     </div>
+        <div class="top-margin col-xs-12">
+            @php $page = 1; @endphp
+            <a id="loadmore" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
+        </div>
+        <div class="col-xs-12">
+            <!-- /21689237362/xoso-content-ads -->
+            <div id='div-gpt-ad-1578217977238-0' style='margin: 0 auto; width: 336px; height: 280px;'>
+                <script>
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1578217977238-0'); });
+                </script>
+            </div>
+
+        </div>
     </div>
 
 
@@ -274,3 +287,34 @@
     </div>
 </div>
 @include('footer')
+<script>
+
+    function loadMoreData(page){
+        var page = $('#loadmore').attr('data-page');
+        $.ajax(
+            {
+                url: '?page=' + page,
+                type: "get",
+                beforeSend: function()
+                {
+                    $('.ajax-load').show();
+                }
+            })
+            .done(function(data)
+            {
+                if(data.html == " "){
+                    $('.ajax-load').html("No more records found");
+                    return;
+                }
+                $('.ajax-load').hide();
+
+                $("#post-data").append(data.html);
+                page = parseInt(page) + 1;
+                $('#loadmore').attr('data-page',page);
+            })
+            .fail(function(jqXHR, ajaxOptions, thrownError)
+            {
+                console.log('server not responding...');
+            });
+    }
+</script>

@@ -17,31 +17,31 @@ Route::get("/crawler/cJob/all/", "Crawler@CroneJobFull");
 
 Route::get('/','Results@index');
 
-Route::get('/ket-qua-xo-so-mien-bac/kqxsmb-truc-tiep/','Results@trucTiep');
-Route::get('/ket-qua-xo-so-mien-trung/kqxsmt-truc-tiep/','Results@trucTiep');
-Route::get('/ket-qua-xo-so-mien-nam/kqxsmn-truc-tiep/','Results@trucTiep');
+Route::get('/ket-qua-xsmb/kqxsmb-truc-tiep/','Results@trucTiep');
+Route::get('/ket-qua-xsmt/kqxsmt-truc-tiep/','Results@trucTiep');
+Route::get('/ket-qua-xsmn/kqxsmn-truc-tiep/','Results@trucTiep');
 
 
-Route::get('/ket-qua-xo-so-mien-bac/ket-qua-lo-to-mien-bac/{date}','Results@dateLoto');
-Route::get('/ket-qua-xo-so-mien-trung/ket-qua-lo-to-mien-trung/{date}','Results@dateLoto');
-Route::get('/ket-qua-xo-so-mien-nam/ket-qua-lo-to-mien-nam/{date}','Results@dateLoto');
+Route::get('/ket-qua-xsmb/ket-qua-lo-to-mien-bac/{date}','Results@dateLoto');
+Route::get('/ket-qua-xsmt/ket-qua-lo-to-mien-trung/{date}','Results@dateLoto');
+Route::get('/ket-qua-xsmn/ket-qua-lo-to-mien-nam/{date}','Results@dateLoto');
 
-Route::get('/ket-qua-xo-so-mien-nam/ket-qua-lo-to-mien-nam','Results@regionLoto');
-Route::get('/ket-qua-xo-so-mien-trung/ket-qua-lo-to-mien-trung','Results@regionLoto');
-Route::get('/ket-qua-xo-so-mien-bac/ket-qua-lo-to-mien-bac','Results@regionLoto');
+Route::get('/ket-qua-xsmn/ket-qua-lo-to-mien-nam','Results@regionLoto');
+Route::get('/ket-qua-xsmt/ket-qua-lo-to-mien-trung','Results@regionLoto');
+Route::get('/ket-qua-xsmb/ket-qua-lo-to-mien-bac','Results@regionLoto');
 
-Route::get("/ket-qua-xo-so-mien-trung/{lottery_company_slug}", "Results@xsmt");
-Route::get("/ket-qua-xo-so-mien-nam/{lottery_company_slug}/", "Results@xsmn");
-Route::get("/ket-qua-xo-so-mien-bac/kqxsmb-{day}", "Results@xsmbDay");
-Route::get("/ket-qua-xo-so-mien-nam/kqxsmn-{day}", "Results@xsmnDay");
-Route::get("/ket-qua-xo-so-mien-trung/kqxsmt-{day}", "Results@xsmtDay");
+Route::get("/ket-qua-xsmt/{lottery_company_slug}", "Results@xsmt");
+Route::get("/ket-qua-xsmn/{lottery_company_slug}/", "Results@xsmn");
+Route::get("/ket-qua-xsmb/kqxsmb-{day}", "Results@xsmbDay");
+Route::get("/ket-qua-xsmn/kqxsmn-{day}", "Results@xsmnDay");
+Route::get("/ket-qua-xsmt/kqxsmt-{day}", "Results@xsmtDay");
 
 Route::get('/kqxs-{date}','Results@allCompanyDate');
 Route::get('/kqxs-da-nang-{date}','Results@allCompanyDate');
 
-Route::get("/ket-qua-xo-so-mien-bac", "Results@xsmb");
-Route::get("/ket-qua-xo-so-mien-trung", "Results@xsmtIndex");
-Route::get("/ket-qua-xo-so-mien-nam", "Results@xsmnIndex");
+Route::get("/ket-qua-xsmb", "Results@xsmb");
+Route::get("/ket-qua-xsmt", "Results@xsmtIndex");
+Route::get("/ket-qua-xsmn", "Results@xsmnIndex");
 
 Route::get("crawler/old", "Crawler@getOldResult");
 

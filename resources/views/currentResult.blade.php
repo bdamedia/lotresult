@@ -7,7 +7,7 @@
 
     <div class="row">
         @include('todayResult')
-    <div class="col-xs-12">
+    <div class="col-xs-12" id="post-data">
 
         @php $g = 1; @endphp
         @foreach($content as $printresult)
@@ -246,6 +246,23 @@
     @endforeach
 
     </div>
+    <div class="top-margin col-xs-12">
+        @php $page = 1; @endphp
+        <a id="loadmore" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
+
+
+    </div>
+
+        <div class="col-xs-12">
+            <!-- /21689237362/xoso-content-ads -->
+            <div id='div-gpt-ad-1578217977238-0' style='margin: 0 auto; width: 336px; height: 280px;'>
+                <script>
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1578217977238-0'); });
+                </script>
+            </div>
+
+    </div>
+
     </div>
 
 
@@ -254,11 +271,14 @@
 
         @include('sidebar')
     </div>
+
     </div>
 </div>
 @include('footer')
 <script>
+
     function loadMoreData(page){
+        var page = $('#loadmore').attr('data-page');
         $.ajax(
             {
                 url: '?page=' + page,
@@ -275,11 +295,10 @@
                     return;
                 }
                 $('.ajax-load').hide();
-                $("img").lazyload({
-                    effect : "fadeIn",
-                    effectTime: 1500
-                });
+
                 $("#post-data").append(data.html);
+                page = parseInt(page) + 1;
+                $('#loadmore').attr('data-page',page);
             })
             .fail(function(jqXHR, ajaxOptions, thrownError)
             {
