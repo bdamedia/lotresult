@@ -314,3 +314,34 @@
     </div>
 </div>
 @include('footer')
+<script type="application/ld+json">
+{
+   "@context":"http://schema.org",
+   "@type":"WebPage",
+   "@id":"{{ Request::fullUrl() }}",
+   "url":"{{ Request::fullUrl() }}",
+   "name":"XSMT Trực Tiếp - Trực Tiếp Xổ Số Miền Trung Hôm Nay Nhanh, Chính Xác",
+   "description":"XSMT Trực Tiếp - Trực tiếp xổ số miền Trung nhanh chóng, chính xác nhất. KQXSMT được tường thuật trực tiếp lúc 17h15 hàng ngày - xo so mien trung truc tiep",
+   "keywords":["xsmt truc tiep","xo so mien trung truc tiep","xo so truc tiep mien trung","truc tiep xsmt","xo so mien trung hom nay truc tiep"],
+   "datePublished":"2020-01-06T18:25:16+07:00",
+   "dateModified":"2020-01-06T18:25:16+07:00",
+   "creator":{
+      "@type":"Organization",
+      "url":"{{ Request::fullUrl() }}",
+      "name":"Asoicau"
+   }
+}
+</script>
+
+<script type="application/ld+json">
+{"@context": "http://schema.org/",
+"@type": "BreadcrumbList",
+"itemListElement":[
+{
+    "@type": "ListItem",
+    "position": 1,
+    "item": "{{ Request::fullUrl() }}",
+    "name": "asoicau.com"
+}
+]}
+</script>

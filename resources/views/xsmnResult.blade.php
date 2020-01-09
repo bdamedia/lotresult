@@ -209,7 +209,7 @@
             </div>
 
         </div>
-            @php $g++; $lastdate = $printresult->result_day_time->toDateTime()->format('d-m-Y'); @endphp
+            @php $g++; $lastdate = $printresult->result_day_time->toDateTime()->format('Y-m-d'); @endphp
     @endforeach
 
 
@@ -260,8 +260,13 @@
                 $('.ajax-load').hide();
 
                 $("#post-data").append(data.html);
-                page = parseInt(page) + 1;
-                $('#loadmore').attr('data-date',page);
+                var D = Date.parse(page);
+                var date = new Date(D);
+                var newDate = new Date(date.getFullYear(),date.getMonth(),date.getDay()-4);
+                var month = newDate.getMonth()+1;
+                var day = newDate.getDay()+4;
+                $('#loadmore').attr('data-date',newDate.getFullYear()+'-'+month+'-'+day);
+
             })
             .fail(function(jqXHR, ajaxOptions, thrownError)
             {

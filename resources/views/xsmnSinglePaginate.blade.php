@@ -1,4 +1,4 @@
-@php $g = 1; @endphp
+@php $g = 1; $lastDate=''; @endphp
 @foreach($content as $printresult)
 
 
@@ -198,5 +198,8 @@
         </div>
 
     </div>
-    @php $g++; @endphp
+    @php $g++; $lastDate = $printresult->result_day_time->toDateTime()->format('d-m-Y'); @endphp
+    <input name="date" type="hidden" value="{{ $lastDate }}">
 @endforeach
+{{ $lastDate }}
+

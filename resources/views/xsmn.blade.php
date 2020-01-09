@@ -300,7 +300,7 @@ $gh = count($content[$key]);
                              </tbody></table>
                                 </div>
                             </div>
-                            @php $g++; $lastdate = $current['result_day_time']; @endphp
+                            @php $g++; $exDate = explode('/',$current['result_day_time']); $lastdate = $exDate[2].'-'.$exDate[1].'-'.$exDate[0]; @endphp
                         @endforeach
 
 
@@ -344,6 +344,7 @@ $gh = count($content[$key]);
             })
             .done(function(data)
             {
+               console.log($(data.html).find('.block').last());
                 if(data.html == " "){
                     $('.ajax-load').html("No more records found");
                     return;
@@ -351,11 +352,12 @@ $gh = count($content[$key]);
                 $('.ajax-load').hide();
 
                 $("#post-data").append(data.html);
-                //page = parseInt(page) + 1;
-                var d = new Date(page);
-                    console.log(d.getMonth());
-                page = $('#loadmore').attr('data-date');
-                $('#loadmore').attr('data-date',page);
+                var D = Date.parse(page);
+                var date = new Date(D);
+                var newDate = new Date(date.getFullYear(),date.getMonth(),date.getDay()-4);
+                var month = newDate.getMonth()+1;
+                var day = newDate.getDay()+4;
+                $('#loadmore').attr('data-date',newDate.getFullYear()+'-'+month+'-'+day);
             })
             .fail(function(jqXHR, ajaxOptions, thrownError)
             {

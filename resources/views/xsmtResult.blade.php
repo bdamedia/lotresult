@@ -9,7 +9,7 @@
                     @include('todayResult')
                     <div id="post-data" class="col-xs-12">
 
-                        @php $g = 1; @endphp
+                        @php $g = 1; $lastdate=''; @endphp
                         @foreach($content as $printresult)
 
 
@@ -219,14 +219,14 @@
 
 
                             </div>
-                            @php $g++; @endphp
+                            @php $g++; $lastdate = $printresult->result_day_time->toDateTime()->format('Y-m-d'); @endphp
                         @endforeach
 
 
                     </div>
                     <div class="top-margin col-xs-12">
                         @php $page = 1; @endphp
-                        <a id="loadmore" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
+                        <a id="loadmore" data-date="@php echo $lastdate; @endphp" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
                     </div>
                     <div class="col-xs-12">
                         <!-- /21689237362/xoso-content-ads -->
@@ -269,8 +269,12 @@
                 $('.ajax-load').hide();
 
                 $("#post-data").append(data.html);
-                page = parseInt(page) + 1;
-                $('#loadmore').attr('data-page',page);
+                var D = Date.parse(page);
+                var date = new Date(D);
+                var newDate = new Date(date.getFullYear(),date.getMonth(),date.getDay()-4);
+                var month = newDate.getMonth()+1;
+                var day = newDate.getDay()+4;
+                $('#loadmore').attr('data-date',newDate.getFullYear()+'-'+month+'-'+day);
             })
             .fail(function(jqXHR, ajaxOptions, thrownError)
             {
