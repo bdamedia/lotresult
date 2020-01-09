@@ -71,7 +71,7 @@ class Results extends Controller
     public function regionLoto(Request $request,$company='XSMB'){
 
         $checkUrl= explode('/',$request->url());
-        $reg = array('XSMN'=>'ket-qua-xo-so-mien-nam','XSMT'=>'ket-qua-xo-so-mien-trung','XSMB'=>'ket-qua-xo-so-mien-bac');
+        $reg = array('XSMN'=>'ket-qua-xsmn','XSMT'=>'ket-qua-xsmt','XSMB'=>'ket-qua-xsmb');
         $codeKey = array_search($checkUrl[count($checkUrl)-2],$reg);
         if($codeKey == 'XSMB'){
             $result = Result::where('lottery_region',$codeKey)->orderBy('result_day_time', 'desc')->get();

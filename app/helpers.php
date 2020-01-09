@@ -450,7 +450,7 @@ $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesd
 return array_search($dayName,$bindArrayDay);
 }
 function getRegionSlug($code){
-    $reg = array('XSMN'=>'ket-qua-xo-so-mien-nam','XSMT'=>'ket-qua-xo-so-mien-trung','XSMB'=>'ket-qua-xo-so-mien-bac');
+    $reg = array('XSMN'=>'ket-qua-xsmn','XSMT'=>'ket-qua-xsmt','XSMB'=>'ket-qua-xsmb');
     return $reg[$code];
 }
 
@@ -484,11 +484,11 @@ function metaData($key='home'){
         $key = 'home';
     }
 
-    if($mainPage == 'ket-qua-xo-so-mien-bac'){
+    if($mainPage == 'ket-qua-xsmb'){
         $mainPage = 'Xổ Số Miền Bắc';
-    }elseif($mainPage == 'ket-qua-xo-so-mien-trung'){
+    }elseif($mainPage == 'ket-qua-xsmt'){
         $mainPage = 'Xổ Số Miền Trung';
-    }elseif($mainPage == 'ket-qua-xo-so-mien-nam'){
+    }elseif($mainPage == 'ket-qua-xsmn'){
         $mainPage = 'Xổ Số Miền Nam';
     }else{
         $mainPage = 'Xổ Số 3 Miền';
@@ -562,17 +562,17 @@ function metaData($key='home'){
     $metaData['xsmt-truc-tiep']['keywords'] = "xsmt truc tiep, xo so mien trung truc tiep, xo so truc tiep mien trung, truc tiep xsmt, xo so mien trung hom nay truc tiep";
     $metaData['xsmt-truc-tiep']['description'] = "XSMT Trực Tiếp - Trực tiếp xổ số miền Trung nhanh chóng, chính xác nhất. KQXSMT được tường thuật trực tiếp lúc 17h15 hàng ngày - xo so mien trung truc tiep";
 
-    $metaData['ket-qua-xo-so-mien-nam']['title'] = 'XSMN - Kết Quả Xổ Số Miền Nam Hôm Nay - KQXSMN';
-    $metaData['ket-qua-xo-so-mien-nam']['keywords'] = 'xsmn, xo so mien nam, sxmn, xổ số miền nam, xs mn, xs mien nam, xosomien nam, xo so truc tiep mien nam, xsmn hom nay';
-    $metaData['ket-qua-xo-so-mien-nam']['description'] = 'XSMN - Xổ Số Miền Nam được cập nhật trực tiếp lúc 16h10 hàng ngày nhanh chóng, chính xác. SXMN, ket qua xo so mien nam, xs mien nam, xsmn hom nay, XSMN';
+    $metaData['ket-qua-xsmn']['title'] = 'XSMN - Kết Quả Xổ Số Miền Nam Hôm Nay - KQXSMN';
+    $metaData['ket-qua-xsmn']['keywords'] = 'xsmn, xo so mien nam, sxmn, xổ số miền nam, xs mn, xs mien nam, xosomien nam, xo so truc tiep mien nam, xsmn hom nay';
+    $metaData['ket-qua-xsmn']['description'] = 'XSMN - Xổ Số Miền Nam được cập nhật trực tiếp lúc 16h10 hàng ngày nhanh chóng, chính xác. SXMN, ket qua xo so mien nam, xs mien nam, xsmn hom nay, XSMN';
 
-    $metaData['ket-qua-xo-so-mien-bac']['title'] = 'XSMB - Kết Quả Xổ Số Miền Bắc Hôm Nay - KQXSMB';
-    $metaData['ket-qua-xo-so-mien-bac']['keywords'] = 'xsmb, sxmb, kqxsmb, xstd, xổ số miền bắc, ket qua xsmb, xo so mien bac, xsmb hom nay, kết quả xổ số miền bắc';
-    $metaData['ket-qua-xo-so-mien-bac']['description'] = 'XSMB - Kết quả xổ số miền Bắc hôm nay - KQXSMB - Tường thuật trực tiếp lúc 18h15 hàng ngày nhanh chóng, chính xác, cập nhật liên tục.';
+    $metaData['ket-qua-xsmb']['title'] = 'XSMB - Kết Quả Xổ Số Miền Bắc Hôm Nay - KQXSMB';
+    $metaData['ket-qua-xsmb']['keywords'] = 'xsmb, sxmb, kqxsmb, xstd, xổ số miền bắc, ket qua xsmb, xo so mien bac, xsmb hom nay, kết quả xổ số miền bắc';
+    $metaData['ket-qua-xsmb']['description'] = 'XSMB - Kết quả xổ số miền Bắc hôm nay - KQXSMB - Tường thuật trực tiếp lúc 18h15 hàng ngày nhanh chóng, chính xác, cập nhật liên tục.';
 
-    $metaData['ket-qua-xo-so-mien-trung']['title'] = 'XSMT - Kết Quả Xổ Số Miền Trung Hôm Nay - KQXSMT';
-    $metaData['ket-qua-xo-so-mien-trung']['keywords'] = 'xsmt, sxmt, xs mien trung, xổ số miền trung, xo so mien trung hom nay, kqxs mien trung';
-    $metaData['ket-qua-xo-so-mien-trung']['description'] = 'XSMT - SXMT - Kết quả xổ số miền Trung được cập nhật trực tiếp lúc 17h15 hàng ngày nhanh chóng, chính xác. XS Mien Trung, Xo so mien Trung hom nay.';
+    $metaData['ket-qua-xsmt']['title'] = 'XSMT - Kết Quả Xổ Số Miền Trung Hôm Nay - KQXSMT';
+    $metaData['ket-qua-xsmt']['keywords'] = 'xsmt, sxmt, xs mien trung, xổ số miền trung, xo so mien trung hom nay, kqxs mien trung';
+    $metaData['ket-qua-xsmt']['description'] = 'XSMT - SXMT - Kết quả xổ số miền Trung được cập nhật trực tiếp lúc 17h15 hàng ngày nhanh chóng, chính xác. XS Mien Trung, Xo so mien Trung hom nay.';
 
     $metaData['thu-hai']['title'] = "$region Thứ hai - Kết Quả $mainPage Thứ hai Hàng Tuần - KQ$region Thứ hai";
     $metaData['thu-hai']['keywords'] = "$region Thứ hai, $region Thứ hai Hang Tuan, $region Thứ hai, KQ$region Thứ hai";

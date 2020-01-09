@@ -11,14 +11,14 @@
 
         <div class="tab" role="tabpanel">
             <ul class="nav-tabs day-selector">
-                <li class={{ request()->segment(count(request()->segments())) == 'ket-qua-xo-so-mien-bac' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac" title="XSMB Thứ 2">Miền Bắc</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-hai' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-ba' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-ba" title="XSMB Thứ 3">Thứ ba</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-tu' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-tu" title="XSMB Thứ 4">Thứ tư</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-nam' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-nam" title="XSMB Thứ 5">Thứ năm</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-sau' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-sau" title="XSMB Thứ 6">Thứ sáu</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-bay' ? 'active-tab-new' : '' }} ><a href="/ket-qua-xo-so-mien-bac/kqxsmb-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
-                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-chu-nhat' ? 'active-tab-new' : '' }}><a href="/ket-qua-xo-so-mien-bac/kqxsmb-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'ket-qua-xsmb' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb" title="XSMB Thứ 2">Miền Bắc</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-hai' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb/kqxsmb-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-ba' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb/kqxsmb-thu-ba" title="XSMB Thứ 3">Thứ ba</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-tu' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb/kqxsmb-thu-tu" title="XSMB Thứ 4">Thứ tư</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-nam' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb/kqxsmb-thu-nam" title="XSMB Thứ 5">Thứ năm</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-sau' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb/kqxsmb-thu-sau" title="XSMB Thứ 6">Thứ sáu</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-thu-bay' ? 'active-tab-new' : '' }} ><a href="/ket-qua-xsmb/kqxsmb-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
+                <li class={{ request()->segment(count(request()->segments())) == 'kqxsmb-chu-nhat' ? 'active-tab-new' : '' }}><a href="/ket-qua-xsmb/kqxsmb-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
             </ul>
         </div>
 
