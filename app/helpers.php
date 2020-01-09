@@ -541,8 +541,8 @@ function metaData($key='home'){
 
 
     $metaData['single']['title'] = "$companyCode - Xo So $company - Kết Quả Xổ Số $company";
-    $metaData['single']['keywords'] = "$companyCode,Xo So $company,S$companyCode,KQ$companyCode,Kết Quả Xổ Số $companyCode, $companyCode $days1 va $days2";
-    $metaData['single']['description'] = "$companyCode - $companyCode - Xo So $company - Cập nhật kết quả xổ số $company $days1 và $days2 trực tiếp nhanh chóng, chính xác. KQ$companyCode, xổ số TP.HCM, $companyCode hom nay";
+    $metaData['single']['keywords'] = "$companyCode,Xo So $company,S$companyCode,KQ$companyCode,Kết Quả Xổ Số $companyCode";
+    $metaData['single']['description'] = "$companyCode - $companyCode - Xo So $company - Cập nhật kết quả xổ số $company trực tiếp nhanh chóng, chính xác. KQ$companyCode, xổ số TP.HCM, $companyCode hom nay";
 
     $metaData['date']['title'] = "KQXS - Kết Quả Xổ Số 3 Miền Ngày $date";
     $metaData['date']['keywords'] = "kqxs, xo so, ket qua xo so, xoso, xskt, kết quả xổ số, xo so hom nay, xo so truc tiep,kqxs ngày $date2";
