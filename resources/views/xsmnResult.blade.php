@@ -262,10 +262,9 @@
                 $("#post-data").append(data.html);
                 var D = Date.parse(page);
                 var date = new Date(D);
-                var newDate = new Date(date.getFullYear(),date.getMonth(),date.getDay()-4);
-                var month = newDate.getMonth()+1;
-                var day = newDate.getDay()+4;
-                $('#loadmore').attr('data-date',newDate.getFullYear()+'-'+month+'-'+day);
+                var newDate = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+                newDate = new Date(newDate.setDate(newDate.getDate()-4));
+                $('#loadmore').attr('data-date',newDate.getFullYear()+'-'+(newDate.getMonth()+1)+'-'+newDate.getDate());
 
             })
             .fail(function(jqXHR, ajaxOptions, thrownError)
