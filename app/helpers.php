@@ -344,6 +344,24 @@ function getCompanySlug($code){
 function dayWiseArray($day='all'){
     $bindArray = array();
     $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+    $bindArray = arrayDayBind();
+    return $bindArray[$bindArrayDay[$day]];
+}
+
+function getDayofCompany($companyCode){
+    $data = arrayDayBind();
+    $arrayDay = array();
+    foreach ($data as $k=>$val){
+        if(array_search($companyCode,$val)){
+            $arrayDay[] = $k;
+        }
+    }
+    return $arrayDay;
+}
+
+function arrayDayBind(){
+    $bindArray = array();
+
     $result  = RegionCompany::all();
     foreach ($result as $d){
         if(in_array($d->lottery_company,array('XSKG','XSTG','XSDL','XSKT','XSKH'))){
@@ -362,8 +380,7 @@ function dayWiseArray($day='all'){
             $bindArray['Monday']  = array('XSTTH','XSPY','XSDT','XSHCM','XSCM','XSMB');
         }
     }
-
-    return $bindArray[$bindArrayDay[$day]];
+    return $bindArray;
 }
 
 function seoUrl($string)
@@ -507,14 +524,25 @@ function metaData($key='home'){
         $companyCode =  '';
     }
 
+    $days = getDayofCompany($companyCode);
+    if(count($days) > 0 && is_array($days)){
+
+        //print_r($days);
+        $days1 = engToVit(current($days));
+        $days2 = engToVit(end($days));
+    }else{
+        $days1 = '';
+        $days2 = '';
+    }
+
     $metaData['home']['title'] = 'KQXS - Kết Quả Xổ Số 3 Miền Hôm Nay - Tường thuật trực tiếp kqxs';
     $metaData['home']['keywords'] = 'kqxs, xo so, ket qua xo so, xoso, xskt, kết quả xổ số, xo so hom nay, xo so truc tiep';
     $metaData['home']['description'] = 'KQXS - Xo So - Tường thuật kết quả xổ số hôm nay trực tiếp từ trường quay, nhanh chóng, chính xác cho cả 3 miền Bắc, Trung, Nam và XS Mega. XSKT, Dự đoán xổ số, Soi cầu hàng ngày.';
 
 
     $metaData['single']['title'] = "$companyCode - Xo So $company - Kết Quả Xổ Số $company";
-    $metaData['single']['keywords'] = "$companyCode,Xo So $company,S$company,KQ$companyCode,Kết Quả Xổ Số $companyCode, $companyCode thu 2 va thu 7";
-    $metaData['single']['description'] = "$companyCode - $companyCode - Xo So $company - Cập nhật kết quả xổ số $company thứ 2 và thứ 7 trực tiếp nhanh chóng, chính xác. KQ$companyCode, xổ số TP.HCM, $companyCode hom nay";
+    $metaData['single']['keywords'] = "$companyCode,Xo So $company,S$companyCode,KQ$companyCode,Kết Quả Xổ Số $companyCode, $companyCode $days1 va $days2";
+    $metaData['single']['description'] = "$companyCode - $companyCode - Xo So $company - Cập nhật kết quả xổ số $company $days1 và $days2 trực tiếp nhanh chóng, chính xác. KQ$companyCode, xổ số TP.HCM, $companyCode hom nay";
 
     $metaData['date']['title'] = "KQXS - Kết Quả Xổ Số 3 Miền Ngày $date";
     $metaData['date']['keywords'] = "kqxs, xo so, ket qua xo so, xoso, xskt, kết quả xổ số, xo so hom nay, xo so truc tiep,kqxs ngày $date2";
