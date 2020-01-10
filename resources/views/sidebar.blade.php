@@ -10,11 +10,11 @@
 
     <div class="item-menu center-side-bar">
         <div class="title-item">
-            <h3 class="btn-red-new"><a href="/ket-qua-xo-so-mien-bac" title="xổ số miền Bắc">Xổ số miền Bắc</a></h3>
+            <h3 class="btn-red-new"><a href="/ket-qua-xsmb" title="xổ số miền Bắc">Xổ số miền Bắc</a></h3>
         </div>
         <div class="content-item"><ul>
 
-                    <li><a href="/ket-qua-xo-so-mien-bac" title="Xổ số miền Bắc">Miền Bắc</a></li>
+                    <li><a href="/ket-qua-xsmb" title="Xổ số miền Bắc">Miền Bắc</a></li>
 
             </ul>
         </div>
@@ -23,11 +23,11 @@
 
     <div class="item-menu center-side-bar margin-top-no">
         <div class="title-item">
-            <h3 class="btn-red-new"><a href="/ket-qua-xo-so-mien-nam/" title="xổ số miền Nam">Xổ số miền Nam</a></h3>
+            <h3 class="btn-red-new"><a href="/ket-qua-xsmn/" title="xổ số miền Nam">Xổ số miền Nam</a></h3>
         </div>
         <div class="content-item"><ul>
                 @foreach($sidebar as $content)
-                    <li><a href="/ket-qua-xo-so-mien-nam/kqxsmn-{{ $content->lottery_company_slug }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
+                    <li><a href="/ket-qua-xsmn/kqxsmn-{{ $content->lottery_company_slug }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
                     @endforeach
             </ul>
         </div>
@@ -36,11 +36,11 @@
 
     <div class="item-menu center-side-bar margin-top-no">
         <div class="title-item">
-            <h3 class="btn-red-new"><a href="/ket-qua-xo-so-mien-trung" title="xổ số miền Trung">Xổ số miền Trung</a></h3>
+            <h3 class="btn-red-new"><a href="/ket-qua-xsmt" title="xổ số miền Trung">Xổ số miền Trung</a></h3>
         </div>
         <div class="content-item"><ul>
                 @foreach($sidebarXsmt as $content)
-                    <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-{{ $content->lottery_company_slug }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
+                    <li><a href="/ket-qua-xsmt/kqxsmt-{{ $content->lottery_company_slug }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
                     @endforeach
             </ul>
         </div>
@@ -75,5 +75,23 @@
                     <button type="button" disabled class="btn btn-red-blue-lite form-group" id="btndoSo" title="Kết quả">Kết quả</button>
                 </div></div>
             <p class="text-12">( Có thể nhập tối thiểu 2 số, tối đa 17 số )</p>
-        </div></div>
+        </div>
+    </div>
+
+    <div class="hidden-xs hidden-sm item-menu border-margin margin-top-setting">
+        <!-- /21689237362/xoso-sidebar01 -->
+        <div id='div-gpt-ad-1578217830804-0' style='width: 300px; height: 600px;'>
+            <script>
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1578217830804-0'); });
+            </script>
+        </div>
+    </div>
+    <div class="hidden-xs hidden-sm item-menu border-margin margin-top-setting">
+        <!-- /21689237362/xoso-sidebar02 -->
+        <div id='div-gpt-ad-1578217870888-0' style='width: 300px; height: 600px;'>
+            <script>
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1578217870888-0'); });
+            </script>
+        </div>
+    </div>
 </div>

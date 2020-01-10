@@ -266,9 +266,9 @@
                         <div class="list-link">
                             <h2 class="class-title-list-link">
 
-                                <a href="/ket-qua-xo-so-mien-bac" title="XSMB">XSMB</a><span> » </span>
-                                <a href="/ket-qua-xo-so-mien-bac/kqxsmb-{{ getDaySlug($mytime->toDateTime()->format('l')) }}" title="XSMB Wednesday">XSMB {{ engToVit($mytime->toDateTime()->format('l')) }}</a><span> » </span>
-                                <a href="/ket-qua-xo-so-mien-bac/kqxsmb-ngay-{{ $mytime->toDateTime()->format('d-m-Y') }}" title="XSMB  01/01/20"> XSMB   {{ $mytime->toDateTime()->format('d/m/Y') }}</a>
+                                <a href="/ket-qua-xsmb" title="XSMB">XSMB</a><span> » </span>
+                                <a href="/ket-qua-xsmb/kqxsmb-{{ getDaySlug($mytime->toDateTime()->format('l')) }}" title="XSMB Wednesday">XSMB {{ engToVit($mytime->toDateTime()->format('l')) }}</a><span> » </span>
+                                <a href="/ket-qua-xsmb/kqxsmb-ngay-{{ $mytime->toDateTime()->format('d-m-Y') }}" title="XSMB  01/01/20"> XSMB   {{ $mytime->toDateTime()->format('d/m/Y') }}</a>
 
                             </h2>
                         </div>
@@ -342,9 +342,9 @@
 
 
                 <span class="link-pad-left padding10 class-title-list-link">
-                    <a href="/ket-qua-xo-so-mien-bac/ket-qua-lo-to-mien-bac">Lô tô XSMB</a>
+                    <a href="/ket-qua-xsmb/ket-qua-lo-to-mien-bac">Lô tô XSMB</a>
                     <span> » </span>
-                    <a href="/ket-qua-xo-so-mien-bac/ket-qua-lo-to-mien-bac/kqltmb-{{ getDaySlug($mytime->toDateTime()->format('l')) }}" title="XSMB  {{ engToVit($mytime->toDateTime()->format('l')) }}">Lô tô  XSMB {{ engToVit($mytime->toDateTime()->format('l')) }} </a>
+                    <a href="/ket-qua-xsmb/ket-qua-lo-to-mien-bac/kqltmb-{{ getDaySlug($mytime->toDateTime()->format('l')) }}" title="XSMB  {{ engToVit($mytime->toDateTime()->format('l')) }}">Lô tô  XSMB {{ engToVit($mytime->toDateTime()->format('l')) }} </a>
 
 
                 </span>
@@ -412,6 +412,15 @@
 
                     </div>
                 @endif
+
+            </div>
+            <div class="col-xs-12">
+                <!-- /21689237362/xoso-content-ads -->
+                <div id='div-gpt-ad-1578217977238-0' style='margin: 0 auto; width: 336px; height: 280px;'>
+                    <script>
+                        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1578217977238-0'); });
+                    </script>
+                </div>
 
             </div>
         </div>
