@@ -20,11 +20,11 @@
     <meta property="og:type" content="article"/>
     <meta property="og:locale" content="vi_VN"/>
     <meta property="og:description" content="{{ $mData['description'] }}"/>
-    <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet"/>
-    {{--<link rel="stylesheet" href="{{ URL::asset('css/steel.css') }}">
+    <link href="{{ URL::asset('css/HomeCombined.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ URL::asset('css/steel.css') }}">
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ URL::asset('css/jscal2.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('css/border-radius.css') }}">--}}
+    <link rel="stylesheet" href="{{ URL::asset('css/border-radius.css') }}">
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
