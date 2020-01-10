@@ -60,3 +60,10 @@ Route::get("/updatexsmt/{link}", "Crawler@xsmtCurrentResult");
 Route::get("/reload/{link}", "Crawler@reloadCurrentResult");
 Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
 
+
+Route::get("/thung/thong-ke-{day}", "Results@thungDay");
+Route::get("/thong-ke-xsdp-tinh-theo-thu", "Results@getThungDayWeek");
+Route::get("/XSDPThongKeAjax/XSDPTKGanCucDai", "Results@getThungKeysAjax");
+
+
+

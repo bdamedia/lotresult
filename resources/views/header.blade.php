@@ -84,7 +84,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="list_border last-ul-value  @php if(in_array('ket-qua-xo-so-mien-trung',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xo-so-mien-trung" title="XSMT">XSMT</a>
+                    <li class="list_border last-ul-value-second  @php if(in_array('ket-qua-xo-so-mien-trung',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xo-so-mien-trung" title="XSMT">XSMT</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
@@ -95,6 +95,23 @@
                                 <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-thu-bay" title="XSMB Thứ 7">Thứ bảy</a></li>
                                 <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-chu-nhat" title="XSMB Chủ Nhật">Chủ Nhật</a></li>
                                 <li><a href="/ket-qua-xo-so-mien-trung/kqxsmt-truc-tiep" title="Trực tiếp XSMT">Trực tiếp</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+                    <li class="list_border last-ul-value  @php if(in_array('thung',$reload)){ echo "active"; } @endphp"><a href="/thung/thong-ke-lo-gan" title="TK Lô">TK Lô</a>
+                        <div class="menu-lv2-down">
+                            <ul>
+                                <li><a href="/thung/thong-ke-lo-gan" title="TK l&#244; gan">TK l&#244; gan</a></li>
+                                <li><a href="/thung/thong-ke-lo-xien" title="TK l&#244; xi&#234;n">TK l&#244; xi&#234;n</a></li>
+                                <li><a href="/thung/thong-ke-lo-kep" title="TK l&#244; k&#233;p">TK l&#244; k&#233;p</a></li>
+                                <li><a href="/thung/thong-ke-dau" title="TK đầu">TK đầu</a></li>
+                                <li><a href="/thung/thong-ke-duoi" title="TK đu&#244;i">TK đu&#244;i</a></li>
+                                <li><a href="/thung/thong-ke-2-so-cuoi-db-mien-bac" title="TK giải đặc biệt">TK giải đặc biệt</a></li>
+                                <li><a href="/thung/thong-ke-tan-suat" title="TK lần xuất hiện">TK lần xuất hiện</a></li>
+                                <li><a href="/thung/thong-ke-00-99" title="TK 00 - 99">TK 00 - 99</a></li>
+                                <li><a href="/thung/thong-ke-theo-chu-ky-4-1-0" title="TK chu kỳ">TK chu kỳ</a></li>
                             </ul>
                         </div>
                     </li>

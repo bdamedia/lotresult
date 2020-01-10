@@ -5,6 +5,7 @@ use App\Result;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DateTime;
+use App\RegionCompany;
 
 class Results extends Controller
 {
@@ -636,5 +637,27 @@ class Results extends Controller
             return view('resultCountDownXsmn')->with($data);
         }
 
+    }
+
+    public function thungDay(Request $request,$day){
+        $data['region'] = "thong";
+        $data['enableTab'] = true;
+        return view('thong')->with($data);
+    }
+
+    public function getThungDayWeek(Request $request) {
+        $day = $request->input('strDayOfWeek');
+        $list = dayWiseArray($day);
+        $reg = RegionCompany::whereIn('lottery_company',$list)->get();
+        return $reg;
+    }
+
+    public function getThungKeysAjax(Request $request) {
+        $lotteryId = $request->input('lotteryId');
+        $rollingNumbers = $request->input('rollingNumbers');
+        print($rollingNumbers);
+        print('......');
+        print_r($lotteryId);
+        die();
     }
 }
