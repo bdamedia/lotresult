@@ -1,7 +1,5 @@
  <footer>
-    <div class="container">
 
-    </div>
     <div class="container">
 
         <div class="hidden-xs hidden-sm list-link-footer">
@@ -15,11 +13,6 @@
     </div>
 </footer>
 <script src="{{ URL::asset('js/jquerylib.js') }}"></script>
-<script src="{{ URL::asset('js/xsdp.min.js') }}"></script>
-<script src="{{ URL::asset('js/main.js') }}"></script>
-
-
-
 <script type="text/javascript" src="{{ URL::asset('js/jscal2.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/en.js') }}"></script>
 
@@ -30,7 +23,7 @@
     }else{
        var date1 = Calendar.dateToInt(new Date());
     }
-    console.log(date1);
+
    Calendar.setup ({
        cont: 'calcontainer',
        showTime: true,

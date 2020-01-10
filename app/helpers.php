@@ -526,8 +526,6 @@ function metaData($key='home'){
 
     $days = getDayofCompany($companyCode);
     if(count($days) > 0 && is_array($days)){
-
-        //print_r($days);
         $days1 = engToVit(current($days));
         $days2 = engToVit(end($days));
     }else{
