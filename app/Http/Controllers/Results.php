@@ -741,14 +741,24 @@ class Results extends Controller
         print('......');
         print('rollingNumbersrollingNumbers...');
         print_r($lotteryId);
-
-
         //$result = Result::where('prize_2', 'like', $lotteryId)->orderBy('result_day_time', 'desc')->limit(4)->get();
         //$result = Result::orderBy('result_day_time', 'desc')->limit(4)->get();
         $date = Carbon::now()->format('Y-m-d');
         $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
-        $result = Result::where('result_day_time' ,'<=', $orig_date)->where('lottery_region' , $lotteryId)->orderBy('result_day_time', 'desc')->limit(4)->get();
-
+        //$result = Result::where('prize_2', 'like', "%{$rollingNumbers}%")->orderBy('result_day_time', 'desc')->limit(4)->get();
+        $result = Result::where('prize_2', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_3', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_4', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_5', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_6', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_7', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_8', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_9', 'like', "%{$rollingNumbers}%")
+            ->where('result_day_time' ,'<=', $orig_date)->where('lottery_company' , $lotteryId)
+            ->orderBy('result_day_time', 'desc')->get();
+        //echo "<pre>";
+        //print_r(json_decode($result));
+        //die();
         $new = array();
         $t = 0;
         foreach ($result as $res){
@@ -756,9 +766,21 @@ class Results extends Controller
             $new[$k][$t]['lottery_region'] = $res->lottery_region;
             $new[$k][$t]['lottery_company'] = $res->lottery_company;
             $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+
+            $new[$k][$t]['prize_1'] = $res->prize_1;
+            $new[$k][$t]['prize_2'] = $res->prize_2;
+            $new[$k][$t]['prize_3'] = $res->prize_3;
+            $new[$k][$t]['prize_4'] = $res->prize_4;
+            $new[$k][$t]['prize_5'] = $res->prize_5;
+            $new[$k][$t]['prize_6'] = $res->prize_6;
+            $new[$k][$t]['prize_7'] = $res->prize_7;
+            $new[$k][$t]['prize_8'] = $res->prize_8;
+            $new[$k][$t]['prize_9'] = $res->prize_9;
+
             $new[$k][$t]['board'] = $res->board;
             $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
-            $new[$k][$t]['count'] = array_count_values(json_decode($res->board, true));
+
+            //$new[$k][$t]['count'] = array_count_values(json_decode($res->board, true));
             $t++;
         }
 
