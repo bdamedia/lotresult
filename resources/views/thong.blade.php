@@ -574,7 +574,7 @@
                                 if(data) {
                                     $.each(data,function(key,value){
                                         $('#ddLotteries').append($("<option/>", {
-                                           value: value._id,
+                                           value: value.lottery_region,
                                            text: value.lottery_company_names
                                         }));
                                     });

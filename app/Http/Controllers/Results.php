@@ -736,9 +736,36 @@ class Results extends Controller
     public function getThungKeysAjax(Request $request) {
         $lotteryId = $request->input('lotteryId');
         $rollingNumbers = $request->input('rollingNumbers');
+        print('rollingNumbersrollingNumbers...');
         print($rollingNumbers);
         print('......');
+        print('rollingNumbersrollingNumbers...');
         print_r($lotteryId);
+
+
+        //$result = Result::where('prize_2', 'like', $lotteryId)->orderBy('result_day_time', 'desc')->limit(4)->get();
+        //$result = Result::orderBy('result_day_time', 'desc')->limit(4)->get();
+        $date = Carbon::now()->format('Y-m-d');
+        $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
+        $result = Result::where('result_day_time' ,'<=', $orig_date)->where('lottery_region' , $lotteryId)->orderBy('result_day_time', 'desc')->limit(4)->get();
+
+        $new = array();
+        $t = 0;
+        foreach ($result as $res){
+            $k = $res->result_day_time->toDateTime()->format('d/m/y');
+            $new[$k][$t]['lottery_region'] = $res->lottery_region;
+            $new[$k][$t]['lottery_company'] = $res->lottery_company;
+            $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+            $new[$k][$t]['board'] = $res->board;
+            $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
+            $new[$k][$t]['count'] = array_count_values(json_decode($res->board, true));
+            $t++;
+        }
+
+        //$data['content'] = $new;
+        echo "<pre>";
+        print_r($new);
+
         die();
     }
 }
