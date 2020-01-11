@@ -30,7 +30,7 @@
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-M9Z4365');</script>
-    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>;
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <script>
         window.googletag = window.googletag || {cmd: []};
         googletag.cmd.push(function() {
@@ -50,7 +50,6 @@
 <div id="top"></div>
 <div class="body-wrapper">
     <header>
-
         <div class="container">
             <div class="row">
                 <div class="hidden-xs hidden-sm col-md-2">
@@ -125,7 +124,7 @@
             </div>
         </nav>
 
- 
+
 
         <div class="visible-xs visible-sm menu-mobile">
             <div class="col-xs-12">
