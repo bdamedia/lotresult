@@ -16,6 +16,8 @@ Route::get("/crawler/cJob", "Crawler@CroneJob");
 Route::get("/crawler/cJob/all/", "Crawler@CroneJobFull");
 
 Route::get('/','Results@index');
+Route::get('/lot3-statistics','Results@lot3Statistics');
+Route::post('/lot3-statistics','Results@lot3Statistics');
 
 Route::get('/ket-qua-xo-so-mien-bac/kqxsmb-truc-tiep/','Results@trucTiep');
 Route::get('/ket-qua-xo-so-mien-trung/kqxsmt-truc-tiep/','Results@trucTiep');
