@@ -743,7 +743,7 @@ class Results extends Controller
         print_r($lotteryId);
         //$result = Result::where('prize_2', 'like', $lotteryId)->orderBy('result_day_time', 'desc')->limit(4)->get();
         //$result = Result::orderBy('result_day_time', 'desc')->limit(4)->get();
-        $date = Carbon::now()->format('Y-m-d');
+        $date = Carbon::now()->subDays($rollingNumbers)->format('Y-m-d');
         $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
         //$result = Result::where('prize_2', 'like', "%{$rollingNumbers}%")->orderBy('result_day_time', 'desc')->limit(4)->get();
         $result = Result::where('prize_2', 'like', "%{$rollingNumbers}%")
