@@ -12,6 +12,7 @@
     <meta name="description" content="{{ $mData['description'] }}"/>
     <meta name="keywords" content="{{ $mData['keywords'] }}"/>
     <link rel='canonical' href='{{ request()->fullUrl() }}'/>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
      <meta name="robots" content="index, follow"/>
     <meta property="og:site_name" content="Asoicau"/>
@@ -41,6 +42,7 @@
             googletag.pubads().enableSingleRequest();
             googletag.enableServices();
         });
+
     </script>
 </head>
 <body>

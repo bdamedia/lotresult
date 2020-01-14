@@ -59,9 +59,10 @@
         <div class="form-doveso">
             <div class="form-inline">
                 <div class="form-group"><label for="ngaydoheader" class="lable-text">Chọn ngày:</label>
-                    <input style="line-height: 21px" type="date" id="ngaydoheader" value="{{ date('Y-m-d') }}" class="form-control form-group" required="required" placeholder="Chọn ngày" onchange="xsdp.getTinhtheoNgay(this.value);" size="9" title="Ngày dò">
+                    <input style="line-height: 21px" type="date" id="ngaydoheader" value="{{ date('Y-m-d') }}" class="form-control form-group" required="required" placeholder="Chọn ngày"  size="9" title="Ngày dò">
                 </div>
-                <div class="form-group"><label for="tinhheader" class="lable-text">Chọn tỉnh:</label>
+                <div class="form-group">
+                    <label for="tinhheader" class="lable-text">Chọn tỉnh:</label>
                     <select class="form-control form-group" id="tinhheader">
                         <option value="mb" data-lotterydesc="/xsmb-xo-so-mien-bac.html">Miền Bắc</option>
                         <option value="TTH" data-lotterydesc="/xstth-xo-so-hue.html">Huế</option>

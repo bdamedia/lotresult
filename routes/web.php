@@ -50,6 +50,7 @@ Route::get("/cau-mien-bac/{kqxs_dien_toan}", "Results@kqxs");
 Route::get("/thond-keys/{thond_keys}", "Results@thonds");
 
 
+Route::post("/getCompanyByday", "Crawler@listCompanyDaywise");
 Route::get("/crawler/current", "Crawler@getCurrentResult");
 Route::get("/crawler/xsmn/current", "Crawler@xsmnCurrentResult");
 

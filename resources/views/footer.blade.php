@@ -18,6 +18,11 @@
 
 
 <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     if(localStorage.getItem('date')){
         var date1 = Calendar.dateToInt(localStorage.getItem('date'));
     }else{
@@ -40,7 +45,30 @@
 
        }
    })
-
+    $('#ngaydoheader').on('change',function(){
+        $.ajax({
+            url: '/getCompanyByday',
+            data: {
+                date: $(this).val(),
+            },
+            type: 'POST',
+            success: function(data) {
+                console.log(data);
+                $('#ddLotteries').empty();
+                $("#ddLotteries").append('<option>--Select Company--</option>');
+                if(data) {
+                    $.each(data,function(key,value){
+                        $('#ddLotteries').append($("<option/>", {
+                            value: value.lottery_company,
+                            text: value.lottery_company_names
+                        }));
+                    });
+                }
+                //$("#ddlProvinces").html(data);
+            }
+        });
+        console.log($(this).val())
+    })
 </script>
 </div>
 </body>

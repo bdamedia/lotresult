@@ -325,6 +325,19 @@ class Crawler extends Controller
         }
     }
 
+    public function listCompanyDaywise(Request $request){
+        $date = $request->input('date');
+        $date1 = Carbon::createFromFormat('!Y-m-d',$date);
+        $date2 = Carbon::createFromFormat('!Y-m-d',$date);
+        $date2 = $date2->addDay(1);
+        $day = $date1->toDateTime()->format('l');
+        $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+        $bindArray = arrayDayBind();
+        $list =  $bindArray[$day];
+        $result = RegionCompany::whereIn('lottery_company',$list); //->where('result_day_time','>=',$date1)->where('result_day_time','=<',$date2)->all();
+        print_r($result);
+        //return $result;
+    }
     public function CroneJobFull(Request $request){
 
 
