@@ -64,6 +64,7 @@ Route::get("/reload/{link}", "Crawler@reloadCurrentResult");
 Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
 
 Route::get('/','Results@index');
+Route::redirect('admin','admin/login');
 Auth::routes();
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::get('admin/users', 'admin\UserController@index')->name('users')->middleware('auth');
