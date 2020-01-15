@@ -45,6 +45,8 @@
 
        }
    })
+
+
     $('#ngaydoheader').on('change',function(){
         $.ajax({
             url: '/getCompanyByday',
@@ -54,17 +56,36 @@
             type: 'POST',
             success: function(data) {
                 console.log(data);
-                $('#ddLotteries').empty();
-                $("#ddLotteries").append('<option>--Select Company--</option>');
+                $('#tinhheader').empty();
+                $("#tinhheader").append('<option>--Select Company--</option>');
                 if(data) {
                     $.each(data,function(key,value){
-                        $('#ddLotteries').append($("<option/>", {
+                        console.log(value)
+                        $('#tinhheader').append($("<option/>", {
                             value: value.lottery_company,
                             text: value.lottery_company_names
                         }));
                     });
                 }
                 //$("#ddlProvinces").html(data);
+            }
+        });
+        console.log($(this).val())
+    })
+
+    $('#btndoSo').on('click',function(){
+        $.ajax({
+            url: '/getSearchBydayandNumber',
+            data: {
+                date: $('#ngaydoheader').val(),
+                number: $('#inputNumberDo').val(),
+                company: $('#tinhheader option:selected').val(),
+            },
+            type: 'POST',
+            success: function(data) {
+                console.log(data);
+                $('.xsmt').html(data.html);
+
             }
         });
         console.log($(this).val())

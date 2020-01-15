@@ -328,14 +328,41 @@ class Crawler extends Controller
     public function listCompanyDaywise(Request $request){
         $date = $request->input('date');
         $date1 = Carbon::createFromFormat('!Y-m-d',$date);
-        $date2 = Carbon::createFromFormat('!Y-m-d',$date);
-        $date2 = $date2->addDay(1);
+       /* $date2 = Carbon::createFromFormat('!Y-m-d',$date);
+        $date2 = $date2->addDay(1);*/
         $day = $date1->toDateTime()->format('l');
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
         $bindArray = arrayDayBind();
         $list =  $bindArray[$day];
-        $result = RegionCompany::whereIn('lottery_company',$list); //->where('result_day_time','>=',$date1)->where('result_day_time','=<',$date2)->all();
-        print_r($result);
+        $result = RegionCompany::whereIn('lottery_company',$list)->get(); //->where('result_day_time','>=',$date1)->where('result_day_time','=<',$date2)->all();
+        //print_r($result);
+        return $result;
+    }
+
+    public function getSearchBydayandNumber(Request $request){
+        $date = $request->input('date');
+        $number = $request->input('number');
+        $company = $request->input('company');
+        $date1 = Carbon::createFromFormat('!Y-m-d',$date);
+        $date2 = Carbon::createFromFormat('!Y-m-d',$date);
+        $date2 = $date2->addDay(1);
+        $day = $date1->toDateTime()->format('l');
+        $result = Result::where('lottery_company',$company)->where('result_day_time','>=',$date1)->where('result_day_time','<',$date2)->get();
+         $checkViewRegion = collect($result)->first()->lottery_region;
+
+        $data['content'] = $result;
+
+        if ($request->ajax()) {
+            if ($checkViewRegion == 'XSMB'){
+                $view = view('xsmbPaginate', $data)->render();
+        }elseif ($checkViewRegion == 'XSMT'){
+                $view = view('xsmtPaginate', $data)->render();
+            }elseif ($checkViewRegion == 'XSMN'){
+                $view = view('xsmnSinglePaginate', $data)->render();
+            }
+            return response()->json(['html'=>$view]);
+        }
+       // return view('xsmtPaginate')->with($result);
         //return $result;
     }
     public function CroneJobFull(Request $request){

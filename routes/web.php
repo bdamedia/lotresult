@@ -51,6 +51,7 @@ Route::get("/thond-keys/{thond_keys}", "Results@thonds");
 
 
 Route::post("/getCompanyByday", "Crawler@listCompanyDaywise");
+Route::post("/getSearchBydayandNumber", "Crawler@getSearchBydayandNumber");
 Route::get("/crawler/current", "Crawler@getCurrentResult");
 Route::get("/crawler/xsmn/current", "Crawler@xsmnCurrentResult");
 
