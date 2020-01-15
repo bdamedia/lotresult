@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         Silber\PageCache\LaravelServiceProvider::class,
+        JeroenNoten\LaravelAdminLte\AdminLteServiceProvider::class,
 
 
         /*

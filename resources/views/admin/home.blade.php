@@ -1,15 +1,19 @@
+@extends('adminlte::page')
 
-	<div class="page-title">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<ol class="breadcrumb">
-     					<li><a href="#">Testing</a></li>
-     					
-     				</ol>
-				</div><!-- Col end -->
-			</div><!-- Row end -->
-		</div><!-- Container end -->
-	</div><!-- Page title end -->
+@section('title', 'AdminLTE')
 
+@section('content_header')
+    <h1 class="m-0 text-dark">Dashboard</h1>
+@stop
 
+@section('content')
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <p class="mb-0">You are logged in!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@stop

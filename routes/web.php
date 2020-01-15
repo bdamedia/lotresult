@@ -11,11 +11,12 @@
 |
 */
 
+
 Route::get("/crawler", "Crawler@index");
 Route::get("/crawler/cJob", "Crawler@CroneJob");
 Route::get("/crawler/cJob/all/", "Crawler@CroneJobFull");
 
-Route::get('/','Results@index');
+
 
 Route::get('/ket-qua-xsmb/kqxsmb-truc-tiep/','Results@trucTiep');
 Route::get('/ket-qua-xsmt/kqxsmt-truc-tiep/','Results@trucTiep');
@@ -61,4 +62,14 @@ Route::get("/updatedatabase/{link}", "Crawler@saveDatabase");
 Route::get("/updatexsmt/{link}", "Crawler@xsmtCurrentResult");
 Route::get("/reload/{link}", "Crawler@reloadCurrentResult");
 Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
+
+Route::get('/','Results@index');
+Auth::routes();
+Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::get('admin/users', 'admin\UserController@index')->name('users')->middleware('auth');
+Route::get('admin/user/{id}', 'admin\UserController@view')->name('view')->middleware('auth');
+
+Route::get('/admin/home', function() {
+    return view('admin/home');
+})->name('home')->middleware('auth');
 
