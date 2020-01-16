@@ -43,8 +43,9 @@
 
         <br>
             <div class="col-sm-10 col-sm-offset-1 col-xs-12 table-responsive">
-                <a style="float: right;margin-left: 14px;" class="badge-primary btn" href="{{ '/admin/news/create' }}" >Add News</a>
+
                 @if($data->count())
+                    <a style="float: right;margin-left: 14px;" class="badge-primary btn" href="{{ '/admin/news/create' }}" >Add News</a>
                     <table id="usersTable" class="table table-bordered table-striped" data-order='[[ 0, "asc" ]]' data-page-length='25'>
                         <thead>
                         <tr>
@@ -77,6 +78,7 @@
                 @else
                     <div class="alert alert-warning">
                         You don't have any data here
+                        <a style="float: right;margin-left: 14px;" class="badge-primary btn" href="{{ '/admin/news/create' }}" >Add News</a>
                     </div>
                 @endif
 
