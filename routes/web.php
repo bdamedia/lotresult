@@ -65,12 +65,20 @@ Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
 
 Route::get('/','Results@index');
 Route::redirect('admin','admin/login');
+
 Auth::routes();
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::get('admin/users', 'admin\UserController@index')->name('users')->middleware('auth');
 Route::get('admin/user/{id}', 'admin\UserController@view')->name('view')->middleware('auth');
 
+Route::get('admin/news', 'admin\NewsController@index')->name('news')->middleware('auth');
+Route::get('admin/news/create', 'admin\NewsController@create')->name('create')->middleware('auth');
+Route::post('admin/news/store', 'admin\NewsController@store')->name('store')->middleware('auth');
+Route::get('admin/news/{id}', 'admin\NewsController@show')->name('show')->middleware('auth');
+Route::get('admin/news/{id}/edit', 'admin\NewsController@edit')->name('edit')->middleware('auth');
+Route::post('admin/news/update', 'admin\NewsController@update')->name('update')->middleware('auth');
+
+
 Route::get('/admin/home', function() {
     return view('admin/home');
 })->name('home')->middleware('auth');
-
