@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Result;
+use App\RegionCompany;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DateTime;
@@ -55,7 +56,7 @@ class Results extends Controller
     }
 
     public function xsmb(Request $request,$company='XSMB'){
-
+       
         $result = Result::where('lottery_region','XSMB')->where('lottery_company', strtoupper($company))->orderBy('result_day_time', 'desc')->paginate(10);
         $data['content'] = $result;
         //$comp = Result::where('lottery_region', 'XSMB')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
@@ -63,6 +64,114 @@ class Results extends Controller
         $data['region'] = "xsmb";
         $data['companyName'] = strtoupper($company);
         return view('currentResult')->with($data);
+    }
+    
+    public function loto2(Request $request){
+    
+        //Dynamic date selection
+        $duration = 10;
+        //Check get method
+        if($request->method() == "POST"){
+            $duration = ($request->time_duration)-1;
+            $company = $request->companyName;
+        }
+        //Current time and date 
+        $date = Carbon::now()->format('Y-m-d');
+        $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
+        $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
+        if($request->method() == "POST"){
+            $results= Result::where('result_day_time' ,'>=', $exactDate )->where('lottery_company', '=', $company)->orderBy('result_day_time', 'desc')->get();
+        }else{
+            $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->get();
+        }
+        $lotto2 = [];
+        $finallotto2 = [];
+        $spclLott2Val = [];
+        $finalSpcllott2 = [];
+        $NotAppearlotto2 = [];
+        $NotApearInSpclLotto2 = [];
+        
+        //Array for lotto2 special and not appearing arrays
+        foreach ($results as $printresult) {
+
+            $finalValues = [];
+            //get value of each prize and save in lot3 and special_lot3 array
+            for ($it=1; $it< 10 ; $it++) {
+                $t= "prize_{$it}";
+                //Decode json into array of each prize
+                $fNewResult = json_decode($printresult->{$t});
+                foreach ($fNewResult as $keyValues => $mainValue) {
+
+                    if(is_array($mainValue)) {
+                        $lotto2[] = array_values((array) $mainValue);
+
+                    } else if ($keyValues == 'Mã ĐB') {
+                        $spclLott2Val[] = array_values((array) $mainValue);
+                    }else if ($keyValues == 'G.DB') {
+                        $spclLott2Val[] = array_values((array) $mainValue);
+                    } else {
+                        $lotto2[] = array_values((array) $mainValue);
+                    }
+                }
+            }
+        }
+
+        //Final lotto 2 array
+        foreach ($lotto2 as $fullValue) {
+            foreach ($fullValue as $mergeValue) {
+                if(strlen($mergeValue)>1)
+                {
+                    array_push($finallotto2, substr($mergeValue, -2));
+                }
+            }
+        }
+        //Final special lotto 2 array
+        foreach ($spclLott2Val as $newSpecialFullValue) {
+            foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
+                if(strlen($mergeSpecialFullValue)>1)
+                {
+                   //Removed string in array values
+                   if (is_numeric($mergeSpecialFullValue)) {   array_push($finalSpcllott2, substr($mergeSpecialFullValue, -2)); }
+                }
+            }
+        }
+
+        //Final special not appearing lotto 2
+        for($i=0; $i<100; $i++){
+            $i = (string)$i;
+            if(in_array($i,$finalSpcllott2)) {
+            }else{
+                if(strlen($i)<2){
+                    $i = '0'.$i;
+                    array_push($NotApearInSpclLotto2,$i);
+                }else{
+                    array_push($NotApearInSpclLotto2,$i);
+                }
+            }
+        }
+
+        //Final array of not appearing lotto 2
+        for($i=0; $i<100; $i++){
+            $i = (string)$i;
+            if(in_array($i,$finallotto2)) {
+            }else{
+                if(strlen($i)<2){
+                    $i = '0'.$i;
+                    array_push($NotAppearlotto2,$i);
+                }else{
+                    array_push($NotAppearlotto2,$i);
+                }
+            }
+        }
+        
+        //Company result
+        $resultsForCompany= RegionCompany::all();
+        $companyName = [];
+        foreach ($resultsForCompany as $name) {
+            $companyName[] = $name->lottery_company_names;
+        }
+        //Return view with data
+        return view('loto2',['lotto2' => array_count_values($finallotto2), 'special' => array_count_values($finalSpcllott2), 'companyName' => array_unique($companyName), 'digitNotApearInLot2' => $NotAppearlotto2, 'NotappearspecialLotto2digits' => $NotApearInSpclLotto2]);
     }
 
     public function regionLoto(Request $request,$company='XSMB'){
