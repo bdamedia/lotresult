@@ -46,10 +46,10 @@
                                 @php
                                     if($lot["lottery_region"] == 'XSMT'){
                               $title = "Kết Quả Xổ số miền Trung";
-          $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-trung/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+          $th .= '<th class="text-center"><a href="/ket-qua-xsmt/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
                                       }elseif ($lot["lottery_region"] == 'XSMN'){
       $title = "Kết Quả Xổ số miền Nam";
-          $th .= '<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+          $th .= '<th class="text-center"><a href="/ket-qua-xsmn/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
                                       }
 
                                 @endphp
@@ -283,9 +283,9 @@
                                 <div class="list-link">
                                     <h2 class="class-title-list-link">
 
-                                        <a href="/ket-qua-xo-so-mien-nam" title="XSMN">XSMN</a><span> » </span>
-                                        <a href="/ket-qua-xo-so-mien-nam/kqxsmn-{{ getDaySlug($mytime->toDateTime()->format('l')) }}" title="XSMN {{ engToVit($mytime->toDateTime()->format('l')) }}">XSMN {{ engToVit($mytime->toDateTime()->format('l')) }} </a><span> » </span>
-                                        <a href="/ket-qua-xo-so-mien-nam/kqxsmn-ngay-{{ $mytime->toDateTime()->format('d-m-Y') }}" title="XSMN  {{ engToVit($mytime->toDateTime()->format('l')) }}">  XSMN {{ $mytime->toDateTime()->format('d/m/Y') }}</a>
+                                        <a href="/ket-qua-xsmn" title="XSMN">XSMN</a><span> » </span>
+                                        <a href="/ket-qua-xsmn/kqxsmn-{{ getDaySlug($mytime->toDateTime()->format('l')) }}" title="XSMN {{ engToVit($mytime->toDateTime()->format('l')) }}">XSMN {{ engToVit($mytime->toDateTime()->format('l')) }} </a><span> » </span>
+                                        <a href="/ket-qua-xsmn/kqxsmn-ngay-{{ $mytime->toDateTime()->format('d-m-Y') }}" title="XSMN  {{ engToVit($mytime->toDateTime()->format('l')) }}">  XSMN {{ $mytime->toDateTime()->format('d/m/Y') }}</a>
 
 
                                     </h2>
@@ -297,11 +297,11 @@
                                             <th class="text-center">Giải</th>
 
                                             @foreach($companies as $comp)
-                                                <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-{{ $comp->lottery_company_slug }}" title="Xổ số XSBTH">{{ $comp->lottery_company_names }}</a></th>
+                                                <th class="text-center"><a href="/ket-qua-xsmn/kqxsmn-{{ $comp->lottery_company_slug }}" title="Xổ số XSBTH">{{ $comp->lottery_company_names }}</a></th>
                                                 @endforeach
-                                            {{--<th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-binh-thuan" title="Xổ số XSBTH">Bình Thuận</a></th>
-                                            <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-an-giang" title="Xổ số XSAG">An Giang</a></th>
-                                            <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-tay-ninh" title="Xổ số XSTN">Tây Ninh</a></th>--}}
+                                            {{--<th class="text-center"><a href="/ket-qua-xsmn/kqxsmn-binh-thuan" title="Xổ số XSBTH">Bình Thuận</a></th>
+                                            <th class="text-center"><a href="/ket-qua-xsmn/kqxsmn-an-giang" title="Xổ số XSAG">An Giang</a></th>
+                                            <th class="text-center"><a href="/ket-qua-xsmn/kqxsmn-tay-ninh" title="Xổ số XSTN">Tây Ninh</a></th>--}}
 
                                         </tr>
                                         </thead>
@@ -358,8 +358,8 @@
                                 <div class="block-main-content view-loto">
 
                                     <p class="padding10">
-                                        <a href="/ket-qua-xo-so-mien-nam/ket-qua-lo-to-mien-nam">Lô tô XSMN</a><span> » </span>
-                                        <a href="/ket-qua-xo-so-mien-nam/ket-qua-lo-to-mien-nam/kqltmn-thu-nam" title="XSMN  Thursday">Lô tô  XSMN Thứ năm </a>
+                                        <a href="/ket-qua-xsmn/ket-qua-lo-to-mien-nam">Lô tô XSMN</a><span> » </span>
+                                        <a href="/ket-qua-xsmn/ket-qua-lo-to-mien-nam/kqltmn-thu-nam" title="XSMN  Thursday">Lô tô  XSMN Thứ năm </a>
 
                                     </p>
                                     <table class="table table-bordered table-loto">
@@ -367,7 +367,7 @@
                                         <tr>
                                             <th class="col-md-2" style="width: 10%;">Đầu</th>
                                             @foreach($companies as $comp)
-                                                <th class="text-center"><a href="/ket-qua-xo-so-mien-nam/kqxsmn-{{ $comp->lottery_company_slug }}" title="Xổ số {{ $comp->lottery_company }}">{{ $comp->lottery_company_names }}</a></th>
+                                                <th class="text-center"><a href="/ket-qua-xsmn/kqxsmn-{{ $comp->lottery_company_slug }}" title="Xổ số {{ $comp->lottery_company }}">{{ $comp->lottery_company_names }}</a></th>
 
 
                                             @endforeach
@@ -394,7 +394,15 @@
                         @endif
 
                     </div>
+                    <div class="col-xs-12">
+                        <!-- /21689237362/xoso-content-ads -->
+                        <div id='div-gpt-ad-1578217977238-0' style='margin: 0 auto; width: 336px; height: 280px;'>
+                            <script>
+                                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1578217977238-0'); });
+                            </script>
+                        </div>
 
+                    </div>
                 </div>
 
 
