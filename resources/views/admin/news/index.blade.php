@@ -40,7 +40,10 @@
 @section('content')
     <div class="row">
         <div class="col-12">
+
+        <br>
             <div class="col-sm-10 col-sm-offset-1 col-xs-12 table-responsive">
+                <a style="float: right;margin-left: 14px;" class="badge-primary btn" href="{{ '/admin/news/create' }}" >Add News</a>
                 @if($data->count())
                     <table id="usersTable" class="table table-bordered table-striped" data-order='[[ 0, "asc" ]]' data-page-length='25'>
                         <thead>

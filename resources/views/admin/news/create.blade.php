@@ -7,7 +7,15 @@
 
 
 @section('content_header')
-
+@section('js')
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        var content = document.getElementById("content");
+        CKEDITOR.replace(content,{
+            language:'en-gb'
+        });
+    </script>
+@endsection
 
 @stop
 
@@ -34,7 +42,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Content</label>
                                 <div class="col-lg-9">
-                                    <textarea class="form-control" name="content" ></textarea>
+                                    <textarea class="form-control" id="content" name="content" ></textarea>
 
                                 </div>
                             </div>
