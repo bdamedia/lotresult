@@ -40,8 +40,8 @@ Route::get('/kqxs-{date}','Results@allCompanyDate');
 Route::get('/kqxs-da-nang-{date}','Results@allCompanyDate');
 
 Route::get("/ket-qua-xo-so-mien-bac", "Results@xsmb");
-Route::get("/thong-ke-lo", "Results@loto2");
-Route::post("/thong-ke-lo", "Results@loto2");
+Route::get("/thong-ke-kqxs/thong-ke-lo", "Results@loto2");
+Route::post("/thong-ke-kqxs/thong-ke-lo", "Results@loto2");
 Route::get("/ket-qua-xo-so-mien-trung", "Results@xsmtIndex");
 Route::get("/ket-qua-xo-so-mien-nam", "Results@xsmnIndex");
 

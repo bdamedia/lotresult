@@ -13,7 +13,7 @@
                       </p>
                     </div>
                   </div>
-                  <form method="post" action="/thong-ke-lo" enctype="multipart/form-data" style="margin-left: 5px; margin-top: 30px">{{ csrf_field() }}
+                  <form method="post" action="/thong-ke-kqxs/thong-ke-lo" enctype="multipart/form-data" style="margin-left: 5px; margin-top: 30px">{{ csrf_field() }}
                     <div class="form-group">
                       <select style="line-height: 21px; max-width:49%; display: inline-block" id="time_duration" name="time_duration" class="form-control">
                         <option value=10>10</option>
@@ -73,7 +73,7 @@
                       </table>
                       <table class="table_style" style="margin-left: -11px; margin-top: 10px">
                         <tr>
-                          <th class="th_style">Not appear in lotto 2</th>
+                          <th class="th_style">Not appear in lotto 2  </th>
                         </tr>
                         <tr>
                           <td class="td_style">
