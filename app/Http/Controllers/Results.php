@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Result;
+use App\RegionCompany;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DateTime;
