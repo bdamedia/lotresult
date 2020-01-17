@@ -41,7 +41,7 @@ class NewsController extends Controller
     {
 
         $res = $request->input();
-        if($res){
+        if($res['title']){
             $request->validate([
                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
@@ -63,7 +63,8 @@ class NewsController extends Controller
         }
 
 
-       return view('admin/news/');
+        return redirect()->route('news')->with('message','Successfully updated!');
+
     }
 
     /**
