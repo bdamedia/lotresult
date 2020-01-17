@@ -2077,3 +2077,6 @@ table.table-bordered tbody tr th.col-md-2{
 #u129_text span a{
     color: red!important;
 }
+.width-auto{
+    width: auto;
+}

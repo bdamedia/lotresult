@@ -10,9 +10,10 @@
 
                             <!-- tiêu đề chính -->
                             <div class="block-main-heading">
-                                <h1>Lo Gan – Thống k&#234; l&#244; gan XSMB</h1>
+                                <h1>Thống kê lô gan</h1>
                             </div>
-                            <div class="block-main-heading col-md-12">
+                            
+                           <!--  <div class="block-main-heading col-md-12">
                                 <div class="radio">
                                     <label class="text-blue">
                                         <input type="radio" name="optionsTK" id="optionsTK1" value="/thung/thong-ke-gan-cuc-dai" checked> Thống kê theo tỉnh
@@ -23,13 +24,14 @@
                                         <input type="radio" name="optionsTK" id="optionsTK2" value="/thung/thong-ke-gan-theo-loto"> Thống kê theo số/ dãy số
                                     </label>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- form thong ke -->
+
                             <div class="form-statistic">
                                 <p class="text-black-bold">Chọn tỉnh và biên độ cần xem</p>
                                 <div class="form-inline">
 
-                                    <select class="form-control form-group" id="ddlDayOfWeeks" required="required" onchange="DayOfWeekChange(this.value)">
+                                    <select class="form-control form-group width-auto" id="ddlDayOfWeeks" required="required" onchange="DayOfWeekChange(this.value)">
                                         <option value="thu-hai">Thứ hai</option>
                                         <option value="thu-ba">Thứ ba</option>
                                         <option value="thu-tu">Thứ tư</option>
@@ -40,7 +42,7 @@
                                     </select>
 
 
-                                    <select class="form-control form-group" id="ddLotteries" required="required">
+                                    <select class="form-control form-group width-auto" id="ddLotteries" required="required">
                                         <option value="0" selected>--Select Company--</option>
                                        <!--  <option value="0" selected>Miền Bắc</option>
                                         <option value="20">An Giang</option>
@@ -51,15 +53,15 @@
                                         <option value="40">Quảng Trị</option> -->
                                     </select>
 
-                                    <input type="text" id="txtRollingNumbsers" class="form-control form-group" value="" required="required" placeholder="Biên độ" size="10" />
-                                    <button type="submit" id="btSearch" onclick="btSearch_Click();" class="btn btn-red">Kết quả</button>
+                                    <input type="text" id="txtRollingNumbsers" class="form-control form-group width-auto" value="" required="required" placeholder="Biên độ" size="10" />
+                                    <button style="margin-top:5px;" type="submit" id="btSearch" onclick="btSearch_Click();" class="btn btn-red">Kết quả</button>
                                 </div>
                             </div>
                             <!-- nội dung block -->
 
                             <div class="block-main-content statistic" id="ajaxContentTableAbove">
                                 <!--nội dung số lần xuất hiện nhiều nhất-->
-                                <div class="col-md-12 col-xs-12 input-group">
+                                <!-- <div class="col-md-12 col-xs-12 input-group">
                                     <h2 class="title-h2"><span style="margin: 0 10px;">TK lô gan miền Bắc thứ 5, 09/01/2020</span></h2>
                                 </div>
                                 <table class="table table-bordered table-lanxh text-center">
@@ -121,8 +123,10 @@
                                         </tr>
 
                                     </tbody>
-                                </table>
+                                </table> -->
 
+
+                                <!--
                                 <div class="col-md-12 col-xs-12 input-group">
                                     <p style=" border-top: 1px double #e8e8e8;"><span style="margin: 0 10px;">DANH SÁCH LOTO GAN CỰC ĐẠI TỪ 10-12-2019 ĐẾN NAY</span></p>
                                 </div>
@@ -500,20 +504,23 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
+                                </div> -->
 
                             </div>
                             <!-- nội dung thong ke lo chua ve-->
                             <!-- end block 3-->
                             <!-- danh sách link -->
-                            <div class="link-statistic">
+                            
+
+                            <!-- <div class="link-statistic">
                                 <ul>
                                     <li>Xem thống kê <a href="/cau-mien-bac/cau-bach-thu.html">Cầu bạch thủ miền Bắc</a></li>
                                     <li>Xem thống kê <a href="/thong-ke-lo-gan.html">Lô gan miền Bắc</a></li>
                                     <li>Xem thống kê <a href="/thong-ke-lo-xien.html">Lô xiên miền Bắc</a></li>
                                     <li>Tham khảo <a href="/thong-ke-xsmb-c2579-article.html" title="Thống kê XSMB">Thống kê XSMB</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
+
                             <hr class="line-header" />
 
                             <div class="banner-adv-small">
@@ -538,19 +545,22 @@
                     function btSearch_Click() {
                         var lotteryId = $("#ddLotteries option:selected").val();
                         var rollingNumbers = $("#txtRollingNumbsers").val();
+                        var ddlDayOfWeeks = $('#ddlDayOfWeeks').val();
+                        var optionText = $("#ddLotteries option:selected").text();
                         if (rollingNumbers == 0 || rollingNumbers == "" || rollingNumbers == null) {
                             rollingNumbers = 30;
                             $("#txtRollingNumbsers").val("30");
                         }
-
                         $("#ajaxContentTableAbove").html('&nbsp;&nbsp;<img src="/content/images/icon_loading_item.gif"/> Đang tải dữ liệu...');
-
                         //alert(lotteryId + "-" + rollNumber + "-" + lotteryName);
+                        //console.log($('#ddlDayOfWeeks').val());
                         $.ajax({
                             url: '/XSDPThongKeAjax/XSDPTKGanCucDai',
                             data: {
                                 lotteryId: lotteryId,
-                                rollingNumbers: rollingNumbers
+                                rollingNumbers: rollingNumbers,
+                                ddlDayOfWeeks: ddlDayOfWeeks,
+                                optionText: optionText
                             },
                             type: 'GET',
                             success: function(data) {
