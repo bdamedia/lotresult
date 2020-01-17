@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Admin</b>Lot',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image-xl',
     'logo_img_xl' => null,
@@ -184,11 +184,16 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Users',
+            'url'         => 'admin/users',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+
+        ],
+        [
+            'text'        => 'News',
+            'url'         => 'admin/news',
+            'icon'        => 'far fa-fw fa-file',
+
         ],
         ['header' => 'account_settings'],
         [
