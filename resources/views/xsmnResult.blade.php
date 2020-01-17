@@ -7,9 +7,9 @@
 
     <div class="row">
         @include('todayResult')
-    <div class="col-xs-12">
+    <div id="post-data" class="col-xs-12">
 
-        @php $g = 1; @endphp
+        @php $g = 1; $lastdate = ''; @endphp
         @foreach($content as $printresult)
 
 
@@ -37,7 +37,7 @@
 
             <div id="u129" class="ax_default box_2">
                 <div id="u129_text" class="text">
-                    <p><span><a href="/ket-qua-xo-so-mien-nam/kqxs-{{ getCompanySlug($printresult->lottery_company) }}-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}">Kết quả Xổ số {{ getCompanyName($printresult->lottery_company) }} {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a></span></p>
+                    <p><span><a href="/ket-qua-xsmn/kqxs-{{ getCompanySlug($printresult->lottery_company) }}-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}">Kết quả Xổ số {{ getCompanyName($printresult->lottery_company) }} {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a></span></p>
                 </div>
             </div>
 
@@ -209,11 +209,24 @@
             </div>
 
         </div>
-            @php $g++; @endphp
+            @php $g++; $lastdate = $printresult->result_day_time->toDateTime()->format('Y-m-d'); @endphp
     @endforeach
 
 
     </div>
+        <div class="top-margin col-xs-12">
+            @php $page = 1; @endphp
+            <a id="loadmore" data-date="@php echo $lastdate; @endphp" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
+        </div>
+        <div class="col-xs-12">
+            <!-- /21689237362/xoso-content-ads -->
+            <div id='div-gpt-ad-1578217977238-0' style='margin: 0 auto; width: 336px; height: 280px;'>
+                <script>
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1578217977238-0'); });
+                </script>
+            </div>
+
+        </div>
     </div>
 
 
@@ -225,3 +238,38 @@
     </div>
 </div>
 @include('footer')
+<script>
+
+    function loadMoreData(page){
+        var page = $('#loadmore').attr('data-date');
+        $.ajax(
+            {
+                url: '?page=' + page,
+                type: "get",
+                beforeSend: function()
+                {
+                    $('.ajax-load').show();
+                }
+            })
+            .done(function(data)
+            {
+                if(data.html == " "){
+                    $('.ajax-load').html("No more records found");
+                    return;
+                }
+                $('.ajax-load').hide();
+
+                $("#post-data").append(data.html);
+                var D = Date.parse(page);
+                var date = new Date(D);
+                var newDate = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+                newDate = new Date(newDate.setDate(newDate.getDate()-4));
+                $('#loadmore').attr('data-date',newDate.getFullYear()+'-'+(newDate.getMonth()+1)+'-'+newDate.getDate());
+
+            })
+            .fail(function(jqXHR, ajaxOptions, thrownError)
+            {
+                console.log('server not responding...');
+            });
+    }
+</script>
