@@ -55,9 +55,12 @@
                                 @endif
                             </a>
                         <div class="col-xs-8 news-content" >
-                            <a target="_blank" href="{{ url('/tin-xo-so/').'/'.$news->news_slug }}" ><h3 class="news-index-title">{{ $news->title }}</h3></a>
+                            <a target="_blank" href="{{ url('/tin-xo-so/').'/'.$news->news_slug }}" >
+                                <h3 class="news-index-title">{{ Str::words($news->title,$word=10,$end='...') }}</h3>
+                            </a>
 
-                                {!! Str::words(html_entity_decode($news->content), $words = 26, $end = '...') !!}
+                                {{ Str::words(strip_tags($news->content), $words = 26, $end = '...') }}
+
 
                         </div>
                         </div>

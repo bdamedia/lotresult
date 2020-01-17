@@ -63,7 +63,7 @@
                             <tr>
                                 <td>{{ $count }}</td>
                                 <td>{{ $news->title }}</td>
-                                <td>{!! Str::words(html_entity_decode($news->content), $words = 26, $end = '...') !!}</td>
+                                <td>{{ Str::words(strip_tags(html_entity_decode($news->content)), $words = 100, $end = '...') }}</td>
                                 <td><img width="100" height="100" class="img-responsive" src="{{ asset('images/'.$news->image) }}"></td>
                                 <td class="has-action">
                                     <a href="/admin/news/{{ $news->id }}" title="Show Details"><i class="far fa-eye"></i></a>
