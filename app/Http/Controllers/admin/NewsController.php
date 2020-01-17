@@ -41,15 +41,26 @@ class NewsController extends Controller
     {
 
         $res = $request->input();
-        $news = new NewsModel();
-        $news->title = $res['title'];
-        $news->content = $res['content'];
-        $news->news_slug = seoUrl($res['title']);
-        $news->image = $res['image'];
-        $news->meta_title = $res['meta_title'];
-        $news->meta_keywords = $res['meta_keywords'];
-        $news->meta_description = $res['meta_description'];
-        $news->save();
+        if($res){
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $imageName = time().'.'.$request->image->extension();
+
+            $request->image->move(public_path('images'), $imageName);
+            $news = new NewsModel();
+            $news->title = $res['title'];
+            $news->content = $res['content'];
+            $news->news_slug = seoUrl($res['title']);
+            $news->image = $imageName;
+            $news->meta_title = $res['meta_title'];
+            $news->meta_keywords = $res['meta_keywords'];
+            $news->meta_description = $res['meta_description'];
+            $news->save();
+
+        }
+
 
        return view('admin/news/create');
     }
@@ -60,9 +71,11 @@ class NewsController extends Controller
      * @param  \App\NewsModel  $newsModel
      * @return \Illuminate\Http\Response
      */
-    public function show(NewsModel $newsModel)
+    public function show(NewsModel $newsModel,$id)
     {
-        //
+        $result = $newsModel::where('_id',$id)->get();
+        $data['data'] = collect($result)->first();
+        return view('admin/news/show')->with($data);
     }
 
     /**
@@ -90,7 +103,7 @@ class NewsController extends Controller
         $res = $request->input();
         $id = $request->input('id');
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $imageName = time().'.'.$request->image->extension();
@@ -100,6 +113,7 @@ class NewsController extends Controller
         unset($res['_token']);
         $res['news_slug'] = seoUrl($res['title']);
         $res['image'] = $imageName;
+
         $news = NewsModel::where('_id',$id)->get()->first()->update($res);
         return redirect()->route('edit', ['id' => $id])->with('message','Successfully updated!');
     }
@@ -113,5 +127,17 @@ class NewsController extends Controller
     public function destroy(NewsModel $newsModel)
     {
         //
+    }
+
+    public function newsFront(Request $request,$slug){
+        $result = NewsModel::where('news_slug',$slug)->get();
+        $data['data'] = collect($result)->first();
+        return view('frontSingleNews')->with($data);
+    }
+
+    public function newsList(Request $request){
+        $news = NewsModel::all();
+        $data['data'] = $news;
+        return view('frontIndexNews')->with($data);
     }
 }

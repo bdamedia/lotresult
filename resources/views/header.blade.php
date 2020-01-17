@@ -120,8 +120,7 @@
                             </ul>
                         </div>
                     </li>
-
-
+                    <li class="list_border last-ul-value  @php if(in_array('tin-xo-so',$reload)){ echo "active"; } @endphp"><a href="/tin-xo-so" title="Tin tức">Tin tức</a></li>
                 </ul>
             </div>
         </nav>

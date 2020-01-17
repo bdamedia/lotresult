@@ -12,6 +12,7 @@
 */
 
 
+
 Route::get("/crawler", "Crawler@index");
 Route::get("/crawler/cJob", "Crawler@CroneJob");
 Route::get("/crawler/cJob/all/", "Crawler@CroneJobFull");
@@ -49,6 +50,11 @@ Route::get("crawler/old", "Crawler@getOldResult");
 
 Route::get("/cau-mien-bac/{kqxs_dien_toan}", "Results@kqxs");
 Route::get("/thond-keys/{thond_keys}", "Results@thonds");
+
+
+Route::get("/tin-xo-so", "admin\NewsController@newsList");
+Route::get("/tin-xo-so/{slug}", "admin\NewsController@newsFront");
+
 
 
 Route::post("/getCompanyByday", "Crawler@listCompanyDaywise");
