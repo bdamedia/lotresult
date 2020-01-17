@@ -625,13 +625,15 @@ class Results extends Controller
     }
 
     public function loto2(Request $request){
-    
+
+    //dd($request);
         //Dynamic date selection
         $duration = 10;
         //Check get method
         if($request->method() == "POST"){
-            $duration = ($request->time_duration)-1;
+           $duration = ($request->time_duration)-1;
             $company = $request->companyName;
+
         }
         //Current time and date 
         $date = Carbon::now()->format('Y-m-d');
@@ -725,11 +727,17 @@ class Results extends Controller
         //Company result
         $resultsForCompany= RegionCompany::all();
         $companyName = [];
+        $companyRegion = [];
         foreach ($resultsForCompany as $name) {
-            $companyName[] = $name->lottery_company_names;
+            array_push($companyRegion,$name->lottery_company);
+            array_push($companyName,$name->lottery_company_names);
         }
+        $companyDetail = [];
+        $companyDetail=array_combine($companyName,$companyRegion);
         //Return view with data
-        return view('loto2',['lotto2' => array_count_values($finallotto2), 'special' => array_count_values($finalSpcllott2), 'companyName' => array_unique($companyName), 'digitNotApearInLot2' => $NotAppearlotto2, 'NotappearspecialLotto2digits' => $NotApearInSpclLotto2]);
+
+        
+        return view('loto2',['lotto2' => array_count_values($finallotto2), 'special' => array_count_values($finalSpcllott2), 'companyName' => $companyDetail, 'digitNotApearInLot2' => $NotAppearlotto2, 'NotappearspecialLotto2digits' => $NotApearInSpclLotto2]);
     }
 
 }
