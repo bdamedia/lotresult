@@ -437,4 +437,9 @@ class Crawler extends Controller
 
 
     }
+
+    public function getNews(){
+        $url = "https://xosodaiphat.com/tin-tuc/tin-tuc-c2583-article.html";
+
+    }
 }

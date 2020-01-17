@@ -42,13 +42,13 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Slug</label>
                                 <div class="col-lg-9">
-                                {{ url('/') }}/news/{{ $data['news_slug'] }}
+                                {{ url('/') }}/tin-xo-so/{{ $data['news_slug'] }}
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Content</label>
                                 <div class="col-lg-9">
-                                   {{ $data['content'] }}
+                                    {!! html_entity_decode($data['content']) !!}
                                 </div>
                             </div>
                             <div class="form-group row">

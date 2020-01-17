@@ -43,12 +43,13 @@ class NewsController extends Controller
         $res = $request->input();
         if($res){
             $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
             $imageName = time().'.'.$request->image->extension();
 
             $request->image->move(public_path('images'), $imageName);
+
             $news = new NewsModel();
             $news->title = $res['title'];
             $news->content = $res['content'];
@@ -62,7 +63,7 @@ class NewsController extends Controller
         }
 
 
-       return view('admin/news/create');
+       return view('admin/news/');
     }
 
     /**

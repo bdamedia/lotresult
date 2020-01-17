@@ -43,7 +43,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Content</label>
                                 <div class="col-lg-9">
-                                    <textarea class="form-control" id="content" name="content" >{{ $data['content'] }}</textarea>
+                                    <textarea class="form-control" id="content" name="content" >{!! html_entity_decode($data['content']) !!}</textarea>
                                 </div>
                             </div>
                             <div class="form-group row">

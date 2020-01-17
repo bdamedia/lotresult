@@ -47,7 +47,12 @@
 
                         <div class="col-xs-12 news-index-container no-padding" >
                             <a target="_blank" href="{{ url('/tin-xo-so/').'/'.$news->news_slug }}" >
+                                @if($news->image)
                                 <div class="col-xs-4 news-index-image" style="background-image: url('{{ asset('images').'/'.$news->image }}')"></div>
+                                    @else
+                                    <div class="col-xs-4 news-index-image" style="background-image: url('{{ asset('images/u5541.svg') }}')"></div>
+
+                                @endif
                             </a>
                         <div class="col-xs-8 news-content" >
                             <a target="_blank" href="{{ url('/tin-xo-so/').'/'.$news->news_slug }}" ><h3 class="news-index-title">{{ $news->title }}</h3></a>
