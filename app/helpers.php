@@ -1,7 +1,11 @@
 <?php
 
+use App\NewsModel;
 use Goutte\Client;
 use App\Result;
+use App\RegionCompany;
+
+
 
 function crawlUrl($url=null){
 
@@ -147,7 +151,10 @@ function crawlUrl($url=null){
         }
 
         foreach ($elements as $key=>$rs){
-            $elements[$key]['data'] = $new[$key];
+            if(isset($elements[$key]) && isset($new[$key])){
+                $elements[$key]['data'] = $new[$key];
+            }
+
         }
     }
     return $elements;
@@ -161,6 +168,23 @@ function crawlUrlModified($url=null){
     @$dom->loadHTML($html);
 
     $links = $dom->getElementsByTagName('table');
+    $finder = new DomXPath($dom);
+    $date3 = '';
+    $regionName = $finder->query("//*[contains(@class, 'list-link')]")->item(0);
+    $date = $finder->query("//*[contains(@class, 'class-title-list-link')]")->item(0);
+
+    $regionName = explode(' ',$regionName->getElementsByTagName('a')->item(0)->nodeValue);
+    //echo $regionName;
+    $regionName = $regionName[0];
+    if(isset($regionName) && $regionName == 'XSMB'){
+
+        $d = explode(' ',$date->getElementsByTagName('a')->item(2)->nodeValue);
+        $date = $d[2];
+
+      /*  $date2 = explode(' ',$date1->getElementsByTagName('a')->item(2)->nodeValue);
+      $date3 = $date2[2];*/
+    }
+
 
     $res = [];
     $i = 0;
@@ -176,28 +200,436 @@ function crawlUrlModified($url=null){
             }
 
         }
+    }elseif(stripos($link->getAttribute('class'),'table-award') !== false){
+        continue;
     }else{
 
         foreach ($link->getElementsByTagName('tr') as $key => $value) {
             $idElem = $value->getElementsByTagName('td');
 
             if($idElem->length > 0){
+
                 $res1[$idElem->item(0)->nodeValue] = array_filter(explode(',',preg_replace('/\s+/', ',',  $idElem->item(1)->nodeValue)));
             }
 
         }
     }
 
-        $res[]['data'] = $res1;
+        if(count($res1) > 0){
+            $res[]['data'] = $res1;
+            if(isset($res1['Giải'])){
 
-        if(isset($res1['Giải'])){
-            $res[$i]['lottery_region'] = "XSMT";
-            $res[$i]['lottery_company'] = $res1['Giải'][5] ? $res1['Giải'][5] :'';
-            $res[$i]['result_day_time'] = $res1['Giải'][6] ? $res1['Giải'][6] : '';
-            unset($res[$i]['data']['Giải']);
+                $res[$i]['lottery_region'] = $regionName;
+                $res[$i]['lottery_company'] = $res1['Giải'][5] ? $res1['Giải'][5] : '';
+                $res[$i]['result_day_time'] = $res1['Giải'][6] ? $res1['Giải'][6] : '';
+                unset($res[$i]['data']['Giải']);
+
+            }else{
+
+                $res[$i]['lottery_region'] = $regionName;
+                $res[$i]['lottery_company'] = $regionName;
+                $res[$i]['result_day_time'] = $date;
+            }
+
+            $i++;
         }
 
-        $i++;
+
+
     }
+
     return array_filter($res);
+}
+
+
+function getRegionsCompany(){
+
+    $html = file_get_contents('https://xosodaiphat.com/xsmn-xo-so-mien-nam.html');
+    $dom = new DOMDocument;
+
+    @$dom->loadHTML($html);
+
+    $finder = new DomXPath($dom);
+    $companyRegion = array();
+    $regionName = $finder->query("//*[contains(@class, 'table-xsmn')]");
+    $t = 0;
+    foreach ($regionName as $res){
+        $regionName1 = $res->getElementsByTagName('th');
+
+        foreach ($regionName1 as $res1){
+            $gf = $res1->getElementsByTagName('a');
+
+            foreach ($gf as $rf){
+                 $name = explode('-', $rf->getAttribute('href') );
+                $companyRegion[$t]['name'] = $rf->nodeValue;
+                $companyRegion[$t]['url'] = $rf->getAttribute('href');
+                $companyRegion[$t]['code'] = strtoupper(str_replace('/','',current($name)));
+
+                $t++;
+            }
+
+
+        }
+
+    }
+    return $companyRegion;
+
+
+}
+
+function checkList($region='XSMN'){
+    $all = RegionCompany::where('lottery_region', $region)->get();
+    return $all;
+}
+
+function getCompanyName($code=''){
+    $all = RegionCompany::where('lottery_company', $code)->get();
+    if($all->count() > 0) {
+        return collect($all)->first()->lottery_company_names;
+    }
+}
+
+function getCompanyUrl($code=''){
+
+      if(strtoupper($code) == 'XSMB' || strtoupper($code) == 'XSMT' || strtoupper($code) == 'XSMN'){
+       return '/'.$code;
+    }else{
+        $all = RegionCompany::where('lottery_company', $code)->get();
+        if($all->count() > 0){
+            return collect($all)->first()->lottery_company_url;
+        }
+    }
+}
+
+function getCompanyUrlHead($code=''){
+
+      if(strtoupper($code) == 'XSMB' || strtoupper($code) == 'XSMT' || strtoupper($code) == 'XSMN'){
+       return '/'.$code;
+    }else{
+          $code = str_replace('kqxsmn-','',$code);
+          $code = str_replace('kqxsmb-','',$code);
+          $code = str_replace('kqxsmt-','',$code);
+        $all = RegionCompany::where('lottery_company_slug', $code)->get();
+        if($all->count() > 0){
+            return collect($all)->first()->lottery_company_url;
+        }
+    }
+}
+
+function getCompanyCode($slug){
+
+    if(strtoupper($slug) == 'XSMB' || strtoupper($slug) == 'XSMT' || strtoupper($slug) == 'XSMN'){
+        return '/'.$code;
+    }else{
+        $all = RegionCompany::where('lottery_company_slug', $slug)->get();
+        if($all->count() > 0){
+            return collect($all)->first()->lottery_company;
+        }
+
+    }
+}
+
+function getCompanySlug($code){
+
+    if(strtoupper($code) == 'XSMB' || strtoupper($code) == 'XSMT' || strtoupper($code) == 'XSMN'){
+        return '/'.$code;
+    }else{
+        $all = RegionCompany::where('lottery_company', $code)->get();
+        if($all->count() > 0){
+            return collect($all)->first()->lottery_company_slug;
+        }
+
+    }
+}
+
+function dayWiseArray($day='all'){
+    $bindArray = array();
+    $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+    $bindArray = arrayDayBind();
+    return $bindArray[$bindArrayDay[$day]];
+}
+
+function getDayofCompany($companyCode){
+    $data = arrayDayBind();
+    $arrayDay = array();
+    foreach ($data as $k=>$val){
+        if(array_search($companyCode,$val)){
+            $arrayDay[] = $k;
+        }
+    }
+    return $arrayDay;
+}
+
+function arrayDayBind(){
+    $bindArray = array();
+
+    $result  = RegionCompany::all();
+    foreach ($result as $d){
+        if(in_array($d->lottery_company,array('XSKG','XSTG','XSDL','XSKT','XSKH'))){
+            $bindArray['Sunday']  = array('XSKG','XSTG','XSDL','XSKT','XSKH','XSMB');
+        }elseif (in_array($d->lottery_company,array('XSLA','XSHCM','XSBP','XSHG','XSQNG','XSDNA','XSDNO'))){
+            $bindArray['Saturday']  = array('XSLA','XSHCM','XSBP','XSHG','XSQNG','XSDNA','XSDNO','XSMB');
+        }elseif (in_array($d->lottery_company,array('XSVL','XSBD','XSTV','XSNT','XSGL'))){
+            $bindArray['Friday']  = array('XSVL','XSBD','XSTV','XSNT','XSGL','XSMB');
+        }elseif (in_array($d->lottery_company,array('XSAG','XSTN','XSQB','XSBTH','XSBDI','XSQT'))){
+            $bindArray['Thursday']  = array('XSAG','XSTN','XSQB','XSBTH','XSBDI','XSQT','XSMB');
+        }elseif (in_array($d->lottery_company,array('XSDN','XSST','XSCT','XSKH','XSDNA'))){
+            $bindArray['Wednesday']  = array('XSDN','XSST','XSCT','XSKH','XSDNA','XSMB');
+        }elseif (in_array($d->lottery_company,array('XSVT','XSBTR','XSBL','XSDLK','XSQNA'))){
+            $bindArray['Tuesday']  = array('XSVT','XSBTR','XSBL','XSDLK','XSQNA','XSMB');
+        }elseif (in_array($d->lottery_company,array('XSTTH','XSPY','XSDT','XSHCM','XSCM'))){
+            $bindArray['Monday']  = array('XSTTH','XSPY','XSDT','XSHCM','XSCM','XSMB');
+        }
+    }
+    return $bindArray;
+}
+
+function seoUrl($string)
+{
+    $string = stripVN($string);
+    // Remove HTML Tags if found
+    $string=strip_tags($string);
+    // Replace special characters with white space
+   // $string=preg_replace('/[^A-Za-z0-9-]+/', ' ', $string);
+    // Trim White Spaces and both sides
+    $string=trim($string);
+    header('Content-Type: text/html; charset=utf-8');
+    $string =  utf8_encode($string);
+    // Replace whitespaces with Hyphen (-)
+    $string=preg_replace('/[^A-Za-z0-9-]+/','-', $string);
+    // Conver final string to lowercase
+    $slug=strtolower($string);
+    return $slug;
+}
+
+function stripVN($str) {
+    $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
+    $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
+    $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", 'i', $str);
+    $str = preg_replace("/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/", 'o', $str);
+    $str = preg_replace("/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/", 'u', $str);
+    $str = preg_replace("/(ỳ|ý|ỵ|ỷ|ỹ)/", 'y', $str);
+    $str = preg_replace("/(đ)/", 'd', $str);
+
+    $str = preg_replace("/(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)/", 'A', $str);
+    $str = preg_replace("/(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)/", 'E', $str);
+    $str = preg_replace("/(Ì|Í|Ị|Ỉ|Ĩ)/", 'I', $str);
+    $str = preg_replace("/(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)/", 'O', $str);
+    $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
+    $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
+    $str = preg_replace("/(Đ)/", 'D', $str);
+    return $str;
+}
+
+
+function getTodayResultCompany(){
+
+    $mytime = Carbon\Carbon::now();
+    $dayName = $mytime->toDateTime()->format('l');
+    $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+    $key = array_search($dayName,$bindArrayDay);
+    $list = dayWiseArray($key);
+    $all = RegionCompany::whereIn('lottery_company', $list)->get();
+    return $all;
+
+}
+
+function getTodayResultCompanyRegion($region){
+
+    $mytime = Carbon\Carbon::now();
+    $dayName = $mytime->toDateTime()->format('l');
+    $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+    $key = array_search($dayName,$bindArrayDay);
+    $list = dayWiseArray($key);
+    $all = RegionCompany::where('lottery_region',$region)->whereIn('lottery_company', $list)->get();
+    return $all;
+
+}
+
+function getDaySlug($dayName){
+$bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+return array_search($dayName,$bindArrayDay);
+}
+function getRegionSlug($code){
+    $reg = array('XSMN'=>'ket-qua-xsmn','XSMT'=>'ket-qua-xsmt','XSMB'=>'ket-qua-xsmb');
+    return $reg[$code];
+}
+
+function getRegionLotoSlug($code){
+    $reg = array('XSMN'=>'ket-qua-lo-to-mien-nam','XSMT'=>'ket-qua-lo-to-mien-trung','XSMB'=>'ket-qua-lo-to-mien-bac');
+    return $reg[$code];
+}
+
+function engToVit($day){
+    $bindVitDay = array('Monday'=>'Thứ hai','Tuesday'=>'Thứ ba','Wednesday'=>'Thứ tư','Thursday'=>'Thứ năm','Friday'=>'Thứ sáu','Saturday'=>'Thứ bảy','Sunday'=>'Chủ Nhật');
+    return $bindVitDay[$day];
+}
+
+function metaData($key='home'){
+    $metaData = array();
+    $keyup = Request::path();
+    $path = explode('/',$keyup);
+    $mainPage = current($path);
+    $mainPage2 = current($path);
+    $path = end($path);
+    $region = current(explode('-',$path));
+    $region = str_replace('kq','',$region);
+    if($region){
+        $region = strtoupper($region);
+    }else{
+        $region = 'KQXS';
+    }
+    $path = str_replace('kqxsmb-','',$path);
+    $path = str_replace('kqxsmn-','',$path);
+    $path = str_replace('kqxsmt-','',$path);
+    if(Request::is('/')) {
+        $key = 'home';
+    }
+
+    if($mainPage == 'ket-qua-xsmb'){
+        $mainPage = 'Xổ Số Miền Bắc';
+    }elseif($mainPage == 'ket-qua-xsmt'){
+        $mainPage = 'Xổ Số Miền Trung';
+    }elseif($mainPage == 'ket-qua-xsmn'){
+        $mainPage = 'Xổ Số Miền Nam';
+    }elseif($mainPage == 'tin-xo-so'){
+
+        // $key = $mainPage;
+        $mainPage == 'Tin tức';
+    }else{
+        $mainPage = 'Xổ Số 3 Miền';
+    }
+
+    $key = $path;
+    $d = new Carbon\Carbon();
+    if(strpos($key,'qxs-') > 0 ){
+        $date = str_replace('kqxs-','',$key);
+        $date =  $d::parse(strtotime($date))->format('d/m/Y');
+        $date2 = $d::parse(strtotime($date))->format('d/m');
+        $key = 'date';
+    }else{
+        $date = $d::today()->format('!d/m/Y');
+        $date2 = $d::today()->format('!d/m');
+    }
+
+    if($key == 'truc-tiep'){
+        $key = strtolower($region).'-'.$key;
+    }
+
+    $all = RegionCompany::where('lottery_company_slug', $key)->get();
+    if($all->count() > 0){
+        $data = $all->toArray();
+        if(count($data) > 0 ){
+            $data = $data[0];
+        }
+       $company = $data['lottery_company_names'];
+        $companyCode =  $data['lottery_company'];
+        $key = 'single';
+    }else{
+        $company = '';
+        $companyCode =  '';
+    }
+
+    $days = getDayofCompany($companyCode);
+    if(count($days) > 0 && is_array($days)){
+        $days1 = engToVit(current($days));
+        $days2 = engToVit(end($days));
+    }else{
+        $days1 = '';
+        $days2 = '';
+    }
+
+    if($mainPage2 == 'tin-xo-so' && $key == 'tin-xo-so'){
+        $key = 'news';
+        $metaData['news']['title'] = 'Tin tức xổ số - Tin xổ số hôm nay';
+        $metaData['news']['keywords'] = 'tin tuc xo so, tin tuc xo so hom nay, tin xổ số, tin tức xổ số hôm nay'; ;
+        $metaData['news']['description'] = 'Tin Tức Về Xổ Số - Cập Nhật Thông Tin Về KQXS Mới Nhất Mỗi Ngày - Tổng hợp tin về xổ số kiến thiết, tin hot nhất tại cổng thông tin của '.url('/');
+    }elseif($mainPage2 == 'tin-xo-so' && $key != 'tin-xo-so'){
+
+        $newsMeta = getNewsbySlug($key);
+        $key = 'news-single';
+        $metaData['news-single']['title'] = $newsMeta->meta_title;
+        $metaData['news-single']['keywords'] = $newsMeta->meta_keywords;
+        $metaData['news-single']['description'] = $newsMeta->meta_description;
+    }
+
+    $metaData['home']['title'] = 'KQXS - Kết Quả Xổ Số 3 Miền Hôm Nay - Tường thuật trực tiếp kqxs';
+    $metaData['home']['keywords'] = 'kqxs, xo so, ket qua xo so, xoso, xskt, kết quả xổ số, xo so hom nay, xo so truc tiep';
+    $metaData['home']['description'] = 'KQXS - Xo So - Tường thuật kết quả xổ số hôm nay trực tiếp từ trường quay, nhanh chóng, chính xác cho cả 3 miền Bắc, Trung, Nam và XS Mega. XSKT, Dự đoán xổ số, Soi cầu hàng ngày.';
+
+
+    $metaData['single']['title'] = "$companyCode - Xo So $company - Kết Quả Xổ Số $company";
+    $metaData['single']['keywords'] = "$companyCode,Xo So $company,S$companyCode,KQ$companyCode,Kết Quả Xổ Số $companyCode";
+    $metaData['single']['description'] = "$companyCode - $companyCode - Xo So $company - Cập nhật kết quả xổ số $company trực tiếp nhanh chóng, chính xác. KQ$companyCode, xổ số TP.HCM, $companyCode hom nay";
+
+    $metaData['date']['title'] = "KQXS - Kết Quả Xổ Số 3 Miền Ngày $date";
+    $metaData['date']['keywords'] = "kqxs, xo so, ket qua xo so, xoso, xskt, kết quả xổ số, xo so hom nay, xo so truc tiep,kqxs ngày $date2";
+    $metaData['date']['description'] = 'KQXS - Xo So - Tường thuật kết quả xổ số hôm nay trực tiếp từ trường quay, nhanh chóng, chính xác cho cả 3 miền Bắc, Trung, Nam và XS Mega. XSKT, Dự đoán xổ số, Soi cầu hàng ngày.';
+
+    $metaData['xsmn-truc-tiep']['title'] = "XSMN Trực Tiếp - Trực Tiếp Xổ Số Miền Nam Hôm Nay Nhanh, Chính Xác";
+    $metaData['xsmn-truc-tiep']['keywords'] = "xsmn, xo so mien nam, sxmn, xổ số miền nam, xs mn, xs mien nam, xosomien nam, xo so truc tiep mien nam, xsmn hom nay";
+    $metaData['xsmn-truc-tiep']['description'] = "XSMN Trực Tiếp - Trực tiếp xổ số miền Nam hôm nay nhanh, chính xác nhất. KQXS miền Nam được tường thuật trực tiếp lúc 16h10 hàng ngày - truc tiep xsmn";
+
+
+    $metaData['xsmb-truc-tiep']['title'] = "XSMB Trực Tiếp - Trực Tiếp Xổ Số Miền Bắc Hôm Nay Nhanh, Chính Xác";
+    $metaData['xsmb-truc-tiep']['keywords'] = "xsmb truc tiep, truc tiep xsmb, truc tiep xo so mien bac, xo so truc tiep mien bac, xo so mien bac truc tiep, xsmb truc tiep hom nay";
+    $metaData['xsmb-truc-tiep']['description'] = "XSMB Trực Tiếp - Trực tiếp xổ số miền Bắc hôm nay nhanh, chính xác nhất. KQXS miền Nam được tường thuật trực tiếp lúc 18h15 hàng ngày - truc tiep xsmb";
+
+
+    $metaData['xsmt-truc-tiep']['title'] = "XSMT Trực Tiếp - Trực Tiếp Xổ Số Miền Trung Hôm Nay Nhanh, Chính Xác";
+    $metaData['xsmt-truc-tiep']['keywords'] = "xsmt truc tiep, xo so mien trung truc tiep, xo so truc tiep mien trung, truc tiep xsmt, xo so mien trung hom nay truc tiep";
+    $metaData['xsmt-truc-tiep']['description'] = "XSMT Trực Tiếp - Trực tiếp xổ số miền Trung nhanh chóng, chính xác nhất. KQXSMT được tường thuật trực tiếp lúc 17h15 hàng ngày - xo so mien trung truc tiep";
+
+    $metaData['ket-qua-xsmn']['title'] = 'XSMN - Kết Quả Xổ Số Miền Nam Hôm Nay - KQXSMN';
+    $metaData['ket-qua-xsmn']['keywords'] = 'xsmn, xo so mien nam, sxmn, xổ số miền nam, xs mn, xs mien nam, xosomien nam, xo so truc tiep mien nam, xsmn hom nay';
+    $metaData['ket-qua-xsmn']['description'] = 'XSMN - Xổ Số Miền Nam được cập nhật trực tiếp lúc 16h10 hàng ngày nhanh chóng, chính xác. SXMN, ket qua xo so mien nam, xs mien nam, xsmn hom nay, XSMN';
+
+    $metaData['ket-qua-xsmb']['title'] = 'XSMB - Kết Quả Xổ Số Miền Bắc Hôm Nay - KQXSMB';
+    $metaData['ket-qua-xsmb']['keywords'] = 'xsmb, sxmb, kqxsmb, xstd, xổ số miền bắc, ket qua xsmb, xo so mien bac, xsmb hom nay, kết quả xổ số miền bắc';
+    $metaData['ket-qua-xsmb']['description'] = 'XSMB - Kết quả xổ số miền Bắc hôm nay - KQXSMB - Tường thuật trực tiếp lúc 18h15 hàng ngày nhanh chóng, chính xác, cập nhật liên tục.';
+
+    $metaData['ket-qua-xsmt']['title'] = 'XSMT - Kết Quả Xổ Số Miền Trung Hôm Nay - KQXSMT';
+    $metaData['ket-qua-xsmt']['keywords'] = 'xsmt, sxmt, xs mien trung, xổ số miền trung, xo so mien trung hom nay, kqxs mien trung';
+    $metaData['ket-qua-xsmt']['description'] = 'XSMT - SXMT - Kết quả xổ số miền Trung được cập nhật trực tiếp lúc 17h15 hàng ngày nhanh chóng, chính xác. XS Mien Trung, Xo so mien Trung hom nay.';
+
+    $metaData['thu-hai']['title'] = "$region Thứ hai - Kết Quả $mainPage Thứ hai Hàng Tuần - KQ$region Thứ hai";
+    $metaData['thu-hai']['keywords'] = "$region Thứ hai, $region Thứ hai Hang Tuan, $region Thứ hai, KQ$region Thứ hai";
+    $metaData['thu-hai']['description'] = "$region Thứ hai - Kết quả $mainPage Thứ hai hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
+
+    $metaData['thu-ba']['title'] = "$region Thứ ba - Kết Quả $mainPage Thứ ba Hàng Tuần - KQ$region Thứ ba";
+    $metaData['thu-ba']['keywords'] = "$region Thứ ba, $region Thứ ba Hang Tuan, $region Thứ ba, KQ$region Thứ ba";
+    $metaData['thu-ba']['description'] = "$region Thứ ba - Kết quả $mainPage Thứ ba hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
+
+    $metaData['thu-tu']['title'] = "$region Thứ tư - Kết Quả $mainPage Thứ tư Hàng Tuần - KQ$region Thứ tư";
+    $metaData['thu-tu']['keywords'] = "$region Thứ tư, $region Thứ tư Hang Tuan, $region Thứ tư, KQ$region Thứ tư";
+    $metaData['thu-tu']['description'] = "$region Thứ tư - Kết quả $mainPage Thứ tư hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
+
+    $metaData['thu-nam']['title'] = "$region Thứ năm - Kết Quả $mainPage Thứ năm Hàng Tuần - KQ$region Thứ năm";
+    $metaData['thu-nam']['keywords'] = "$region Thứ năm, $region Thứ năm Hang Tuan, $region Thứ năm, KQ$region Thứ năm";
+    $metaData['thu-nam']['description'] = "$region Thứ năm - Kết quả $mainPage Thứ năm hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
+
+    $metaData['thu-sau']['title'] = "$region Thứ sáu - Kết Quả $mainPage Thứ sáu Hàng Tuần - KQ$region Thứ sáu";
+    $metaData['thu-sau']['keywords'] = "$region Thứ sáu, $region Thứ sáu Hang Tuan, $region Thu 2, KQ$region Thứ sáu";
+    $metaData['thu-sau']['description'] = "$region Thứ sáu - Kết quả $mainPage Thứ sáu hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
+
+    $metaData['thu-bay']['title'] = "$region Thứ bảy - Kết Quả $mainPage Thứ bảy Hàng Tuần - KQ$region Thứ ba";
+    $metaData['thu-bay']['keywords'] = "$region Thứ bảy, $region Thu 2 Hang Tuan, $region Thứ bảy, KQ$region Thứ bả";
+    $metaData['thu-bay']['description'] = "$region Thứ bảy - Kết quả $mainPage Thứ bảy hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
+
+    $metaData['chu-nhat']['title'] = "$region Chủ Nhật - Kết Quả $mainPage Chủ Nhật Hàng Tuần - KQ$region Chủ Nhật";
+    $metaData['chu-nhat']['keywords'] = "$region Chủ Nhật, $region Thu 2 Hang Tuan, $region Chủ Nhật, KQ$region Chủ Nhật";
+    $metaData['chu-nhat']['description'] = "$region Chủ Nhật - Kết quả $mainPage Chủ Nhật hàng tuần được tường thuật trực tiếp lúc 16h15 hàng ngày";
+
+    if(key_exists($key,$metaData)){
+        return $metaData[$key];
+    }else{
+        return $metaData['home'];
+    }
+
+
+}
+
+function getNewsbySlug($slug){
+    $result = NewsModel::where('news_slug',$slug)->get();
+    return collect($result)->first();
 }

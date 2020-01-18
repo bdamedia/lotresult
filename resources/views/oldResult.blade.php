@@ -191,7 +191,7 @@
         <li class="btn-close"><i class="fa fa-times" aria-hidden="true"></i> Đóng danh mục</li>
     </ul>
 </div>
-</div>        
+</div>
 <div class="main-content">
     <div class="container">
     <div class="row margin-b">
@@ -274,18 +274,8 @@
             <tr><td class="text-center">9</td><td >96, 92, 93, 93</td></tr>
             </table>
             </div>
-            <div class="link-statistic">
-            <ul>
-            <li>Xem thống kê <a href="/crawler/cau-mien-bac/cau-bach-thu" title="Cầu bạch thủ miền Bắc">Cầu bạch thủ miền Bắc</a></li>
-            <li>Xem thống kê <a href="/crawler/thong-ke-lo-xien" title="Lô xiên miền Bắc">Lô xiên miền Bắc</a></li>
-            <li>Tham khảo <a href="/crawler/thong-ke-xsmb-c2579-article" title="Thống kê XSMB">Thống kê XSMB</a></li>
-            <li><a href="/">KQXS</a> miền Bắc hôm nay siêu tốc - chính xác, trực tiếp <a href="/crawler/xsmb-xo-so-mien-bac">XSMB</a> lúc 18h15 mỗi ngày</li>
-            </ul>
-            </div>
-        <p class="text-right margin-10 hidden-xs hidden-sm">
-        <a href="/crawler/in-ve-do" data-date="13-12-2019" data-groupname="xsmb"  class="btn btn-danger btn-invedo" role="button">In Vé Dò</a>
-        </p>
-        </div>  
+
+        </div>
     <hr class="line-adv" />
     <div class="banner-adv-small">
         <div class="block-main-content"><span class="link-pad-left textadv">Quảng cáo</span></div>
@@ -366,7 +356,7 @@
         <li>Xem nhanh kết quả <a href="/crawler/xsmb-xo-so-mien-bac" title="SXMB">SXMB</a> ngay hôm nay</li>
         </ul>
         </div>
-    </div>  
+    </div>
     <div class="block" id='kqngay_11122019'>
 
     <div class="list-link">
@@ -439,7 +429,7 @@
         <li>Xem thống kê <a href="/crawler/thong-ke-theo-chu-ky-4-1-49" title="Chu kỳ miền Bắc">Chu kỳ miền Bắc</a></li>
         </ul>
         </div>
-    </div>  
+    </div>
     <div class="block" id='kqngay_10122019'>
 
         <div class="list-link">
@@ -506,7 +496,7 @@
     <tr><td class="text-center">9</td><td >94, 96</td></tr>
     </table>
     </div>
-    </div>  
+    </div>
     <div class="block" id='kqngay_09122019'>
 
     <div class="list-link">
@@ -705,7 +695,7 @@
         <tr><td class="text-center">9</td><td >99, 92, 99</td></tr>
         </table>
     </div>
-    </div>  
+    </div>
     <div class="lotteryMbResult"></div>
     <div class="bg-viewmore">
     <img class="loadmoreimg" src="https://cdn.xosodaiphat.com/assets/images/Loading_icon.gif" alt="xem thêm kết quả xổ số miền bắc">

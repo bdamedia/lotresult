@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE</title>
+        <link rel="stylesheet" href="http://192.168.1.20:8000/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="http://192.168.1.20:8000/vendor/overlayScrollbars/css/OverlayScrollbars.min.css">
+
+    
+    
+    <link rel="stylesheet" href="http://192.168.1.20:8000/vendor/adminlte/dist/css/adminlte.min.css">
+
+            
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    </head>
+<body class="sidebar-mini "  >
+
+    <div class="wrapper">
+                    <nav class="main-header navbar navbar-expand-md navbar-white navbar-light">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#"   >
+                            <i class="fas fa-bars"></i>
+                            <span class="sr-only">Toggle navigation</span>
+                        </a>
+                    </li>
+                    <form action="#" method="get" class="form-inline ml-2 mr-2">
+        <div class="input-group">
+          <input class="form-control form-control-navbar" type="search" name="q" placeholder="search" aria-label="search">
+          <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+                                      </ul>
+                            <ul class="navbar-nav ml-auto ">
+                                                                <li class="nav-item">
+                            <a class="nav-link" href="#"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            >
+                                <i class="fa fa-fw fa-power-off"></i> Log Out
+                            </a>
+                            <form id="logout-form" action="http://192.168.1.20:8000/logout" method="POST" style="display: none;">
+                                                                <input type="hidden" name="_token" value="S7kMiHwbLHy66JsLauIFiH5L588KZTbaoUs2MYib">
+                            </form>
+                        </li>
+                                                        </ul>
+                            </nav>
+                <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                            <a href="http://192.168.1.20:8000/home" class="brand-link ">
+                    <img src="http://192.168.1.20:8000/vendor/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTE" class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light ">
+                        <b>Admin</b>LTE
+                    </span>
+                </a>
+                        <div class="sidebar">
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu"  >
+                        <li  class="nav-item ">
+            <a class="nav-link " href="http://192.168.1.20:8000/admin/pages"
+                           >
+                <i class="far fa-fw fa-file "></i>
+                <p>
+                    Pages
+
+                                                                <span class="badge badge-success right">4</span>
+                                    </p>
+            </a>
+                    </li>
+    <li  class="nav-header">ACCOUNT SETTINGS</li>
+    <li  class="nav-item ">
+            <a class="nav-link " href="http://192.168.1.20:8000/admin/settings"
+                           >
+                <i class="fas fa-fw fa-user "></i>
+                <p>
+                    Profile
+
+                                                        </p>
+            </a>
+                    </li>
+    <li  class="nav-item ">
+            <a class="nav-link " href="http://192.168.1.20:8000/admin/settings"
+                           >
+                <i class="fas fa-fw fa-lock "></i>
+                <p>
+                    Change Password
+
+                                                        </p>
+            </a>
+                    </li>
+    <li  class="nav-item has-treeview">
+            <a class="nav-link nav-item" href="#"
+                           >
+                <i class="fas fa-fw fa-share "></i>
+                <p>
+                    Multi Level
+
+                                            <i class="fas fa-angle-left right"></i>
+                                                        </p>
+            </a>
+                            <ul class="nav nav-treeview">
+                    <li  class="nav-item ">
+            <a class="nav-link " href="#"
+                           >
+                <i class="far fa-fw fa-circle "></i>
+                <p>
+                    Level 1
+
+                                                        </p>
+            </a>
+                    </li>
+    <li  class="nav-item has-treeview">
+            <a class="nav-link nav-item" href="#"
+                           >
+                <i class="far fa-fw fa-circle "></i>
+                <p>
+                    Level 1
+
+                                            <i class="fas fa-angle-left right"></i>
+                                                        </p>
+            </a>
+                            <ul class="nav nav-treeview">
+                    <li  class="nav-item ">
+            <a class="nav-link " href="#"
+                           >
+                <i class="far fa-fw fa-circle "></i>
+                <p>
+                    Level 2
+
+                                                        </p>
+            </a>
+                    </li>
+    <li  class="nav-item has-treeview">
+            <a class="nav-link nav-item" href="#"
+                           >
+                <i class="far fa-fw fa-circle "></i>
+                <p>
+                    Level 2
+
+                                            <i class="fas fa-angle-left right"></i>
+                                                        </p>
+            </a>
+                            <ul class="nav nav-treeview">
+                    <li  class="nav-item ">
+            <a class="nav-link " href="#"
+                           >
+                <i class="far fa-fw fa-circle "></i>
+                <p>
+                    Level 3
+
+                                                        </p>
+            </a>
+                    </li>
+    <li  class="nav-item ">
+            <a class="nav-link " href="#"
+                           >
+                <i class="far fa-fw fa-circle "></i>
+                <p>
+                    Level 3
+
+                                                        </p>
+            </a>
+                    </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </li>
+    <li  class="nav-item ">
+            <a class="nav-link " href="#"
+                           >
+                <i class="far fa-fw fa-circle "></i>
+                <p>
+                    Level 1
+
+                                                        </p>
+            </a>
+                    </li>
+                    </ul>
+                    </li>
+    <li  class="nav-header">LABELS</li>
+    <li  class="nav-item ">
+            <a class="nav-link " href="#"
+                           >
+                <i class="far fa-fw fa-circle text-red"></i>
+                <p>
+                    Important
+
+                                                        </p>
+            </a>
+                    </li>
+    <li  class="nav-item ">
+            <a class="nav-link " href="#"
+                           >
+                <i class="far fa-fw fa-circle text-yellow"></i>
+                <p>
+                    Warning
+
+                                                        </p>
+            </a>
+                    </li>
+    <li  class="nav-item ">
+            <a class="nav-link " href="#"
+                           >
+                <i class="far fa-fw fa-circle text-aqua"></i>
+                <p>
+                    Information
+
+                                                        </p>
+            </a>
+                    </li>
+                        </ul>
+                </nav>
+            </div>
+        </aside>
+        
+        <div class="content-wrapper">
+            
+            <div class="content-header">
+                <div class="container-fluid">
+                        <h1 class="m-0 text-dark">Dashboard</h1>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="container-fluid">
+                        <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <p class="mb-0">You are logged in!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+                </div>
+            </div>
+                    </div>
+
+        
+        
+    </div>
+
+<script src="http://192.168.1.20:8000/vendor/jquery/jquery.min.js"></script>
+<script src="http://192.168.1.20:8000/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="http://192.168.1.20:8000/vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
+
+    <script src="http://192.168.1.20:8000/vendor/adminlte/dist/js/adminlte.min.js"></script>
+        
+</body>
+</html>
