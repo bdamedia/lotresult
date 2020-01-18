@@ -55,8 +55,12 @@ Route::get('/admin/home', function() {
     return view('admin/home');
 })->name('home')->middleware('auth');
 
-Route::get("/thong-ke-kqxs/thong-ke-lo", "Results@loto2");
-Route::post("/thong-ke-kqxs/thong-ke-lo", "Results@loto2");
+//Route::get("/thong-ke-kqxs/thong-ke-lo", "Results@loto2");
+//Route::post("/thong-ke-kqxs/thong-ke-lo", "Results@loto2");
+
+Route::get("/thong-ke-kqxs/thong-ke-lo", "Results@loto2view");
+//Route::post("/thong-ke-kqxs/thong-ke-lo", "Results@loto2view");
+Route::post("/thong-ke-kqxs-ajax", "Results@loto2ajax");
 
 
 Route::get('admin/news', 'admin\NewsController@index')->name('news')->middleware('auth');

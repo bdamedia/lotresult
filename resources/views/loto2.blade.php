@@ -13,7 +13,8 @@
                       </p>
                     </div>
                   </div>
-                  <form method="post" action="/thong-ke-kqxs/thong-ke-lo" enctype="multipart/form-data" style="margin-left: 5px; margin-top: 30px">{{ csrf_field() }}
+                  <form style="margin-left: 5px; margin-top: 30px">{{ csrf_field() }}
+
                     <div class="form-group">
                       <select style="line-height: 21px; max-width:49%; display: inline-block" id="time_duration" name="time_duration" class="form-control">
                         <option value=10>10</option>
@@ -22,16 +23,17 @@
                         <?php } ?>
                       </select>
                       <select style="line-height: 21px; max-width:49% ; display: inline-block" id="companyName" name="companyName" class="form-control">
-                        <?php foreach ($companyName as $name) { ?>
-                        <option value={{$name}}>{{$name}}</option>
+                        <?php foreach ($companyName as $name => $region) { ?>
+                        <option value={{$region}}>{{$name}}</option>
                         <?php } ?>
                       </select>
                     </div>
-                    <button type="submit" class="btn btn-red-blue-lite form-group" title="Result" value="Submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Result</font></font>
+                    <button class="btn btn-red-blue-lite form-group" id="showresult" title="Result" value="Submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Result</font></font>
                     </button>
                   </form>
                   <div style="display:block; width:100%; margin-left: 0px">
-                    <div style="margin:0 auto; width:100%;">
+                    <div style="margin:0 auto; width:100%;" id="defaultresult">
+
                       <table class="table_style" style="margin-right:10px;">
                         <tr style="background-color:white">
                           <th class="th_style" style=" ">Special</th>
@@ -46,6 +48,7 @@
                         </tr>
                         <?php } ?>
                       </table>
+
                       <table class="table_style" style="margin-left: -11px;">
                         <tr>
                           <th class="th_style">Bingo</th>
@@ -60,29 +63,32 @@
                         </tr>
                         <?php } ?>
                       </table>
-                      <table class="table_style" style="margin-right:10px; margin-top: 10px">
-                        <tr>
-                          <th class="th_style">Not appear in special</th>
-                        </tr>
-                        <tr>
-                          <td class="td_style">
-                            <?php foreach ($NotappearspecialLotto2digits as $digitNotApearSpecialLot3) { ?>{{$digitNotApearSpecialLot3}},
-                            <?php } ?>
-                          </td>
-                        </tr>
-                      </table>
-                      <table class="table_style" style="margin-left: -11px; margin-top: 10px">
-                        <tr>
-                          <th class="th_style">Not appear in lotto 2  </th>
-                        </tr>
-                        <tr>
-                          <td class="td_style">
-                            <?php foreach ($digitNotApearInLot2 as $digitNotApearLot3) { ?>{{$digitNotApearLot3}},
-                            <?php } ?>
-                          </td>
-                        </tr>
-                      </table>
+                        <div style="float:left">
+                            <table class="table_style" style="margin-right:10px; margin-top: 25px">
+                              <tr>
+                                <th class="th_style">Not appear in special</th>
+                              </tr>
+                              <tr>
+                                <td class="td_style">
+                                  <?php foreach ($NotappearspecialLotto2digits as $digitNotApearSpecialLot3) { ?>{{$digitNotApearSpecialLot3}},
+                                  <?php } ?>
+                                </td>
+                              </tr>
+                            </table>
+                            <table class="table_style" style="margin-left: -11px; margin-top: 25px">
+                              <tr>
+                                <th class="th_style">Not appear in lotto 2  </th>
+                              </tr>
+                              <tr>
+                                <td class="td_style">
+                                  <?php foreach ($digitNotApearInLot2 as $digitNotApearLot3) { ?>{{$digitNotApearLot3}},
+                                  <?php } ?>
+                                </td>
+                              </tr>
+                            </table>
+                      </div>
                     </div>
+                    <div style="margin:0 auto; width:100%;" id="ajaxresult"></div>
                   </div>
                 </div>
               </div>
@@ -92,4 +98,26 @@
         </div>
     </div>
 </div>
+  <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript">
+    $('#showresult').on('click',function(e){
+      e.preventDefault(); 
+     
+        $.ajax({
+        type : 'POST',
+        url : '{{url("thong-ke-kqxs-ajax")}}',
+        data:{             
+                time_duration: $("#time_duration").val(),
+                companyName: $("#companyName").val(),
+        },
+        success:function(data){
+          //alert("here");
+          //var obj =JSON.parse(data);
+          $("#ajaxresult").html(data); 
+          $("#defaultresult").hide();
+            //console.log(data);
+        }
+        });
+        })
+    </script>
 @include('footer')
