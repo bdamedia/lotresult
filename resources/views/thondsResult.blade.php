@@ -10,13 +10,20 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($newFullValues as $key => $node)
+        @if (count($newFullValues) > 0)
+            @foreach ($newFullValues as $key => $node)
+                <tr>
+                    <td class="col-xs-2 text-bold">{{$key}}</td>
+                    <td class="col-xs-4"><span class="text-red">{{$node['count']}}</span> ngày</td>
+                    <td class="col-xs-6">{{$node['last_day']}}</td>
+                </tr>
+            @endforeach
+        @else
             <tr>
-                <td class="col-xs-2 text-bold">{{$key}}</td>
-                <td class="col-xs-4"><span class="text-red">{{$node['count']}}</span> ngày</td>
-                <td class="col-xs-6">{{$node['last_day']}}</td>
+                <td class="col-xs-2 text-bold">
+                <td class="col-xs-4">Record Not Available</td>
+                <td class="col-xs-6"></td>
             </tr>
-        @endforeach
-        
+        @endif
     </tbody>
 </table>

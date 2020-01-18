@@ -60,6 +60,24 @@
                             <!-- nội dung block -->
 
                             <div class="block-main-content statistic" id="ajaxContentTableAbove">
+                                <table class="table table-bordered table-lanxh text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Lô tô gan</th>
+                                            <th>Số ngày chưa về</th>
+                                            <th>Ngày về gần nhất</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td class="col-xs-2 text-bold"></td>
+                                            <td class="col-xs-4">Record Not Available</td>
+                                            <td class="col-xs-6"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
                                 <!--nội dung số lần xuất hiện nhiều nhất-->
                                 <!-- <div class="col-md-12 col-xs-12 input-group">
                                     <h2 class="title-h2"><span style="margin: 0 10px;">TK lô gan miền Bắc thứ 5, 09/01/2020</span></h2>
