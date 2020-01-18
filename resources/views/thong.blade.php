@@ -43,7 +43,7 @@
 
 
                                     <select class="form-control form-group width-auto" id="ddLotteries" required="required">
-                                        <option value="0" selected>--Select Company--</option>
+                                        <option value="0" selected>--Chọn công ty--</option>
                                        <!--  <option value="0" selected>Miền Bắc</option>
                                         <option value="20">An Giang</option>
                                         <option value="21">T&#226;y Ninh</option>
@@ -72,7 +72,7 @@
 
                                         <tr>
                                             <td class="col-xs-2 text-bold"></td>
-                                            <td class="col-xs-4">Record Not Available</td>
+                                            <td class="col-xs-4">Bản ghi không có sẵn</td>
                                             <td class="col-xs-6"></td>
                                         </tr>
                                     </tbody>
@@ -598,7 +598,7 @@
                             success: function(data) {
                                 console.log(data);
                                 $('#ddLotteries').empty();
-                                $("#ddLotteries").append('<option>--Select Company--</option>');
+                                $("#ddLotteries").append('<option>--Chọn công ty--</option>');
                                 if(data) {
                                     $.each(data,function(key,value){
                                         $('#ddLotteries').append($("<option/>", {

@@ -21,7 +21,7 @@
         @else
             <tr>
                 <td class="col-xs-2 text-bold">
-                <td class="col-xs-4">Record Not Available</td>
+                <td class="col-xs-4">Bản ghi không có sẵn</td>
                 <td class="col-xs-6"></td>
             </tr>
         @endif
