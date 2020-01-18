@@ -59,20 +59,20 @@
         <div class="form-doveso">
             <div class="form-inline">
                 <div class="form-group"><label for="ngaydoheader" class="lable-text">Chọn ngày:</label>
-                    <input style="line-height: 21px" type="date" id="ngaydoheader" value="{{ date('Y-m-d') }}" class="form-control form-group" required="required" placeholder="Chọn ngày" onchange="xsdp.getTinhtheoNgay(this.value);" size="9" title="Ngày dò">
+                    <input style="line-height: 21px" type="date" id="ngaydoheader" value="{{ date('Y-m-d') }}" class="form-control form-group" required="required" placeholder="Chọn ngày"  size="9" title="Ngày dò">
                 </div>
-                <div class="form-group"><label for="tinhheader" class="lable-text">Chọn tỉnh:</label>
+                <div class="form-group">
+                    <label for="tinhheader" class="lable-text">Chọn tỉnh:</label>
                     <select class="form-control form-group" id="tinhheader">
-                        <option value="mb" data-lotterydesc="/xsmb-xo-so-mien-bac.html">Miền Bắc</option>
-                        <option value="TTH" data-lotterydesc="/xstth-xo-so-hue.html">Huế</option>
-                        <option value="PY" data-lotterydesc="/xspy-xo-so-phu-yen.html">Phú Yên</option>
-                        <option value="DT" data-lotterydesc="/xsdt-xo-so-dong-thap.html">Đồng Tháp</option>
-                        <option value="HCM" data-lotterydesc="/xshcm-xo-so-tphcm.html">TP.HCM</option>
-                        <option value="CM" data-lotterydesc="/xscm-xo-so-ca-mau.html">Cà Mau</option>
+                        @php $todayCompanies = getTodayResultCompany(); @endphp
+                        @foreach($todayCompanies as $cmp)
+                            <option value="{{ $cmp->lottery_company }}" data-lotterydesc="/xsmb-xo-so-mien-bac.html">{{ $cmp->lottery_company_names }}</option>
+                            @endforeach
+
                     </select></div>
                 <div class="form-group">
                     <input type="text" class="form-control form-group" name="nhapso" id="inputNumberDo" required="required" placeholder="Nhập dãy số" size="9" title="Nhập dãy số">
-                    <button type="button" disabled class="btn btn-red-blue-lite form-group" id="btndoSo" title="Kết quả">Kết quả</button>
+                    <button type="button"  class="btn btn-red-blue-lite form-group" id="btndoSo" title="Kết quả">Kết quả</button>
                 </div></div>
             <p class="text-12">( Có thể nhập tối thiểu 2 số, tối đa 17 số )</p>
         </div>

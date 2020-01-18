@@ -11,11 +11,13 @@
 |
 */
 
+
+
 Route::get("/crawler", "Crawler@index");
 Route::get("/crawler/cJob", "Crawler@CroneJob");
 Route::get("/crawler/cJob/all/", "Crawler@CroneJobFull");
 
-Route::get('/','Results@index');
+
 
 Route::get('/ket-qua-xsmb/kqxsmb-truc-tiep/','Results@trucTiep');
 Route::get('/ket-qua-xsmt/kqxsmt-truc-tiep/','Results@trucTiep');
@@ -50,6 +52,13 @@ Route::get("/cau-mien-bac/{kqxs_dien_toan}", "Results@kqxs");
 Route::get("/thond-keys/{thond_keys}", "Results@thonds");
 
 
+Route::get("/tin-xo-so", "admin\NewsController@newsList");
+Route::get("/tin-xo-so/{slug}", "admin\NewsController@newsFront");
+
+
+
+Route::post("/getCompanyByday", "Crawler@listCompanyDaywise");
+Route::post("/getSearchBydayandNumber", "Crawler@getSearchBydayandNumber");
 Route::get("/crawler/current", "Crawler@getCurrentResult");
 Route::get("/crawler/xsmn/current", "Crawler@xsmnCurrentResult");
 
@@ -61,9 +70,35 @@ Route::get("/reload/{link}", "Crawler@reloadCurrentResult");
 Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
 
 
+
 Route::get("/thung/thong-ke-{day}", "Results@thungDay");
 Route::get("/thong-ke-xsdp-tinh-theo-thu", "Results@getThungDayWeek");
 Route::get("/XSDPThongKeAjax/XSDPTKGanCucDai", "Results@getThungKeysAjax");
 
 
+Route::get('/','Results@index');
+Route::redirect('admin','admin/login');
 
+Auth::routes();
+Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::get('admin/users', 'admin\UserController@index')->name('users')->middleware('auth');
+Route::get('admin/user/{id}', 'admin\UserController@view')->name('view')->middleware('auth');
+
+Route::get('admin/news', 'admin\NewsController@index')->name('news')->middleware('auth');
+Route::get('admin/news/create', 'admin\NewsController@create')->name('create')->middleware('auth');
+Route::post('admin/news/store', 'admin\NewsController@store')->name('store')->middleware('auth');
+Route::get('admin/news/{id}', 'admin\NewsController@show')->name('show')->middleware('auth');
+Route::get('admin/news/{id}/edit', 'admin\NewsController@edit')->name('edit')->middleware('auth');
+Route::post('admin/news/update', 'admin\NewsController@update')->name('update')->middleware('auth');
+
+
+Route::get('/admin/home', function() {
+    return view('admin/home');
+})->name('home')->middleware('auth');
+
+
+Auth::routes();
+
+Route::get('/home', function() {
+    return view('home');
+})->name('home')->middleware('auth');

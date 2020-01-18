@@ -198,8 +198,8 @@
         </div>
 
     </div>
-    @php $g++; $lastDate = $printresult->result_day_time->toDateTime()->format('d-m-Y'); @endphp
-    <input name="date" type="hidden" value="{{ $lastDate }}">
+    @php $g++;  @endphp
+
 @endforeach
-{{ $lastDate }}
+
 
