@@ -523,7 +523,7 @@
 
                             <hr class="line-header" />
 
-                            <div class="banner-adv-small">
+                            <!-- <div class="banner-adv-small">
                                 <div class="block-main-content"><span class="link-pad-left textadv">Quảng cáo</span></div>
                                 <script type="text/javascript">
                                     if ((window.mobileAndTabletcheck() && 'wap' == 'web') || (window.mobileAndTabletcheck() == false && 'web' == 'web')) {
@@ -535,7 +535,7 @@
                                         document.write('<ins class="adsbygoogle"    style="display: inline-block; width: 300px; height: 250px"    data-ad-client="ca-pub-7078400245394460"    data-ad-slot="6567025635"></ins><scr' + 'ipt>    (adsbygoogle = window.adsbygoogle || []).push({});</scr' + 'ipt>');
                                     }
                                 </script>
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
