@@ -41,7 +41,7 @@
     <div class="row">
         <div class="col-12">
 
-        <br>
+            <br>
             <div class="col-sm-10 col-sm-offset-1 col-xs-12 table-responsive">
 
                 @if($data->count())
@@ -78,7 +78,7 @@
                 @else
                     <div class="alert alert-warning">
                         You don't have any data here
-                        <a style="float: right;margin-left: 14px;" class="badge-primary btn" href="{{ '/admin/news/create' }}" >Add News</a>
+                        <a style="float: right;margin-left: 14px;" class="badge-primary btn" href="{{ '/admin/cron/create' }}" >Start New Cron Job</a>
                     </div>
                 @endif
 

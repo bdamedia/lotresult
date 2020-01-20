@@ -197,8 +197,8 @@ return [
         ],
         ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'Cron Jobs',
+            'url'  => 'admin/cron',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

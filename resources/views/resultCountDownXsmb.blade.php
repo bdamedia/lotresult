@@ -436,9 +436,4 @@
 @include('footer')
 
 <script src="{{ URL::asset('js/flipclock.js') }}"> </script>
-<script type="text/javascript">
- /*   var clock = $('.clock').FlipClock(3600 * 24 * 3, {
-        clockFace: 'DailyCounter',
-        countdown: true
-    });*/
-</script>
+<script src="{{ URL::asset('js/clock.js') }}"> </script>

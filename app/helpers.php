@@ -1,5 +1,6 @@
 <?php
 
+use App\NewsModel;
 use Goutte\Client;
 use App\Result;
 use App\RegionCompany;
@@ -469,6 +470,7 @@ function metaData($key='home'){
     $keyup = Request::path();
     $path = explode('/',$keyup);
     $mainPage = current($path);
+    $mainPage2 = current($path);
     $path = end($path);
     $region = current(explode('-',$path));
     $region = str_replace('kq','',$region);
@@ -490,6 +492,10 @@ function metaData($key='home'){
         $mainPage = 'Xổ Số Miền Trung';
     }elseif($mainPage == 'ket-qua-xsmn'){
         $mainPage = 'Xổ Số Miền Nam';
+    }elseif($mainPage == 'tin-xo-so'){
+
+        // $key = $mainPage;
+        $mainPage == 'Tin tức';
     }else{
         $mainPage = 'Xổ Số 3 Miền';
     }
@@ -531,6 +537,20 @@ function metaData($key='home'){
     }else{
         $days1 = '';
         $days2 = '';
+    }
+
+    if($mainPage2 == 'tin-xo-so' && $key == 'tin-xo-so'){
+        $key = 'news';
+        $metaData['news']['title'] = 'Tin tức xổ số - Tin xổ số hôm nay';
+        $metaData['news']['keywords'] = 'tin tuc xo so, tin tuc xo so hom nay, tin xổ số, tin tức xổ số hôm nay'; ;
+        $metaData['news']['description'] = 'Tin Tức Về Xổ Số - Cập Nhật Thông Tin Về KQXS Mới Nhất Mỗi Ngày - Tổng hợp tin về xổ số kiến thiết, tin hot nhất tại cổng thông tin của '.url('/');
+    }elseif($mainPage2 == 'tin-xo-so' && $key != 'tin-xo-so'){
+
+        $newsMeta = getNewsbySlug($key);
+        $key = 'news-single';
+        $metaData['news-single']['title'] = $newsMeta->meta_title;
+        $metaData['news-single']['keywords'] = $newsMeta->meta_keywords;
+        $metaData['news-single']['description'] = $newsMeta->meta_description;
     }
 
     $metaData['home']['title'] = 'KQXS - Kết Quả Xổ Số 3 Miền Hôm Nay - Tường thuật trực tiếp kqxs';
@@ -606,4 +626,10 @@ function metaData($key='home'){
         return $metaData['home'];
     }
 
+
+}
+
+function getNewsbySlug($slug){
+    $result = NewsModel::where('news_slug',$slug)->get();
+    return collect($result)->first();
 }
