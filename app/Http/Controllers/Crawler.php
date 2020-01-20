@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use MongoDB\BSON\UTCDateTime;
 use function MongoDB\BSON\toJSON;
 use App\RegionCompany;
+use Goutte\Client;
 
 class Crawler extends Controller
 {
@@ -441,5 +442,18 @@ class Crawler extends Controller
     public function getNews(){
         $url = "https://xosodaiphat.com/tin-tuc/tin-tuc-c2583-article.html";
 
+    }
+
+
+    public function getVietlottResult($url1='')
+    {
+        $url = "https://xosodaiphat.com/xo-so-max3d.html";
+        $data = crawlUrlModifiedVit($url);
+        /*$client = new Client();
+        block
+        $crawler = $client->request('GET', $url);*/
+        echo "<pre>";
+        print_r($data);
+        
     }
 }

@@ -241,6 +241,98 @@ function crawlUrlModified($url=null){
     return array_filter($res);
 }
 
+function crawlUrlModifiedVit($url=null){
+
+    $html = file_get_contents($url);
+    $dom = new DOMDocument;
+
+    @$dom->loadHTML($html);
+
+    $links = $dom->getElementsByTagName('table');
+    $finder = new DomXPath($dom);
+    $date3 = '';
+
+    $regionName = $finder->query("//*[contains(@class, 'list-link')]")->item(0);
+    $blockmainheading = $finder->query("//*[contains(@class, 'block-main-heading')]")->item(0)->textContent;
+    $date = $finder->query("//*[contains(@class, 'class-title-list-link')]");
+
+    if(isset($regionName)){
+        $dateReturn = array();
+        $regionName_first = array();
+        $regionName_second = array();
+        $regionName_third = array();
+        foreach ($date as $key => $value) {
+            $getDate = $value->getElementsByTagName('a')->item(2)->nodeValue;
+            $explodDate = explode(' ', $getDate);
+            $explodDateFinal = end($explodDate);
+            $dateReturn[] = $explodDateFinal;
+
+            $regionName_first[] = $value->getElementsByTagName('a')->item(0)->nodeValue;
+            $regionName_second[] = $value->getElementsByTagName('a')->item(1)->nodeValue;
+            $regionName_third[] = $value->getElementsByTagName('a')->item(2)->nodeValue;
+        }
+    }
+
+    $res = [];
+    $i = 0;
+    foreach ($links as $link){
+    
+        $res1 = [];
+        if(stripos($link->getAttribute('class'),'table-sign') !== false){
+
+            foreach ($link->getElementsByTagName('tr') as $key => $value) {
+                $idElem = $value->getElementsByTagName('td');
+
+                if($idElem->length > 0){
+                    if($idElem->item(1)){
+                        $res[$i-1]['data']['board'][] = $idElem->item(1)->textContent; //preg_replace('/\s+/', '',  $idElem->item(1)->nodeValue);
+                    }
+                    if($idElem->item(3)){
+                        $res[$i-1]['data']['board'][] = $idElem->item(3)->textContent; //preg_replace('/\s+/', '',  $idElem->item(1)->nodeValue);
+                    }
+                }
+            }
+        } elseif(stripos($link->getAttribute('class'),'table-award') !== false){
+            continue;
+        } else {
+
+            foreach ($link->getElementsByTagName('tr') as $key => $value) {
+                $idElem = $value->getElementsByTagName('td');
+
+                if($idElem->length > 0){
+                    //echo "<pre>";
+                    //print_r($idElem->item(0)->nodeValue);
+                    if($idElem->item(1)){
+                        $res1[$idElem->item(0)->nodeValue] = $idElem->item(1)->nodeValue ? $idElem->item(1)->nodeValue : ''; //array_filter(explode(',',preg_replace('/\s+/', ',',  $idElem->item(1)->nodeValue)));
+                    }
+                }
+
+            }
+        }
+            
+        if(count($res1) > 0){
+               $res[]['data'] = $res1;
+               if(isset($dateReturn[$i])){
+                    $res[$i]['result_day_time'] = $dateReturn[$i] ? $dateReturn[$i] : '';
+                }
+                if(isset($regionName_first[$i])){
+                    $res[$i]['first'] = $regionName_first[$i];
+                }
+                if(isset($regionName_second[$i])){
+                    $res[$i]['second'] = $regionName_second[$i];
+                }
+                if(isset($regionName_third[$i])){
+                    $res[$i]['third'] = $regionName_third[$i];
+                }
+                if(isset($blockmainheading)){
+                    $res[$i]['blockmainheading'] = $blockmainheading;
+                }
+            $i++;
+        }
+    }
+
+    return array_filter($res);
+}
 
 function getRegionsCompany(){
 

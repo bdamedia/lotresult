@@ -62,6 +62,7 @@ Route::post("/getSearchBydayandNumber", "Crawler@getSearchBydayandNumber");
 Route::get("/crawler/current", "Crawler@getCurrentResult");
 Route::get("/crawler/xsmn/current", "Crawler@xsmnCurrentResult");
 
+Route::get("/crawler/vietlottResult", "Crawler@getVietlottResult");
 
 //update current records
 Route::get("/updatedatabase/{link}", "Crawler@saveDatabase");
