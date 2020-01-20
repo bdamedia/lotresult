@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Result;
+use App\RegionCompany;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DateTime;
@@ -29,10 +30,7 @@ class Results extends Controller
         $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
         //Check request method if method is get/post and fetch result from results collection 
         if($request->method() == "POST"){
-            DB::enableQueryLog();
-            // dd($company);
-            $results= Result::where('result_day_time' ,'>=', $exactDate )->where('lottery_company', 'regexp', "%$company%")->orderBy('result_day_time', 'desc')->get();
-            // dd(DB::getQueryLog());
+            $results= Result::where('result_day_time' ,'>=', $exactDate )->where('lottery_company', '=', $company)->orderBy('result_day_time', 'desc')->get();
         }else{
             $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->get();
         }
@@ -121,11 +119,11 @@ class Results extends Controller
             }
         }
         //Fetch result of company
-        $resultsForCompany= Result::all();
+        $resultsForCompany= RegionCompany::all();
         // echo '<pre>', print_r($resultsForCompany);
         $companyName = [];
         foreach ($resultsForCompany as $name) {
-            $companyName[] = $name->lottery_company;
+            $companyName[] = $name->lottery_company_names;
         }
         //Return view with data
         return view('lot3Statistics',['lot3' => array_count_values($finalLot3Val), 'special' => array_count_values($finaSpeciallLot3Val), 'companyName' => array_unique($companyName), 'digitNotApearInLot3' => $digitNotApearInLot3, 'digitNotApearInSpecialLot3' => $digitNotApearInSpecialLot3]);

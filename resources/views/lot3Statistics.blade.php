@@ -4,41 +4,8 @@
         <div class="row margin-b">
           <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="row">
+              @include('todayResult')
               <div class="margin-40 col-md-12">
-                <div id="u129" class="ax_default box_2">
-                  <div id="u129_text" class="text ">
-                    <p><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Today - Saturday - January 11, 2020</font></font></span>
-                    </p>
-                  </div>
-                </div>
-                <div id="u130" class="ax_default box_2">
-                  <div id="u130_text" class="text ">
-                    <p><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">The province opened the prize today</font></font></span>
-                    </p>
-                  </div>
-                </div>
-                <div id="u118" class="ax_default">
-                  <div id="u119" class="ax_default table_cell remove-line-height" style="cursor: pointer;">
-                    <div id="u119_text" class="text "> <a href="/ket-qua-xo-so-mien-bac/"><span id="cache1" style=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Northern</font></font></span></a>
-                    </div>
-                  </div>
-                  <div id="u119" class="ax_default table_cell remove-line-height" style="cursor: pointer;">
-                    <div id="u119_text" class="text "> <a href=" /ket-qua-xo-so-mien-nam/kqxsmn-tphcm "><span id="cache1" style=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HCMC</font></font></span></a>
-                    </div>
-                  </div>
-                  <div id="u119" class="ax_default table_cell remove-line-height" style="cursor: pointer;">
-                    <div id="u119_text" class="text "> <a href=" /ket-qua-xo-so-mien-nam/kqxsmn-long-an "><span id="cache1" style=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Long An</font></font></span></a>
-                    </div>
-                  </div>
-                  <div id="u119" class="ax_default table_cell remove-line-height" style="cursor: pointer;">
-                    <div id="u119_text" class="text "> <a href=" /ket-qua-xo-so-mien-nam/kqxsmn-binh-phuoc "><span id="cache1" style=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Binh Phuoc</font></font></span></a>
-                    </div>
-                  </div>
-                  <div id="u119" class="ax_default table_cell remove-line-height" style="cursor: pointer;">
-                    <div id="u119_text" class="text "> <a href=" /ket-qua-xo-so-mien-nam/kqxsmn-hau-giang "><span id="cache1" style=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hau Giang</font></font></span></a>
-                    </div>
-                  </div>
-                </div>
                 <div>
                   <div id="u130" class="ax_default box_2" style="border: 1px solid #a09c9c; margin-top: 30px">
                     <div id="u130_text" class="text ">
