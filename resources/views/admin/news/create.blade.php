@@ -31,7 +31,7 @@
                         <h4>News Information</h4>
                     </div>
                     <div class="card-body">
-                        <form class="form" method="post" action="/admin/news/store" role="form" autocomplete="off">
+                        <form class="form" method="post" enctype="multipart/form-data" action="/admin/news/store" role="form" autocomplete="off">
                             @csrf
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Title</label>

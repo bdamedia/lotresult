@@ -12,6 +12,7 @@
 */
 
 
+
 Route::get("/crawler", "Crawler@index");
 Route::get("/crawler/cJob", "Crawler@CroneJob");
 Route::get("/crawler/cJob/all/", "Crawler@CroneJobFull");
@@ -51,6 +52,11 @@ Route::get("/cau-mien-bac/{kqxs_dien_toan}", "Results@kqxs");
 Route::get("/thond-keys/{thond_keys}", "Results@thonds");
 
 
+Route::get("/tin-xo-so", "admin\NewsController@newsList");
+Route::get("/tin-xo-so/{slug}", "admin\NewsController@newsFront");
+
+
+
 Route::post("/getCompanyByday", "Crawler@listCompanyDaywise");
 Route::post("/getSearchBydayandNumber", "Crawler@getSearchBydayandNumber");
 Route::get("/crawler/current", "Crawler@getCurrentResult");
@@ -80,6 +86,8 @@ Route::get('admin/news/{id}', 'admin\NewsController@show')->name('show')->middle
 Route::get('admin/news/{id}/edit', 'admin\NewsController@edit')->name('edit')->middleware('auth');
 Route::post('admin/news/update', 'admin\NewsController@update')->name('update')->middleware('auth');
 
+Route::get('admin/cron', 'admin\CronManualController@index')->name('cron_index')->middleware('auth');
+Route::get('admin/cron/create', 'admin\CronManualController@create')->name('cron_create')->middleware('auth');
 
 Route::get('/admin/home', function() {
     return view('admin/home');
