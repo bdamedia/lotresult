@@ -85,9 +85,7 @@ Route::get('admin/news/{id}/edit', 'admin\NewsController@edit')->name('edit')->m
 Route::post('admin/news/update', 'admin\NewsController@update')->name('update')->middleware('auth');
 
 Route::get('admin/cron', 'admin\CronManualController@index')->name('cron_index')->middleware('auth');
-Route::get('admin/cron/tt-xsmn', 'admin\CronManualController@create')->name('cron_xsmn')->middleware('auth');
-Route::get('admin/cron/tt-xsmt', 'admin\CronManualController@create')->name('cron_xsmt')->middleware('auth');
-Route::get('admin/cron/tt-xsmb', 'admin\CronManualController@create')->name('cron_xsmb')->middleware('auth');
+
 
 Route::post('admin/cron/tt/{region}', 'admin\CronManualController@cronButtonStart')->name('cron_xsmb')->middleware('auth');
 Route::post('admin/cron/tt/{region}', 'admin\CronManualController@cronButtonStart')->name('cron_xsmb')->middleware('auth');
