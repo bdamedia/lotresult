@@ -11,7 +11,7 @@
 |
 */
 
-
+ 
 
 Route::get("/crawler", "Crawler@index");
 Route::get("/crawler/cJob", "Crawler@CroneJob");
