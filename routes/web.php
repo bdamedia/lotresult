@@ -91,6 +91,8 @@ Route::get('admin/news/{id}', 'admin\NewsController@show')->name('show')->middle
 Route::get('admin/news/{id}/edit', 'admin\NewsController@edit')->name('edit')->middleware('auth');
 Route::post('admin/news/update', 'admin\NewsController@update')->name('update')->middleware('auth');
 
+Route::get('admin/cron', 'admin\CronManualController@index')->name('cron_index')->middleware('auth');
+Route::get('admin/cron/create', 'admin\CronManualController@create')->name('cron_create')->middleware('auth');
 
 Route::get('/admin/home', function() {
     return view('admin/home');
