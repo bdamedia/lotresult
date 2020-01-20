@@ -720,7 +720,7 @@ class Results extends Controller
 
     }
 
-    public function thungDay(Request $request,$day){
+    public function thungDay(Request $request){
         $data['region'] = "thong";
         $data['enableTab'] = true;
         return view('thong')->with($data);

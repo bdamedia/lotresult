@@ -71,7 +71,7 @@ Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
 
 
 
-Route::get("/thung/thong-ke-{day}", "Results@thungDay");
+Route::get("/thong-ke-kqxs/thong-ke-lo-gan", "Results@thungDay");
 Route::get("/thong-ke-xsdp-tinh-theo-thu", "Results@getThungDayWeek");
 Route::get("/XSDPThongKeAjax/XSDPTKGanCucDai", "Results@getThungKeysAjax");
 

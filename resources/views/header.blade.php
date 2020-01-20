@@ -125,20 +125,8 @@
 
 
 
-                    <li class="list_border last-ul-value  @php if(in_array('thung',$reload)){ echo "active"; } @endphp"><a href="/thung/thong-ke-lo-gan" title="TK Lô">TK Lô</a>
-                        <div class="menu-lv2-down">
-                            <ul>
-                                <li><a href="/thung/thong-ke-lo-gan" title="TK l&#244; gan">TK l&#244; gan</a></li>
-                                <li><a href="/thung/thong-ke-lo-xien" title="TK l&#244; xi&#234;n">TK l&#244; xi&#234;n</a></li>
-                                <li><a href="/thung/thong-ke-lo-kep" title="TK l&#244; k&#233;p">TK l&#244; k&#233;p</a></li>
-                                <li><a href="/thung/thong-ke-dau" title="TK đầu">TK đầu</a></li>
-                                <li><a href="/thung/thong-ke-duoi" title="TK đu&#244;i">TK đu&#244;i</a></li>
-                                <li><a href="/thung/thong-ke-2-so-cuoi-db-mien-bac" title="TK giải đặc biệt">TK giải đặc biệt</a></li>
-                                <li><a href="/thung/thong-ke-tan-suat" title="TK lần xuất hiện">TK lần xuất hiện</a></li>
-                                <li><a href="/thung/thong-ke-00-99" title="TK 00 - 99">TK 00 - 99</a></li>
-                                <li><a href="/thung/thong-ke-theo-chu-ky-4-1-0" title="TK chu kỳ">TK chu kỳ</a></li>
-                            </ul>
-                        </div>
+                    <li class="list_border last-ul-value  @php if(in_array('thong-ke-lo-gan',$reload)){ echo "active"; } @endphp"><a href="/thong-ke-kqxs/thong-ke-lo-gan" title="TK Lô">TK Lô</a>
+                        
                     </li>
 
                     <li class="list_border last-ul-value  @php if(in_array('tin-xo-so',$reload)){ echo "active"; } @endphp"><a href="/tin-xo-so" title="Tin tức">Tin tức</a></li>
