@@ -18,19 +18,20 @@ class CreateTransactionModelsTable extends Migration
             $table->string('user_name');
             $table->text('full_name');
             $table->text('member_type');
-            $table->text('mobile_no');
+            $table->string('mobile_no');
             $table->text('species');
-            $table->text('transaction_id');
+            $table->string('transaction_id');
+            $table->string('amount');
             $table->text('pay_mode');
             $table->text('bank');
             $table->text('status');
-            $table->text('user_address');
-            $table->text('user_ip');
+            $table->text('user_id');
+            $table->ipAddress('user_ip');
             $table->text('user_device');
             $table->text('user_browser');
             $table->text('accountant_name');
-            $table->text('purchased_time');
-            $table->text('approver_time');
+            $table->timestamps('purchased_time');
+            $table->timestamps('approver_time');
             $table->timestamps();
         });
     }

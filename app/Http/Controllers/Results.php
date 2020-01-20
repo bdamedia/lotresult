@@ -5,28 +5,39 @@ use App\Result;
 use App\RegionCompany;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use DateTime;
 
 class Results extends Controller
 {
+    public function lot3StatisticsView(){
 
-    public function lot3Statistics (Request $request){
-
-        //Time duration for lot3 statistic
-        $duration = 10;
-        //Check request method if method is post then set time duration and company name
-        if($request->method() == "POST"){
-            $duration = ($request->time_duration)-1;
-            $company = $request->companyName;
+        //Fetch company name and code
+        $resultsForCompany= RegionCompany::all();
+        $companyName = [];
+        $companyRegion = [];
+        foreach ($resultsForCompany as $name) {
+            array_push($companyRegion,$name->lottery_company);
+            array_push($companyName,$name->lottery_company_names);
         }
+        $companyDetail = [];
+        $companyDetail=array_combine($companyName,$companyRegion);
+
+        return view('lot3Statistics',['companyName' => $companyDetail]);
+
+    }
+    public function lot3Statistics (Request $request){
+        //Time duration for lot3 statistic
+        $duration = $request->duration;
+        $company = $request->companyName;
         //Current time and date in UNIX standard
         $date = Carbon::now()->format('Y-m-d');
         //conver UNIX standard date time in to standard date
         $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
         //Prepare date on the basis of time duration
         $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
-        //Check request method if method is get/post and fetch result from results collection 
-        if($request->method() == "POST"){
+        //Check company name is not null
+        if($company){
             $results= Result::where('result_day_time' ,'>=', $exactDate )->where('lottery_company', '=', $company)->orderBy('result_day_time', 'desc')->get();
         }else{
             $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->get();
@@ -115,19 +126,13 @@ class Results extends Controller
                 }
             }
         }
-        //Fetch result of company
-        $resultsForCompany= RegionCompany::all();
-        $companyName = [];
-        $companyRegion = [];
-        foreach ($resultsForCompany as $name) {
-            array_push($companyRegion,$name->lottery_company);
-            array_push($companyName,$name->lottery_company_names);
-        }
-        $companyDetail = [];
-        $companyDetail=array_combine($companyName,$companyRegion);
-        // echo '<pre>', print_r($company);
-        //Return view with data
-        return view('lot3Statistics',['lot3' => array_count_values($finalLot3Val), 'special' => array_count_values($finaSpeciallLot3Val), 'companyName' => $companyDetail, 'digitNotApearInLot3' => $digitNotApearInLot3, 'digitNotApearInSpecialLot3' => $digitNotApearInSpecialLot3]);
+
+        return Response()->json([
+            'lot3'                          => array_count_values($finalLot3Val),
+            'special'                       => array_count_values($finaSpeciallLot3Val),
+            'digitNotApearInLot3'           => $digitNotApearInLot3,
+            'digitNotApearInSpecialLot3'    => $digitNotApearInSpecialLot3
+        ]);
 
     }
 
