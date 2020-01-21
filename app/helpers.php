@@ -241,6 +241,295 @@ function crawlUrlModified($url=null){
     return array_filter($res);
 }
 
+//New function added by us crawlUrlModifiedVitXoSoMega
+function crawlUrlModifiedVitXoSoPower($url=null){
+
+    $html = file_get_contents($url);
+    $dom = new DOMDocument;
+    @$dom->loadHTML($html);
+    $links = $dom->getElementsByTagName('table');
+    $finder = new DomXPath($dom);
+    $date3 = '';
+
+    $regionName = $finder->query("//*[contains(@class, 'list-link')]")->item(0);
+    $blockmainheading = $finder->query("//*[contains(@class, 'block-main-heading')]")->item(0)->textContent;
+    $date = $finder->query("//*[contains(@class, 'class-title-list-link')]");
+
+    //$bb =  $finder->query("//*[contains(@class, 'text-black-bold')]")->item(0);
+    $resultTitle =  $finder->query("//*[contains(@class, 'title-result-jackpot')]")->item(0)->nodeValue;
+    // first
+    $titleItem = $finder->query("//*[contains(@class, 'open-next')]")->item(0)->nodeValue;
+    $titleItemValue =  $finder->query("//*[contains(@class, 'itle-prize')]")->item(0)->nodeValue;
+    $jackpotResult =  $finder->query("//*[contains(@class, 'result-jackpot')]")->item(2)->nodeValue;
+    // second
+    $titleItemValue1 = $finder->query("//*[contains(@class, 'title-prize')]")->item(1)->nodeValue;
+    $jackpotResult1 =  $finder->query("//*[contains(@class, 'result-jackpot')]")->item(3)->nodeValue;
+
+    echo "<pre>";
+    //print_r($bb);
+    print_r($resultTitle);
+    echo "<br>";
+    print_r($titleItem);
+    echo "<br>";
+    print_r($titleItemValue);
+    echo "<br>";
+    print_r($jackpotResult);
+    echo "<br>";
+    print_r($titleItemValue1);
+    echo "<br>";
+    print_r($jackpotResult1);
+    echo "<br>";
+    print_r($blockmainheading);
+    
+    //working ...
+    $itemForValues =  $finder->query("//*[contains(@class, 'para')]");
+    $megadetail = $finder->query("//*[contains(@class, 'power-detail')]");
+
+    if(isset($regionName)){
+        $dateReturn = array();
+        $regionName_first = array();
+        $regionName_second = array();
+        $regionName_third = array();
+        foreach ($date as $key => $value) {
+
+            if($value->getElementsByTagName('a')->item(2)) {
+                $getDate = $value->getElementsByTagName('a')->item(2)->nodeValue;
+            } else {
+                $getDate = $value->getElementsByTagName('span')->item(2)->nodeValue;
+            }
+
+            $explodDate = explode(' ', $getDate);
+            $explodDateFinal = end($explodDate);
+            $dateReturn[] = $explodDateFinal;
+
+            $regionName_first[] = $value->getElementsByTagName('a')->item(0)->nodeValue;
+            $regionName_second[] = $value->getElementsByTagName('a')->item(1)->nodeValue;
+
+
+            if($value->getElementsByTagName('a')->item(2)) {
+                $regionName_third[] = $value->getElementsByTagName('a')->item(2)->nodeValue;
+            } else {
+                $regionName_third[] = $value->getElementsByTagName('span')->item(2)->nodeValue;
+            }
+        }
+        $itemForValues_New = array();
+        foreach ($itemForValues as $key => $value) {
+            $itemForValues_New[] = $value->nodeValue;
+        }
+        $megadetailValue = array();
+        foreach ($megadetail as $key => $value) {
+            $megadetailValue[] = $value->nodeValue;
+        }
+    }
+    //echo "<pre>";
+    //print_r($itemForValues_New);
+    $res = [];
+    $i = 0;
+    foreach ($links as $link){
+        $res1 = [];
+        if(stripos($link->getAttribute('class'),'table-sign') !== false){
+            foreach ($link->getElementsByTagName('tr') as $key => $value) {
+                $idElem = $value->getElementsByTagName('td');
+
+                if($idElem->length > 0){
+                    if($idElem->item(1)){
+                        $res[$i-1]['data']['board'][] = $idElem->item(1)->textContent; //preg_replace('/\s+/', '',  $idElem->item(1)->nodeValue);
+                    }
+                    if($idElem->item(3)){
+                        $res[$i-1]['data']['board'][] = $idElem->item(3)->textContent; //preg_replace('/\s+/', '',  $idElem->item(1)->nodeValue);
+                    }
+                }
+            }
+        } elseif(stripos($link->getAttribute('class'),'table-award') !== false){
+            continue;
+        } else {
+            foreach ($link->getElementsByTagName('tr') as $key => $value) {
+                $idElem = $value->getElementsByTagName('td');
+                if($idElem->length > 0){
+                    if($idElem->item(2)){
+                        //echo "<pre>";
+                        //print_r($idElem->item(2));
+                        //$res1[$idElem->item(0)->nodeValue][] = $idElem->item(1)->textContent;
+                        $res1[$idElem->item(0)->nodeValue][] = $idElem->item(2)->textContent;
+                        $res1[$idElem->item(0)->nodeValue][] = $idElem->item(3)->textContent;
+                    }
+                }
+            }
+        }
+            
+        if(count($res1) > 0){
+                $res[]['data'] = $res1;
+                if(isset($dateReturn[$i])){
+                    $res[$i]['result_day_time'] = $dateReturn[$i] ? $dateReturn[$i] : '';
+                }
+                if(isset($regionName_first[$i])){
+                    $res[$i]['first'] = $regionName_first[$i];
+                }
+                if(isset($regionName_second[$i])){
+                    $res[$i]['second'] = $regionName_second[$i];
+                }
+                if(isset($regionName_third[$i])){
+                    $res[$i]['third'] = $regionName_third[$i];
+                }
+                if(isset($blockmainheading)){
+                    $res[$i]['blockmainheading'] = $blockmainheading;
+                }
+                if(isset($itemForValues_New[$i])){
+                    $res[$i]['main'] = $itemForValues_New[$i];
+                }
+                $res[0]['resultTitle'] = $resultTitle;
+
+                $res[0]['jackpotResult'][$titleItemValue] = $jackpotResult;
+                $res[0]['jackpotResult'][$titleItemValue1] = $jackpotResult1;
+
+                $res[0]['titleItem'] = $titleItem;
+                if(isset($dateReturn[$i])){
+                    $res[$i]['mega-detail'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
+                }               
+            $i++;
+        }
+    }
+    return array_filter($res);
+}
+
+
+function crawlUrlModifiedVitXoSoMega($url=null){
+
+    $html = file_get_contents($url);
+    $dom = new DOMDocument;
+
+    @$dom->loadHTML($html);
+
+    $links = $dom->getElementsByTagName('table');
+    $finder = new DomXPath($dom);
+    $date3 = '';
+
+    $regionName = $finder->query("//*[contains(@class, 'list-link')]")->item(0);
+    $blockmainheading = $finder->query("//*[contains(@class, 'block-main-heading')]")->item(0)->textContent;
+    $date = $finder->query("//*[contains(@class, 'class-title-list-link')]");
+
+    //$bb =  $finder->query("//*[contains(@class, 'text-black-bold')]")->item(0);
+    $resultTitle =  $finder->query("//*[contains(@class, 'title-result-jackpot')]")->item(0)->nodeValue;
+    $jackpotResult =  $finder->query("//*[contains(@class, 'result-jackpot')]")->item(2)->nodeValue;
+    $titleItem = $finder->query("//*[contains(@class, 'open-next')]")->item(0)->nodeValue;
+
+    //echo "<pre>";
+    //print_r($bb);
+    //print_r($resultTitle);
+    //echo "<pre>";
+    //print_r($jackpotResult);
+    //echo "<pre>";
+    //print_r($titleItem);
+
+    //working ...
+    $itemForValues =  $finder->query("//*[contains(@class, 'para')]");
+    $megadetail = $finder->query("//*[contains(@class, 'mega-detail')]");
+
+    if(isset($regionName)){
+        $dateReturn = array();
+        $regionName_first = array();
+        $regionName_second = array();
+        $regionName_third = array();
+        foreach ($date as $key => $value) {
+
+            if($value->getElementsByTagName('a')->item(2)) {
+                $getDate = $value->getElementsByTagName('a')->item(2)->nodeValue;
+            } else {
+                $getDate = $value->getElementsByTagName('span')->item(2)->nodeValue;
+            }
+
+            $explodDate = explode(' ', $getDate);
+            $explodDateFinal = end($explodDate);
+            $dateReturn[] = $explodDateFinal;
+
+            $regionName_first[] = $value->getElementsByTagName('a')->item(0)->nodeValue;
+            $regionName_second[] = $value->getElementsByTagName('a')->item(1)->nodeValue;
+
+
+            if($value->getElementsByTagName('a')->item(2)) {
+                $regionName_third[] = $value->getElementsByTagName('a')->item(2)->nodeValue;
+            } else {
+                $regionName_third[] = $value->getElementsByTagName('span')->item(2)->nodeValue;
+            }
+        }
+
+        $itemForValues_New = array();
+        foreach ($itemForValues as $key => $value) {
+            $itemForValues_New[] = $value->nodeValue;
+        }
+
+        $megadetailValue = array();
+        foreach ($megadetail as $key => $value) {
+            $megadetailValue[] = $value->nodeValue;
+        }
+    }
+    //echo "<pre>";
+    //print_r($itemForValues_New);
+    $res = [];
+    $i = 0;
+    foreach ($links as $link){
+        $res1 = [];
+        if(stripos($link->getAttribute('class'),'table-sign') !== false){
+            foreach ($link->getElementsByTagName('tr') as $key => $value) {
+                $idElem = $value->getElementsByTagName('td');
+
+                if($idElem->length > 0){
+                    if($idElem->item(1)){
+                        $res[$i-1]['data']['board'][] = $idElem->item(1)->textContent; //preg_replace('/\s+/', '',  $idElem->item(1)->nodeValue);
+                    }
+                    if($idElem->item(3)){
+                        $res[$i-1]['data']['board'][] = $idElem->item(3)->textContent; //preg_replace('/\s+/', '',  $idElem->item(1)->nodeValue);
+                    }
+                }
+            }
+        } elseif(stripos($link->getAttribute('class'),'table-award') !== false){
+            continue;
+        } else {
+            foreach ($link->getElementsByTagName('tr') as $key => $value) {
+                $idElem = $value->getElementsByTagName('td');
+                if($idElem->length > 0){
+                    if($idElem->item(1)){
+                        //$res1[$idElem->item(0)->nodeValue][] = $idElem->item(1)->textContent;
+                        $res1[$idElem->item(0)->nodeValue][] = $idElem->item(2)->textContent;
+                        $res1[$idElem->item(0)->nodeValue][] = $idElem->item(3)->textContent;
+                    }
+                }
+            }
+        }
+            
+        if(count($res1) > 0){
+                $res[]['data'] = $res1;
+                if(isset($dateReturn[$i])){
+                    $res[$i]['result_day_time'] = $dateReturn[$i] ? $dateReturn[$i] : '';
+                }
+                if(isset($regionName_first[$i])){
+                    $res[$i]['first'] = $regionName_first[$i];
+                }
+                if(isset($regionName_second[$i])){
+                    $res[$i]['second'] = $regionName_second[$i];
+                }
+                if(isset($regionName_third[$i])){
+                    $res[$i]['third'] = $regionName_third[$i];
+                }
+                if(isset($blockmainheading)){
+                    $res[$i]['blockmainheading'] = $blockmainheading;
+                }
+                if(isset($itemForValues_New[$i])){
+                    $res[$i]['main'] = $itemForValues_New[$i+1];
+                }
+                $res[0]['resultTitle'] = $resultTitle;
+                $res[0]['jackpotResult'] = $jackpotResult;
+                $res[0]['titleItem'] = $titleItem;
+                if(isset($dateReturn[$i])){
+                    $res[$i]['mega-detail'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
+                }               
+            $i++;
+        }
+    }
+    return array_filter($res);
+}
+
+// function for tow tabs crawlUrlModifiedVit................
 function crawlUrlModifiedVit($url=null){
 
     $html = file_get_contents($url);
@@ -262,14 +551,27 @@ function crawlUrlModifiedVit($url=null){
         $regionName_second = array();
         $regionName_third = array();
         foreach ($date as $key => $value) {
-            $getDate = $value->getElementsByTagName('a')->item(2)->nodeValue;
+
+            if($value->getElementsByTagName('a')->item(2)) {
+                $getDate = $value->getElementsByTagName('a')->item(2)->nodeValue;
+            } else {
+                $getDate = $value->getElementsByTagName('span')->item(2)->nodeValue;
+            }
+
             $explodDate = explode(' ', $getDate);
             $explodDateFinal = end($explodDate);
             $dateReturn[] = $explodDateFinal;
 
             $regionName_first[] = $value->getElementsByTagName('a')->item(0)->nodeValue;
             $regionName_second[] = $value->getElementsByTagName('a')->item(1)->nodeValue;
-            $regionName_third[] = $value->getElementsByTagName('a')->item(2)->nodeValue;
+
+
+            if($value->getElementsByTagName('a')->item(2)) {
+                $regionName_third[] = $value->getElementsByTagName('a')->item(2)->nodeValue;
+            } else {
+                $regionName_third[] = $value->getElementsByTagName('span')->item(2)->nodeValue;
+            }
+
         }
     }
 

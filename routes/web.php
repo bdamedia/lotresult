@@ -62,7 +62,15 @@ Route::post("/getSearchBydayandNumber", "Crawler@getSearchBydayandNumber");
 Route::get("/crawler/current", "Crawler@getCurrentResult");
 Route::get("/crawler/xsmn/current", "Crawler@xsmnCurrentResult");
 
+
+
 Route::get("/crawler/vietlottResult", "Crawler@getVietlottResult");
+
+Route::get("/crawler/xosomax4d", "Crawler@getVietlottResult");
+Route::get("/crawler/xosomax3d", "Crawler@getVietlottResult");
+Route::get("/crawler/xomegaxosomega", "Crawler@getVietlottResult");
+Route::get("/crawler/xspowerxosopower", "Crawler@getVietlottResult");
+
 
 //update current records
 Route::get("/updatedatabase/{link}", "Crawler@saveDatabase");

@@ -445,15 +445,43 @@ class Crawler extends Controller
     }
 
 
-    public function getVietlottResult($url1='')
+    public function getVietlottResult(Request $request)
     {
-        $url = "https://xosodaiphat.com/xo-so-max3d.html";
-        $data = crawlUrlModifiedVit($url);
-        /*$client = new Client();
-        block
-        $crawler = $client->request('GET', $url);*/
+        //$url = "https://xosodaiphat.com/xo-so-max4d.html";
+        $uri = $request->path();
+        if($uri == "crawler/xosomax3d") {
+            $url = "https://xosodaiphat.com/xo-so-max3d.html";
+            $data = crawlUrlModifiedVit($url);
+        } else if($uri == "crawler/xosomax4d") {
+            $url = "https://xosodaiphat.com/xo-so-max4d.html";
+            $data = crawlUrlModifiedVit($url);
+        } else if($uri == "crawler/xomegaxosomega") {
+            $url = "https://xosodaiphat.com/xs-mega-xo-so-mega-645.html";
+            $data = crawlUrlModifiedVitXoSoMega($url);
+        } else if($uri == "crawler/xspowerxosopower") {
+            $url = "https://xosodaiphat.com/xs-power-xo-so-power-655.html";
+            $data = crawlUrlModifiedVitXoSoPower($url);
+        } else {
+            $url = "https://xosodaiphat.com/xo-so-vietlott";
+            $data = crawlUrlModifiedVitMain($url);
+        }
         echo "<pre>";
         print_r($data);
-        
+    }
+
+    public function getMegaxosomega($url1='')
+    {
+        $url = "https://xosodaiphat.com/xs-mega-xo-so-mega-645.html";
+        $data = crawlUrlModifiedVitXoSoMega($url);
+        echo "<pre>";
+        print_r($data);
+    }
+
+    public function getXspowerxosopower($url1='')
+    {
+        $url = "https://xosodaiphat.com/xs-power-xo-so-power-655.html";
+        $data = crawlUrlModifiedVitXoSoPower($url);
+        echo "<pre>";
+        print_r($data);
     }
 }
