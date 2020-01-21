@@ -342,6 +342,9 @@
         form span {
             float: left;
         }
+        form{
+            margin-top: 15px;
+        }
     </style>
 @endsection
 
@@ -778,14 +781,14 @@ $gh = count($content[$key]);
                         @php $mytime = Carbon\Carbon::now(); @endphp
                         <h1>Nhập Kết quả trực tiếp {{ $region }}</h1>
                     </div>
-                    <h5 style="color: #cd0000;font-weight: 700;">Kết quả xổ số miền Trung hôm nay được tường thuật trực tiếp lúc 17h15</h5>
+
                     <form method="post" name="startCrone" action="/admin/cron/tt/{{ strtolower($region) }}">
                         <input type="hidden" name="region" value="{{ $region }}">
                         @csrf
                         <div id="post-data" class="col-md-4">
                             <button type="submit" class="start-stop-button">Start / Stop</button>
                         </div>
-                        <div class="col-md-8">
+                        <div id="post-data" class="col-md-8">
                             <span> Interval (minutes) </span>
                             <span class="u5596_div"> 1 </span>
                             <br>
