@@ -1,15 +1,17 @@
 @include('header')
 <style>
     .news-single-title{
-        padding: 5px;
         border-width: 0px;
         background-color: rgba(255, 183, 0, 1);
         text-align: center;
+        height: 37px;
         display: flex;
         font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
-        font-weight: 500;
+        font-weight: 700;
         font-style: normal;
         color: #000000;
+        padding: 6px;
+        margin-bottom: 15px;
     }
     .news-index-image{
         width: 160px;
@@ -32,6 +34,9 @@
         height: 154px;
         overflow: hidden;
     }
+    .news-index-container:first-child {
+        margin-top: 10px;
+    }
 </style>
 <div class="main-content home">
     <div class="container">
@@ -42,21 +47,21 @@
                     @include('todayResult')
                     <div class="col-xs-12 news-list">
                        {{-- {{ print_r($data) }}--}}
-                        <h3 class="news-single-title">Tin tức xổ số</h3>
+                        <span class="news-single-title">Tin tức xổ số</span>
                         @foreach($data as $news)
 
                         <div class="col-xs-12 news-index-container no-padding" >
                             <a target="_blank" href="{{ url('/tin-xo-so/').'/'.$news->news_slug }}" >
                                 @if($news->image)
-                                <div class="col-xs-4 news-index-image" style="background-image: url('{{ asset('images').'/'.$news->image }}')"></div>
+                                <div class="col-xs-12 col-md-4 news-index-image" style="background-image: url('{{ asset('images').'/'.$news->image }}')"></div>
                                     @else
-                                    <div class="col-xs-4 news-index-image" style="background-image: url('{{ asset('images/u5541.svg') }}')"></div>
+                                    <div class="col-xs-12 col-md-4 news-index-image" style="background-image: url('{{ asset('images/u5541.svg') }}')"></div>
 
                                 @endif
                             </a>
-                        <div class="col-xs-8 news-content" >
+                        <div class="col-xs-12 col-md-8 news-content" >
                             <a target="_blank" href="{{ url('/tin-xo-so/').'/'.$news->news_slug }}" >
-                                <h3 class="news-index-title">{{ Str::words($news->title,$word=10,$end='...') }}</h3>
+                                <span class="news-index-title">{{ Str::words($news->title,$word=10,$end='...') }}</span>
                             </a>
 
                                 {{ Str::words(strip_tags($news->content), $words = 26, $end = '...') }}
