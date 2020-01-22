@@ -448,6 +448,7 @@ class Crawler extends Controller
     public function getVietlottResult(Request $request)
     {
         //$url = "https://xosodaiphat.com/xo-so-max4d.html";
+        $data = [];
         $uri = $request->path();
         if($uri == "crawler/xosomax3d") {
             $url = "https://xosodaiphat.com/xo-so-max3d.html";
@@ -462,11 +463,64 @@ class Crawler extends Controller
             $url = "https://xosodaiphat.com/xs-power-xo-so-power-655.html";
             $data = crawlUrlModifiedVitXoSoPower($url);
         } else {
-            $url = "https://xosodaiphat.com/xo-so-vietlott";
-            $data = crawlUrlModifiedVitMain($url);
+            $url = "https://xosodaiphat.com/xs-mega-xo-so-mega-645.html";
+            $data = crawlUrlModifiedVitXoSoMega($url);
+          
+            $url = "https://xosodaiphat.com/xo-so-max4d.html";
+            $data = crawlUrlModifiedVit($url);
+
+            $url = "https://xosodaiphat.com/xs-power-xo-so-power-655.html";
+            $data = crawlUrlModifiedVitXoSoPower($url);
+
+            $url = "https://xosodaiphat.com/xo-so-max3d.html";
+            $data = crawlUrlModifiedVit($url);
         }
-        echo "<pre>";
-        print_r($data);
+        //echo "<pre>";
+        //print_r($data);
+        foreach ($data as $res) {
+            if (isset($res['lottery_region'])) {
+                $result = new Result();
+                echo "<pre>.............................";
+                print_r($res['lottery_region']);
+                echo "<pre>";
+                print_r($res['lottery_company']);
+                echo "<pre>";
+                print_r($res['data']);
+
+                $dateForView = Carbon::parse($res['result_day_time'])->format('d/m/Y');
+
+                $da = explode('/', $dateForView);
+                $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+                $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+                $orig_date1 = $orig_date1->addDay(1);
+                $data = Result::where('lottery_region', $res['lottery_region'])->where('lottery_company', $res['lottery_company'])->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->get();
+
+                if ($data->count()) {
+                    continue;
+                } else {
+                    $result->lottery_region = $res['lottery_region'];
+                    $result->lottery_company = $res['lottery_company'];
+                    $orig_date = Carbon::createFromDate($da[2], $da[1], $da[0]);
+                    $result->result_day_time = new UTCDateTime($orig_date);
+                    $i = 1;
+                    foreach ($res['data'] as $key => $detailsData) {
+                        if ($key == 'board') {
+                            $name = $key;
+                            $result->{$name} = json_encode($res['data'][$key]);
+                        } else {
+                            $name = "prize_" . $i;
+                            $result->{$name} = json_encode(array($key => $res['data'][$key]));
+                            $i++;
+                        }
+                    }
+                    $result->save();
+                }
+            }
+        }
+       /* echo "<pre>...................................";
+        $url = "https://xosodaiphat.com/xsmb-xo-so-mien-bac.html";
+        $resultData = crawlUrl($url);
+        print_r($resultData);*/
     }
 
     public function getMegaxosomega($url1='')
