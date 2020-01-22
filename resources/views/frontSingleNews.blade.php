@@ -10,6 +10,7 @@
         font-weight: 500;
         font-style: normal;
         color: #000000;
+        margin-bottom: 10px;
     }
     .news-single-image{
         width: 100%;
@@ -23,7 +24,7 @@
                 <div class="row">
                     @include('todayResult')
                     <div class="col-xs-12 news-list">
-                        <div class="col-xs-12" ><h1 class="news-single-title">{{ $data['title'] }}</h1></div>
+                        <div class="col-xs-12" ><span class="news-single-title">{{ $data['title'] }}</span></div>
                         <div class="col-xs-12" ><img src="{{ asset('images').'/'.$data['image'] }}" class="news-single-image"></img></div>
                         <div class="col-xs-12" ><p  class="news-single-content">{!! html_entity_decode($data['content']) !!}</p></div>
                     </div>
