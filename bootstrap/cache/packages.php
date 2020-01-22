@@ -25,11 +25,11 @@
       1 => 'Jenssegers\\Mongodb\\MongodbQueueServiceProvider',
     ),
   ),
-  'laravel/passport' => 
+  'jeroennoten/laravel-adminlte' => 
   array (
     'providers' => 
     array (
-      0 => 'Laravel\\Passport\\PassportServiceProvider',
+      0 => 'JeroenNoten\\LaravelAdminLte\\AdminLteServiceProvider',
     ),
   ),
   'laravel/tinker' => 
@@ -37,13 +37,6 @@
     'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    ),
-  ),
-  'narwy/laravel-mongodb-passport' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Narwy\\Mongodb\\MongodbPassportServiceProvider',
     ),
   ),
   'nesbot/carbon' => 
@@ -58,6 +51,13 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'silber/page-cache' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Silber\\PageCache\\LaravelServiceProvider',
     ),
   ),
 );

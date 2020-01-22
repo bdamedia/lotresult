@@ -70,6 +70,8 @@ Route::get("/reload/{link}", "Crawler@reloadCurrentResult");
 Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
 
 Route::get('/','Results@index');
+Route::get('/lot3-statistics','Results@lot3StatisticsView');
+Route::get('/lot3-statistics-details','Results@lot3Statistics');
 Route::redirect('admin','admin/login');
 
 Auth::routes();
@@ -96,3 +98,25 @@ Route::post('admin/cron/tt/{region}', 'admin\CronManualController@cronButtonStar
 Route::get('/admin/home', function() {
     return view('admin/home');
 })->name('home')->middleware('auth');
+
+
+
+//Transaction Management
+Route::get("/ký-gửi", "transactionController@deposite");
+
+
+// Route::get('home', function () {
+//     return view('five88_frontend.pages.home');
+// });
+Route::get('/deposit', function () {
+    return view('five88_frontend.pages.deposit');
+});
+Route::get('/history/{id}', function () {
+    return view('five88_frontend.pages.transactionHistory');
+});
+Route::get('/account', function () {
+    return view('five88_frontend.pages.account');
+});
+Route::post("/test", "transactionController@recharge");
+Auth::routes();
+
