@@ -197,8 +197,18 @@ return [
         ],
         ['header' => 'account_settings'],
         [
-            'text' => 'Cron Jobs',
-            'url'  => 'admin/cron',
+            'text' => 'Cron Jobs XSMN',
+            'url'  => 'admin/cron/tt-xsmn',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Cron Jobs XSMT',
+            'url'  => 'admin/cron/tt-xsmt',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Cron Jobs XSMB',
+            'url'  => 'admin/cron/tt-xsmb',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
