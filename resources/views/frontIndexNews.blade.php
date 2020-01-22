@@ -37,6 +37,16 @@
     .news-index-container:first-child {
         margin-top: 10px;
     }
+    a.news-titles{
+        width: 100%;
+        float: left;
+    }
+    @media (max-width: 480px){
+        .news-index-image{
+            width: 100%;
+        }
+
+    }
 </style>
 <div class="main-content home">
     <div class="container">
@@ -51,7 +61,7 @@
                         @foreach($data as $news)
 
                         <div class="col-xs-12 news-index-container no-padding" >
-                            <a target="_blank" href="{{ url('/tin-xo-so/').'/'.$news->news_slug }}" >
+                            <a  target="_blank" href="{{ url('/tin-xo-so/').'/'.$news->news_slug }}" >
                                 @if($news->image)
                                 <div class="col-xs-12 col-md-4 news-index-image" style="background-image: url('{{ asset('images').'/'.$news->image }}')"></div>
                                     @else
@@ -60,7 +70,7 @@
                                 @endif
                             </a>
                         <div class="col-xs-12 col-md-8 news-content" >
-                            <a target="_blank" href="{{ url('/tin-xo-so/').'/'.$news->news_slug }}" >
+                            <a class="news-titles"  target="_blank" href="{{ url('/tin-xo-so/').'/'.$news->news_slug }}" >
                                 <span class="news-index-title">{{ Str::words($news->title,$word=10,$end='...') }}</span>
                             </a>
 
