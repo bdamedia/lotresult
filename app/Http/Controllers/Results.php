@@ -4,9 +4,136 @@ use App\Result;
 use App\RegionCompany;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use DateTime;
 class Results extends Controller
 {
+    public function lot3StatisticsView(){
+
+        //Fetch company name and code
+        $resultsForCompany= RegionCompany::all();
+        $companyName = [];
+        $companyRegion = [];
+        foreach ($resultsForCompany as $name) {
+            array_push($companyRegion,$name->lottery_company);
+            array_push($companyName,$name->lottery_company_names);
+        }
+        $companyDetail = [];
+        $companyDetail=array_combine($companyName,$companyRegion);
+
+        return view('lot3Statistics',['companyName' => $companyDetail]);
+
+    }
+    public function lot3Statistics (Request $request){
+        //Time duration for lot3 statistic
+        $duration = $request->duration;
+        $company = $request->companyName;
+        //Current time and date in UNIX standard
+        $date = Carbon::now()->format('Y-m-d');
+        //conver UNIX standard date time in to standard date
+        $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
+        //Prepare date on the basis of time duration
+        $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
+        //Check company name is not null
+        if($company){
+            $results= Result::where('result_day_time' ,'>=', $exactDate )->where('lottery_company', '=', $company)->orderBy('result_day_time', 'desc')->get();
+        }else{
+            $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->get();
+        }
+        $lot3Val = [];
+        $finalLot3Val = [];
+        $specialLot3Val = [];
+        $finaSpeciallLot3Val = [];
+        $digitNotApearInLot3 = [];
+        $digitNotApearInSpecialLot3 = [];
+        //Prepare lot3 result and special_lot3 result array
+        foreach ($results as $printresult) {
+
+            $finalValues = [];
+            //get value of each prize and save in lot3 and special_lot3 array
+            for ($it=1; $it< 10 ; $it++) {
+                $t= "prize_{$it}";
+                //Decode json into array of each prize
+                $fNewResult = json_decode($printresult->{$t});
+                foreach ($fNewResult as $keyValues => $mainValue) {
+
+                    if(is_array($mainValue)) {
+                        $lot3Val[] = array_values((array) $mainValue);
+
+                    } else if ($keyValues == 'Mã ĐB') {
+                        $specialLot3Val[] = array_values((array) $mainValue);
+                    }else if ($keyValues == 'G.DB') {
+                        $specialLot3Val[] = array_values((array) $mainValue);
+                    } else {
+                        $lot3Val[] = array_values((array) $mainValue);
+                    }
+                }
+            }
+        }
+
+        //Prepare 3 digit final_lot3_val array 
+        foreach ($lot3Val as $fullValue) {
+            foreach ($fullValue as $mergeValue) {
+                //Check if string length is greater than 2
+                if(strlen($mergeValue)>2)
+                {
+                    array_push($finalLot3Val, substr($mergeValue, -3));
+                }
+            }
+        }
+        //Prepare 3 digit final_special_lot3_val array
+        foreach ($specialLot3Val as $newSpecialFullValue) {
+            foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
+                //Check if string length is greater than 2
+                if(strlen($mergeSpecialFullValue)>2)
+                {
+                    array_push($finaSpeciallLot3Val, substr($mergeSpecialFullValue, -3));
+                }
+            }
+        }
+        //Find all 3 digit value that is not in final_lot3_val
+        for($i=0; $i<1000; $i++){
+            $i = (string)$i;
+            if(in_array($i,$finalLot3Val)) {
+            }else{
+                if(strlen($i)<2){
+                    $i = '00'.$i;
+                    array_push($digitNotApearInLot3,$i);
+                }elseif (strlen($i)<3) {
+                    $i = '0'.$i;
+                    array_push($digitNotApearInLot3,$i);
+                }else{
+                    array_push($digitNotApearInLot3,$i);
+                }
+            }
+        }
+        //Find all 3 digit value that is not final_special_lot3_val
+        for($i=0; $i<1000;$i++){
+            $i = (string)$i;
+            if(in_array($i,$finaSpeciallLot3Val)) {
+            }else{
+                if(strlen($i)<2){
+                    $i = '00'.$i;
+                    array_push($digitNotApearInSpecialLot3,$i);
+                }elseif (strlen($i)<3) {
+                    // dd(strlen($i));
+                    $i = '0'.$i;
+                    array_push($digitNotApearInSpecialLot3,$i);
+                }else{
+                    array_push($digitNotApearInSpecialLot3,$i);
+                }
+            }
+        }
+
+        return Response()->json([
+            'lot3'                          => array_count_values($finalLot3Val),
+            'special'                       => array_count_values($finaSpeciallLot3Val),
+            'digitNotApearInLot3'           => $digitNotApearInLot3,
+            'digitNotApearInSpecialLot3'    => $digitNotApearInSpecialLot3
+        ]);
+
+    }
+
     public function index(Request $request){
         $date = Carbon::now()->format('Y-m-d');
          $orig_date = Carbon::createFromFormat("!Y-m-d",$date);

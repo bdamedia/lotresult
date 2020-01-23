@@ -50,6 +50,8 @@ Route::get("/updatexsmt/{link}", "Crawler@xsmtCurrentResult");
 Route::get("/reload/{link}", "Crawler@reloadCurrentResult");
 Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
 Route::get('/','Results@index');
+Route::get('/lot3-statistics','Results@lot3StatisticsView');
+Route::get('/lot3-statistics-details','Results@lot3Statistics');
 Route::redirect('admin','admin/login');
 
 Auth::routes();
@@ -73,5 +75,38 @@ Route::get('admin/news/{id}/edit', 'admin\NewsController@edit')->name('edit')->m
 Route::post('admin/news/update', 'admin\NewsController@update')->name('update')->middleware('auth');
 
 Route::get('admin/cron', 'admin\CronManualController@index')->name('cron_index')->middleware('auth');
-Route::get('admin/cron/create', 'admin\CronManualController@create')->name('cron_create')->middleware('auth');
+Route::get('admin/cron/tt-xsmn', 'admin\CronManualController@create')->name('cron_xsmn')->middleware('auth');
+Route::get('admin/cron/tt-xsmt', 'admin\CronManualController@create')->name('cron_xsmt')->middleware('auth');
+Route::get('admin/cron/tt-xsmb', 'admin\CronManualController@create')->name('cron_xsmb')->middleware('auth');
+
+Route::post('admin/cron/tt/{region}', 'admin\CronManualController@cronButtonStart')->name('cron_xsmb')->middleware('auth');
+Route::post('admin/cron/tt/{region}', 'admin\CronManualController@cronButtonStart')->name('cron_xsmb')->middleware('auth');
+Route::post('admin/cron/tt/{region}', 'admin\CronManualController@cronButtonStart')->name('cron_xsmb')->middleware('auth');
+
+
+Route::get('/admin/home', function() {
+    return view('admin/home');
+})->name('home')->middleware('auth');
+
+
+
+//Transaction Management
+Route::get("/ký-gửi", "transactionController@deposite");
+
+
+// Route::get('home', function () {
+//     return view('five88_frontend.pages.home');
+// });
+Route::get('/deposit', function () {
+    return view('five88_frontend.pages.deposit');
+});
+Route::get('/history/{id}', function () {
+    return view('five88_frontend.pages.transactionHistory');
+});
+Route::get('/account', function () {
+    return view('five88_frontend.pages.account');
+});
+Route::post("/test", "transactionController@recharge");
+Auth::routes();
+
 
