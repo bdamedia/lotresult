@@ -15,72 +15,37 @@
                   </div>
                   <form method="post" action="/lot3-statistics" enctype="multipart/form-data" style="margin-left: 5px; margin-top: 30px">{{ csrf_field() }}
                     <div class="form-group">
-                      <select style="line-height: 21px; max-width:49%; display: inline-block" id="time_duration" name="time_duration" class="form-control">
+                      <select style="line-height: 21px; max-width:49%; display: inline-block" id="timeDuration" name="timeDuration" class="form-control">
                         <option value=10>10</option>
                         <?php for ($i=1; $i<=30; $i++) { ?>
                         <option value={{$i}}>{{$i}}</option>
                         <?php } ?>
                       </select>
                       <select style="line-height: 21px; max-width:49% ; display: inline-block" id="companyName" name="companyName" class="form-control">
+                        <option value=''>All</option>
                         <?php foreach ($companyName as $name) { ?>
                         <option value={{$name}}>{{$name}}</option>
                         <?php } ?>
                       </select>
                     </div>
-                    <button type="submit" class="btn btn-red-blue-lite form-group" title="Result" value="Submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Result</font></font>
-                    </button>
+                    <div class="btn btn-red-blue-lite form-group fetchResult" title="Result" value="Submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Result</font></font>
+                    </div>
                   </form>
                   <div style="display:block; width:100%; margin-left: 0px">
                     <div style="margin:0 auto; width:100%;">
-                      <table class="table_style" style="margin-right:10px;">
-                        <tr style="background-color:white">
-                          <th class="th_style" style=" ">Especially</th>
-                          <th class="th_style" style=" ">Times</th>
-                        </tr>
-                        <?php foreach ($special as $key=>$value) { ?>
-                        <tr>
-                          <?php if($value>1){ ?>
-                          <td class="td_style">{{$key}}</td>
-                          <td class="td_style">{{$value}}</td>
-                          <?php } ?>
-                        </tr>
-                        <?php } ?>
+                      <table id="special" class="table_style special display" style="margin-right:10px;">
                       </table>
-                      <table class="table_style" style="margin-left: -11px;">
-                        <tr>
-                          <th class="th_style">Bingo</th>
-                          <th class="th_style">Times</th>
-                        </tr>
-                        <?php foreach ($lot3 as $keys=>$values) { ?>
-                        <tr>
-                          <?php if($values>1){ ?>
-                          <td class="td_style">{{$keys}}</td>
-                          <td class="td_style">{{$values}}</td>
-                          <?php } ?>
-                        </tr>
-                        <?php } ?>
+
+                      <table id="lot3" class="table_style lot3 display" style="margin-left: -11px;">
                       </table>
-                      <table class="table_style" style="margin-right:10px; margin-top: 10px">
-                        <tr>
-                          <th class="th_style">Especially not yet</th>
-                        </tr>
-                        <tr>
-                          <td class="td_style">
-                            <?php foreach ($digitNotApearInSpecialLot3 as $digitNotApearSpecialLot3) { ?>{{$digitNotApearSpecialLot3}},
-                            <?php } ?>
-                          </td>
-                        </tr>
+                      <div id="load_more">
+                        <button style="margin-top: 10px; width: 98%; background-color: #cd0000; border: 0px; height: 40px; color: white">Load more</button>
+                      </div>
+
+                      <table class="table_style specialNotYet" style="margin-right:10px; margin-top: 10px">
                       </table>
-                      <table class="table_style" style="margin-left: -11px; margin-top: 10px">
-                        <tr>
-                          <th class="th_style">Lot has not returned</th>
-                        </tr>
-                        <tr>
-                          <td class="td_style">
-                            <?php foreach ($digitNotApearInLot3 as $digitNotApearLot3) { ?>{{$digitNotApearLot3}},
-                            <?php } ?>
-                          </td>
-                        </tr>
+
+                      <table class="table_style lot3NotYet" style="margin-left: -11px; margin-top: 10px">
                       </table>
                     </div>
                   </div>
@@ -93,3 +58,106 @@
     </div>
 </div>
 @include('footer')
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
+  $( document ).ready(function() {
+    var limit = 1;
+    var companyName = '';
+    var duration = 10;
+    getLotDetail(companyName, duration, limit);
+    $('#load_more').on('click', function(){
+      console.log("ksdifgs");
+      limit += 1;
+      getLotDetail(companyName, duration, limit);
+    })
+    $('.fetchResult').on('click', function(){
+      companyName = $('#companyName').val();
+      duration = $('#timeDuration').val();
+
+      getLotDetail(companyName, duration, limit=1);
+    })
+
+    function getLotDetail(companyName,duration,limit){
+      console.log(companyName);
+      console.log(duration);
+      console.log(limit);
+      var special = '';
+      var lot3 = '';
+      var specialNotYet = '';
+      var lot3NotYet = '';
+      $.ajax({
+        url:"/lot3-statistics-details",
+        type:"GET",
+        data:{'companyName' : companyName, 'duration' : duration, 'limit' : limit},
+        success: function(resp){
+
+          special += '<thead> <tr style="background-color:white">'+
+                      '<th class="th_style" style=" ">Especially</th>'+
+                      '<th class="th_style" style=" ">Times</th>'+
+                    '</tr> </thead><tbody>'
+          for (const [key, value] of Object.entries(resp.special)) {
+            special += '<tr>';
+            if (value>1) 
+              special += '<td class="td_style">'+key+'</td>'+
+                        '<td class="td_style">'+value+'</td>'+
+                        '</tr>'
+                          
+          }
+          special += '</tbody>'
+          $('.special').html(special);
+
+          lot3 += '<thead><tr>'+
+                    '<th class="th_style">Bingo</th>'+
+                    '<th class="th_style">Times</th>'+
+                  '</tr></thead><tbody>'
+          for (const [key, value] of Object.entries(resp.lot3)) {
+            lot3 += '<tr>';
+            if (value>1) 
+              lot3 += '<td class="td_style">'+key+'</td>'+
+                        '<td class="td_style">'+value+'</td>'+
+                        '</tr>'
+                          
+          }
+          lot3 += '</tbody>'
+          $('.lot3').html(lot3);
+
+          specialNotYet += '<tr><th class="th_style">Especially not yet</th></tr>'
+          specialNotYet += '<td class="td_style">'
+          for (const [key, value] of Object.entries(resp.digitNotApearInSpecialLot3)) {
+            specialNotYet += value+" ";
+            // specialNotYet += '<span class="badge badge-secondary" style="background-color:#cc2c1c">'
+            // specialNotYet += value;
+            // specialNotYet+= '</span>'
+          }
+          specialNotYet += '</td>';
+          // specialNotYet += '<tr style="margin-top: 10px ">'+
+          //                     '<td class="" >'+
+          //                       '<a id="loadmore" data-page="1" onclick="loadMoreData()" href="javascript:void(0);">'+
+          //                       '<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">see more</font></font></a>'+
+          //                     '</td>'+
+          //                   '</tr>';
+          $('.specialNotYet').html(specialNotYet);
+
+          lot3NotYet += '<tr><th class="th_style">Lot has not returned</th></tr>'
+          lot3NotYet += '<td class="td_style">'
+          for (const [key, value] of Object.entries(resp.digitNotApearInLot3)) {
+            lot3NotYet += value+" ";
+            // lot3NotYet += '<span class="badge badge-secondary">'
+            // lot3NotYet += value;
+            // lot3NotYet+= '</span>'
+          }
+          lot3NotYet += '</td>';
+          // lot3NotYet += '<tr><td class="" style="margin-top: 10px; border-left: 1px solid #c1c1c1">'+
+          //                 '<a id="loadmore" data-page="1" onclick="loadMoreData()" href="javascript:void(0);"><font style="vertical-align: inherit;">'+
+          //                 '<font style="vertical-align: inherit;">see skdfhvg</font></font></a>'+
+          //             '</td></tr>'
+          $('.lot3NotYet').html(lot3NotYet);
+        },
+        error: function(resp){
+
+        }
+      })
+    }
+
+  });
+</script>>
