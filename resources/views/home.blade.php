@@ -42,8 +42,8 @@
           $th .= '<th class="text-center"><a href="/ket-qua-xsmn/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
 
           } elseif ($lot["lottery_region"] == 'Vietlott'){
-      $title = "Xổ Số";
-          $th .= '<th class="text-center"><a href="/ket-qua-xsmn/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+                $title = "Xổ Số";
+                $th .= '';
 
                                       }else{
     $title ="Kết quả Xổ số Miền Bắc";
