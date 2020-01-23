@@ -1978,10 +1978,13 @@ table.livetn4 td.tn_prize div.output {
 
 .menu-lv2-down{
     width: auto!important;
-    min-width: 381px;
+    min-width: 287px;
 }
 .last-ul-value .menu-lv2-down{
-  min-width: 372px;
+  min-width: 285px;
+}
+.last-ul-value-second .menu-lv2-down {
+    min-width: 280px!important;
 }
 
 .menu-lv2-down ul li a:hover, .menu-lv2-down ul li:hover a{
@@ -2073,6 +2076,10 @@ table.table-bordered tbody tr th.col-md-2{
 }
 #u129_text span a{
     color: red!important;
+}
+
+.width-auto{
+    width: auto;
 }
 .table_style
 {
