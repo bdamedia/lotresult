@@ -619,6 +619,43 @@ function getRegionsCompany(){
 
 }
 
+function getRegionsCompanyVitlot(){
+
+    $html = file_get_contents('https://xosodaiphat.com/xo-so-vietlott');
+    $dom = new DOMDocument;
+
+    @$dom->loadHTML($html);
+
+    $finder = new DomXPath($dom);
+    $companyRegion = array();
+    $regionName = $finder->query("//*[contains(@class, 'block-main-heading')]");
+    $t = 0;
+    foreach ($regionName as $res){
+        $regionName1 = $res->getElementsByTagName('h2');
+
+        foreach ($regionName1 as $res1){
+            $gf = $res1->getElementsByTagName('a');
+
+            foreach ($gf as $rf){ 
+                 $name = explode('-', $rf->getAttribute('href') );
+                $companyRegion[$t]['name'] = strtoupper(str_replace('/','',str_replace('Xổ Số ','',$rf->nodeValue)));
+                $companyRegion[$t]['url'] = $rf->getAttribute('href');
+                $companyRegion[$t]['code'] = strtoupper(str_replace('/','',str_replace('Xổ Số ','',$rf->nodeValue)));
+                $companyRegion[$t]['lottery_company'] = strtoupper(str_replace('/','',str_replace('Xổ Số ','',$rf->nodeValue)));
+                $companyRegion[$t]['lottery_region'] = 'Vietlott';
+
+                $t++;
+            }
+
+
+        }
+
+    }
+    return $companyRegion;
+
+
+}
+
 function checkList($region='XSMN'){
     $all = RegionCompany::where('lottery_region', $region)->get();
     return $all;

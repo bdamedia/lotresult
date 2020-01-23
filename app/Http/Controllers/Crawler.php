@@ -23,7 +23,7 @@ class Crawler extends Controller
     public function getCompanyRegions(){
 
         $allCompany = getRegionsCompany();
-
+            
             foreach ($allCompany as $company){
                 $data = RegionCompany::where('lottery_region', 'XSMN')->where('lottery_company', $company['code'])->get();
                 if ($data->count()) {
@@ -32,6 +32,29 @@ class Crawler extends Controller
                 }else{
                     $regionCompany = new RegionCompany();
                     $regionCompany->lottery_region = 'XSMN';
+                    $regionCompany->lottery_company = $company['code'];
+                    $regionCompany->lottery_company_names = $company['name'];
+                    $regionCompany->lottery_company_slug = seoUrl($company['name']);
+                    $regionCompany->lottery_company_url = $company['url'];
+                    $regionCompany->save();
+
+                }
+
+            }
+        }
+
+        public function getCompanyRegionsVit(){
+
+        $allCompany = getRegionsCompanyVitlot();
+           
+            foreach ($allCompany as $company){
+                $data = RegionCompany::where('lottery_region', 'Vietlott')->where('lottery_company', $company['code'])->get();
+                if ($data->count()) {
+                    RegionCompany::where('lottery_region', 'Vietlott')->where('lottery_company', $company['code'])->first()->update(['lottery_company_slug'=> seoUrl($company['name'])]);
+                    continue;
+                }else{
+                    $regionCompany = new RegionCompany();
+                    $regionCompany->lottery_region = 'Vietlott';
                     $regionCompany->lottery_company = $company['code'];
                     $regionCompany->lottery_company_names = $company['name'];
                     $regionCompany->lottery_company_slug = seoUrl($company['name']);
