@@ -793,12 +793,12 @@ $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesd
 return array_search($dayName,$bindArrayDay);
 }
 function getRegionSlug($code){
-    $reg = array('XSMN'=>'ket-qua-xsmn','XSMT'=>'ket-qua-xsmt','XSMB'=>'ket-qua-xsmb');
+    $reg = array('XSMN'=>'ket-qua-xsmn','XSMT'=>'ket-qua-xsmt','XSMB'=>'ket-qua-xsmb', 'Vietlott'=>'ket-qua-xsmb');
     return $reg[$code];
 }
 
 function getRegionLotoSlug($code){
-    $reg = array('XSMN'=>'ket-qua-lo-to-mien-nam','XSMT'=>'ket-qua-lo-to-mien-trung','XSMB'=>'ket-qua-lo-to-mien-bac');
+    $reg = array('XSMN'=>'ket-qua-lo-to-mien-nam','XSMT'=>'ket-qua-lo-to-mien-trung','XSMB'=>'ket-qua-lo-to-mien-bac', 'Vietlott'=>'ket-qua-xsmb');
     return $reg[$code];
 }
 
