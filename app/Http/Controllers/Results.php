@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use DateTime;
+
 class Results extends Controller
 {
     public function lot3StatisticsView(){
@@ -1105,5 +1106,91 @@ class Results extends Controller
         //dd($data);
         return view('loto2ajax')->with($data);
         //return view('loto2',['lotto2' => array_count_values($finallotto2), 'special' => array_count_values($finalSpcllott2), 'companyName' => $companyDetail, 'digitNotApearInLot2' => $NotAppearlotto2, 'NotappearspecialLotto2digits' => $NotApearInSpclLotto2]);
+    }
+
+
+    public function thungDay(Request $request){
+        $data['region'] = "thong";
+        $data['enableTab'] = true;
+        return view('thong')->with($data);
+    }
+
+    public function getThungDayWeek(Request $request) {
+        $day = $request->input('strDayOfWeek');
+        $list = dayWiseArray($day);
+        $reg = RegionCompany::whereIn('lottery_company',$list)->get();
+        return $reg;
+    }
+
+    public function getThungKeysAjax(Request $request) {
+        $lotteryId = $request->input('lotteryId');
+        $rollingNumbers = $request->input('rollingNumbers');
+        $ddlDayOfWeeks = $request->input('ddlDayOfWeeks');
+        $optionText = $request->input('optionText');
+        //$result = Result::where('prize_2', 'like', $lotteryId)->orderBy('result_day_time', 'desc')->limit(4)->get();
+        //$result = Result::orderBy('result_day_time', 'desc')->limit(4)->get();
+        $date = Carbon::now()->subDays($rollingNumbers)->format('Y-m-d');
+        $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
+        $result = Result::where('result_day_time' ,'>', $orig_date)
+            ->where('lottery_company' , $lotteryId)
+            ->orWhere('prize_2', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_3', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_4', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_5', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_6', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_7', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_8', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_9', 'like', "%{$rollingNumbers}%")
+            ->orderBy('result_day_time', 'asc')->get();
+       
+        $new = array();
+        $t = 0;
+        $p = 1;
+        $newFullValues = array();
+        foreach ($result as $res){
+            $k = $res->result_day_time->toDateTime()->format('d/m/y');
+            $new[$k][$t]['lottery_region'] = $res->lottery_region;
+            $new[$k][$t]['lottery_company'] = $res->lottery_company;
+            $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+            $new[$k][$t]['prize_1'] = $res->prize_1;
+            $new[$k][$t]['prize_2'] = $res->prize_2;
+            $new[$k][$t]['prize_3'] = $res->prize_3;
+            $new[$k][$t]['prize_4'] = $res->prize_4;
+            $new[$k][$t]['prize_5'] = $res->prize_5;
+            $new[$k][$t]['prize_6'] = $res->prize_6;
+            $new[$k][$t]['prize_7'] = $res->prize_7;
+            $new[$k][$t]['prize_8'] = $res->prize_8;
+            $new[$k][$t]['prize_9'] = $res->prize_9;
+            $new[$k][$t]['board'] = $res->board;
+            $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
+            $i = 1;
+            for ($r=1; $r < 9; $r++) {
+                $variable = json_decode($res['prize_'.$r]);
+                foreach ($variable as $key => $value) {
+                    foreach ($value as $kk => $val) {
+                        if(array_key_exists(substr($val, -2), $newFullValues)){
+                            $newFullValues[substr($val, -2)]['count'] = $newFullValues[substr($val, -2)]['count'] + 1;     
+                            $newFullValues[substr($val, -2)]['last_day'] = $k;     
+                        }else{
+                            $newFullValues[substr($val, -2)]['count'] = 1;
+                            $newFullValues[substr($val, -2)]['last_day'] = $k;
+                        } 
+                    }
+                    $i++;
+                }  
+            }
+            $t++;
+        }
+        //$data['content'] = $new;
+        //echo "<pre>";
+        //print_r($new);
+        //print_r($newFullValues);
+        /*die();*/
+        $data['content'] = $new;
+        $data['newFullValues'] = $newFullValues;
+        $data['ddlDayOfWeeks'] = $ddlDayOfWeeks;
+        $data['optionText'] = $optionText;
+        $data['orig_date'] = $date;
+        return view('thondsResult')->with($data);
     }
 }

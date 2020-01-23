@@ -52,6 +52,12 @@ Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
 Route::get('/','Results@index');
 Route::get('/thong-ke-kqxs/3-cang','Results@lot3StatisticsView');
 Route::get('/lot3-statistics-details','Results@lot3Statistics');
+
+Route::get("/thong-ke-kqxs/thong-ke-lo-gan", "Results@thungDay");
+Route::get("/thong-ke-xsdp-tinh-theo-thu", "Results@getThungDayWeek");
+Route::get("/XSDPThongKeAjax/XSDPTKGanCucDai", "Results@getThungKeysAjax");
+
+
 Route::redirect('admin','admin/login');
 
 Auth::routes();
@@ -108,5 +114,3 @@ Route::get('/account', function () {
 });
 Route::post("/test", "transactionController@recharge");
 Auth::routes();
-
-
