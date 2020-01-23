@@ -13,7 +13,7 @@
                         <?php } ?>
                       </table>
 
-                      <table class="table_style" >
+                      <table class="table_style" id="myList1"  >
                         <tr>
                           <th class="th_style">Bingo</th>
                           <th class="th_style">Time Appears > 2</th>
@@ -52,3 +52,31 @@
                               </tr>
                             </table>
                       </div>
+<style type="text/css">
+    #myList1 tr{ display:none;
+  }
+  #loadMore {
+      color:green;
+      cursor:pointer;
+  }
+  #loadMore:hover {
+      color:black;
+  }
+  #showLess {
+      color:red;
+      cursor:pointer;
+  }
+  #showLess:hover {
+      color:black;
+  }</style>
+  <script type="text/javascript"> $(document).ready(function () {
+    size_li = $("#myList1 tr").size();
+    x=10;
+    $('#myList1 tr:lt('+x+')').show();
+    $('#loadMore').click(function () {
+        x= (x+10 <= size_li) ? x+10 : size_li;
+        $('#myList1 tr:lt('+x+')').show();
+    });
+   
+});
+    </script></script>

@@ -34,7 +34,7 @@
                   <div style="display:block; width:100%; margin-left: 0px">
                     <div style="margin:0 auto; width:100%;" id="defaultresult">
 
-                      <table class="table_style" style="margin-right:10px;">
+                      <table class="table_style tbl_s" style="margin-right:10px;">
                         <tr style="background-color:white">
                           <th class="th_style" style=" ">Special</th>
                           <th class="th_style" style=" ">Time Appears > 1 </th>
@@ -49,7 +49,7 @@
                         <?php } ?>
                       </table>
 
-                      <table class="table_style" style="margin-left: -11px;">
+                      <table class="table_style tbl_s" id="myList" style="margin-left: -11px;">
                         <tr>
                           <th class="th_style">Bingo</th>
                           <th class="th_style">Time Appears > 2</th>
@@ -89,15 +89,65 @@
                       </div>
                     </div>
                     <div style="margin:0 auto; width:100%;" id="ajaxresult"></div>
-                  </div>
+                   
+                  </div> 
                 </div>
-              </div>
+              </div><div id="loadMore" class="ax_defaults"><span id="u5191_texts" class="text">Xem thêm kết quả</span></div>
             </div>
           </div>
           @include('sidebar')
         </div>
     </div>
 </div>
+<style type="text/css">
+  #myList tr{ display:none;
+}
+#loadMore {
+    color:black;
+    cursor:pointer;
+}
+#loadMore:hover {
+    color:black;
+}
+#showLess {
+    color:red;
+    cursor:pointer;
+}
+#showLess:hover {
+    color:black;
+}
+.ax_defaults {
+    font-family: 'ArialMT', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    letter-spacing: normal;
+    color: 
+    #333333;
+    vertical-align: none;
+    text-align: center;
+    line-height: normal;
+    text-transform: none;
+}
+#u5191_texts .text {
+    position: absolute;
+    align-self: center;
+    padding: 2px 2px 2px 2px;
+    box-sizing: border-box;
+    width: 100%;
+}
+#u5191_texts {
+    border-width: 0px;
+    word-wrap: break-word;
+    text-transform: none;
+    border: 1px solid gray; 
+    padding: 12px;
+    margin-left: 3%;
+}
+#loadMore {
+    
+}
+</style>
   <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript">
     $('#showresult').on('click',function(e){
@@ -114,10 +164,21 @@
           //alert("here");
           //var obj =JSON.parse(data);
           $("#ajaxresult").html(data); 
-          $("#defaultresult").hide();
+          $("#defaultresult").remove();
             //console.log(data);
         }
         });
         })
+
+      $(document).ready(function () {
+    size_li = $("#myList tr").size();
+    x=10;
+    $('#myList tr:lt('+x+')').show();
+    $('#loadMore').click(function () {
+        x= (x+10 <= size_li) ? x+10 : size_li;
+        $('#myList tr:lt('+x+')').show();
+    });
+    
+});
     </script>
 @include('footer')

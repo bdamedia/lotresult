@@ -2046,8 +2046,8 @@ table.table-bordered tbody tr th.col-md-2{
 }
 .btn-red-blue-lite {
     width: 100px;
-    border: 1px solid #169BD5;
-    background-color: #169BD5;
+    border: 1px solid #c00;
+    background-color: #c00;
     font-weight: 700;
     margin-top: -3px;
     border-radius: 6px;
@@ -2092,11 +2092,14 @@ table.table-bordered tbody tr th.col-md-2{
   cellspacing:"5px";
   cellpadding:"5px"
 }
+.tbl_s{
+    text-align: center;
+}
 .td_style
 {
   border:1px solid #dddddd;
-  text-align:left;
-  padding:8px
+  
+  padding:3px;
 }
 .hr_style
 {
@@ -2104,7 +2107,7 @@ table.table-bordered tbody tr th.col-md-2{
 }
 .th_style
 {
-  background-color: #dddddd;
+  background-color: #ebebeb;
   border:1px solid #00000026;
   text-align:left;
   padding:8px
