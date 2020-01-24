@@ -29,6 +29,9 @@ class Results extends Controller
         //Time duration for lot3 statistic
         $duration = $request->duration;
         $company = $request->companyName;
+        $limit = $request->limit;
+        $limits = 5*$limit;
+        // dd($request);
         //Current time and date in UNIX standard
         $date = Carbon::now()->format('Y-m-d');
         //conver UNIX standard date time in to standard date
@@ -39,7 +42,7 @@ class Results extends Controller
         if($company){
             $results= Result::where('result_day_time' ,'>=', $exactDate )->where('lottery_company', '=', $company)->orderBy('result_day_time', 'desc')->get();
         }else{
-            $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->get();
+            $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->simplePaginate($limits);
         }
         $lot3Val = [];
         $finalLot3Val = [];
@@ -93,7 +96,7 @@ class Results extends Controller
             }
         }
         //Find all 3 digit value that is not in final_lot3_val
-        for($i=0; $i<1000; $i++){
+        for($i=0; $i<($limit*100); $i++){
             $i = (string)$i;
             if(in_array($i,$finalLot3Val)) {
             }else{
@@ -107,23 +110,26 @@ class Results extends Controller
                     array_push($digitNotApearInLot3,$i);
                 }
             }
+
+            $j=$i;
+            $j = (string)$j;
+            if(in_array($j,$finaSpeciallLot3Val)) {
+            }else{
+                if(strlen($j)<2){
+                    $j = '00'.$j;
+                    array_push($digitNotApearInSpecialLot3,$j);
+                }elseif (strlen($j)<3) {
+                    // dd(strlen($i));
+                    $j = '0'.$j;
+                    array_push($digitNotApearInSpecialLot3,$j);
+                }else{
+                    array_push($digitNotApearInSpecialLot3,$j);
+                }
+            }
         }
         //Find all 3 digit value that is not final_special_lot3_val
         for($i=0; $i<1000;$i++){
-            $i = (string)$i;
-            if(in_array($i,$finaSpeciallLot3Val)) {
-            }else{
-                if(strlen($i)<2){
-                    $i = '00'.$i;
-                    array_push($digitNotApearInSpecialLot3,$i);
-                }elseif (strlen($i)<3) {
-                    // dd(strlen($i));
-                    $i = '0'.$i;
-                    array_push($digitNotApearInSpecialLot3,$i);
-                }else{
-                    array_push($digitNotApearInSpecialLot3,$i);
-                }
-            }
+            
         }
 
         return Response()->json([
