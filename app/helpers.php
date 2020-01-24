@@ -728,6 +728,19 @@ function dayWiseArray($day='all'){
     return $bindArray[$bindArrayDay[$day]];
 }
 
+function dayWiseVietlottArray($day='all'){
+    $bindArray = array();
+    $bindArrayDay = array('power-655'=>'Power 6/55','mega-645'=>'XS Mega', 'pmax-4d'=>'XS Max 4D','xo-so-max-3d'=>'XS Max 3D');
+    return $bindArrayDay;
+}
+
+function dayWiseVietlottValue($day){
+    $bindArray = array();
+    $bindArrayDay = array('power-655'=>'Power 6/55','mega-645'=>'XS Mega', 'max-4d'=>'XS Max 4D','xo-so-max-3d'=>'XS Max 3D');
+    return array($bindArrayDay[$day]);
+}
+
+
 function getDayofCompany($companyCode){
     $data = arrayDayBind();
     $arrayDay = array();

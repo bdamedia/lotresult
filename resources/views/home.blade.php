@@ -176,7 +176,22 @@
                                     @php $tdr7 = '<td class="'.key($prize_8).'" style="width: 15%">'.key($prize_8).'</td>'; @endphp
                                     @php $tdr8 = '<td class="'.key($prize_9).'" style="width: 15%">'.key($prize_9).'</td>'; @endphp
                                 @else
-                                    @include('vietlott')
+                                    @php $current = current($printresult);  @endphp
+
+                                    <!-- {{$current['lottery_company']}}     -->  
+
+                                    @if($current['lottery_company'] == 'Power 6/55')
+                                        @include('vietlottPower')
+                                    @elseif($current['lottery_company'] == 'XS Mega')
+                                        @include('vietlottMega')
+                                    @elseif($current['lottery_company'] == 'XS Max 4D') 
+                                        @include('vietlott4d')
+                                    @elseif($current['lottery_company'] == 'XS Max 3D') 
+                                        @include('vietlott3d')
+                                    @else
+                                        @include('vietlott3d')
+                                    @endif
+                                    
                               @endif    
 
                             @endforeach
