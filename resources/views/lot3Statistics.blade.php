@@ -21,14 +21,14 @@
                         <option value={{$i}}>{{$i}}</option>
                         <?php } ?>
                       </select>
-                      <select style="line-height: 21px; max-width:49% ; display: inline-block" id="companyName" name="companyName" class="form-control">
+                      <select style="line-height: 21px; max-width:49% ; display: inline-block" id="companyName" name="companyName" class="form-control" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
                         <option value=''>All</option>
-                        <?php foreach ($companyName as $name) { ?>
-                        <option value={{$name}}>{{$name}}</option>
+                        <?php foreach ($companyName as$key=>$value) { ?>
+                        <option value={{$value}}>{{$key}}</option>
                         <?php } ?>
                       </select>
                     </div>
-                    <div class="btn btn-red-blue-lite form-group fetchResult" title="Result" value="Submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Result</font></font>
+                    <div class="btn btn-red-blue-lite form-group fetchResult"style="background-color: #cd0000; border: 1px solid #cd0000" title="Result" value="Submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Result</font></font>
                     </div>
                   </form>
                   <div style="display:block; width:100%; margin-left: 0px">
@@ -66,7 +66,6 @@
     var duration = 10;
     getLotDetail(companyName, duration, limit);
     $('#load_more').on('click', function(){
-      console.log("ksdifgs");
       limit += 1;
       getLotDetail(companyName, duration, limit);
     })
@@ -94,13 +93,18 @@
           special += '<thead> <tr style="background-color:white">'+
                       '<th class="th_style" style=" ">Especially</th>'+
                       '<th class="th_style" style=" ">Times</th>'+
-                    '</tr> </thead><tbody>'
+                    '</tr> </thead><tbody>';
+          var special_count = 0 ;
           for (const [key, value] of Object.entries(resp.special)) {
             special += '<tr>';
-            if (value>1) 
-              special += '<td class="td_style">'+key+'</td>'+
-                        '<td class="td_style">'+value+'</td>'+
+            if (value>1) {
+                if(special_count < limit*5) {
+                    special += '<td class="td_style">' + key + '</td>' +
+                        '<td class="td_style">' + value + '</td>' +
                         '</tr>'
+                    special_count++ ;
+                }
+            }
                           
           }
           special += '</tbody>'
@@ -109,13 +113,18 @@
           lot3 += '<thead><tr>'+
                     '<th class="th_style">Bingo</th>'+
                     '<th class="th_style">Times</th>'+
-                  '</tr></thead><tbody>'
+                  '</tr></thead><tbody>';
+          var lot3count = 0 ;
           for (const [key, value] of Object.entries(resp.lot3)) {
-            lot3 += '<tr>';
-            if (value>1) 
-              lot3 += '<td class="td_style">'+key+'</td>'+
-                        '<td class="td_style">'+value+'</td>'+
-                        '</tr>'
+              lot3 += '<tr>';
+              if (value>1) {
+                  if (lot3count < limit * 5) {
+                      lot3 += '<td class="td_style">' + key + '</td>' +
+                          '<td class="td_style">' + value + '</td>' +
+                          '</tr>';
+                      lot3count++;
+                  }
+              }
                           
           }
           lot3 += '</tbody>'

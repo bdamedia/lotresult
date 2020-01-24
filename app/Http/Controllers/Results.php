@@ -43,23 +43,23 @@ class Results extends Controller
         if($company){
             $results= Result::where('result_day_time' ,'>=', $exactDate )->where('lottery_company', '=', $company)->orderBy('result_day_time', 'desc')->get();
         }else{
-            $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->simplePaginate($limits);
+            $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->get();
         }
         $lot3Val = [];
         $finalLot3Val = [];
         $specialLot3Val = [];
-        $finaSpeciallLot3Val = [];
+        $finaSpecialLot3Val = [];
         $digitNotApearInLot3 = [];
         $digitNotApearInSpecialLot3 = [];
         //Prepare lot3 result and special_lot3 result array
-        foreach ($results as $printresult) {
+        foreach ($results as $print_result) {
 
             $finalValues = [];
             //get value of each prize and save in lot3 and special_lot3 array
             for ($it=1; $it< 10 ; $it++) {
                 $t= "prize_{$it}";
                 //Decode json into array of each prize
-                $fNewResult = json_decode($printresult->{$t});
+                $fNewResult = json_decode($print_result->{$t});
                 foreach ($fNewResult as $keyValues => $mainValue) {
 
                     if(is_array($mainValue)) {
@@ -92,12 +92,12 @@ class Results extends Controller
                 //Check if string length is greater than 2
                 if(strlen($mergeSpecialFullValue)>2)
                 {
-                    array_push($finaSpeciallLot3Val, substr($mergeSpecialFullValue, -3));
+                    array_push($finaSpecialLot3Val, substr($mergeSpecialFullValue, -3));
                 }
             }
         }
         //Find all 3 digit value that is not in final_lot3_val
-        for($i=0; $i<($limit*100); $i++){
+        for($i=0; $i<=($limit*100); $i++){
             $i = (string)$i;
             if(in_array($i,$finalLot3Val)) {
             }else{
@@ -114,13 +114,12 @@ class Results extends Controller
 
             $j=$i;
             $j = (string)$j;
-            if(in_array($j,$finaSpeciallLot3Val)) {
+            if(in_array($j,$finaSpecialLot3Val)) {
             }else{
                 if(strlen($j)<2){
                     $j = '00'.$j;
                     array_push($digitNotApearInSpecialLot3,$j);
                 }elseif (strlen($j)<3) {
-                    // dd(strlen($i));
                     $j = '0'.$j;
                     array_push($digitNotApearInSpecialLot3,$j);
                 }else{
@@ -128,14 +127,10 @@ class Results extends Controller
                 }
             }
         }
-        //Find all 3 digit value that is not final_special_lot3_val
-        for($i=0; $i<1000;$i++){
-            
-        }
 
         return Response()->json([
             'lot3'                          => array_count_values($finalLot3Val),
-            'special'                       => array_count_values($finaSpeciallLot3Val),
+            'special'                       => array_count_values($finaSpecialLot3Val),
             'digitNotApearInLot3'           => $digitNotApearInLot3,
             'digitNotApearInSpecialLot3'    => $digitNotApearInSpecialLot3
         ]);
