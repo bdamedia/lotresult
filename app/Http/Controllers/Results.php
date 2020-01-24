@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Result;
 use App\RegionCompany;
@@ -138,8 +137,6 @@ class Results extends Controller
     }
 
     public function index(Request $request){
-
-
         $date = Carbon::now()->format('Y-m-d');
          $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$date);
@@ -149,7 +146,6 @@ class Results extends Controller
                 $result = Result::where('result_day_time' ,'>=', $orig_date1)->orderBy('result_day_time', 'desc')->orderBy('lottery_region', 'asc')->get();
             }else{
                 $result = Result::where('result_day_time' ,'>=', $orig_date1)->orderBy('result_day_time', 'desc')->orderBy('lottery_region', 'asc')->get();
-
             }
         $new = array();
         $t = 0;
@@ -172,18 +168,14 @@ class Results extends Controller
                 $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
                 $t++;
             }
-
         }
         $data['region'] = "xsmt";
         $data['companyName'] = strtoupper("xsmt");
         $data['content'] = $new;
         $data['enableTab'] = true;
-
         return view('home')->with($data);
     }
-
     public function xsmb(Request $request,$company='XSMB'){
-
         $result = Result::where('lottery_region','XSMB')->where('lottery_company', strtoupper($company))->orderBy('result_day_time', 'desc')->paginate(3);
         $data['content'] = $result;
         //$comp = Result::where('lottery_region', 'XSMB')->distinct('lottery_company')->orderBy('created_at', 'desc')->get();
@@ -196,9 +188,7 @@ class Results extends Controller
         }
         return view('currentResult')->with($data);
     }
-
     public function regionLoto(Request $request,$company='XSMB'){
-
         $checkUrl= explode('/',$request->url());
         $reg = array('XSMN'=>'ket-qua-xsmn','XSMT'=>'ket-qua-xsmt','XSMB'=>'ket-qua-xsmb');
         $codeKey = array_search($checkUrl[count($checkUrl)-2],$reg);
@@ -230,22 +220,15 @@ class Results extends Controller
                 $new[$k][$t]['board'] = $res->board;
                 $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
                 $t++;
-
             }
-
-
             $data['region'] = strtolower($codeKey);
             $data['companyName'] = strtoupper($codeKey);
             $data['content'] = $new;
             $data['enableTab'] = false;
             return view('loto-mix')->with($data);
-
         }
-
     }
-
     public function show(Request $request,$region){
-
         if(strpos($region,'ngay') > 0){
             $final = str_replace('ngay-', '', $region);
             return $this->allRegionDate($request,$company,$region='XSMB');
@@ -257,19 +240,14 @@ class Results extends Controller
             }
         }
         $result = Result::where('lottery_region',$region)->orderBy('result_day_time', 'desc')->get();
-
         return $result;
     }
-
-
     public function xsmn(Request $request,$company='XSTG'){
-
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
         if(strpos($company,'qxs-') > 0){
             $final = str_replace('kqxs-','',str_replace('-ngay-','/',$company));
             $data = explode('/',$final);
             return $this->singleDateResult($data);
-
         }elseif(strpos($company,'ngay') > 0){
             return $this->allRegionDate($request,$company,$region='XSMN');
         }elseif(strpos($company,'qxsmn-') > 0){
@@ -277,8 +255,6 @@ class Results extends Controller
             if(isset($bindArrayDay[$final])){
                 return $this->xsmnDay($request,$final);
             }else{
-
-
                 $company = str_replace('kqxsmn-','',$company);
                 $code = getCompanyCode($company);
                 $result = Result::where('lottery_region', 'XSMN')->where('lottery_company', $code)->orderBy('result_day_time', 'desc')->paginate(3);
@@ -292,9 +268,7 @@ class Results extends Controller
                 }
                 return view('xsmnResult')->with($data);
             }
-
         }
-
         $code = getCompanyCode($company);
         $result = Result::where('lottery_region', 'XSMN')->where('lottery_company', $code)->orderBy('result_day_time', 'desc')->get();
         $data['region'] = "xsmn";
@@ -307,9 +281,7 @@ class Results extends Controller
         }
         return view('xsmnResult')->with($data);
     }
-
     public function singleDateResult($slug=null){
-
         $code = getCompanyCode(current($slug));
         $date = end($slug);
         $da = explode('-', $date);
@@ -321,14 +293,9 @@ class Results extends Controller
         $data['companyName'] = $code;
         $data['content'] = $result;
         $data['enableTab'] = false;
-
         return view('xsmnResult')->with($data);
     }
-
     public function xsmnIndex(Request $request,$company='XSTG'){
-
-
-
         if($request->input('page')){
             $dates = $request->input('page');
             $dates1 = Carbon::createFromFormat('!Y-m-d',$dates);
@@ -341,11 +308,7 @@ class Results extends Controller
             $dates2 = $dates2->subDay(4);
             $result = Result::where('lottery_region', 'XSMN')->where('result_day_time','>=',$dates2)->orderBy('result_day_time', 'desc')->get();
         }
-
-
-
        // $result = Result::where('lottery_region', 'XSMN')->where('result_day_time','>=',$dates1)->where('result_day_time','<',$dates2)->orderBy('result_day_time', 'desc')->get();
-
         $t = 0;
         $new = array();
         foreach ($result as $res){
@@ -367,10 +330,7 @@ class Results extends Controller
                 $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
                 $t++;
             }
-
-
         }
-
         $data['region'] = "xsmn";
         $data['companyName'] = strtoupper("xsmn");
         $data['content'] = $new;
@@ -381,10 +341,7 @@ class Results extends Controller
         }
         return view('xsmn')->with($data);
     }
-
     public function xsmtIndex(Request $request){
-
-
         if($request->input('page')){
             $dates = $request->input('page');
             $dates1 = Carbon::createFromFormat('!Y-m-d',$dates);
@@ -397,11 +354,9 @@ class Results extends Controller
             $dates2 = $dates2->subDay(4);
             $result = Result::where('lottery_region', 'XSMT')->where('result_day_time','>=',$dates2)->orderBy('result_day_time', 'desc')->get();
         }
-
         $t = 0;
         $new = array();
         foreach ($result as $res){
-
             if($res->prize_1){
                 $k = $res->result_day_time->toDateTime()->format('d/m/y')   ;
                 $new[$k][$t]['lottery_region'] = $res->lottery_region;
@@ -420,10 +375,7 @@ class Results extends Controller
                 $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
                 $t++;
             }
-
-
         }
-
         $data['region'] = "xsmt";
         $data['companyName'] = strtoupper("xsmt");
         $data['content'] = $new;
@@ -434,19 +386,16 @@ class Results extends Controller
         }
         return view('xsmn')->with($data);
     }
-
     public function xsmnShow(Request $request,$region){
         $result = Result::where('lottery_region',$region)->get();
         return $result;
     }
-
     public function xsmt(Request $request,$company='XSQNA')
     {
         if(strpos($company,'qxs-') > 0){
             $final = str_replace('kqxs-','',str_replace('-ngay-','/',$company));
             $data = explode('/',$final);
             return $this->singleDateResult($data);
-
         }elseif(strpos($company,'ngay') > 0) {
             return $this->allRegionDate($request, $company, $region = 'XSMT');
         }elseif(strpos($company,'qxsmt-') > 0){
@@ -458,7 +407,6 @@ class Results extends Controller
                 $company = str_replace('kqxsmt-', '', $company);
                 $code = getCompanyCode($company);
                 $resultXsmt = Result::where('lottery_region', 'XSMT')->where('lottery_company', $code)->orderBy('result_day_time', 'desc')->paginate(3);
-
                 $data['content'] = $resultXsmt;
                 $data['companyName'] = strtoupper($company);
                 $data['region'] = "xsmt";
@@ -472,19 +420,15 @@ class Results extends Controller
             }
         }
     }
-
     public function xsmtShow(Request $request,$region){
         $result = Result::where('lottery_region',$region)->get();
         return $result;
     }
-
     public function xsmbDay(Request $request,$day){
-
         if(strpos($day,'gay-') > 0){
             $final = str_replace('ngay-', '', $day);
             return $this->allRegionDate($request,$final,$region='XSMB');
         }
-
         $list = dayWiseArray($day);
         $result = Result::where('lottery_region','XSMB')->orderBy('result_day_time', 'desc')->paginate(21);
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
@@ -510,9 +454,7 @@ class Results extends Controller
                 $new[$t]['day'] = $daySelected;
                 $t++;
             }
-
         }
-
         $comp = Result::where('lottery_region', 'XSMB')->distinct('lottery_company')->orderBy('result_day_time', 'desc')->get();
         $data['comp'] = $comp;
         $data['region'] = "xsmb";
@@ -526,7 +468,6 @@ class Results extends Controller
     }
     public function xsmnDay(Request $request,$day){
         $list = dayWiseArray($day);
-
         if($request->input('page')){
             $dates = $request->input('page');
             $dates1 = Carbon::createFromFormat('!Y-m-d',$dates);
@@ -539,14 +480,12 @@ class Results extends Controller
             $dates2 = $dates2->subDay(4);
             $result = Result::where('lottery_region', 'XSMN')->whereIn('lottery_company',$list)->where('result_day_time','>=',$dates2)->orderBy('result_day_time', 'desc')->get();
         }
-
         //$result = Result::where('lottery_region','XSMN')->whereIn('lottery_company',$list)->orderBy('result_day_time', 'desc')->paginate(6);
         $t = 0;
         $new = array();
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
         foreach ($result as $res){
             $daySelected = $res->result_day_time->toDateTime()->format('l');
-
             if($bindArrayDay[$day] == $daySelected) {
                 $k = $res->result_day_time->toDateTime()->format('d/m/y');
                 $new[$k][$t]['lottery_region'] = $res->lottery_region;
@@ -566,8 +505,6 @@ class Results extends Controller
                 $t++;
             }
         }
-
-
         $data['region'] = "xsmn";
         $data['companyName'] = strtoupper("xsmn");
         $data['content'] = $new;
@@ -580,7 +517,6 @@ class Results extends Controller
     }
     public function xsmtDay(Request $request,$day){
         $list = dayWiseArray($day);
-
         if($request->input('page')){
             $dates = $request->input('page');
             $dates1 = Carbon::createFromFormat('!Y-m-d',$dates);
@@ -618,7 +554,6 @@ class Results extends Controller
                 $t++;
             }
         }
-
         $data['region'] = "xsmt";
         $data['companyName'] = strtoupper("xsmt");
         $data['content'] = $new;
@@ -628,25 +563,17 @@ class Results extends Controller
             return response()->json(['html'=>$view]);
         }
         return view('xsmn')->with($data);
-
     }
-
     public function kqxs(Request $request)
     {
         return view('kqxsResult');
     }
-
     public function thonds(Request $request)
     {
         return view('thondsResult');
     }
-
-
     public function allCompanyDate(Request $request,$date){
-
-
         $date = str_replace('da-nang-','',$date);
-
         $da = explode('-', $date);
         $today = Carbon::today()->format('!Y-m-d');
         $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
@@ -677,21 +604,14 @@ class Results extends Controller
                 $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
                 $t++;
             }
-
-
         }
-
         $data['region'] = "xsmt";
         $data['companyName'] = strtoupper("xsmt");
         $data['content'] = $new;
         $data['enableTab'] = true;
-
         return view('allCompanyDate')->with($data);
-
     }
-
     public function allRegionDate(Request $request,$date,$region){
-
         $date = str_replace('kqxsmn-ngay-','',$date);
         $da = explode('-', $date);
         $orig_date = Carbon::createFromFormat("!Y-m-d",$da[count($da)-1].'-'.$da[count($da)-2].'-'.$da[count($da)-3]);
@@ -720,17 +640,13 @@ class Results extends Controller
                 $t++;
             }
         }
-
         $data['region'] = strtolower($region);
         $data['companyName'] = $region;
         $data['content'] = $new;
         $data['enableTab'] = true;
         return view('allCompanyDate')->with($data);
-
     }
-
     public function dateLoto(Request $request,$day){
-
         $ar = explode('-',$day);
         $reg = strtoupper(str_replace('kqlt','xs',current($ar)));
         $day = str_replace('kqltmb-','',$day);
@@ -762,29 +678,23 @@ class Results extends Controller
                 $t++;
             }
         }
-
         $data['region'] = strtolower($reg);
         $data['companyName'] = $reg;
         $data['content'] = $new;
         $data['enableTab'] = true;
-
         return view('dayLoto')->with($data);
     }
-
     public function trucTiep(Request $request,$company='XSMB'){
         $checkUrl = explode('/',$request->url());
         $url = explode('-',end($checkUrl));
         $url = current($url);
          $region  = strtoupper(str_replace('kq','',$url));
-
         $date = Carbon::now()->format('Y-m-d');
         $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
         /*$c = getTodayResultCompanyRegion($region);
         print_r($c);*/
         $result = Result::where('lottery_region',$region)->where('result_day_time' ,'>=', $orig_date)->orderBy('result_day_time', 'desc')->limit(4)->get();
-
         $new = array();
-
         $data['region'] = strtolower($region);
         $data['companyName'] = strtoupper($company);
         if($region == 'XSMB'){
@@ -812,8 +722,6 @@ class Results extends Controller
                     $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
                     $t++;
                 }
-
-
             }
             $data['content'] = $new;
             return view('resultCountDownXsmt')->with($data);
@@ -839,12 +747,451 @@ class Results extends Controller
                     $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
                     $t++;
                 }
-
-
             }
             $data['content'] = $new;
             return view('resultCountDownXsmn')->with($data);
         }
+    }
 
+    public function loto2(Request $request){
+
+    //dd($request);
+        //Dynamic date selection
+        $duration = 10;
+        //Check get method
+        if($request->method() == "POST"){
+           $duration = ($request->time_duration)-1;
+            $company = $request->companyName;
+
+        }
+        //Current time and date 
+        $date = Carbon::now()->format('Y-m-d');
+        $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
+        $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
+        if($request->method() == "POST"){
+            $results= Result::where('result_day_time' ,'>=', $exactDate )->where('lottery_company', '=', $company)->orderBy('result_day_time', 'desc')->get();
+        }else{
+            $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->get();
+        }
+        $lotto2 = [];
+        $finallotto2 = [];
+        $spclLott2Val = [];
+        $finalSpcllott2 = [];
+        $NotAppearlotto2 = [];
+        $NotApearInSpclLotto2 = [];
+        
+        //Array for lotto2 special and not appearing arrays
+        foreach ($results as $printresult) {
+
+            $finalValues = [];
+            //get value of each prize and save in lot3 and special_lot3 array
+            for ($it=1; $it< 10 ; $it++) {
+                $t= "prize_{$it}";
+                //Decode json into array of each prize
+                $fNewResult = json_decode($printresult->{$t});
+                foreach ($fNewResult as $keyValues => $mainValue) {
+
+                    if(is_array($mainValue)) {
+                        $lotto2[] = array_values((array) $mainValue);
+
+                    } else if ($keyValues == 'Mã ĐB') {
+                        $spclLott2Val[] = array_values((array) $mainValue);
+                    }else if ($keyValues == 'G.DB') {
+                        $spclLott2Val[] = array_values((array) $mainValue);
+                    } else {
+                        $lotto2[] = array_values((array) $mainValue);
+                    }
+                }
+            }
+        }
+
+        //Final lotto 2 array
+        foreach ($lotto2 as $fullValue) {
+            foreach ($fullValue as $mergeValue) {
+                if(strlen($mergeValue)>1)
+                {
+                    array_push($finallotto2, substr($mergeValue, -2));
+                }
+            }
+        }
+        //Final special lotto 2 array
+        foreach ($spclLott2Val as $newSpecialFullValue) {
+            foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
+                if(strlen($mergeSpecialFullValue)>1)
+                {
+                   //Removed string in array values
+                   if (is_numeric($mergeSpecialFullValue)) {   array_push($finalSpcllott2, substr($mergeSpecialFullValue, -2)); }
+                }
+            }
+        }
+
+        //Final special not appearing lotto 2
+        for($i=0; $i<100; $i++){
+            $i = (string)$i;
+            if(in_array($i,$finalSpcllott2)) {
+            }else{
+                if(strlen($i)<2){
+                    $i = '0'.$i;
+                    array_push($NotApearInSpclLotto2,$i);
+                }else{
+                    array_push($NotApearInSpclLotto2,$i);
+                }
+            }
+        }
+
+        //Final array of not appearing lotto 2
+        for($i=0; $i<100; $i++){
+            $i = (string)$i;
+            if(in_array($i,$finallotto2)) {
+            }else{
+                if(strlen($i)<2){
+                    $i = '0'.$i;
+                    array_push($NotAppearlotto2,$i);
+                }else{
+                    array_push($NotAppearlotto2,$i);
+                }
+            }
+        }
+        
+        //Company result
+        $resultsForCompany= RegionCompany::all();
+        $companyName = [];
+        $companyRegion = [];
+        foreach ($resultsForCompany as $name) {
+            array_push($companyRegion,$name->lottery_company);
+            array_push($companyName,$name->lottery_company_names);
+        }
+        $companyDetail = [];
+        $companyDetail=array_combine($companyName,$companyRegion);
+        //Return view with data
+
+        
+        return view('loto2',['lotto2' => array_count_values($finallotto2), 'special' => array_count_values($finalSpcllott2), 'companyName' => $companyDetail, 'digitNotApearInLot2' => $NotAppearlotto2, 'NotappearspecialLotto2digits' => $NotApearInSpclLotto2]);
+    }
+
+    public function loto2view(Request $request){
+         //Dynamic date selection
+        $duration = 10;
+        //Check get method
+        if($request->method() == "POST"){
+            $duration = ($request->time_duration)-1;
+            $company = $request->companyName;
+        }
+        //Current time and date 
+        $date = Carbon::now()->format('Y-m-d');
+        $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
+        $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
+        if($request->method() == "POST"){
+            $results= Result::where('result_day_time' ,'>=', $exactDate )->where('lottery_company', '=', $company)->orderBy('result_day_time', 'desc')->get();
+        }else{
+            $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->get();
+        }
+        $lotto2 = [];
+        $finallotto2 = [];
+        $spclLott2Val = [];
+        $finalSpcllott2 = [];
+        $NotAppearlotto2 = [];
+        $NotApearInSpclLotto2 = [];
+        
+        //Array for lotto2 special and not appearing arrays
+        foreach ($results as $printresult) {
+
+            $finalValues = [];
+            //get value of each prize and save in lot3 and special_lot3 array
+            for ($it=1; $it< 10 ; $it++) {
+                $t= "prize_{$it}";
+                //Decode json into array of each prize
+                $fNewResult = json_decode($printresult->{$t});
+                foreach ($fNewResult as $keyValues => $mainValue) {
+
+                    if(is_array($mainValue)) {
+                        $lotto2[] = array_values((array) $mainValue);
+
+                    } else if ($keyValues == 'Mã ĐB') {
+                        $spclLott2Val[] = array_values((array) $mainValue);
+                    }else if ($keyValues == 'G.DB') {
+                        $spclLott2Val[] = array_values((array) $mainValue);
+                    } else {
+                        $lotto2[] = array_values((array) $mainValue);
+                    }
+                }
+            }
+        }
+
+        //Final lotto 2 array
+        foreach ($lotto2 as $fullValue) {
+            foreach ($fullValue as $mergeValue) {
+                if(strlen($mergeValue)>1)
+                {
+                    array_push($finallotto2, substr($mergeValue, -2));
+                }
+            }
+        }
+        //Final special lotto 2 array
+        foreach ($spclLott2Val as $newSpecialFullValue) {
+            foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
+                if(strlen($mergeSpecialFullValue)>1)
+                {
+                   //Removed string in array values
+                   if (is_numeric($mergeSpecialFullValue)) {   array_push($finalSpcllott2, substr($mergeSpecialFullValue, -2)); }
+                }
+            }
+        }
+
+        //Final special not appearing lotto 2
+        for($i=0; $i<100; $i++){
+            $i = (string)$i;
+            if(in_array($i,$finalSpcllott2)) {
+            }else{
+                if(strlen($i)<2){
+                    $i = '0'.$i;
+                    array_push($NotApearInSpclLotto2,$i);
+                }else{
+                    array_push($NotApearInSpclLotto2,$i);
+                }
+            }
+        }
+
+        //Final array of not appearing lotto 2
+        for($i=0; $i<100; $i++){
+            $i = (string)$i;
+            if(in_array($i,$finallotto2)) {
+            }else{
+                if(strlen($i)<2){
+                    $i = '0'.$i;
+                    array_push($NotAppearlotto2,$i);
+                }else{
+                    array_push($NotAppearlotto2,$i);
+                }
+            }
+        }
+        
+        //Company result
+        $resultsForCompany= RegionCompany::all();
+        $companyName = [];
+        $companyRegion = [];
+        foreach ($resultsForCompany as $name) {
+            array_push($companyRegion,$name->lottery_company);
+            array_push($companyName,$name->lottery_company_names);
+        }
+        $companyDetail = [];
+        $companyDetail=array_combine($companyName,$companyRegion);
+        //Return view with data
+
+        
+        //return view('loto2',['companyName' => $companyDetail]);
+        return view('loto2',['lotto2' => array_count_values($finallotto2), 'special' => array_count_values($finalSpcllott2), 'companyName' => $companyDetail, 'digitNotApearInLot2' => $NotAppearlotto2, 'NotappearspecialLotto2digits' => $NotApearInSpclLotto2]);
+    }
+    //Ajax result of lotto statistics
+    public function loto2ajax(Request $request){
+        //dd($request);
+
+        //Dynamic date selection
+        $duration = 10;
+        //Check get method
+        if($request->method() == "POST"){
+            $duration = ($request->time_duration)-1;
+            $company = $request->companyName;
+            //dd($company."".$duration);
+        }
+        //Current time and date 
+        $date = Carbon::now()->format('Y-m-d');
+        $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
+        $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
+        if($request->method() == "POST"){
+            $results= Result::where('result_day_time' ,'>=', $exactDate )->where('lottery_company', '=', $company)->orderBy('result_day_time', 'desc')->get();
+        }else{
+            $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->get();
+        }
+        $lotto2 = [];
+        $finallotto2 = [];
+        $spclLott2Val = [];
+        $finalSpcllott2 = [];
+        $NotAppearlotto2 = [];
+        $NotApearInSpclLotto2 = [];
+        
+        //Array for lotto2 special and not appearing arrays
+        foreach ($results as $printresult) {
+
+            $finalValues = [];
+            //get value of each prize and save in lot3 and special_lot3 array
+            for ($it=1; $it< 10 ; $it++) {
+                $t= "prize_{$it}";
+                //Decode json into array of each prize
+                $fNewResult = json_decode($printresult->{$t});
+                foreach ($fNewResult as $keyValues => $mainValue) {
+
+                    if(is_array($mainValue)) {
+                        $lotto2[] = array_values((array) $mainValue);
+
+                    } else if ($keyValues == 'Mã ĐB') {
+                        $spclLott2Val[] = array_values((array) $mainValue);
+                    }else if ($keyValues == 'G.DB') {
+                        $spclLott2Val[] = array_values((array) $mainValue);
+                    } else {
+                        $lotto2[] = array_values((array) $mainValue);
+                    }
+                }
+            }
+        }
+
+        //Final lotto 2 array
+        foreach ($lotto2 as $fullValue) {
+            foreach ($fullValue as $mergeValue) {
+                if(strlen($mergeValue)>1)
+                {
+                    array_push($finallotto2, substr($mergeValue, -2));
+                }
+            }
+        }
+        //Final special lotto 2 array
+        foreach ($spclLott2Val as $newSpecialFullValue) {
+            foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
+                if(strlen($mergeSpecialFullValue)>1)
+                {
+                   //Removed string in array values
+                   if (is_numeric($mergeSpecialFullValue)) {   array_push($finalSpcllott2, substr($mergeSpecialFullValue, -2)); }
+                }
+            }
+        }
+
+        //Final special not appearing lotto 2
+        for($i=0; $i<100; $i++){
+            $i = (string)$i;
+            if(in_array($i,$finalSpcllott2)) {
+            }else{
+                if(strlen($i)<2){
+                    $i = '0'.$i;
+                    array_push($NotApearInSpclLotto2,$i);
+                }else{
+                    array_push($NotApearInSpclLotto2,$i);
+                }
+            }
+        }
+
+        //Final array of not appearing lotto 2
+        for($i=0; $i<100; $i++){
+            $i = (string)$i;
+            if(in_array($i,$finallotto2)) {
+            }else{
+                if(strlen($i)<2){
+                    $i = '0'.$i;
+                    array_push($NotAppearlotto2,$i);
+                }else{
+                    array_push($NotAppearlotto2,$i);
+                }
+            }
+        }
+        
+        //Company result
+        $resultsForCompany= RegionCompany::all();
+        $companyName = [];
+        $companyRegion = [];
+        foreach ($resultsForCompany as $name) {
+            array_push($companyRegion,$name->lottery_company);
+            array_push($companyName,$name->lottery_company_names);
+        }
+        $companyDetail = [];
+        $companyDetail=array_combine($companyName,$companyRegion);
+        //Return view with data
+        //$fullaraayresult = array('lotto2' => array_count_values($finallotto2), 'special' => array_count_values($finalSpcllott2), 'digitNotApearInLot2' => $NotAppearlotto2, 'NotappearspecialLotto2digits' => $NotApearInSpclLotto2);
+
+        /*array_push($fullaraayresult, $finallotto2);
+        array_push($fullaraayresult, array_count_values($finalSpcllott2));
+        array_push($fullaraayresult, $NotAppearlotto2);
+        array_push($fullaraayresult, $NotApearInSpclLotto2);*/
+        $data['lotto2'] = array_count_values($finallotto2);
+        $data['special'] = array_count_values($finalSpcllott2);
+        $data['digitNotApearInLot2'] = $NotAppearlotto2;
+        $data['NotappearspecialLotto2digits'] = $NotApearInSpclLotto2;
+        //dd($data);
+        return view('loto2ajax')->with($data);
+        //return view('loto2',['lotto2' => array_count_values($finallotto2), 'special' => array_count_values($finalSpcllott2), 'companyName' => $companyDetail, 'digitNotApearInLot2' => $NotAppearlotto2, 'NotappearspecialLotto2digits' => $NotApearInSpclLotto2]);
+    }
+
+
+    public function thungDay(Request $request){
+        $data['region'] = "thong";
+        $data['enableTab'] = true;
+        return view('thong')->with($data);
+    }
+
+    public function getThungDayWeek(Request $request) {
+        $day = $request->input('strDayOfWeek');
+        $list = dayWiseArray($day);
+        $reg = RegionCompany::whereIn('lottery_company',$list)->get();
+        return $reg;
+    }
+
+    public function getThungKeysAjax(Request $request) {
+        $lotteryId = $request->input('lotteryId');
+        $rollingNumbers = $request->input('rollingNumbers');
+        $ddlDayOfWeeks = $request->input('ddlDayOfWeeks');
+        $optionText = $request->input('optionText');
+        //$result = Result::where('prize_2', 'like', $lotteryId)->orderBy('result_day_time', 'desc')->limit(4)->get();
+        //$result = Result::orderBy('result_day_time', 'desc')->limit(4)->get();
+        $date = Carbon::now()->subDays($rollingNumbers)->format('Y-m-d');
+        $orig_date = Carbon::createFromFormat("!Y-m-d",$date);
+        $result = Result::where('result_day_time' ,'>', $orig_date)
+            ->where('lottery_company' , $lotteryId)
+            ->orWhere('prize_2', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_3', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_4', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_5', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_6', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_7', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_8', 'like', "%{$rollingNumbers}%")
+            ->orWhere('prize_9', 'like', "%{$rollingNumbers}%")
+            ->orderBy('result_day_time', 'asc')->get();
+       
+        $new = array();
+        $t = 0;
+        $p = 1;
+        $newFullValues = array();
+        foreach ($result as $res){
+            $k = $res->result_day_time->toDateTime()->format('d/m/y');
+            $new[$k][$t]['lottery_region'] = $res->lottery_region;
+            $new[$k][$t]['lottery_company'] = $res->lottery_company;
+            $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+            $new[$k][$t]['prize_1'] = $res->prize_1;
+            $new[$k][$t]['prize_2'] = $res->prize_2;
+            $new[$k][$t]['prize_3'] = $res->prize_3;
+            $new[$k][$t]['prize_4'] = $res->prize_4;
+            $new[$k][$t]['prize_5'] = $res->prize_5;
+            $new[$k][$t]['prize_6'] = $res->prize_6;
+            $new[$k][$t]['prize_7'] = $res->prize_7;
+            $new[$k][$t]['prize_8'] = $res->prize_8;
+            $new[$k][$t]['prize_9'] = $res->prize_9;
+            $new[$k][$t]['board'] = $res->board;
+            $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
+            $i = 1;
+            for ($r=1; $r < 9; $r++) {
+                $variable = json_decode($res['prize_'.$r]);
+                foreach ($variable as $key => $value) {
+                    foreach ($value as $kk => $val) {
+                        if(array_key_exists(substr($val, -2), $newFullValues)){
+                            $newFullValues[substr($val, -2)]['count'] = $newFullValues[substr($val, -2)]['count'] + 1;     
+                            $newFullValues[substr($val, -2)]['last_day'] = $k;     
+                        }else{
+                            $newFullValues[substr($val, -2)]['count'] = 1;
+                            $newFullValues[substr($val, -2)]['last_day'] = $k;
+                        } 
+                    }
+                    $i++;
+                }  
+            }
+            $t++;
+        }
+        //$data['content'] = $new;
+        //echo "<pre>";
+        //print_r($new);
+        //print_r($newFullValues);
+        /*die();*/
+        $data['content'] = $new;
+        $data['newFullValues'] = $newFullValues;
+        $data['ddlDayOfWeeks'] = $ddlDayOfWeeks;
+        $data['optionText'] = $optionText;
+        $data['orig_date'] = $date;
+        return view('thondsResult')->with($data);
     }
 }

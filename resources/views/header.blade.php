@@ -106,7 +106,9 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="list_border last-ul-value  @php if(in_array('ket-qua-xsmt',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xsmt" title="XSMT">XSMT</a>
+                    
+                    <li class="list_border last-ul-value-second  @php if(in_array('ket-qua-xo-so-mien-trung',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xo-so-mien-trung" title="XSMT">XSMT</a>
+
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/ket-qua-xsmt/kqxsmt-thu-hai" title="XSMB Thứ 2">Thứ hai</a></li>
@@ -120,7 +122,17 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="list_border last-ul-value  @php if(in_array('thong-ke-lo',$reload)){ echo "active"; } @endphp"><a href="/thong-ke-kqxs/thong-ke-lo" title="Thống kê">Thống kê</a>
+                        <div class="menu-lv2-down">
+                            <ul>
+                                <li><a href="/thong-ke-kqxs/thong-ke-lo" title="Thống kê lô">Thống kê lô</a></li>
+                                <li><a href="/thong-ke-kqxs/thong-ke-lo-gan" title="Thống kê lô gan">Thống kê lô gan</a></li>
+                                <li><a href="/thong-ke-kqxs/3-cang" title="Thống kê 3 càng">Thống kê 3 càng</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li class="list_border last-ul-value  @php if(in_array('tin-xo-so',$reload)){ echo "active"; } @endphp"><a href="/tin-xo-so" title="Tin tức">Tin tức</a></li>
+
                 </ul>
             </div>
         </nav>
