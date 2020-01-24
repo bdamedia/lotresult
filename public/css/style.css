@@ -1377,7 +1377,8 @@ table.table thead tr th {
 }
 table.table-xsmax tbody tr td:first-child,
 table.table-xsmb tbody tr td:first-child,
-table.table-xsmn tbody tr td:first-child {
+table.table-xsmn tbody tr td:first-child,
+table.table-vietlott tbody tr td:first-child {
     text-align: center;
     vertical-align: middle
 }

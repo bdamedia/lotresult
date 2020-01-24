@@ -10,6 +10,7 @@
 |
 */
 
+
 Route::get("/crawler", "Crawler@index");
 Route::get("/crawler/cJob", "Crawler@CroneJob");
 Route::get("/crawler/cJob/all/", "Crawler@CroneJobFull");
@@ -44,11 +45,25 @@ Route::post("/getCompanyByday", "Crawler@listCompanyDaywise");
 Route::post("/getSearchBydayandNumber", "Crawler@getSearchBydayandNumber");
 Route::get("/crawler/current", "Crawler@getCurrentResult");
 Route::get("/crawler/xsmn/current", "Crawler@xsmnCurrentResult");
+
+
+
+
+Route::get("/crawler/vietlottResult", "Crawler@getVietlottResult");
+
+Route::get("/crawler/xosomax4d", "Crawler@getVietlottResult");
+Route::get("/crawler/xosomax3d", "Crawler@getVietlottResult");
+Route::get("/crawler/xomegaxosomega", "Crawler@getVietlottResult");
+Route::get("/crawler/xspowerxosopower", "Crawler@getVietlottResult");
+
+
+
 //update current records
 Route::get("/updatedatabase/{link}", "Crawler@saveDatabase");
 Route::get("/updatexsmt/{link}", "Crawler@xsmtCurrentResult");
 Route::get("/reload/{link}", "Crawler@reloadCurrentResult");
 Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
+Route::get("/getCompanyRegionsVit", "Crawler@getCompanyRegionsVit");
 Route::get('/','Results@index');
 Route::get('/thong-ke-kqxs/3-cang','Results@lot3StatisticsView');
 Route::get('/lot3-statistics-details','Results@lot3Statistics');
