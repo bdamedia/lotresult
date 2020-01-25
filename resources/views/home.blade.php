@@ -177,9 +177,7 @@
                                     @php $tdr8 = '<td class="'.key($prize_9).'" style="width: 15%">'.key($prize_9).'</td>'; @endphp
                                 @else
                                     @php $current = current($printresult);  @endphp
-
                                     <!-- {{$current['lottery_company']}}     -->  
-
                                     @if($current['lottery_company'] == 'Power 6/55')
                                         @include('vietlottPower')
                                     @elseif($current['lottery_company'] == 'XS Mega')
