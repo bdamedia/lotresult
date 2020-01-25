@@ -4,41 +4,8 @@
         <div class="row margin-b">
           <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="row">
+              @include('todayResult')
               <div class="margin-40 col-md-12">
-                <div id="u129" class="ax_default box_2">
-                  <div id="u129_text" class="text ">
-                    <p><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Today - Saturday - January 11, 2020</font></font></span>
-                    </p>
-                  </div>
-                </div>
-                <div id="u130" class="ax_default box_2">
-                  <div id="u130_text" class="text ">
-                    <p><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">The province opened the prize today</font></font></span>
-                    </p>
-                  </div>
-                </div>
-                <div id="u118" class="ax_default">
-                  <div id="u119" class="ax_default table_cell remove-line-height" style="cursor: pointer;">
-                    <div id="u119_text" class="text "> <a href="/ket-qua-xo-so-mien-bac/"><span id="cache1" style=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Northern</font></font></span></a>
-                    </div>
-                  </div>
-                  <div id="u119" class="ax_default table_cell remove-line-height" style="cursor: pointer;">
-                    <div id="u119_text" class="text "> <a href=" /ket-qua-xo-so-mien-nam/kqxsmn-tphcm "><span id="cache1" style=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HCMC</font></font></span></a>
-                    </div>
-                  </div>
-                  <div id="u119" class="ax_default table_cell remove-line-height" style="cursor: pointer;">
-                    <div id="u119_text" class="text "> <a href=" /ket-qua-xo-so-mien-nam/kqxsmn-long-an "><span id="cache1" style=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Long An</font></font></span></a>
-                    </div>
-                  </div>
-                  <div id="u119" class="ax_default table_cell remove-line-height" style="cursor: pointer;">
-                    <div id="u119_text" class="text "> <a href=" /ket-qua-xo-so-mien-nam/kqxsmn-binh-phuoc "><span id="cache1" style=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Binh Phuoc</font></font></span></a>
-                    </div>
-                  </div>
-                  <div id="u119" class="ax_default table_cell remove-line-height" style="cursor: pointer;">
-                    <div id="u119_text" class="text "> <a href=" /ket-qua-xo-so-mien-nam/kqxsmn-hau-giang "><span id="cache1" style=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hau Giang</font></font></span></a>
-                    </div>
-                  </div>
-                </div>
                 <div>
                   <div id="u130" class="ax_default box_2" style="border: 1px solid #a09c9c; margin-top: 30px">
                     <div id="u130_text" class="text ">
@@ -66,17 +33,19 @@
                   </form>
                   <div style="display:block; width:100%; margin-left: 0px">
                     <div style="margin:0 auto; width:100%;">
-                      <table class="table_style special" style="margin-right:10px;">
+                      <table id="special" class="table_style special display" style="margin-right:10px;">
                       </table>
 
-                      <table class="table_style lot3" style="margin-left: -11px;">
+                      <table id="lot3" class="table_style lot3 display" style="margin-left: -11px;">
                       </table>
+                      <div id="load_more">
+                        <button style="margin-top: 10px; width: 98%; background-color: #cd0000; border: 0px; height: 40px; color: white">Load more</button>
+                      </div>
 
                       <table class="table_style specialNotYet" style="margin-right:10px; margin-top: 10px">
                       </table>
 
                       <table class="table_style lot3NotYet" style="margin-left: -11px; margin-top: 10px">
-
                       </table>
                     </div>
                   </div>
@@ -89,19 +58,29 @@
     </div>
 </div>
 @include('footer')
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 <script type="text/javascript">
   $( document ).ready(function() {
+    var limit = 1;
     var companyName = '';
     var duration = 10;
-    getLotDetail(companyName, duration);
+    getLotDetail(companyName, duration, limit);
+    $('#load_more').on('click', function(){
+      console.log("ksdifgs");
+      limit += 1;
+      getLotDetail(companyName, duration, limit);
+    })
     $('.fetchResult').on('click', function(){
       companyName = $('#companyName').val();
       duration = $('#timeDuration').val();
-      getLotDetail(companyName, duration);
+
+      getLotDetail(companyName, duration, limit=1);
     })
-    function getLotDetail(companyName,duration){
+
+    function getLotDetail(companyName,duration,limit){
       console.log(companyName);
       console.log(duration);
+      console.log(limit);
       var special = '';
       var lot3 = '';
       var specialNotYet = '';
@@ -109,14 +88,13 @@
       $.ajax({
         url:"/lot3-statistics-details",
         type:"GET",
-        data:{'companyName' : companyName, 'duration' : duration},
+        data:{'companyName' : companyName, 'duration' : duration, 'limit' : limit},
         success: function(resp){
-          // console.log(resp.lot3.);
 
-          special += '<tr style="background-color:white">'+
+          special += '<thead> <tr style="background-color:white">'+
                       '<th class="th_style" style=" ">Especially</th>'+
                       '<th class="th_style" style=" ">Times</th>'+
-                    '</tr>'
+                    '</tr> </thead><tbody>'
           for (const [key, value] of Object.entries(resp.special)) {
             special += '<tr>';
             if (value>1) 
@@ -125,12 +103,13 @@
                         '</tr>'
                           
           }
+          special += '</tbody>'
           $('.special').html(special);
 
-          lot3 += '<tr>'+
+          lot3 += '<thead><tr>'+
                     '<th class="th_style">Bingo</th>'+
                     '<th class="th_style">Times</th>'+
-                  '</tr>'
+                  '</tr></thead><tbody>'
           for (const [key, value] of Object.entries(resp.lot3)) {
             lot3 += '<tr>';
             if (value>1) 
@@ -139,6 +118,7 @@
                         '</tr>'
                           
           }
+          lot3 += '</tbody>'
           $('.lot3').html(lot3);
 
           specialNotYet += '<tr><th class="th_style">Especially not yet</th></tr>'
@@ -149,7 +129,13 @@
             // specialNotYet += value;
             // specialNotYet+= '</span>'
           }
-          specialNotYet += '</td>'
+          specialNotYet += '</td>';
+          // specialNotYet += '<tr style="margin-top: 10px ">'+
+          //                     '<td class="" >'+
+          //                       '<a id="loadmore" data-page="1" onclick="loadMoreData()" href="javascript:void(0);">'+
+          //                       '<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">see more</font></font></a>'+
+          //                     '</td>'+
+          //                   '</tr>';
           $('.specialNotYet').html(specialNotYet);
 
           lot3NotYet += '<tr><th class="th_style">Lot has not returned</th></tr>'
@@ -160,14 +146,18 @@
             // lot3NotYet += value;
             // lot3NotYet+= '</span>'
           }
-          lot3NotYet += '</td>'
+          lot3NotYet += '</td>';
+          // lot3NotYet += '<tr><td class="" style="margin-top: 10px; border-left: 1px solid #c1c1c1">'+
+          //                 '<a id="loadmore" data-page="1" onclick="loadMoreData()" href="javascript:void(0);"><font style="vertical-align: inherit;">'+
+          //                 '<font style="vertical-align: inherit;">see skdfhvg</font></font></a>'+
+          //             '</td></tr>'
           $('.lot3NotYet').html(lot3NotYet);
         },
         error: function(resp){
 
         }
       })
-
     }
+
   });
 </script>>

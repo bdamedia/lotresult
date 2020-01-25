@@ -65,7 +65,7 @@ Route::get("/reload/{link}", "Crawler@reloadCurrentResult");
 Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
 Route::get("/getCompanyRegionsVit", "Crawler@getCompanyRegionsVit");
 Route::get('/','Results@index');
-Route::get('/lot3-statistics','Results@lot3StatisticsView');
+Route::get('/thong-ke-kqxs/3-cang','Results@lot3StatisticsView');
 Route::get('/lot3-statistics-details','Results@lot3Statistics');
 
 Route::get("/thong-ke-kqxs/thong-ke-lo-gan", "Results@thungDay");
