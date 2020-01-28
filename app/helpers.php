@@ -476,13 +476,13 @@ function crawlUrlModifiedVitXoSoMega($url=null){
                     $res[$i]['lottery_region'] = 'Vietlott';
                 }
                 if(isset($itemForValues_New[$i])){
-                    $res[$i]['main'] = $itemForValues_New[$i+1];
+                    $res[$i]['data']['main'] = $itemForValues_New[$i+1];
                 }
-                $res[0]['resultTitle'] = $resultTitle;
-                $res[0]['jackpotResult'] = $jackpotResult;
-                $res[0]['titleItem'] = $titleItem;
+                $res[$i]['data']['resultTitle'] = $resultTitle;
+                $res[$i]['data']['jackpotResult'] = $jackpotResult;
+                $res[$i]['data']['titleItem'] = $titleItem;
                 if(isset($dateReturn[$i])){
-                    $res[$i]['mega-detail'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
+                    $res[$i]['data']['board'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
                 }               
             $i++;
         }

@@ -500,6 +500,7 @@ class Crawler extends Controller
         }
         //echo "<pre>";
         //print_r($data);
+        //die();
         foreach ($data as $res) {
             if (isset($res['lottery_region'])) {
                 $result = new Result();
