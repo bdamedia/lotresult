@@ -258,7 +258,7 @@ function crawlUrlModifiedVitXoSoPower($url=null){
     //$bb =  $finder->query("//*[contains(@class, 'text-black-bold')]")->item(0);
     $resultTitle =  $finder->query("//*[contains(@class, 'title-result-jackpot')]")->item(0)->nodeValue;
     // first
-    $titleItem = $finder->query("//*[contains(@class, 'open-next')]")->item(0)->nodeValue;
+    //$titleItem = $finder->query("//*[contains(@class, 'open-next')]")->item(0)->nodeValue;
     $titleItemValue =  $finder->query("//*[contains(@class, 'itle-prize')]")->item(0)->nodeValue;
     $jackpotResult =  $finder->query("//*[contains(@class, 'result-jackpot')]")->item(2)->nodeValue;
     // second
@@ -352,16 +352,14 @@ function crawlUrlModifiedVitXoSoPower($url=null){
                     $res[$i]['lottery_region'] = 'Vietlott';
                 }
                 if(isset($itemForValues_New[$i])){
-                    $res[$i]['main'] = $itemForValues_New[$i];
+                    $res[$i]['data']['main'] = $itemForValues_New[$i];
                 }
-                $res[0]['resultTitle'] = $resultTitle;
-
-                $res[0]['jackpotResult'][$titleItemValue] = $jackpotResult;
-                $res[0]['jackpotResult'][$titleItemValue1] = $jackpotResult1;
-
-                $res[0]['titleItem'] = $titleItem;
+                $res[$i]['data']['resultTitle'] = $resultTitle;
+                $res[$i]['data']['jackpotResult'][] = $jackpotResult;
+                $res[$i]['data']['jackpotResult'][] = $jackpotResult1;
+                //$res[0]['titleItem'] = $titleItem;
                 if(isset($dateReturn[$i])){
-                    $res[$i]['mega-detail'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
+                    $res[$i]['data']['board'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
                 }               
             $i++;
         }

@@ -4,6 +4,8 @@
 @php $prize_4 = json_decode($lot['prize_4']); @endphp
 @php $prize_5 = json_decode($lot['prize_5']); @endphp
 @php $prize_6 = json_decode($lot['prize_6']); @endphp
+@php $prize_7 = json_decode($lot['prize_7']); @endphp
+@php $prize_8 = json_decode($lot['prize_8']); @endphp
 
 @php $board = json_decode($lot['board']); @endphp
 
@@ -59,6 +61,10 @@
 
 @endif
 
+<!-- @php print_r($prize_6); @endphp
+@php print_r($prize_7); @endphp
+@php print_r($prize_8); @endphp -->
+
 @php $td1 = '<td class="" style="width: 15%"><span class="text-red">'.key($prize_1).'</span></td>'; @endphp
 @php $tdr1 = '<td class="'.key($prize_2).'" style="width: 15%">'.key($prize_2).'</td>'; @endphp
 @php $tdr2 = '<td class="'.key($prize_3).'" style="width: 15%">'.key($prize_3).'</td>'; @endphp
@@ -71,6 +77,21 @@
     <div class="block-main-heading">
         <h1>{{ $title }} {{ $current['lottery_company'] }} ngày {{ $current['result_day_time'] }}</h1>
     </div>
+
+    @php    
+        if($prize_6) {
+            echo '<div class="result-jackpot">
+                <div class="head-result">
+                    <h3 class="title-result-jackpot">'.$prize_6->resultTitle .'</h3>
+                </div>
+                <div class="prize-value">
+                    <span class="result-jackpot">' . $prize_7->jackpotResult .'</span>
+                </div>
+            </div>
+            <p class="para open-next">' . $prize_8->titleItem .'</p>';
+        } 
+    @endphp
+        
     <div class="list-link backgroud-hide">
         <h2 class="class-title-list-link class-title-list-link-left">
             @php $dayName = $current['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$current['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
@@ -87,20 +108,21 @@
 
         </h2>
     </div>
-        <p class="para text-black-bold">Kỳ 549: Chủ Nhật, {{ $current['result_day_time'] }}</p>
-        <div class="mega-detail">
-            <ul>
-               @php if($boards){ 
-                    for($m = 0; $m < 5; $m++) {
-                         foreach($boards as $kk=>$bb) {
-                             echo "<li>".$boards[$kk][$m]."</li>";
-                         }
-                    }
+
+    <p class="para text-black-bold">Kỳ 549: Chủ Nhật, {{ $current['result_day_time'] }}</p>
+    <div class="mega-detail">
+        <ul>
+           @php if($boards){ 
+                for($m = 0; $m < 5; $m++) {
+                     foreach($boards as $kk=>$bb) {
+                         echo "<li>".$boards[$kk][$m]."</li>";
+                     }
                 }
-                @endphp
-            </ul>
-        </div>
-        <p class="text-sm">Các con số dự thưởng phải trùng với số kết quả nhưng không cần theo đúng thứ tự</p>
+            }
+            @endphp
+        </ul>
+    </div>
+    <p class="text-sm">Các con số dự thưởng phải trùng với số kết quả nhưng không cần theo đúng thứ tự</p>
    
     <div class="prize-detail">
         <table class="table table-bordered table-striped table-{{ strtolower($lot["lottery_region"]) }} text-table livetn3">
