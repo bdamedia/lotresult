@@ -258,7 +258,7 @@ function crawlUrlModifiedVitXoSoPower($url=null){
     //$bb =  $finder->query("//*[contains(@class, 'text-black-bold')]")->item(0);
     $resultTitle =  $finder->query("//*[contains(@class, 'title-result-jackpot')]")->item(0)->nodeValue;
     // first
-    $titleItem = $finder->query("//*[contains(@class, 'open-next')]")->item(0)->nodeValue;
+    //$titleItem = $finder->query("//*[contains(@class, 'open-next')]")->item(0)->nodeValue;
     $titleItemValue =  $finder->query("//*[contains(@class, 'itle-prize')]")->item(0)->nodeValue;
     $jackpotResult =  $finder->query("//*[contains(@class, 'result-jackpot')]")->item(2)->nodeValue;
     // second
@@ -352,16 +352,14 @@ function crawlUrlModifiedVitXoSoPower($url=null){
                     $res[$i]['lottery_region'] = 'Vietlott';
                 }
                 if(isset($itemForValues_New[$i])){
-                    $res[$i]['main'] = $itemForValues_New[$i];
+                    $res[$i]['data']['main'] = $itemForValues_New[$i];
                 }
-                $res[0]['resultTitle'] = $resultTitle;
-
-                $res[0]['jackpotResult'][$titleItemValue] = $jackpotResult;
-                $res[0]['jackpotResult'][$titleItemValue1] = $jackpotResult1;
-
-                $res[0]['titleItem'] = $titleItem;
+                $res[$i]['data']['resultTitle'] = $resultTitle;
+                $res[$i]['data']['jackpotResult'][] = $jackpotResult;
+                $res[$i]['data']['jackpotResult'][] = $jackpotResult1;
+                //$res[0]['titleItem'] = $titleItem;
                 if(isset($dateReturn[$i])){
-                    $res[$i]['mega-detail'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
+                    $res[$i]['data']['board'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
                 }               
             $i++;
         }
@@ -476,13 +474,13 @@ function crawlUrlModifiedVitXoSoMega($url=null){
                     $res[$i]['lottery_region'] = 'Vietlott';
                 }
                 if(isset($itemForValues_New[$i])){
-                    $res[$i]['main'] = $itemForValues_New[$i+1];
+                    $res[$i]['data']['main'] = $itemForValues_New[$i+1];
                 }
-                $res[0]['resultTitle'] = $resultTitle;
-                $res[0]['jackpotResult'] = $jackpotResult;
-                $res[0]['titleItem'] = $titleItem;
+                $res[$i]['data']['resultTitle'] = $resultTitle;
+                $res[$i]['data']['jackpotResult'] = $jackpotResult;
+                $res[$i]['data']['titleItem'] = $titleItem;
                 if(isset($dateReturn[$i])){
-                    $res[$i]['mega-detail'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
+                    $res[$i]['data']['board'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
                 }               
             $i++;
         }
@@ -727,6 +725,19 @@ function dayWiseArray($day='all'){
     $bindArray = arrayDayBind();
     return $bindArray[$bindArrayDay[$day]];
 }
+
+function dayWiseVietlottArray($day='all'){
+    $bindArray = array();
+    $bindArrayDay = array('power-655'=>'Power 6/55','mega-645'=>'XS Mega', 'pmax-4d'=>'XS Max 4D','xo-so-max-3d'=>'XS Max 3D');
+    return $bindArrayDay;
+}
+
+function dayWiseVietlottValue($day){
+    $bindArray = array();
+    $bindArrayDay = array('power-655'=>'Power 6/55','mega-645'=>'XS Mega', 'max-4d'=>'XS Max 4D','xo-so-max-3d'=>'XS Max 3D');
+    return array($bindArrayDay[$day]);
+}
+
 
 function getDayofCompany($companyCode){
     $data = arrayDayBind();
