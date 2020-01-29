@@ -570,7 +570,7 @@ class Results extends Controller
         return view('xsmn')->with($data);
     }
 
-    public function vietlottDay(Request $request,$day){
+    public function vietlottDay(Request $request,$day='mega-645'){
         //print_r($day);
         //$list = dayWiseVietlottArray($day);
         /*echo "<pre>";
@@ -599,7 +599,7 @@ class Results extends Controller
             $dates2 = $dates2->subDay(4);
             //$result = Result::where('lottery_region', 'Vietlott')->whereIn('lottery_company', $list)->where('result_day_time','>=',$dates2)->orderBy('result_day_time', 'desc')->get();
 
-            $result = Result::where('lottery_region', 'Vietlott')->whereIn('lottery_company', $list)->get();
+            $result = Result::where('lottery_region', 'Vietlott')->whereIn('lottery_company', $list)->orderBy('result_day_time', 'desc')->get();
         }
         
         $new = array();
