@@ -131,7 +131,11 @@
            @php if($boards){ 
                 for($m = 0; $m < 7; $m++) {
                      foreach($boards as $kk=>$bb) {
+
+                     if(isset($boards[$kk][$m])){
                          echo "<li>".$boards[$kk][$m]."</li>";
+                     }
+
                      }
                 }
             }
