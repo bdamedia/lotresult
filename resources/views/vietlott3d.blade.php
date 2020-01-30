@@ -7,7 +7,7 @@
 
 @php $board = json_decode($lot['board']); @endphp
 
-@php $td2 .= '<td class="text-center">'; @endphp
+@php $td2 .= '<td>'; @endphp
 @foreach($prize_1->{key($prize_1)} as $k=>$p1)
     @if($lot["lottery_company"] == 'XSMB')
         @php $td2 .= '<span class="col-xs-4 special-code div-horizontal">'.$p1.'</span>'; @endphp
@@ -17,7 +17,7 @@
 @endforeach
 @php $td2 .= '</td>'; @endphp
 
-@php $td3 .= '<td class="text-center">'; @endphp
+@php $td3 .= '<td>'; @endphp
 @if($lot["lottery_company"] == 'XSMB')
     @php $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_2->{key($prize_2)}.'</span></br>'; @endphp
 @else
@@ -28,18 +28,18 @@
 
 @php $td3 .= '</td>'; @endphp
 
-@php $td4 .= '<td class="text-center">'; @endphp
+@php $td4 .= '<td>'; @endphp
 @if($lot["lottery_company"] == 'XSMB')
     @php $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_3->{key($prize_3)}.'</span></br>'; @endphp
 @else
     @foreach($prize_3->{key($prize_3)} as $k=>$p3)
-        @php $td4 .= '<span class="col-xs-3 number-black-bold div-horizontal">'.$p3.'</span>'; @endphp
+        @php $td4 .= '<span class="col-xs-4 number-black-bold div-horizontal">'.$p3.'</span>'; @endphp
     @endforeach
 @endif
 
 @php $td4 .= '</td>'; @endphp
 
-@php $td5 .= '<td class="text-center">'; @endphp
+@php $td5 .= '<td>'; @endphp
 @foreach($prize_4->{key($prize_4)} as $k=>$p4)
     @if($lot["lottery_company"] == 'XSMB')
         @php $td5 .= '<span class="col-xs-6 number-black-bold div-horizontal">'.$p4.'</span>'; @endphp
@@ -65,7 +65,7 @@
 @php $tdr3 = '<td class="'.key($prize_4).'" style="width: 15%">'.key($prize_4).'</td>'; @endphp
 
 
-@php $current = current($printresult);  @endphp
+   @php $boardRes = $board @endphp
 
 <div class="block remove-margin" id='xsmb-{{ $g }}'>
     <div class="block-main-heading">
@@ -74,21 +74,21 @@
     <div class="list-link">
         <h2 class="class-title-list-link">
             @php $dayName = $current['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$current['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
-            <a href="/{{ getRegionSlug($current['lottery_region']) }}" title="{{ $current['lottery_region'] }}" class="u-line">
+            <a href="/{{ getRegionSlug($current['lottery_region']) }}/kqvietlott-xo-so-max-3d" title="{{ $current['lottery_region'] }}" class="u-line">
                 {{ $current['lottery_company'] }}
             </a><span> » </span>
 
-            <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ engToVit($current['day'])  }}" class="u-line">
+            <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ preg_replace('/\s+/', '-', strtolower($current['lottery_company'])) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ engToVit($current['day'])  }}" class="u-line">
                 {{ $current['lottery_company'] }} {{ engToVit($current['day'])  }}
             </a><span> » </span>
-            <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line"> 
+            <a href="/ket-qua-vietlott-new/{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line"> 
                  {{ $current['lottery_company'] }} {{ $current['result_day_time'] }}
             </a>
 
         </h2>
     </div>
     <div class="block-main-content">
-        <table class="table table-bordered table-striped table-{{ strtolower($lot["lottery_region"]) }} text-table livetn3">
+        <table class="table table-bordered table-striped table-xsmb table-vietlot-new table-{{ strtolower($lot["lottery_region"]) }} text-table livetn3">
             <thead>
             <tr>
                 @php if($th){

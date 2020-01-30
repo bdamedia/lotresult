@@ -22,7 +22,7 @@
     @php $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_2->{key($prize_2)}.'</span></br>'; @endphp
 @else
     @foreach($prize_2->{key($prize_2)} as $k=>$p2)
-        @php $td3 .= '<span class="col-xs-3 number-black-bold div-horizontal">'.$p2.'</span>'; @endphp
+        @php $td3 .= '<span class="col-xs-6 number-black-bold">'.$p2.'</span>'; @endphp
     @endforeach
 @endif
 
@@ -33,7 +33,7 @@
     @php $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_3->{key($prize_3)}.'</span></br>'; @endphp
 @else
     @foreach($prize_3->{key($prize_3)} as $k=>$p3)
-        @php $td4 .= '<span class="col-xs-3 number-black-bold div-horizontal">'.$p3.'</span>'; @endphp
+        @php $td4 .= '<span class="col-xs-4 number-black-bold">'.$p3.'</span>'; @endphp
     @endforeach
 @endif
 
@@ -44,7 +44,7 @@
     @if($lot["lottery_company"] == 'XSMB')
         @php $td5 .= '<span class="col-xs-6 number-black-bold div-horizontal">'.$p4.'</span>'; @endphp
     @else
-        @php $td5 .= '<span class="col-xs-3 number-black-bold div-horizontal">'.$p4.'</span>'; @endphp
+        @php $td5 .= '<span class="number-black-bold">'.$p4.'</span>'; @endphp
     @endif
 @endforeach
 @php $td5 .= '</td>'; @endphp
@@ -54,7 +54,7 @@
     @if($lot["lottery_company"] == 'XSMB')
         @php $td6 .= '<span class="col-xs-4 number-black-bold div-horizontal">'.$p5.'</span>'; @endphp
     @else
-        @php $td6 .= '<span class=" number-black-bold div-horizontal">'.$p5.'</span></br>'; @endphp
+        @php $td6 .= '<span class="number-black-bold">'.$p5.'</span></br>'; @endphp
     @endif
 @endforeach
 @php $td6 .= '</td>'; @endphp
@@ -89,17 +89,17 @@
                 {{ $current['lottery_company'] }}
             </a><span> » </span>
 
-            <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ engToVit($current['day'])  }}" class="u-line">
+            <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ preg_replace('/\s+/', '-', strtolower($current['lottery_company'])) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ engToVit($current['day'])  }}" class="u-line">
                 {{ $current['lottery_company'] }} {{ engToVit($current['day'])  }}
             </a><span> » </span>
-            <a href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line"> 
+            <a href="/ket-qua-vietlott-new/{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line"> 
                  {{ $current['lottery_company'] }} {{ $current['result_day_time'] }}
             </a>
 
         </h2>
     </div>
     <div class="block-main-content">
-        <table class="table table-bordered table-striped table-{{ strtolower($lot["lottery_region"]) }} text-table livetn3">
+        <table class="table table-bordered table-striped table-xsmb table-vietlot-new table-{{ strtolower($lot["lottery_region"]) }} text-table livetn3">
             <thead>
             <tr>
                 @php if($th){
