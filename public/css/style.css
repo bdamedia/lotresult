@@ -1377,7 +1377,8 @@ table.table thead tr th {
 }
 table.table-xsmax tbody tr td:first-child,
 table.table-xsmb tbody tr td:first-child,
-table.table-xsmn tbody tr td:first-child {
+table.table-xsmn tbody tr td:first-child,
+table.table-vietlott tbody tr td:first-child {
     text-align: center;
     vertical-align: middle
 }
@@ -1978,10 +1979,13 @@ table.livetn4 td.tn_prize div.output {
 
 .menu-lv2-down{
     width: auto!important;
-    min-width: 381px;
+    min-width: 287px;
 }
 .last-ul-value .menu-lv2-down{
-  min-width: 372px;
+  min-width: 285px;
+}
+.last-ul-value-second .menu-lv2-down {
+    min-width: 280px!important;
 }
 
 .menu-lv2-down ul li a:hover, .menu-lv2-down ul li:hover a{
@@ -2043,8 +2047,8 @@ table.table-bordered tbody tr th.col-md-2{
 }
 .btn-red-blue-lite {
     width: 100px;
-    border: 1px solid #169BD5;
-    background-color: #169BD5;
+    border: 1px solid #c00;
+    background-color: #c00;
     font-weight: 700;
     margin-top: -3px;
     border-radius: 6px;
@@ -2073,4 +2077,92 @@ table.table-bordered tbody tr th.col-md-2{
 }
 #u129_text span a{
     color: red!important;
+}
+
+.width-auto{
+    width: auto;
+}
+.table_style
+{
+  font-family:arial,sans-serif;
+  order-collapse:collapse;
+  border:"0";
+  float:left;
+  margin-top: 30px;
+  width: 50%;
+  cellspacing:"5px";
+  cellpadding:"5px"
+}
+.tbl_s{
+    text-align: center;
+}
+.td_style
+{
+  border:1px solid #dddddd;
+  
+  padding:3px;
+}
+.hr_style
+{
+  border-color: 1px
+}
+.th_style
+{
+  background-color: #ebebeb;
+  border:1px solid #00000026;
+  text-align:left;
+  padding:8px
+}
+td.circle-no i {
+    font-style: normal;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid #C00;
+    display: inline-block;
+    margin: 0 5px 0 0;
+    background-color:#C00;
+}
+.backgroud-hide h2 a, .backgroud-hide h3 a {
+    color: #900;
+    font-weight: 700;
+    margin: 8px;
+    font-size: 15px;
+}
+td.circle-no {
+    text-align: right;
+}
+.backgroud-hide {
+    background-color: white;
+}
+.class-title-list-link-left {
+    text-align: left;
+}
+
+.mega-detail-new ul li:last-child {
+    background-color: #FFF200;
+    color:#ED1C24;
+    border: 3px solid #FFF200;
+    margin-left: 10px;
+    position: relative;
+}
+.prize-detail table td.circle-no.special i:last-child {
+    background-color: #FFF200;
+    border: 3px solid #FFF200;
+    position: relative;
+    margin-left: 10px;
+}
+.mega-detail-new ul li:last-child::before, .mega-detail-new table td.circle-no.special i:last-child::before {
+    position: absolute;
+    top: -3px;
+    left: -15px;
+    width: 1px;
+    height: 57px;
+    background: #ED1C24;
+    content: '';
+}
+.prize-power table td.circle-no {
+    text-align: left;
+    padding-left: 10px;
+    width: 50%;
 }

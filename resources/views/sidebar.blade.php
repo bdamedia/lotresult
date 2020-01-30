@@ -1,5 +1,6 @@
 @php $sidebar = checkList(); @endphp
 @php $sidebarXsmt = checkList('XSMT'); @endphp
+@php $sidebarVietlott = checkList('Vietlott'); @endphp
 <div class="hidden-xs hidden-sm col-md-3 fix-width-center">
     <h2 class="hide">Center side bar</h2>
     <!-- Add an additional blue button style -->
@@ -41,6 +42,19 @@
         <div class="content-item"><ul>
                 @foreach($sidebarXsmt as $content)
                     <li><a href="/ket-qua-xsmt/kqxsmt-{{ $content->lottery_company_slug }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
+                    @endforeach
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="item-menu center-side-bar margin-top-no">
+        <div class="title-item">
+            <h3 class="btn-red-new"><a href="/ket-qua-vietlott" title="xổ số miền Trung">Xổ số Vietlott</a></h3>
+        </div>
+        <div class="content-item"><ul>
+                @foreach($sidebarVietlott as $content)
+                    <li><a href="/ket-qua-vietlott/kqvietlott-{{ $content->lottery_company_slug }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
                     @endforeach
             </ul>
         </div>

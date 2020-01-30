@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use MongoDB\BSON\UTCDateTime;
 use function MongoDB\BSON\toJSON;
 use App\RegionCompany;
+use Goutte\Client;
 
 class Crawler extends Controller
 {
@@ -22,7 +23,7 @@ class Crawler extends Controller
     public function getCompanyRegions(){
 
         $allCompany = getRegionsCompany();
-
+            
             foreach ($allCompany as $company){
                 $data = RegionCompany::where('lottery_region', 'XSMN')->where('lottery_company', $company['code'])->get();
                 if ($data->count()) {
@@ -31,6 +32,29 @@ class Crawler extends Controller
                 }else{
                     $regionCompany = new RegionCompany();
                     $regionCompany->lottery_region = 'XSMN';
+                    $regionCompany->lottery_company = $company['code'];
+                    $regionCompany->lottery_company_names = $company['name'];
+                    $regionCompany->lottery_company_slug = seoUrl($company['name']);
+                    $regionCompany->lottery_company_url = $company['url'];
+                    $regionCompany->save();
+
+                }
+
+            }
+        }
+
+        public function getCompanyRegionsVit(){
+
+        $allCompany = getRegionsCompanyVitlot();
+           
+            foreach ($allCompany as $company){
+                $data = RegionCompany::where('lottery_region', 'Vietlott')->where('lottery_company', $company['code'])->get();
+                if ($data->count()) {
+                    RegionCompany::where('lottery_region', 'Vietlott')->where('lottery_company', $company['code'])->first()->update(['lottery_company_slug'=> seoUrl($company['name'])]);
+                    continue;
+                }else{
+                    $regionCompany = new RegionCompany();
+                    $regionCompany->lottery_region = 'Vietlott';
                     $regionCompany->lottery_company = $company['code'];
                     $regionCompany->lottery_company_names = $company['name'];
                     $regionCompany->lottery_company_slug = seoUrl($company['name']);
@@ -441,5 +465,101 @@ class Crawler extends Controller
     public function getNews(){
         $url = "https://xosodaiphat.com/tin-tuc/tin-tuc-c2583-article.html";
 
+    }
+
+
+    public function getVietlottResult(Request $request)
+    {
+        //$url = "https://xosodaiphat.com/xo-so-max4d.html";
+        $data = [];
+        $uri = $request->path();
+        if($uri == "crawler/xosomax3d") {
+            $url = "https://xosodaiphat.com/xo-so-max3d.html";
+            $data = crawlUrlModifiedVit($url);
+        } else if($uri == "crawler/xosomax4d") {
+            $url = "https://xosodaiphat.com/xo-so-max4d.html";
+            $data = crawlUrlModifiedVit($url);
+        } else if($uri == "crawler/xomegaxosomega") {
+            $url = "https://xosodaiphat.com/xs-mega-xo-so-mega-645.html";
+            $data = crawlUrlModifiedVitXoSoMega($url);
+        } else if($uri == "crawler/xspowerxosopower") {
+            $url = "https://xosodaiphat.com/xs-power-xo-so-power-655.html";
+            $data = crawlUrlModifiedVitXoSoPower($url);
+        } else {
+            $url = "https://xosodaiphat.com/xs-mega-xo-so-mega-645.html";
+            $data = crawlUrlModifiedVitXoSoMega($url);
+          
+            $url = "https://xosodaiphat.com/xo-so-max4d.html";
+            $data = crawlUrlModifiedVit($url);
+
+            $url = "https://xosodaiphat.com/xs-power-xo-so-power-655.html";
+            $data = crawlUrlModifiedVitXoSoPower($url);
+
+            $url = "https://xosodaiphat.com/xo-so-max3d.html";
+            $data = crawlUrlModifiedVit($url);
+        }
+        /*echo "<pre>";
+        print_r($data);
+        die();*/
+        foreach ($data as $res) {
+            if (isset($res['lottery_region'])) {
+                $result = new Result();
+                echo "<pre>.............................";
+                print_r($res['lottery_region']);
+                echo "<pre>";
+                print_r($res['lottery_company']);
+                echo "<pre>";
+                print_r($res['data']);
+
+                $dateForView = Carbon::parse($res['result_day_time'])->format('d/m/Y');
+
+                $da = explode('/', $dateForView);
+                $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+                $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+                $orig_date1 = $orig_date1->addDay(1);
+                $data = Result::where('lottery_region', $res['lottery_region'])->where('lottery_company', $res['lottery_company'])->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->get();
+
+                if ($data->count()) {
+                    continue;
+                } else {
+                    $result->lottery_region = $res['lottery_region'];
+                    $result->lottery_company = $res['lottery_company'];
+                    $orig_date = Carbon::createFromDate($da[2], $da[1], $da[0]);
+                    $result->result_day_time = new UTCDateTime($orig_date);
+                    $i = 1;
+                    foreach ($res['data'] as $key => $detailsData) {
+                        if ($key == 'board') {
+                            $name = $key;
+                            $result->{$name} = json_encode($res['data'][$key]);
+                        } else {
+                            $name = "prize_" . $i;
+                            $result->{$name} = json_encode(array($key => $res['data'][$key]));
+                            $i++;
+                        }
+                    }
+                    $result->save();
+                }
+            }
+        }
+       /* echo "<pre>...................................";
+        $url = "https://xosodaiphat.com/xsmb-xo-so-mien-bac.html";
+        $resultData = crawlUrl($url);
+        print_r($resultData);*/
+    }
+
+    public function getMegaxosomega($url1='')
+    {
+        $url = "https://xosodaiphat.com/xs-mega-xo-so-mega-645.html";
+        $data = crawlUrlModifiedVitXoSoMega($url);
+        echo "<pre>";
+        print_r($data);
+    }
+
+    public function getXspowerxosopower($url1='')
+    {
+        $url = "https://xosodaiphat.com/xs-power-xo-so-power-655.html";
+        $data = crawlUrlModifiedVitXoSoPower($url);
+        echo "<pre>";
+        print_r($data);
     }
 }
