@@ -412,4 +412,3 @@ $gh = count($content[$key]);
 </div>
 @include('footer')
 <script src="{{ URL::asset('js/flipclock.js') }}"> </script>
-<script src="{{ URL::asset('js/clock.js') }}"> </script>
