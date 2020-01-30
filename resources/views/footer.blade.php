@@ -15,6 +15,7 @@
 <script src="{{ URL::asset('js/jquerylib.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/jscal2.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/en.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/clock.js') }}"></script>
 
 
 <script type="text/javascript">
