@@ -107,7 +107,7 @@
                         </div>
                     </li>
                     
-                    <li class="list_border last-ul-value-second  @php if(in_array('ket-qua-xo-so-mien-trung',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xo-so-mien-trung" title="XSMT">XSMT</a>
+                    <li class="list_border last-ul-value-second  @php if(in_array('ket-qua-xsmt',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xsmt" title="XSMT">XSMT</a>
 
                         <div class="menu-lv2-down">
                             <ul>
@@ -122,6 +122,19 @@
                             </ul>
                         </div>
                     </li>
+
+                    <li class="list_border last-ul-value  @php if(in_array('ket-qua-vietlott',$reload)){ echo "active"; } @endphp">
+                        <a href="/ket-qua-vietlott" title="Vietlott">Vietlott</a>
+                        <div class="menu-lv2-down">
+                            <ul>
+                                <li><a href="/ket-qua-vietlott/kqvietlott-mega-645" title="Thống kê lô">Mega 6/45</a></li>
+                                <li><a href="/ket-qua-vietlott/kqvietlott-power-655" title="Thống kê lô gan">Power 6/55</a></li>
+                                <li><a href="/ket-qua-vietlott/kqvietlott-xo-so-max-3d" title="Thống kê 3 càng">Max 3D</a></li>
+                                <li><a href="/ket-qua-vietlott/kqvietlott-max-4d" title="Thống kê 3 càng">Max 4D</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
                     <li class="list_border last-ul-value  @php if(in_array('thong-ke-lo',$reload)){ echo "active"; } @endphp"><a href="/thong-ke-kqxs/thong-ke-lo" title="Thống kê">Thống kê</a>
                         <div class="menu-lv2-down">
                             <ul>

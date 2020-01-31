@@ -498,8 +498,9 @@ class Crawler extends Controller
             $url = "https://xosodaiphat.com/xo-so-max3d.html";
             $data = crawlUrlModifiedVit($url);
         }
-        //echo "<pre>";
-        //print_r($data);
+        /*echo "<pre>";
+        print_r($data);
+        die();*/
         foreach ($data as $res) {
             if (isset($res['lottery_region'])) {
                 $result = new Result();

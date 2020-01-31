@@ -2113,3 +2113,59 @@ table.table-bordered tbody tr th.col-md-2{
   text-align:left;
   padding:8px
 }
+td.circle-no i {
+    font-style: normal;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid #C00;
+    display: inline-block;
+    margin: 0 5px 0 0;
+    background-color:#C00;
+}
+.backgroud-hide h2 a, .backgroud-hide h3 a {
+    color: #900;
+    font-weight: 700;
+    margin: 8px;
+    font-size: 15px;
+}
+td.circle-no {
+    text-align: right;
+}
+.backgroud-hide {
+    background-color: white;
+}
+.class-title-list-link-left {
+    text-align: left;
+}
+
+.mega-detail-new ul li:last-child {
+    background-color: #FFF200;
+    color:#ED1C24;
+    border: 3px solid #FFF200;
+    margin-left: 10px;
+    position: relative;
+}
+.prize-detail table td.circle-no.special i:last-child {
+    background-color: #FFF200;
+    border: 3px solid #FFF200;
+    position: relative;
+    margin-left: 10px;
+}
+.mega-detail-new ul li:last-child::before, .mega-detail-new table td.circle-no.special i:last-child::before {
+    position: absolute;
+    top: -3px;
+    left: -15px;
+    width: 1px;
+    height: 57px;
+    background: #ED1C24;
+    content: '';
+}
+.prize-power table td.circle-no {
+    text-align: left;
+    padding-left: 10px;
+    width: 50%;
+}
+.table-vietlot-new tr:last-child td span, .table-vietlot-new tr:nth-child(2) td span{
+    color: black;
+}

@@ -75,7 +75,7 @@ class Results extends Controller
             }
         }
 
-        //Prepare 3 digit final_lot3_val array 
+        //Prepare 3 digit final_lot3_val array
         foreach ($lot3Val as $fullValue) {
             foreach ($fullValue as $mergeValue) {
                 //Check if string length is greater than 2
@@ -564,6 +564,253 @@ class Results extends Controller
         }
         return view('xsmn')->with($data);
     }
+
+    public function vietlottDay(Request $request,$day='All'){
+        if($day == 'All') {
+            $list = dayWiseVietlottArray();
+            if($request->input('page')){
+                $dates = $request->input('page');
+                $dates1 = Carbon::createFromFormat('!Y-m-d',$dates);
+                $dates2 = Carbon::createFromFormat('!Y-m-d',$dates);
+                $dates2 = $dates2->subDay(4);
+                $result = Result::where('lottery_region', 'Vietlott')->whereIn('lottery_company', $list)->orderBy('result_day_time', 'desc')->get();
+
+            }else{
+                $date = Carbon::today()->format('Y-m-d');
+                $dates2 = Carbon::createFromFormat("!Y-m-d",$date);
+                $dates2 = $dates2->subDay(4);
+                $result = Result::where('lottery_region', 'Vietlott')->whereIn('lottery_company', $list)->orderBy('result_day_time', 'desc')->limit(4)->get()->toArray();
+            }
+
+            $new = array();
+            $t = 0;
+            foreach ($result as $res){
+                if($res['prize_1']){
+                    $k = $t;
+                    $new[$k][$t]['lottery_region'] = $res['lottery_region'];
+                    $new[$k][$t]['lottery_company'] = $res['lottery_company'];
+                    $new[$k][$t]['result_day_time'] = $res['result_day_time']->toDateTime()->format('d/m/Y');
+                    $new[$k][$t]['prize_1'] = $res['prize_1'] ? $res['prize_1'] : '';
+                    $new[$k][$t]['prize_2'] = $res['prize_2'] ? $res['prize_2'] : '';
+
+                    if(isset($res['prize_3'])){
+                        $new[$k][$t]['prize_3'] = $res['prize_3'] ? $res['prize_3'] : '';
+                    } else {
+                        $new[$k][$t]['prize_3'] = '';
+                    }
+                    if(isset($res['prize_4'])){
+                        $new[$k][$t]['prize_4'] = $res['prize_4'] ? $res['prize_4'] : '';
+                    }
+                    else {
+                        $new[$k][$t]['prize_4'] = '';
+                    }
+                    if(isset($res['prize_5'])){
+                        $new[$k][$t]['prize_5'] = $res['prize_5'] ? $res['prize_5'] : '';
+                    }
+                    else {
+                        $new[$k][$t]['prize_5'] = '';
+                    }
+                    if(isset($res['prize_6'])){
+                        $new[$k][$t]['prize_6'] = $res['prize_6'] ? $res['prize_6'] : '';
+                    }
+                    else {
+                         $new[$k][$t]['prize_6'] = '';
+                    }
+                    if(isset($res['prize_7'])){
+                        $new[$k][$t]['prize_7'] = $res['prize_7'] ? $res['prize_7'] : '';
+                    }
+                    else {
+                        $new[$k][$t]['prize_7'] = '';
+                    }
+                    if(isset($res['prize_8'])){
+                        $new[$k][$t]['prize_8'] = $res['prize_8'] ? $res['prize_8'] : '';
+                    }
+                    else {
+                         $new[$k][$t]['prize_8'] = '';
+                    }
+                    if(isset($res['prize_9'] )){
+                        $new[$k][$t]['prize_9'] = $res['prize_9'] ? $res['prize_9'] : '';
+                    }
+                    else {
+                        $new[$k][$t]['prize_9'] = '';
+                    }
+                    if(isset($res['board'])){
+                        $new[$k][$t]['board'] = $res['board'];
+                    }
+                    else {
+                        $new[$k][$t]['board'] = '';
+                    }
+                    $new[$k][$t]['day'] = $res['result_day_time']->toDateTime()->format('l');
+                    $t++;
+                }
+            }
+            $data['region'] = "Vietlott";
+            $data['companyName'] = strtoupper("Vietlott");
+            $data['content'] = $new;
+            $data['enableTab'] = true;
+            $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+            return view('home')->with($data);
+
+        } else {
+            $list = dayWiseVietlottValue($day);
+            /*echo "<pre>";
+            print_r($list);
+            $count = count($list);
+            printf($count);
+            die($count);*/
+            if($request->input('page')){
+                $dates = $request->input('page');
+                $dates1 = Carbon::createFromFormat('!Y-m-d',$dates);
+                $dates2 = Carbon::createFromFormat('!Y-m-d',$dates);
+                $dates2 = $dates2->subDay(4);
+                //$result = Result::where('lottery_region', 'Vietlott')->whereIn('lottery_company', $list)->where('result_day_time','>=',$dates2)->where('result_day_time','<',$dates1)->orderBy('result_day_time', 'desc')->get();
+                $result = Result::where('lottery_region', 'Vietlott')->whereIn('lottery_company', $list)->orderBy('result_day_time', 'desc')->get();
+
+            }else{
+                $date = Carbon::today()->format('Y-m-d');
+                $dates2 = Carbon::createFromFormat("!Y-m-d",$date);
+                $dates2 = $dates2->subDay(4);
+                //$result = Result::where('lottery_region', 'Vietlott')->whereIn('lottery_company', $list)->where('result_day_time','>=',$dates2)->orderBy('result_day_time', 'desc')->get();
+                $result = Result::where('lottery_region', 'Vietlott')->whereIn('lottery_company', $list)->orderBy('result_day_time', 'desc')->get();
+            }
+            $new = array();
+            $t = 0;
+            foreach ($result as $res){
+                if($res->prize_1){
+                    $k = $res->lottery_region.'_'.$res->result_day_time->toDateTime()->format('d/m/Y');
+                    $new[$k][$t]['lottery_region'] = $res->lottery_region;
+                    $new[$k][$t]['lottery_company'] = $res->lottery_company;
+                    $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+                    $new[$k][$t]['prize_1'] = $res->prize_1;
+                    $new[$k][$t]['prize_2'] = $res->prize_2;
+                    $new[$k][$t]['prize_3'] = $res->prize_3;
+                    $new[$k][$t]['prize_4'] = $res->prize_4;
+                    $new[$k][$t]['prize_5'] = $res->prize_5;
+                    $new[$k][$t]['prize_6'] = $res->prize_6;
+                    $new[$k][$t]['prize_7'] = $res->prize_7;
+                    $new[$k][$t]['prize_8'] = $res->prize_8;
+                    $new[$k][$t]['prize_9'] = $res->prize_9;
+                    $new[$k][$t]['board'] = $res->board;
+                    $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
+                    $t++;
+                }
+            }
+            $data['region'] = "Vietlott";
+            $data['companyName'] = strtoupper("Vietlott");
+            $data['content'] = $new;
+            $data['enableTab'] = true;
+            $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+            return view('home')->with($data);
+        }
+    }
+
+    public function vietlottDayVise(Request $request,$day='mega-645'){
+        //print_r($day);
+        $splittedstring= explode("-", $day);
+        //$list = dayWiseVietlottArray($day);
+        /*echo "<pre>";
+        print_r($list);*/
+        //print_r($splittedstring);
+                //$day = $splittedstring[3].'-'.$splittedstring[4];
+                //$dayParams = $splittedstring[0].'-'.$splittedstring[1].'-'.$splittedstring[2];
+        //print_r($day);
+        //print_r($dayParams);
+
+        if(count($splittedstring)==5){
+            $day = $splittedstring[3].'-'.$splittedstring[4];
+            $dayParams = $splittedstring[0].'-'.$splittedstring[1].'-'.$splittedstring[2];
+        }elseif(count($splittedstring)==4){
+            $day = $splittedstring[2].'-'.$splittedstring[3];
+            $dayParams = $splittedstring[0].'-'.$splittedstring[1];
+        } else {
+            $day = $splittedstring[3].'-'.$splittedstring[4];
+            $dayParams = $splittedstring[0].'-'.$splittedstring[1].'-'.$splittedstring[2];
+        }
+
+        $valuesViet = getVietlottValue($dayParams);
+
+        $list = dayWiseArray($day);
+        $result = Result::where('lottery_region','Vietlott')->where('lottery_company', $valuesViet[0])->orderBy('result_day_time', 'desc')->paginate(21);
+        $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+        $new = array();
+        $t = 0;
+        foreach ($result as $res){
+            $daySelected = $res->result_day_time->toDateTime()->format('l');
+            if($bindArrayDay[$day] == $daySelected){
+                $k = $res->lottery_region.'_'.$res->result_day_time->toDateTime()->format('d/m/Y');
+                $new[$k][$t]['lottery_region'] = $res->lottery_region;
+                $new[$k][$t]['lottery_company'] = $res->lottery_company;
+                $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+                $new[$k][$t]['prize_1'] = $res->prize_1;
+                $new[$k][$t]['prize_2'] = $res->prize_2;
+                $new[$k][$t]['prize_3'] = $res->prize_3;
+                $new[$k][$t]['prize_4'] = $res->prize_4;
+                $new[$k][$t]['prize_5'] = $res->prize_5;
+                $new[$k][$t]['prize_6'] = $res->prize_6;
+                $new[$k][$t]['prize_7'] = $res->prize_7;
+                $new[$k][$t]['prize_8'] = $res->prize_8;
+                $new[$k][$t]['prize_9'] = $res->prize_9;
+                $new[$k][$t]['board'] = $res->board;
+                $new[$k][$t]['day'] = $daySelected;
+                $t++;
+            }
+        }
+        $comp = Result::where('lottery_region', 'Vietlott')->distinct('lottery_company')->orderBy('result_day_time', 'desc')->get();
+        $data['comp'] = $comp;
+        $data['region'] = "Vietlott";
+        $data['companyName'] = strtoupper("Vietlott");
+        $data['content'] = $new;
+        $data['enableTab'] = true;
+        $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+        return view('home')->with($data);
+    }
+
+    public function vietlottDayViseRecord(Request $request, $day){
+        if(strpos($day,'gay-') > 0){
+            $final = str_replace('ngay-', '', $day);
+            return $this->allRegionDate($request,$final,$region='Vietlott');
+        }
+        $list = dayWiseArray($day);
+        $result = Result::where('lottery_region','Vietlott')->orderBy('result_day_time', 'desc')->paginate(21);
+        $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+        $new = array();
+        $t = 0;
+        foreach ($result as $res){
+            $daySelected = $res->result_day_time->toDateTime()->format('l');
+            if($bindArrayDay[$day] == $daySelected){
+                $k = $res->result_day_time->toDateTime()->getTimestamp();
+                $new[$t]['lottery_region'] = $res->lottery_region;
+                $new[$t]['lottery_company'] = $res->lottery_company;
+                $new[$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+                $new[$t]['prize_1'] = $res->prize_1;
+                $new[$t]['prize_2'] = $res->prize_2;
+                $new[$t]['prize_3'] = $res->prize_3;
+                $new[$t]['prize_4'] = $res->prize_4;
+                $new[$t]['prize_5'] = $res->prize_5;
+                $new[$t]['prize_6'] = $res->prize_6;
+                $new[$t]['prize_7'] = $res->prize_7;
+                $new[$t]['prize_8'] = $res->prize_8;
+                $new[$t]['prize_9'] = $res->prize_9;
+                $new[$t]['board'] = $res->board;
+                $new[$t]['day'] = $daySelected;
+                $t++;
+            }
+        }
+        $comp = Result::where('lottery_region', 'Vietlott')->distinct('lottery_company')->orderBy('result_day_time', 'desc')->get();
+        $data['comp'] = $comp;
+        $data['region'] = "Vietlott";
+        $data['companyName'] = strtoupper("Vietlott");
+        $data['content'] = $new;
+        $data['enableTab'] = true;
+        $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+        if ($request->ajax()) {
+            $view = view('xsmbDyaPaginate',$data)->render();
+            return response()->json(['html'=>$view]);
+        }
+        return view('home')->with($data);
+    }
+
+
     public function kqxs(Request $request)
     {
         return view('kqxsResult');
@@ -581,13 +828,16 @@ class Results extends Controller
             $orig_date = $orig_date->subDays(1);
         }
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
-        $orig_date1 = $orig_date1->addDay(1);
-        $result = Result::where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('lottery_region','asc')->orderBy('result_day_time', 'desc')->limit(10)->get();
+         $orig_date1 = $orig_date1->addDay(1);
+
+        $result = Result::where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('lottery_region','asc')->orderBy('result_day_time', 'desc')->get();
         $new = array();
         $t = 0;
         foreach ($result as $res){
-            if($res->prize_1){
-                $k = $res->lottery_region;
+            $k2 = $res->result_day_time->toDateTime()->format('d/m/y');
+            $cD = $orig_date->toDateTime()->format('d/m/y');
+            if($res->prize_1 && ($k2 == $cD)){
+                $k = $res->result_day_time->toDateTime()->format('d/m/Y').'-'.$res->lottery_region;
                 $new[$k][$t]['lottery_region'] = $res->lottery_region;
                 $new[$k][$t]['lottery_company'] = $res->lottery_company;
                 $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
@@ -609,6 +859,7 @@ class Results extends Controller
         $data['companyName'] = strtoupper("xsmt");
         $data['content'] = $new;
         $data['enableTab'] = true;
+        $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
         return view('allCompanyDate')->with($data);
     }
     public function allRegionDate(Request $request,$date,$region){
@@ -617,12 +868,13 @@ class Results extends Controller
         $orig_date = Carbon::createFromFormat("!Y-m-d",$da[count($da)-1].'-'.$da[count($da)-2].'-'.$da[count($da)-3]);
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[count($da)-1].'-'.$da[count($da)-2].'-'.$da[count($da)-3]);
         $orig_date1 = $orig_date1->addDay(1);
-        $result = Result::where('lottery_region',$region)->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('result_day_time', 'desc')->get();
+        $result = Result::where('lottery_region',$region)->where('result_day_time' ,'>', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('result_day_time', 'desc')->get();
         $t = 0;
         $new = array();
         foreach ($result as $res){
             $k = $res->result_day_time->toDateTime()->format('d/m/y');
-            if($res->prize_1){
+            $cD = $orig_date->toDateTime()->format('d/m/y');
+            if($res->prize_1 && ($cD == $k )){
                 $new[$k][$t]['lottery_region'] = $res->lottery_region;
                 $new[$k][$t]['lottery_company'] = $res->lottery_company;
                 $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
@@ -764,7 +1016,7 @@ class Results extends Controller
             $company = $request->companyName;
 
         }
-        //Current time and date 
+        //Current time and date
         $date = Carbon::now()->format('Y-m-d');
         $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
         $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
@@ -779,7 +1031,7 @@ class Results extends Controller
         $finalSpcllott2 = [];
         $NotAppearlotto2 = [];
         $NotApearInSpclLotto2 = [];
-        
+
         //Array for lotto2 special and not appearing arrays
         foreach ($results as $printresult) {
 
@@ -852,7 +1104,7 @@ class Results extends Controller
                 }
             }
         }
-        
+
         //Company result
         $resultsForCompany= RegionCompany::all();
         $companyName = [];
@@ -865,7 +1117,7 @@ class Results extends Controller
         $companyDetail=array_combine($companyName,$companyRegion);
         //Return view with data
 
-        
+
         return view('loto2',['lotto2' => array_count_values($finallotto2), 'special' => array_count_values($finalSpcllott2), 'companyName' => $companyDetail, 'digitNotApearInLot2' => $NotAppearlotto2, 'NotappearspecialLotto2digits' => $NotApearInSpclLotto2]);
     }
 
@@ -877,7 +1129,7 @@ class Results extends Controller
             $duration = ($request->time_duration)-1;
             $company = $request->companyName;
         }
-        //Current time and date 
+        //Current time and date
         $date = Carbon::now()->format('Y-m-d');
         $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
         $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
@@ -892,7 +1144,7 @@ class Results extends Controller
         $finalSpcllott2 = [];
         $NotAppearlotto2 = [];
         $NotApearInSpclLotto2 = [];
-        
+
         //Array for lotto2 special and not appearing arrays
         foreach ($results as $printresult) {
 
@@ -965,7 +1217,7 @@ class Results extends Controller
                 }
             }
         }
-        
+
         //Company result
         $resultsForCompany= RegionCompany::all();
         $companyName = [];
@@ -978,7 +1230,7 @@ class Results extends Controller
         $companyDetail=array_combine($companyName,$companyRegion);
         //Return view with data
 
-        
+
         //return view('loto2',['companyName' => $companyDetail]);
         return view('loto2',['lotto2' => array_count_values($finallotto2), 'special' => array_count_values($finalSpcllott2), 'companyName' => $companyDetail, 'digitNotApearInLot2' => $NotAppearlotto2, 'NotappearspecialLotto2digits' => $NotApearInSpclLotto2]);
     }
@@ -994,7 +1246,7 @@ class Results extends Controller
             $company = $request->companyName;
             //dd($company."".$duration);
         }
-        //Current time and date 
+        //Current time and date
         $date = Carbon::now()->format('Y-m-d');
         $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
         $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
@@ -1009,7 +1261,7 @@ class Results extends Controller
         $finalSpcllott2 = [];
         $NotAppearlotto2 = [];
         $NotApearInSpclLotto2 = [];
-        
+
         //Array for lotto2 special and not appearing arrays
         foreach ($results as $printresult) {
 
@@ -1082,7 +1334,7 @@ class Results extends Controller
                 }
             }
         }
-        
+
         //Company result
         $resultsForCompany= RegionCompany::all();
         $companyName = [];
@@ -1143,7 +1395,7 @@ class Results extends Controller
             ->orWhere('prize_8', 'like', "%{$rollingNumbers}%")
             ->orWhere('prize_9', 'like', "%{$rollingNumbers}%")
             ->orderBy('result_day_time', 'asc')->get();
-       
+
         $new = array();
         $t = 0;
         $p = 1;
@@ -1170,15 +1422,15 @@ class Results extends Controller
                 foreach ($variable as $key => $value) {
                     foreach ($value as $kk => $val) {
                         if(array_key_exists(substr($val, -2), $newFullValues)){
-                            $newFullValues[substr($val, -2)]['count'] = $newFullValues[substr($val, -2)]['count'] + 1;     
-                            $newFullValues[substr($val, -2)]['last_day'] = $k;     
+                            $newFullValues[substr($val, -2)]['count'] = $newFullValues[substr($val, -2)]['count'] + 1;
+                            $newFullValues[substr($val, -2)]['last_day'] = $k;
                         }else{
                             $newFullValues[substr($val, -2)]['count'] = 1;
                             $newFullValues[substr($val, -2)]['last_day'] = $k;
-                        } 
+                        }
                     }
                     $i++;
-                }  
+                }
             }
             $t++;
         }

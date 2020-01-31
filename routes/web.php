@@ -56,7 +56,11 @@ Route::get("/crawler/xosomax3d", "Crawler@getVietlottResult");
 Route::get("/crawler/xomegaxosomega", "Crawler@getVietlottResult");
 Route::get("/crawler/xspowerxosopower", "Crawler@getVietlottResult");
 
+Route::get("/ket-qua-vietlott/kqvietlott-{day}", "Results@vietlottDay");
+Route::get("/ket-qua-vietlott/", "Results@vietlottDay");
 
+Route::get("/ket-qua-vietlott/{day}", "Results@vietlottDayVise");
+Route::get("/ket-qua-vietlott-new/vietlott-{day}", "Results@vietlottDayViseRecord");
 
 //update current records
 Route::get("/updatedatabase/{link}", "Crawler@saveDatabase");

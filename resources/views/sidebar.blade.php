@@ -50,7 +50,7 @@
 
     <div class="item-menu center-side-bar margin-top-no">
         <div class="title-item">
-            <h3 class="btn-red-new"><a href="/ket-qua-vietlott" title="xổ số miền Trung">Xổ số Vietlott</a></h3>
+            <h3 class="btn-red-new"><a href="/ket-qua-vietlott/kqvietlott-mega-645" title="xổ số miền Trung">Xổ số Vietlott</a></h3>
         </div>
         <div class="content-item"><ul>
                 @foreach($sidebarVietlott as $content)
