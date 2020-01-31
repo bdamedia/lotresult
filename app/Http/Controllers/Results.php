@@ -828,17 +828,20 @@ class Results extends Controller
         $date = str_replace('da-nang-','',$date);
         $da = explode('-', $date);
         $today = Carbon::today()->format('!Y-m-d');
-        echo $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+        $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
         if($today == $orig_date){
             $orig_date = $orig_date->subDays(1);
         }
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
-        echo $orig_date1 = $orig_date1->addDay(1);
-        $result = Result::where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('lottery_region','asc')->limit(10)->get();
+         $orig_date1 = $orig_date1->addDay(1);
+
+        $result = Result::where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('lottery_region','asc')->orderBy('result_day_time', 'desc')->get();
         $new = array();
         $t = 0;
         foreach ($result as $res){
-            if($res->prize_1){
+            $k2 = $res->result_day_time->toDateTime()->format('d/m/y');
+            $cD = $orig_date->toDateTime()->format('d/m/y');
+            if($res->prize_1 && ($k2 == $cD)){
                 $k = $res->result_day_time->toDateTime()->format('d/m/Y').'-'.$res->lottery_region;
                 $new[$k][$t]['lottery_region'] = $res->lottery_region;
                 $new[$k][$t]['lottery_company'] = $res->lottery_company;
@@ -870,12 +873,13 @@ class Results extends Controller
         $orig_date = Carbon::createFromFormat("!Y-m-d",$da[count($da)-1].'-'.$da[count($da)-2].'-'.$da[count($da)-3]);
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[count($da)-1].'-'.$da[count($da)-2].'-'.$da[count($da)-3]);
         $orig_date1 = $orig_date1->addDay(1);
-        $result = Result::where('lottery_region',$region)->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('result_day_time', 'desc')->get();
+        $result = Result::where('lottery_region',$region)->where('result_day_time' ,'>', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('result_day_time', 'desc')->get();
         $t = 0;
         $new = array();
         foreach ($result as $res){
             $k = $res->result_day_time->toDateTime()->format('d/m/y');
-            if($res->prize_1){
+            $cD = $orig_date->toDateTime()->format('d/m/y');
+            if($res->prize_1 && ($cD == $k )){
                 $new[$k][$t]['lottery_region'] = $res->lottery_region;
                 $new[$k][$t]['lottery_company'] = $res->lottery_company;
                 $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
