@@ -316,7 +316,7 @@ class Results extends Controller
         $new = array();
         foreach ($result as $res){
             if($res->prize_1){
-                $k = $res->result_day_time->toDateTime()->format('d/m/y').'-'.$res->lottery_company;
+                $k = $res->result_day_time->toDateTime()->format('d/m/y');
                 if(isset($new[$k]) && (count($new[$k]) > 0)){
                     $id = searchForId($res->lottery_company, $new[$k]);
                     if($id){
@@ -392,7 +392,7 @@ class Results extends Controller
         $new = array();
         foreach ($result as $res){
             if($res->prize_1){
-                $k = $res->result_day_time->toDateTime()->format('d/m/y').'-'.$res->lottery_company;
+                $k = $res->result_day_time->toDateTime()->format('d/m/y');
                 if(isset($new[$k]) && (count($new[$k]) > 0)){
                     $id = searchForId($res->lottery_company, $new[$k]);
                     if($id){
