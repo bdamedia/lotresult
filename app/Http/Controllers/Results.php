@@ -75,7 +75,7 @@ class Results extends Controller
             }
         }
 
-        //Prepare 3 digit final_lot3_val array 
+        //Prepare 3 digit final_lot3_val array
         foreach ($lot3Val as $fullValue) {
             foreach ($fullValue as $mergeValue) {
                 //Check if string length is greater than 2
@@ -129,7 +129,7 @@ class Results extends Controller
         }
         //Find all 3 digit value that is not final_special_lot3_val
         for($i=0; $i<1000;$i++){
-            
+
         }
 
         return Response()->json([
@@ -644,9 +644,9 @@ class Results extends Controller
             $day = $splittedstring[3].'-'.$splittedstring[4];
             $dayParams = $splittedstring[0].'-'.$splittedstring[1].'-'.$splittedstring[2];
         }
-        
+
         $valuesViet = getVietlottValue($dayParams);
-        
+
         $list = dayWiseArray($day);
         $result = Result::where('lottery_region','Vietlott')->where('lottery_company', $valuesViet[0])->orderBy('result_day_time', 'desc')->paginate(21);
         $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
@@ -741,18 +741,18 @@ class Results extends Controller
         $date = str_replace('da-nang-','',$date);
         $da = explode('-', $date);
         $today = Carbon::today()->format('!Y-m-d');
-        $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+        echo $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
         if($today == $orig_date){
             $orig_date = $orig_date->subDays(1);
         }
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
-        $orig_date1 = $orig_date1->addDay(1);
-        $result = Result::where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('lottery_region','asc')->orderBy('result_day_time', 'desc')->limit(10)->get();
+        echo $orig_date1 = $orig_date1->addDay(1);
+        $result = Result::where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('lottery_region','asc')->limit(10)->get();
         $new = array();
         $t = 0;
         foreach ($result as $res){
             if($res->prize_1){
-                $k = $res->lottery_region;
+                $k = $res->result_day_time->toDateTime()->format('d/m/Y').'-'.$res->lottery_region;
                 $new[$k][$t]['lottery_region'] = $res->lottery_region;
                 $new[$k][$t]['lottery_company'] = $res->lottery_company;
                 $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
@@ -929,7 +929,7 @@ class Results extends Controller
             $company = $request->companyName;
 
         }
-        //Current time and date 
+        //Current time and date
         $date = Carbon::now()->format('Y-m-d');
         $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
         $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
@@ -944,7 +944,7 @@ class Results extends Controller
         $finalSpcllott2 = [];
         $NotAppearlotto2 = [];
         $NotApearInSpclLotto2 = [];
-        
+
         //Array for lotto2 special and not appearing arrays
         foreach ($results as $printresult) {
 
@@ -1017,7 +1017,7 @@ class Results extends Controller
                 }
             }
         }
-        
+
         //Company result
         $resultsForCompany= RegionCompany::all();
         $companyName = [];
@@ -1030,7 +1030,7 @@ class Results extends Controller
         $companyDetail=array_combine($companyName,$companyRegion);
         //Return view with data
 
-        
+
         return view('loto2',['lotto2' => array_count_values($finallotto2), 'special' => array_count_values($finalSpcllott2), 'companyName' => $companyDetail, 'digitNotApearInLot2' => $NotAppearlotto2, 'NotappearspecialLotto2digits' => $NotApearInSpclLotto2]);
     }
 
@@ -1042,7 +1042,7 @@ class Results extends Controller
             $duration = ($request->time_duration)-1;
             $company = $request->companyName;
         }
-        //Current time and date 
+        //Current time and date
         $date = Carbon::now()->format('Y-m-d');
         $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
         $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
@@ -1057,7 +1057,7 @@ class Results extends Controller
         $finalSpcllott2 = [];
         $NotAppearlotto2 = [];
         $NotApearInSpclLotto2 = [];
-        
+
         //Array for lotto2 special and not appearing arrays
         foreach ($results as $printresult) {
 
@@ -1130,7 +1130,7 @@ class Results extends Controller
                 }
             }
         }
-        
+
         //Company result
         $resultsForCompany= RegionCompany::all();
         $companyName = [];
@@ -1143,7 +1143,7 @@ class Results extends Controller
         $companyDetail=array_combine($companyName,$companyRegion);
         //Return view with data
 
-        
+
         //return view('loto2',['companyName' => $companyDetail]);
         return view('loto2',['lotto2' => array_count_values($finallotto2), 'special' => array_count_values($finalSpcllott2), 'companyName' => $companyDetail, 'digitNotApearInLot2' => $NotAppearlotto2, 'NotappearspecialLotto2digits' => $NotApearInSpclLotto2]);
     }
@@ -1159,7 +1159,7 @@ class Results extends Controller
             $company = $request->companyName;
             //dd($company."".$duration);
         }
-        //Current time and date 
+        //Current time and date
         $date = Carbon::now()->format('Y-m-d');
         $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
         $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
@@ -1174,7 +1174,7 @@ class Results extends Controller
         $finalSpcllott2 = [];
         $NotAppearlotto2 = [];
         $NotApearInSpclLotto2 = [];
-        
+
         //Array for lotto2 special and not appearing arrays
         foreach ($results as $printresult) {
 
@@ -1247,7 +1247,7 @@ class Results extends Controller
                 }
             }
         }
-        
+
         //Company result
         $resultsForCompany= RegionCompany::all();
         $companyName = [];
@@ -1308,7 +1308,7 @@ class Results extends Controller
             ->orWhere('prize_8', 'like', "%{$rollingNumbers}%")
             ->orWhere('prize_9', 'like', "%{$rollingNumbers}%")
             ->orderBy('result_day_time', 'asc')->get();
-       
+
         $new = array();
         $t = 0;
         $p = 1;
@@ -1335,15 +1335,15 @@ class Results extends Controller
                 foreach ($variable as $key => $value) {
                     foreach ($value as $kk => $val) {
                         if(array_key_exists(substr($val, -2), $newFullValues)){
-                            $newFullValues[substr($val, -2)]['count'] = $newFullValues[substr($val, -2)]['count'] + 1;     
-                            $newFullValues[substr($val, -2)]['last_day'] = $k;     
+                            $newFullValues[substr($val, -2)]['count'] = $newFullValues[substr($val, -2)]['count'] + 1;
+                            $newFullValues[substr($val, -2)]['last_day'] = $k;
                         }else{
                             $newFullValues[substr($val, -2)]['count'] = 1;
                             $newFullValues[substr($val, -2)]['last_day'] = $k;
-                        } 
+                        }
                     }
                     $i++;
-                }  
+                }
             }
             $t++;
         }
