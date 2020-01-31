@@ -92,7 +92,7 @@
             <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ preg_replace('/\s+/', '-', strtolower($current['lottery_company'])) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ engToVit($current['day'])  }}" class="u-line">
                 {{ $current['lottery_company'] }} {{ engToVit($current['day'])  }}
             </a><span> » </span>
-            <a href="/ket-qua-vietlott-new/{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line"> 
+            <a href="/ket-qua-vietlott-new/{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line">
                  {{ $current['lottery_company'] }} {{ $current['result_day_time'] }}
             </a>
 
@@ -160,7 +160,7 @@
                 <tr class="bg">
                     <td colspan="4" class="text-left"><span class="text-blue-bold">Ký hiệu bộ số</span></td>
                 </tr>
-                
+
                 @php $value = []; @endphp
                 @php
                 $ab = 0;
@@ -169,11 +169,13 @@
                     if($m == 0 || $m == 2 || $m == 4) {
                         echo "<tr class='text-center'>";
                     }
-                  
-                    echo "<td class='bg' style='width: 10%'>".$char[$m]."</td>";
+                    if(isset($char[$m])){
+                        echo "<td class='bg' style='width: 10%'>".$char[$m]."</td>";
                     echo "<td><span class='number-black-bold'>".$boards[$g][$m]."</span></td>";
+                    }
 
-                    if($m == 1 || $m == 3 || $m == 5) {   
+
+                    if($m == 1 || $m == 3 || $m == 5) {
                         echo "</tr>";
                     }
                  }
