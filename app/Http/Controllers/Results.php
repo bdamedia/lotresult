@@ -267,6 +267,8 @@ class Results extends Controller
                 $data['companyName'] = strtoupper($company);
                 $data['content'] = $result;
                 $data['enableTab'] = false;
+                $data['singlePage'] = true;
+
                 if ($request->ajax()) {
                     $view = view('xsmnSinglePaginate',$data)->render();
                     return response()->json(['html'=>$view]);
@@ -477,13 +479,13 @@ class Results extends Controller
             $dates = $request->input('page');
             $dates1 = Carbon::createFromFormat('!Y-m-d',$dates);
             $dates2 = Carbon::createFromFormat('!Y-m-d',$dates);
-            $dates2 = $dates2->subDay(4);
-            $result = Result::where('lottery_region', 'XSMN')->whereIn('lottery_company',$list)->where('result_day_time','>=',$dates2)->where('result_day_time','<',$dates1)->orderBy('result_day_time', 'desc')->get();
+            $dates2 = $dates2->subDay(7);
+            $result = Result::where('lottery_region', 'XSMN')->whereIn('lottery_company',$list)->where('result_day_time','>',$dates2)->where('result_day_time','<',$dates1)->orderBy('result_day_time', 'desc')->get();
         }else{
             $date = Carbon::today()->format('Y-m-d');
             $dates2 = Carbon::createFromFormat("!Y-m-d",$date);
-            $dates2 = $dates2->subDay(4);
-            $result = Result::where('lottery_region', 'XSMN')->whereIn('lottery_company',$list)->where('result_day_time','>=',$dates2)->orderBy('result_day_time', 'desc')->get();
+            $dates2 = $dates2->subDay(7);
+            $result = Result::where('lottery_region', 'XSMN')->whereIn('lottery_company',$list)->where('result_day_time','>',$dates2)->orderBy('result_day_time', 'desc')->get();
         }
         //$result = Result::where('lottery_region','XSMN')->whereIn('lottery_company',$list)->orderBy('result_day_time', 'desc')->paginate(6);
         $t = 0;
@@ -526,12 +528,12 @@ class Results extends Controller
             $dates = $request->input('page');
             $dates1 = Carbon::createFromFormat('!Y-m-d',$dates);
             $dates2 = Carbon::createFromFormat('!Y-m-d',$dates);
-            $dates2 = $dates2->subDay(4);
-            $result = Result::where('lottery_region', 'XSMT')->whereIn('lottery_company',$list)->where('result_day_time','>=',$dates2)->where('result_day_time','<',$dates1)->orderBy('result_day_time', 'desc')->get();
+            $dates2 = $dates2->subDay(7);
+            $result = Result::where('lottery_region', 'XSMT')->whereIn('lottery_company',$list)->where('result_day_time','>',$dates2)->where('result_day_time','<',$dates1)->orderBy('result_day_time', 'desc')->get();
         }else{
             $date = Carbon::today()->format('Y-m-d');
             $dates2 = Carbon::createFromFormat("!Y-m-d",$date);
-            $dates2 = $dates2->subDay(4);
+            $dates2 = $dates2->subDay(7);
             $result = Result::where('lottery_region', 'XSMT')->whereIn('lottery_company',$list)->where('result_day_time','>=',$dates2)->orderBy('result_day_time', 'desc')->get();
         }
         //$result = Result::where('lottery_region','XSMT')->whereIn('lottery_company',$list)->orderBy('result_day_time', 'desc')->paginate(6);
