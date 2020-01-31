@@ -861,6 +861,7 @@ class Results extends Controller
         $data['companyName'] = strtoupper("xsmt");
         $data['content'] = $new;
         $data['enableTab'] = true;
+        $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
         return view('allCompanyDate')->with($data);
     }
     public function allRegionDate(Request $request,$date,$region){
