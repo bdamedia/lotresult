@@ -1044,19 +1044,30 @@ class Results extends Controller
                 $t= "prize_{$it}";
                 //Decode json into array of each prize
                 $fNewResult = json_decode($printresult->{$t});
-                foreach ($fNewResult as $keyValues => $mainValue) {
+                if(!empty($fNewResult->main)) {
+                    $spclLott2Val['main'] = $fNewResult->main;
+                }else if(!empty($fNewResult->resultTitle)) {
+                    $spclLott2Val['resultTitle'] = $fNewResult->resultTitle;
+                } else if (!empty($fNewResult->jackpotResult)) {
+                    $spclLott2Val['jackpotResult'] = $fNewResult->jackpotResult;
+                }else if (!empty($fNewResult->titleItem)) {
+                    $spclLott2Val['titleItem'] = $fNewResult->titleItem;
+                } else {
 
-                    if(is_array($mainValue)) {
-                        $lotto2[] = array_values((array) $mainValue);
+                    foreach ($fNewResult as $keyValues => $mainValue) {
 
-                    } else if ($keyValues == 'Mã ĐB') {
-                        $spclLott2Val[] = array_values((array) $mainValue);
-                    }else if ($keyValues == 'G.DB') {
-                        $spclLott2Val[] = array_values((array) $mainValue);
-                    } else {
-                        $lotto2[] = array_values((array) $mainValue);
+                        if(is_array($mainValue)) {
+                            $lotto2[] = array_values((array) $mainValue);
+
+                        } else if ($keyValues == 'Mã ĐB') {
+                            $spclLott2Val[] = array_values((array) $mainValue);
+                        }else if ($keyValues == 'G.DB') {
+                            $spclLott2Val[] = array_values((array) $mainValue);
+                        } else {
+                            $lotto2[] = array_values((array) $mainValue);
+                        }
                     }
-                }
+                }    
             }
         }
 
@@ -1071,13 +1082,15 @@ class Results extends Controller
         }
         //Final special lotto 2 array
         foreach ($spclLott2Val as $newSpecialFullValue) {
-            foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
-                if(strlen($mergeSpecialFullValue)>1)
-                {
-                   //Removed string in array values
-                   if (is_numeric($mergeSpecialFullValue)) {   array_push($finalSpcllott2, substr($mergeSpecialFullValue, -2)); }
+            if(!empty($newSpecialFullValue)) {
+                foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
+                    if(strlen($mergeSpecialFullValue)>1)
+                    {
+                       //Removed string in array values
+                       if (is_numeric($mergeSpecialFullValue)) {   array_push($finalSpcllott2, substr($mergeSpecialFullValue, -2)); }
+                    }
                 }
-            }
+             }
         }
 
         //Final special not appearing lotto 2
