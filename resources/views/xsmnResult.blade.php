@@ -215,8 +215,8 @@
 
     </div>
         <div class="top-margin col-xs-12">
-            @php $page = 1; @endphp
-            <a id="loadmore" data-date="@php echo $lastdate; @endphp" data-page="2" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
+            @php $page = 2; @endphp
+            <a id="loadmore" data-date="@php if(isset($singlePage) && $singlePage == true) { echo $page++; }else{ echo $lastdate; } @endphp" data-page="@php if(isset($singlePage) && $singlePage == true) { echo $singlePage; } @endphp" onclick="loadMoreData(@php echo $page++; @endphp)" href="javascript:void(0);" >Xem thêm</a>
         </div>
         <div class="col-xs-12">
             <!-- /21689237362/xoso-content-ads -->
@@ -260,11 +260,16 @@
                 $('.ajax-load').hide();
 
                 $("#post-data").append(data.html);
-                var D = Date.parse(page);
-                var date = new Date(D);
-                var newDate = new Date(date.getFullYear(),date.getMonth(),date.getDate());
-                newDate = new Date(newDate.setDate(newDate.getDate()-4));
-                $('#loadmore').attr('data-date',newDate.getFullYear()+'-'+(newDate.getMonth()+1)+'-'+newDate.getDate());
+                if($('#loadmore').attr('data-page') == true){
+                    $('#loadmore').attr('data-date',parseInt(page) + 1);
+                }else{
+                    var D = Date.parse(page);
+                    var date = new Date(D);
+                    var newDate = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+                    newDate = new Date(newDate.setDate(newDate.getDate()-7));
+                    $('#loadmore').attr('data-date',newDate.getFullYear()+'-'+(newDate.getMonth()+1)+'-'+newDate.getDate());
+                }
+
 
             })
             .fail(function(jqXHR, ajaxOptions, thrownError)
