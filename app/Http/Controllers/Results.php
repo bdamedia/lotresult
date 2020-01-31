@@ -1080,7 +1080,7 @@ class Results extends Controller
                 }
             }
         }
-        //Final special lotto 2 array
+       /* //Final special lotto 2 array
         foreach ($spclLott2Val as $newSpecialFullValue) {
             if(!empty($newSpecialFullValue)) {
                 foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
@@ -1091,7 +1091,19 @@ class Results extends Controller
                     }
                 }
              }
-        }
+        }*/
+         //Final special lotto 2 array
+        foreach ($spclLott2Val as $key => $newSpecialFullValue) {
+            if($key!='main' && $key!='resultTitle' && $key!='jackpotResult' && $key!='titleItem') {
+                foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
+                    if(strlen($mergeSpecialFullValue)>1)
+                    {
+                       //Removed string in array values
+                       if (is_numeric($mergeSpecialFullValue)) {   array_push($finalSpcllott2, substr($mergeSpecialFullValue, -2)); }
+                    }
+                }
+            }
+        }/**/
 
         //Final special not appearing lotto 2
         for($i=0; $i<100; $i++){
