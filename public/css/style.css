@@ -2166,3 +2166,6 @@ td.circle-no {
     padding-left: 10px;
     width: 50%;
 }
+.table-vietlot-new tr:last-child td span, .table-vietlot-new tr:nth-child(2) td span{
+    color: black;
+}
