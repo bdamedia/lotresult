@@ -317,21 +317,52 @@ class Results extends Controller
         foreach ($result as $res){
             if($res->prize_1){
                 $k = $res->result_day_time->toDateTime()->format('d/m/y');
-                $new[$k][$t]['lottery_region'] = $res->lottery_region;
-                $new[$k][$t]['lottery_company'] = $res->lottery_company;
-                $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
-                $new[$k][$t]['prize_1'] = $res->prize_1;
-                $new[$k][$t]['prize_2'] = $res->prize_2;
-                $new[$k][$t]['prize_3'] = $res->prize_3;
-                $new[$k][$t]['prize_4'] = $res->prize_4;
-                $new[$k][$t]['prize_5'] = $res->prize_5;
-                $new[$k][$t]['prize_6'] = $res->prize_6;
-                $new[$k][$t]['prize_7'] = $res->prize_7;
-                $new[$k][$t]['prize_8'] = $res->prize_8;
-                $new[$k][$t]['prize_9'] = $res->prize_9;
-                $new[$k][$t]['board'] = $res->board;
-                $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
-                $t++;
+                if(isset($new[$k]) && (count($new[$k]) > 0)){
+                    $id = searchForId($res->lottery_company, $new[$k]);
+                    if($id){
+
+                    }else{
+                        $new[$k][$t]['lottery_region'] = $res->lottery_region;
+                        $new[$k][$t]['lottery_company'] = $res->lottery_company;
+                        $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+                        $new[$k][$t]['prize_1'] = $res->prize_1;
+                        $new[$k][$t]['prize_2'] = $res->prize_2;
+                        $new[$k][$t]['prize_3'] = $res->prize_3;
+                        $new[$k][$t]['prize_4'] = $res->prize_4;
+                        $new[$k][$t]['prize_5'] = $res->prize_5;
+                        $new[$k][$t]['prize_6'] = $res->prize_6;
+                        $new[$k][$t]['prize_7'] = $res->prize_7;
+                        $new[$k][$t]['prize_8'] = $res->prize_8;
+                        $new[$k][$t]['prize_9'] = $res->prize_9;
+                        $new[$k][$t]['board'] = $res->board;
+                        $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
+                        $t++;
+                    }
+
+                }else{
+                    $new[$k][$t]['lottery_region'] = $res->lottery_region;
+                    $new[$k][$t]['lottery_company'] = $res->lottery_company;
+                    $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+                    $new[$k][$t]['prize_1'] = $res->prize_1;
+                    $new[$k][$t]['prize_2'] = $res->prize_2;
+                    $new[$k][$t]['prize_3'] = $res->prize_3;
+                    $new[$k][$t]['prize_4'] = $res->prize_4;
+                    $new[$k][$t]['prize_5'] = $res->prize_5;
+                    $new[$k][$t]['prize_6'] = $res->prize_6;
+                    $new[$k][$t]['prize_7'] = $res->prize_7;
+                    $new[$k][$t]['prize_8'] = $res->prize_8;
+                    $new[$k][$t]['prize_9'] = $res->prize_9;
+                    $new[$k][$t]['board'] = $res->board;
+                    $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
+                    $t++;
+                }
+
+
+               /* if(){
+
+                }*/
+
+
             }
         }
         $data['region'] = "xsmn";
@@ -361,22 +392,46 @@ class Results extends Controller
         $new = array();
         foreach ($result as $res){
             if($res->prize_1){
-                $k = $res->result_day_time->toDateTime()->format('d/m/y')   ;
-                $new[$k][$t]['lottery_region'] = $res->lottery_region;
-                $new[$k][$t]['lottery_company'] = $res->lottery_company;
-                $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
-                $new[$k][$t]['prize_1'] = $res->prize_1;
-                $new[$k][$t]['prize_2'] = $res->prize_2;
-                $new[$k][$t]['prize_3'] = $res->prize_3;
-                $new[$k][$t]['prize_4'] = $res->prize_4;
-                $new[$k][$t]['prize_5'] = $res->prize_5;
-                $new[$k][$t]['prize_6'] = $res->prize_6;
-                $new[$k][$t]['prize_7'] = $res->prize_7;
-                $new[$k][$t]['prize_8'] = $res->prize_8;
-                $new[$k][$t]['prize_9'] = $res->prize_9;
-                $new[$k][$t]['board'] = $res->board;
-                $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
-                $t++;
+                $k = $res->result_day_time->toDateTime()->format('d/m/y');
+                if(isset($new[$k]) && (count($new[$k]) > 0)){
+                    $id = searchForId($res->lottery_company, $new[$k]);
+                    if($id){
+
+                    }else{
+                        $new[$k][$t]['lottery_region'] = $res->lottery_region;
+                        $new[$k][$t]['lottery_company'] = $res->lottery_company;
+                        $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+                        $new[$k][$t]['prize_1'] = $res->prize_1;
+                        $new[$k][$t]['prize_2'] = $res->prize_2;
+                        $new[$k][$t]['prize_3'] = $res->prize_3;
+                        $new[$k][$t]['prize_4'] = $res->prize_4;
+                        $new[$k][$t]['prize_5'] = $res->prize_5;
+                        $new[$k][$t]['prize_6'] = $res->prize_6;
+                        $new[$k][$t]['prize_7'] = $res->prize_7;
+                        $new[$k][$t]['prize_8'] = $res->prize_8;
+                        $new[$k][$t]['prize_9'] = $res->prize_9;
+                        $new[$k][$t]['board'] = $res->board;
+                        $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
+                        $t++;
+                    }
+
+                }else{
+                    $new[$k][$t]['lottery_region'] = $res->lottery_region;
+                    $new[$k][$t]['lottery_company'] = $res->lottery_company;
+                    $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+                    $new[$k][$t]['prize_1'] = $res->prize_1;
+                    $new[$k][$t]['prize_2'] = $res->prize_2;
+                    $new[$k][$t]['prize_3'] = $res->prize_3;
+                    $new[$k][$t]['prize_4'] = $res->prize_4;
+                    $new[$k][$t]['prize_5'] = $res->prize_5;
+                    $new[$k][$t]['prize_6'] = $res->prize_6;
+                    $new[$k][$t]['prize_7'] = $res->prize_7;
+                    $new[$k][$t]['prize_8'] = $res->prize_8;
+                    $new[$k][$t]['prize_9'] = $res->prize_9;
+                    $new[$k][$t]['board'] = $res->board;
+                    $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
+                    $t++;
+                }
             }
         }
         $data['region'] = "xsmt";
