@@ -1036,50 +1036,56 @@ class Results extends Controller
         $NotApearInSpclLotto2 = [];
 
         //Array for lotto2 special and not appearing arrays
-        foreach ($results as $printresult) {
+        if(!empty($results)){
+            foreach ($results as $printresult) {
 
-            $finalValues = [];
-            //get value of each prize and save in lot3 and special_lot3 array
-            for ($it=1; $it< 10 ; $it++) {
-                $t= "prize_{$it}";
-                //Decode json into array of each prize
-                $fNewResult = json_decode($printresult->{$t});
-                if(!empty($fNewResult->main)) {
-                    $spclLott2Val['main'] = $fNewResult->main;
-                }else if(!empty($fNewResult->resultTitle)) {
-                    $spclLott2Val['resultTitle'] = $fNewResult->resultTitle;
-                } else if (!empty($fNewResult->jackpotResult)) {
-                    $spclLott2Val['jackpotResult'] = $fNewResult->jackpotResult;
-                }else if (!empty($fNewResult->titleItem)) {
-                    $spclLott2Val['titleItem'] = $fNewResult->titleItem;
-                } else {
+                $finalValues = [];
+                //get value of each prize and save in lot3 and special_lot3 array
+                for ($it=1; $it< 10 ; $it++) {
+                    $t= "prize_{$it}";
+                    //Decode json into array of each prize
+                    $fNewResult = json_decode($printresult->{$t});
+                    if(!empty($fNewResult->main)) {
+                        $spclLott2Val['main'] = $fNewResult->main;
+                    }else if(!empty($fNewResult->resultTitle)) {
+                        $spclLott2Val['resultTitle'] = $fNewResult->resultTitle;
+                    } else if (!empty($fNewResult->jackpotResult)) {
+                        $spclLott2Val['jackpotResult'] = $fNewResult->jackpotResult;
+                    }else if (!empty($fNewResult->titleItem)) {
+                        $spclLott2Val['titleItem'] = $fNewResult->titleItem;
+                    } else {
+                        if(!empty($fNewResult)){
+                            foreach ($fNewResult as $keyValues => $mainValue) {
 
-                    foreach ($fNewResult as $keyValues => $mainValue) {
+                                if(is_array($mainValue)) {
+                                    $lotto2[] = array_values((array) $mainValue);
 
-                        if(is_array($mainValue)) {
-                            $lotto2[] = array_values((array) $mainValue);
+                                } else if ($keyValues == 'Mã ĐB') {
+                                    $spclLott2Val[] = array_values((array) $mainValue);
+                                }else if ($keyValues == 'G.DB') {
+                                    $spclLott2Val[] = array_values((array) $mainValue);
+                                } else {
+                                    $lotto2[] = array_values((array) $mainValue);
+                                }
+                            }
+                        }   
 
-                        } else if ($keyValues == 'Mã ĐB') {
-                            $spclLott2Val[] = array_values((array) $mainValue);
-                        }else if ($keyValues == 'G.DB') {
-                            $spclLott2Val[] = array_values((array) $mainValue);
-                        } else {
-                            $lotto2[] = array_values((array) $mainValue);
-                        }
-                    }
-                }    
-            }
-        }
-
-        //Final lotto 2 array
-        foreach ($lotto2 as $fullValue) {
-            foreach ($fullValue as $mergeValue) {
-                if(strlen($mergeValue)>1)
-                {
-                    array_push($finallotto2, substr($mergeValue, -2));
+                    }    
                 }
             }
-        }
+        }   
+
+        //Final lotto 2 array
+        if(!empty($lotto2)){
+            foreach ($lotto2 as $fullValue) {
+                foreach ($fullValue as $mergeValue) {
+                    if(strlen($mergeValue)>1)
+                    {
+                        array_push($finallotto2, substr($mergeValue, -2));
+                    }
+                }
+            }
+        }   
        /* //Final special lotto 2 array
         foreach ($spclLott2Val as $newSpecialFullValue) {
             if(!empty($newSpecialFullValue)) {
@@ -1093,17 +1099,19 @@ class Results extends Controller
              }
         }*/
          //Final special lotto 2 array
-        foreach ($spclLott2Val as $key => $newSpecialFullValue) {
-            if($key!='main' && $key!='resultTitle' && $key!='jackpotResult' && $key!='titleItem') {
-                foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
-                    if(strlen($mergeSpecialFullValue)>1)
-                    {
-                       //Removed string in array values
-                       if (is_numeric($mergeSpecialFullValue)) {   array_push($finalSpcllott2, substr($mergeSpecialFullValue, -2)); }
+        if(!empty($spclLott2Val)){
+            foreach ($spclLott2Val as $key => $newSpecialFullValue) {
+                if($key!='main' && $key!='resultTitle' && $key!='jackpotResult' && $key!='titleItem') {
+                    foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
+                        if(strlen($mergeSpecialFullValue)>1)
+                        {
+                           //Removed string in array values
+                           if (is_numeric($mergeSpecialFullValue)) {   array_push($finalSpcllott2, substr($mergeSpecialFullValue, -2)); }
+                        }
                     }
                 }
             }
-        }/**/
+        }   /**/
 
         //Final special not appearing lotto 2
         for($i=0; $i<100; $i++){
@@ -1137,9 +1145,11 @@ class Results extends Controller
         $resultsForCompany= RegionCompany::all();
         $companyName = [];
         $companyRegion = [];
-        foreach ($resultsForCompany as $name) {
-            array_push($companyRegion,$name->lottery_company);
-            array_push($companyName,$name->lottery_company_names);
+        if(!empty($resultsForCompany)){
+            foreach ($resultsForCompany as $name) {
+                array_push($companyRegion,$name->lottery_company);
+                array_push($companyName,$name->lottery_company_names);
+            }
         }
         $companyDetail = [];
         $companyDetail=array_combine($companyName,$companyRegion);
