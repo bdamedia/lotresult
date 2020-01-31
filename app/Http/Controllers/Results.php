@@ -34,7 +34,7 @@ class Results extends Controller
         // dd($request);
         //Current time and date in UNIX standard
         $date = Carbon::now()->format('Y-m-d');
-        //conver UNIX standard date time in to standard date
+        //convert UNIX standard date time in to standard date
         $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
         //Prepare date on the basis of time duration
         $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
