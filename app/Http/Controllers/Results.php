@@ -828,17 +828,20 @@ class Results extends Controller
         $date = str_replace('da-nang-','',$date);
         $da = explode('-', $date);
         $today = Carbon::today()->format('!Y-m-d');
-        echo $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+        $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
         if($today == $orig_date){
             $orig_date = $orig_date->subDays(1);
         }
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
-        echo $orig_date1 = $orig_date1->addDay(1);
-        $result = Result::where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('lottery_region','asc')->limit(10)->get();
+         $orig_date1 = $orig_date1->addDay(1);
+
+        $result = Result::where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('lottery_region','asc')->orderBy('result_day_time', 'desc')->get();
         $new = array();
         $t = 0;
         foreach ($result as $res){
-            if($res->prize_1){
+            $k2 = $res->result_day_time->toDateTime()->format('d/m/y');
+            $cD = $orig_date->toDateTime()->format('d/m/y');
+            if($res->prize_1 && ($k2 == $cD)){
                 $k = $res->result_day_time->toDateTime()->format('d/m/Y').'-'.$res->lottery_region;
                 $new[$k][$t]['lottery_region'] = $res->lottery_region;
                 $new[$k][$t]['lottery_company'] = $res->lottery_company;
@@ -870,12 +873,13 @@ class Results extends Controller
         $orig_date = Carbon::createFromFormat("!Y-m-d",$da[count($da)-1].'-'.$da[count($da)-2].'-'.$da[count($da)-3]);
         $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[count($da)-1].'-'.$da[count($da)-2].'-'.$da[count($da)-3]);
         $orig_date1 = $orig_date1->addDay(1);
-        $result = Result::where('lottery_region',$region)->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('result_day_time', 'desc')->get();
+        $result = Result::where('lottery_region',$region)->where('result_day_time' ,'>', $orig_date)->where('result_day_time' ,'<', $orig_date1)->orderBy('result_day_time', 'desc')->get();
         $t = 0;
         $new = array();
         foreach ($result as $res){
             $k = $res->result_day_time->toDateTime()->format('d/m/y');
-            if($res->prize_1){
+            $cD = $orig_date->toDateTime()->format('d/m/y');
+            if($res->prize_1 && ($cD == $k )){
                 $new[$k][$t]['lottery_region'] = $res->lottery_region;
                 $new[$k][$t]['lottery_company'] = $res->lottery_company;
                 $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
@@ -1006,122 +1010,7 @@ class Results extends Controller
         }
     }
 
-    public function loto2(Request $request){
-
-    //dd($request);
-        //Dynamic date selection
-        $duration = 10;
-        //Check get method
-        if($request->method() == "POST"){
-           $duration = ($request->time_duration)-1;
-            $company = $request->companyName;
-
-        }
-        //Current time and date
-        $date = Carbon::now()->format('Y-m-d');
-        $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
-        $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
-        if($request->method() == "POST"){
-            $results= Result::where('result_day_time' ,'>=', $exactDate )->where('lottery_company', '=', $company)->orderBy('result_day_time', 'desc')->get();
-        }else{
-            $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->get();
-        }
-        $lotto2 = [];
-        $finallotto2 = [];
-        $spclLott2Val = [];
-        $finalSpcllott2 = [];
-        $NotAppearlotto2 = [];
-        $NotApearInSpclLotto2 = [];
-
-        //Array for lotto2 special and not appearing arrays
-        foreach ($results as $printresult) {
-
-            $finalValues = [];
-            //get value of each prize and save in lot3 and special_lot3 array
-            for ($it=1; $it< 10 ; $it++) {
-                $t= "prize_{$it}";
-                //Decode json into array of each prize
-                $fNewResult = json_decode($printresult->{$t});
-                foreach ($fNewResult as $keyValues => $mainValue) {
-
-                    if(is_array($mainValue)) {
-                        $lotto2[] = array_values((array) $mainValue);
-
-                    } else if ($keyValues == 'Mã ĐB') {
-                        $spclLott2Val[] = array_values((array) $mainValue);
-                    }else if ($keyValues == 'G.DB') {
-                        $spclLott2Val[] = array_values((array) $mainValue);
-                    } else {
-                        $lotto2[] = array_values((array) $mainValue);
-                    }
-                }
-            }
-        }
-
-        //Final lotto 2 array
-        foreach ($lotto2 as $fullValue) {
-            foreach ($fullValue as $mergeValue) {
-                if(strlen($mergeValue)>1)
-                {
-                    array_push($finallotto2, substr($mergeValue, -2));
-                }
-            }
-        }
-        //Final special lotto 2 array
-        foreach ($spclLott2Val as $newSpecialFullValue) {
-            foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
-                if(strlen($mergeSpecialFullValue)>1)
-                {
-                   //Removed string in array values
-                   if (is_numeric($mergeSpecialFullValue)) {   array_push($finalSpcllott2, substr($mergeSpecialFullValue, -2)); }
-                }
-            }
-        }
-
-        //Final special not appearing lotto 2
-        for($i=0; $i<100; $i++){
-            $i = (string)$i;
-            if(in_array($i,$finalSpcllott2)) {
-            }else{
-                if(strlen($i)<2){
-                    $i = '0'.$i;
-                    array_push($NotApearInSpclLotto2,$i);
-                }else{
-                    array_push($NotApearInSpclLotto2,$i);
-                }
-            }
-        }
-
-        //Final array of not appearing lotto 2
-        for($i=0; $i<100; $i++){
-            $i = (string)$i;
-            if(in_array($i,$finallotto2)) {
-            }else{
-                if(strlen($i)<2){
-                    $i = '0'.$i;
-                    array_push($NotAppearlotto2,$i);
-                }else{
-                    array_push($NotAppearlotto2,$i);
-                }
-            }
-        }
-
-        //Company result
-        $resultsForCompany= RegionCompany::all();
-        $companyName = [];
-        $companyRegion = [];
-        foreach ($resultsForCompany as $name) {
-            array_push($companyRegion,$name->lottery_company);
-            array_push($companyName,$name->lottery_company_names);
-        }
-        $companyDetail = [];
-        $companyDetail=array_combine($companyName,$companyRegion);
-        //Return view with data
-
-
-        return view('loto2',['lotto2' => array_count_values($finallotto2), 'special' => array_count_values($finalSpcllott2), 'companyName' => $companyDetail, 'digitNotApearInLot2' => $NotAppearlotto2, 'NotappearspecialLotto2digits' => $NotApearInSpclLotto2]);
-    }
-
+  
     public function loto2view(Request $request){
          //Dynamic date selection
         $duration = 10;
@@ -1155,19 +1044,30 @@ class Results extends Controller
                 $t= "prize_{$it}";
                 //Decode json into array of each prize
                 $fNewResult = json_decode($printresult->{$t});
-                foreach ($fNewResult as $keyValues => $mainValue) {
+                if(!empty($fNewResult->main)) {
+                    $spclLott2Val['main'] = $fNewResult->main;
+                }else if(!empty($fNewResult->resultTitle)) {
+                    $spclLott2Val['resultTitle'] = $fNewResult->resultTitle;
+                } else if (!empty($fNewResult->jackpotResult)) {
+                    $spclLott2Val['jackpotResult'] = $fNewResult->jackpotResult;
+                }else if (!empty($fNewResult->titleItem)) {
+                    $spclLott2Val['titleItem'] = $fNewResult->titleItem;
+                } else {
 
-                    if(is_array($mainValue)) {
-                        $lotto2[] = array_values((array) $mainValue);
+                    foreach ($fNewResult as $keyValues => $mainValue) {
 
-                    } else if ($keyValues == 'Mã ĐB') {
-                        $spclLott2Val[] = array_values((array) $mainValue);
-                    }else if ($keyValues == 'G.DB') {
-                        $spclLott2Val[] = array_values((array) $mainValue);
-                    } else {
-                        $lotto2[] = array_values((array) $mainValue);
+                        if(is_array($mainValue)) {
+                            $lotto2[] = array_values((array) $mainValue);
+
+                        } else if ($keyValues == 'Mã ĐB') {
+                            $spclLott2Val[] = array_values((array) $mainValue);
+                        }else if ($keyValues == 'G.DB') {
+                            $spclLott2Val[] = array_values((array) $mainValue);
+                        } else {
+                            $lotto2[] = array_values((array) $mainValue);
+                        }
                     }
-                }
+                }    
             }
         }
 
@@ -1180,16 +1080,30 @@ class Results extends Controller
                 }
             }
         }
-        //Final special lotto 2 array
+       /* //Final special lotto 2 array
         foreach ($spclLott2Val as $newSpecialFullValue) {
-            foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
-                if(strlen($mergeSpecialFullValue)>1)
-                {
-                   //Removed string in array values
-                   if (is_numeric($mergeSpecialFullValue)) {   array_push($finalSpcllott2, substr($mergeSpecialFullValue, -2)); }
+            if(!empty($newSpecialFullValue)) {
+                foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
+                    if(strlen($mergeSpecialFullValue)>1)
+                    {
+                       //Removed string in array values
+                       if (is_numeric($mergeSpecialFullValue)) {   array_push($finalSpcllott2, substr($mergeSpecialFullValue, -2)); }
+                    }
+                }
+             }
+        }*/
+         //Final special lotto 2 array
+        foreach ($spclLott2Val as $key => $newSpecialFullValue) {
+            if($key!='main' && $key!='resultTitle' && $key!='jackpotResult' && $key!='titleItem') {
+                foreach ($newSpecialFullValue as $mergeSpecialFullValue) {
+                    if(strlen($mergeSpecialFullValue)>1)
+                    {
+                       //Removed string in array values
+                       if (is_numeric($mergeSpecialFullValue)) {   array_push($finalSpcllott2, substr($mergeSpecialFullValue, -2)); }
+                    }
                 }
             }
-        }
+        }/**/
 
         //Final special not appearing lotto 2
         for($i=0; $i<100; $i++){
