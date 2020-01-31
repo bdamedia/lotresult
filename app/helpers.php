@@ -1034,3 +1034,12 @@ function getNewsbySlug($slug){
     $result = NewsModel::where('news_slug',$slug)->get();
     return collect($result)->first();
 }
+
+function searchForId($id, $array) {
+    foreach ($array as $key => $val) {
+        if ($val['lottery_company'] === $id) {
+            return $key;
+        }
+    }
+    return null;
+}
