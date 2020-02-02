@@ -320,7 +320,8 @@ class Results extends Controller
                 if(isset($new[$k]) && (count($new[$k]) > 0)){
                     $id = searchForId($res->lottery_company, $new[$k]);
                     if($id){
-
+                        Result::where('_id',$res->id)->first()->delete();
+                        //print_r();
                     }else{
                         $new[$k][$t]['lottery_region'] = $res->lottery_region;
                         $new[$k][$t]['lottery_company'] = $res->lottery_company;
@@ -396,6 +397,7 @@ class Results extends Controller
                 if(isset($new[$k]) && (count($new[$k]) > 0)){
                     $id = searchForId($res->lottery_company, $new[$k]);
                     if($id){
+                        Result::where('_id',$res->id)->first()->delete();
 
                     }else{
                         $new[$k][$t]['lottery_region'] = $res->lottery_region;
