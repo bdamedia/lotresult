@@ -59,17 +59,19 @@ class Results extends Controller
                 $t= "prize_{$it}";
                 //Decode json into array of each prize
                 $fNewResult = json_decode($print_result->{$t});
-                foreach ($fNewResult as $keyValues => $mainValue) {
+                if(is_array($fNewResult) || is_object($fNewResult)){
+                    foreach ($fNewResult as $keyValues => $mainValue) {
 
                     if(is_array($mainValue)) {
                         $lot3Val[] = array_values((array) $mainValue);
 
-                    } else if ($keyValues == 'Mã ĐB') {
-                        $specialLot3Val[] = array_values((array) $mainValue);
-                    }else if ($keyValues == 'G.DB') {
-                        $specialLot3Val[] = array_values((array) $mainValue);
-                    } else {
-                        $lot3Val[] = array_values((array) $mainValue);
+                        } else if ($keyValues == 'Mã ĐB') {
+                            $specialLot3Val[] = array_values((array)$mainValue);
+                        }else if ($keyValues == 'G.DB') {
+                            $specialLot3Val[] = array_values((array)$mainValue);
+                        } else {
+                            $lot3Val[] = array_values((array)$mainValue);
+                        }
                     }
                 }
             }
