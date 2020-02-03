@@ -34,7 +34,7 @@ class Results extends Controller
         // dd($request);
         //Current time and date in UNIX standard
         $date = Carbon::now()->format('Y-m-d');
-        //conver UNIX standard date time in to standard date
+        //convert UNIX standard date time in to standard date
         $currentDate = Carbon::createFromFormat("!Y-m-d",$date);
         //Prepare date on the basis of time duration
         $exactDate = Carbon::createFromFormat("!Y-m-d",$currentDate->subDay($duration)->format("Y-m-d"));
@@ -42,23 +42,23 @@ class Results extends Controller
         if($company){
             $results= Result::where('result_day_time' ,'>=', $exactDate )->where('lottery_company', '=', $company)->orderBy('result_day_time', 'desc')->get();
         }else{
-            $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->simplePaginate($limits);
+            $results= Result::where('result_day_time' ,'>=', $exactDate)->orderBy('result_day_time', 'desc')->get();
         }
         $lot3Val = [];
         $finalLot3Val = [];
         $specialLot3Val = [];
-        $finaSpeciallLot3Val = [];
+        $finaSpecialLot3Val = [];
         $digitNotApearInLot3 = [];
         $digitNotApearInSpecialLot3 = [];
         //Prepare lot3 result and special_lot3 result array
-        foreach ($results as $printresult) {
+        foreach ($results as $print_result) {
 
             $finalValues = [];
             //get value of each prize and save in lot3 and special_lot3 array
             for ($it=1; $it< 10 ; $it++) {
                 $t= "prize_{$it}";
                 //Decode json into array of each prize
-                $fNewResult = json_decode($printresult->{$t});
+                $fNewResult = json_decode($print_result->{$t});
                 foreach ($fNewResult as $keyValues => $mainValue) {
 
                     if(is_array($mainValue)) {
@@ -91,12 +91,12 @@ class Results extends Controller
                 //Check if string length is greater than 2
                 if(strlen($mergeSpecialFullValue)>2)
                 {
-                    array_push($finaSpeciallLot3Val, substr($mergeSpecialFullValue, -3));
+                    array_push($finaSpecialLot3Val, substr($mergeSpecialFullValue, -3));
                 }
             }
         }
         //Find all 3 digit value that is not in final_lot3_val
-        for($i=0; $i<($limit*100); $i++){
+        for($i=0; $i<=($limit*100); $i++){
             $i = (string)$i;
             if(in_array($i,$finalLot3Val)) {
             }else{
@@ -113,13 +113,12 @@ class Results extends Controller
 
             $j=$i;
             $j = (string)$j;
-            if(in_array($j,$finaSpeciallLot3Val)) {
+            if(in_array($j,$finaSpecialLot3Val)) {
             }else{
                 if(strlen($j)<2){
                     $j = '00'.$j;
                     array_push($digitNotApearInSpecialLot3,$j);
                 }elseif (strlen($j)<3) {
-                    // dd(strlen($i));
                     $j = '0'.$j;
                     array_push($digitNotApearInSpecialLot3,$j);
                 }else{
@@ -127,14 +126,10 @@ class Results extends Controller
                 }
             }
         }
-        //Find all 3 digit value that is not final_special_lot3_val
-        for($i=0; $i<1000;$i++){
-
-        }
 
         return Response()->json([
             'lot3'                          => array_count_values($finalLot3Val),
-            'special'                       => array_count_values($finaSpeciallLot3Val),
+            'special'                       => array_count_values($finaSpecialLot3Val),
             'digitNotApearInLot3'           => $digitNotApearInLot3,
             'digitNotApearInSpecialLot3'    => $digitNotApearInSpecialLot3
         ]);
@@ -178,6 +173,7 @@ class Results extends Controller
         $data['companyName'] = strtoupper("xsmt");
         $data['content'] = $new;
         $data['enableTab'] = true;
+        $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
         return view('home')->with($data);
     }
     public function xsmb(Request $request,$company='XSMB'){
@@ -321,21 +317,53 @@ class Results extends Controller
         foreach ($result as $res){
             if($res->prize_1){
                 $k = $res->result_day_time->toDateTime()->format('d/m/y');
-                $new[$k][$t]['lottery_region'] = $res->lottery_region;
-                $new[$k][$t]['lottery_company'] = $res->lottery_company;
-                $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
-                $new[$k][$t]['prize_1'] = $res->prize_1;
-                $new[$k][$t]['prize_2'] = $res->prize_2;
-                $new[$k][$t]['prize_3'] = $res->prize_3;
-                $new[$k][$t]['prize_4'] = $res->prize_4;
-                $new[$k][$t]['prize_5'] = $res->prize_5;
-                $new[$k][$t]['prize_6'] = $res->prize_6;
-                $new[$k][$t]['prize_7'] = $res->prize_7;
-                $new[$k][$t]['prize_8'] = $res->prize_8;
-                $new[$k][$t]['prize_9'] = $res->prize_9;
-                $new[$k][$t]['board'] = $res->board;
-                $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
-                $t++;
+                if(isset($new[$k]) && (count($new[$k]) > 0)){
+                    $id = searchForId($res->lottery_company, $new[$k]);
+                    if($id){
+                        Result::where('_id',$res->id)->first()->delete();
+                        //print_r();
+                    }else{
+                        $new[$k][$t]['lottery_region'] = $res->lottery_region;
+                        $new[$k][$t]['lottery_company'] = $res->lottery_company;
+                        $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+                        $new[$k][$t]['prize_1'] = $res->prize_1;
+                        $new[$k][$t]['prize_2'] = $res->prize_2;
+                        $new[$k][$t]['prize_3'] = $res->prize_3;
+                        $new[$k][$t]['prize_4'] = $res->prize_4;
+                        $new[$k][$t]['prize_5'] = $res->prize_5;
+                        $new[$k][$t]['prize_6'] = $res->prize_6;
+                        $new[$k][$t]['prize_7'] = $res->prize_7;
+                        $new[$k][$t]['prize_8'] = $res->prize_8;
+                        $new[$k][$t]['prize_9'] = $res->prize_9;
+                        $new[$k][$t]['board'] = $res->board;
+                        $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
+                        $t++;
+                    }
+
+                }else{
+                    $new[$k][$t]['lottery_region'] = $res->lottery_region;
+                    $new[$k][$t]['lottery_company'] = $res->lottery_company;
+                    $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+                    $new[$k][$t]['prize_1'] = $res->prize_1;
+                    $new[$k][$t]['prize_2'] = $res->prize_2;
+                    $new[$k][$t]['prize_3'] = $res->prize_3;
+                    $new[$k][$t]['prize_4'] = $res->prize_4;
+                    $new[$k][$t]['prize_5'] = $res->prize_5;
+                    $new[$k][$t]['prize_6'] = $res->prize_6;
+                    $new[$k][$t]['prize_7'] = $res->prize_7;
+                    $new[$k][$t]['prize_8'] = $res->prize_8;
+                    $new[$k][$t]['prize_9'] = $res->prize_9;
+                    $new[$k][$t]['board'] = $res->board;
+                    $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
+                    $t++;
+                }
+
+
+               /* if(){
+
+                }*/
+
+
             }
         }
 
@@ -366,22 +394,47 @@ class Results extends Controller
         $new = array();
         foreach ($result as $res){
             if($res->prize_1){
-                $k = $res->result_day_time->toDateTime()->format('d/m/y')   ;
-                $new[$k][$t]['lottery_region'] = $res->lottery_region;
-                $new[$k][$t]['lottery_company'] = $res->lottery_company;
-                $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
-                $new[$k][$t]['prize_1'] = $res->prize_1;
-                $new[$k][$t]['prize_2'] = $res->prize_2;
-                $new[$k][$t]['prize_3'] = $res->prize_3;
-                $new[$k][$t]['prize_4'] = $res->prize_4;
-                $new[$k][$t]['prize_5'] = $res->prize_5;
-                $new[$k][$t]['prize_6'] = $res->prize_6;
-                $new[$k][$t]['prize_7'] = $res->prize_7;
-                $new[$k][$t]['prize_8'] = $res->prize_8;
-                $new[$k][$t]['prize_9'] = $res->prize_9;
-                $new[$k][$t]['board'] = $res->board;
-                $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
-                $t++;
+                $k = $res->result_day_time->toDateTime()->format('d/m/y');
+                if(isset($new[$k]) && (count($new[$k]) > 0)){
+                    $id = searchForId($res->lottery_company, $new[$k]);
+                    if($id){
+                        Result::where('_id',$res->id)->first()->delete();
+
+                    }else{
+                        $new[$k][$t]['lottery_region'] = $res->lottery_region;
+                        $new[$k][$t]['lottery_company'] = $res->lottery_company;
+                        $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+                        $new[$k][$t]['prize_1'] = $res->prize_1;
+                        $new[$k][$t]['prize_2'] = $res->prize_2;
+                        $new[$k][$t]['prize_3'] = $res->prize_3;
+                        $new[$k][$t]['prize_4'] = $res->prize_4;
+                        $new[$k][$t]['prize_5'] = $res->prize_5;
+                        $new[$k][$t]['prize_6'] = $res->prize_6;
+                        $new[$k][$t]['prize_7'] = $res->prize_7;
+                        $new[$k][$t]['prize_8'] = $res->prize_8;
+                        $new[$k][$t]['prize_9'] = $res->prize_9;
+                        $new[$k][$t]['board'] = $res->board;
+                        $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
+                        $t++;
+                    }
+
+                }else{
+                    $new[$k][$t]['lottery_region'] = $res->lottery_region;
+                    $new[$k][$t]['lottery_company'] = $res->lottery_company;
+                    $new[$k][$t]['result_day_time'] = $res->result_day_time->toDateTime()->format('d/m/Y');
+                    $new[$k][$t]['prize_1'] = $res->prize_1;
+                    $new[$k][$t]['prize_2'] = $res->prize_2;
+                    $new[$k][$t]['prize_3'] = $res->prize_3;
+                    $new[$k][$t]['prize_4'] = $res->prize_4;
+                    $new[$k][$t]['prize_5'] = $res->prize_5;
+                    $new[$k][$t]['prize_6'] = $res->prize_6;
+                    $new[$k][$t]['prize_7'] = $res->prize_7;
+                    $new[$k][$t]['prize_8'] = $res->prize_8;
+                    $new[$k][$t]['prize_9'] = $res->prize_9;
+                    $new[$k][$t]['board'] = $res->board;
+                    $new[$k][$t]['day'] = $res->result_day_time->toDateTime()->format('l');
+                    $t++;
+                }
             }
         }
         $data['region'] = "xsmt";
