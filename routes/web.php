@@ -109,6 +109,11 @@ Route::post('admin/cron/tt/{region}', 'admin\CronManualController@cronButtonStar
 Route::post('admin/cron/tt/{region}', 'admin\CronManualController@cronButtonStart')->name('cron_xsmb')->middleware('auth');
 
 
+Route::get('admin/results/', 'admin\ResultsController@index')->name('results_index')->middleware('auth');
+Route::get('admin/results/{id}', 'admin\ResultsController@view')->name('results_view')->middleware('auth');
+//Route::post('admin/cron/tt/{region}', 'admin\CronManualController@cronButtonStart')->name('cron_xsmb')->middleware('auth');
+
+
 Route::get('/admin/home', function() {
     return view('admin/home');
 })->name('home')->middleware('auth');
