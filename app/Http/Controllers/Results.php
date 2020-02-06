@@ -794,9 +794,42 @@ class Results extends Controller
 
         $valuesViet = getVietlottValue($dayParams);
 
-        $list = dayWiseArray($day);
+        if ($day =='chu-nhat' || $day == 'thu-3' || $day == 'thu-5' || $day == 'thu-7' || $day == 'thu-2' || $day == 'thu-4' || $day == 'thu-6'){
+            if($day == 'thu-2') {
+                $list = dayWiseArray('thu-hai');
+                $day = 'thu-hai';
+            } else if($day == 'thu-4') {
+                $list = dayWiseArray('thu-tu');
+                $day = 'thu-tu';
+            } else if($day == 'thu-6') {
+                $list = dayWiseArray('thu-sau');
+                $day = 'thu-sau';
+            
+            } else if($day == 'thu-3') {
+                $list = dayWiseArray('thu-ba');
+                $day = 'thu-ba';
+            } else if($day == 'thu-5') {
+                $list = dayWiseArray('thu-nam');
+                $day = 'thu-nam';
+            } else if($day == 'thu-7') {
+                $list = dayWiseArray('thu-bay');
+                $day = 'thu-bay';
+            } else if($day == 'chu-nhat') {
+                $list = dayWiseArray('chu-nhat');
+                $day = 'chu-nhat';    
+            }
+
+            $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+        } else {
+            $list = dayWiseArray($day);
+            $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+        }
         $result = Result::where('lottery_region','Vietlott')->where('lottery_company', $valuesViet[0])->orderBy('result_day_time', 'desc')->paginate(21);
-        $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+
+        //old ode
+        //$list = dayWiseArray($day);
+        //$result = Result::where('lottery_region','Vietlott')->where('lottery_company', $valuesViet[0])->orderBy('result_day_time', 'desc')->paginate(21);
+        //$bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
         $new = array();
         $t = 0;
         foreach ($result as $res){
