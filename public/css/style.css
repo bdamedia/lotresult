@@ -2194,3 +2194,6 @@ td.circle-no {
     margin-left: 10px;
     position: relative;
 }
+.with-div-100{
+    width: 100%;
+}
