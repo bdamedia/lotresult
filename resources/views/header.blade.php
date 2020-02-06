@@ -183,6 +183,12 @@
                 </li>
                 <li><a href="/ket-qua-xsmt/kqxsmt-truc-tiep" title="Trực tiếp XSMT">- Trực tiếp XSMT</a></li>
 
+            
+                <li><a href="/ket-qua-vietlott" title="Trực tiếp XSMT">Vietlott</a></li>
+                <li><a href="/thong-ke-kqxs/thong-ke-lo" title="Trực tiếp XSMT">Thống kê</a></li>
+                <li><a href="/tin-xo-so" title="Trực tiếp XSMT">Tin tức</a></li>
+
+
                 <li class="btn-close"><i class="fa fa-times" aria-hidden="true"></i> Đóng danh mục</li>
             </ul>
         </div>

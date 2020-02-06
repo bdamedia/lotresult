@@ -1855,6 +1855,12 @@ table.livetn4 td.tn_prize div.output {
         font-size: 16px;
         font-weight: 400
     }
+    .fix-width-right {
+        width: 100%!important;
+    }
+    .form-doveso .form-group {
+        width: 100%;
+    }
 }
 @media (max-width: 600px) {
     .main-title h1 {
@@ -1871,6 +1877,12 @@ table.livetn4 td.tn_prize div.output {
     }
     .special-prize-sm {
         font-size: 22px
+    }
+    .fix-width-right {
+        width: 100%!important;
+    }
+    .form-doveso .form-group {
+        width: 100%;
     }
 }
 @media (max-width: 480px) {
@@ -1968,6 +1980,12 @@ table.livetn4 td.tn_prize div.output {
     }
     .lable-text {
         height: auto;
+    }
+    .fix-width-right {
+        width: 100%!important;
+    }
+    .form-doveso .form-group {
+        width: 100%;
     }
 }
 .fix-width-center {
@@ -2168,4 +2186,11 @@ td.circle-no {
 }
 .table-vietlot-new tr:last-child td span, .table-vietlot-new tr:nth-child(2) td span{
     color: black;
+}
+.power-detail ul li:last-child {
+    background-color: #FFF200;
+    color:#ED1C24;
+    border: 3px solid #FFF200;
+    margin-left: 10px;
+    position: relative;
 }
