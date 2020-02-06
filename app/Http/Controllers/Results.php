@@ -308,12 +308,12 @@ class Results extends Controller
             $dates = $request->input('page');
             $dates1 = Carbon::createFromFormat('!Y-m-d',$dates);
             $dates2 = Carbon::createFromFormat('!Y-m-d',$dates);
-            $dates2 = $dates2->subDay(4);
+            $dates2 = $dates2->subDay(7);
             $result = Result::where('lottery_region', 'XSMN')->where('result_day_time','>=',$dates2)->where('result_day_time','<',$dates1)->orderBy('result_day_time', 'desc')->get();
         }else{
             $date = Carbon::today()->format('Y-m-d');
             $dates2 = Carbon::createFromFormat("!Y-m-d",$date);
-            $dates2 = $dates2->subDay(4);
+            $dates2 = $dates2->subDay(7);
             $result = Result::where('lottery_region', 'XSMN')->where('result_day_time','>=',$dates2)->orderBy('result_day_time', 'desc')->get();
         }
        // $result = Result::where('lottery_region', 'XSMN')->where('result_day_time','>=',$dates1)->where('result_day_time','<',$dates2)->orderBy('result_day_time', 'desc')->get();
@@ -371,6 +371,7 @@ class Results extends Controller
 
             }
         }
+
         $data['region'] = "xsmn";
         $data['companyName'] = strtoupper("xsmn");
         $data['content'] = $new;
@@ -1071,7 +1072,7 @@ class Results extends Controller
         }
     }
 
-  
+
     public function loto2view(Request $request){
          //Dynamic date selection
         $duration = 10;
@@ -1129,12 +1130,12 @@ class Results extends Controller
                                     $lotto2[] = array_values((array) $mainValue);
                                 }
                             }
-                        }   
+                        }
 
-                    }    
+                    }
                 }
             }
-        }   
+        }
 
         //Final lotto 2 array
         if(!empty($lotto2)){
@@ -1146,7 +1147,7 @@ class Results extends Controller
                     }
                 }
             }
-        }   
+        }
        /* //Final special lotto 2 array
         foreach ($spclLott2Val as $newSpecialFullValue) {
             if(!empty($newSpecialFullValue)) {
