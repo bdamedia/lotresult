@@ -1046,9 +1046,16 @@ function searchForId($id, $array) {
 
 
 function getResultRegionByDayCompany($day,$region){
-    $dayName = date('l',strtotime($day));
+
     $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
-    $key = array_search($dayName,$bindArrayDay);
+    $key = array_search($day,$bindArrayDay);
+    if(isset($bindArrayDay[$key])){
+        $dayName = $day;
+    }else{
+        $dayName = date('l',strtotime($day));
+        $key = array_search($dayName,$bindArrayDay);
+    }
+
     $list = dayWiseArray($key);
     $all = RegionCompany::where('lottery_region',$region)->whereIn('lottery_company', $list)->get();
     return $all;

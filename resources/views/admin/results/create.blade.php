@@ -7,8 +7,10 @@
 
 
 @section('content_header')
+@section('plugins.Select2', true)
+@section('plugins.Sweetalert2', true)
 @section('css')
-    <link href="{{ asset('vendor/select2/css/select2.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/tagsinput.css') }}">
     <style>
         .select2-container {
             width: 100% !important;
@@ -17,10 +19,14 @@
         .select2-container .select2-selection--single {
             height: 38px;
         }
+        .bootstrap-tagsinput .badge {
+            margin: 4px 2px;
+            padding: 8px 8px;
+        }
     </style>
 @endsection
 @section('js')
-    <script src="{{ asset('vendor/select2/js/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/tagsinput.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('.region').select2();
@@ -46,6 +52,13 @@
                             );
                         }
                         $('.company').html($options).trigger('change');
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     })
                     .fail(function(jqXHR, ajaxOptions, thrownError)
                     {
@@ -53,6 +66,130 @@
                     });
             });
         });
+
+        $('#prize-1').tagsinput();
+        $('.inputTage').tagsinput();
+
+        $('#prize-9').on('beforeItemAdd', function(event) {
+            var tag = event.item;
+            if ($.isNumeric(tag)) {
+            }else{
+                event.cancel = true;
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Only Numeric value is Valid.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        });
+
+        $('#prize-2').on('beforeItemAdd', function(event) {
+            var tag = event.item;
+            if ($.isNumeric(tag)) {
+            }else{
+                event.cancel = true;
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Only Numeric value is Valid.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        });
+
+        $('#prize-3').on('beforeItemAdd', function(event) {
+            var tag = event.item;
+            if ($.isNumeric(tag)) {
+            }else{
+                event.cancel = true;
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Only Numeric value is Valid.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        });
+
+        $('#prize-4').on('beforeItemAdd', function(event) {
+            var tag = event.item;
+            if ($.isNumeric(tag)) {
+            }else{
+                event.cancel = true;
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Only Numeric value is Valid.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        });
+
+        $('#prize-5').on('beforeItemAdd', function(event) {
+            var tag = event.item;
+            if ($.isNumeric(tag)) {
+            }else{
+                event.cancel = true;
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Only Numeric value is Valid.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        });
+
+        $('#prize-6').on('beforeItemAdd', function(event) {
+            var tag = event.item;
+            if ($.isNumeric(tag)) {
+            }else{
+                event.cancel = true;
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Only Numeric value is Valid.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        });
+
+        $('#prize-7').on('beforeItemAdd', function(event) {
+            var tag = event.item;
+            if ($.isNumeric(tag)) {
+            }else{
+                event.cancel = true;
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Only Numeric value is Valid.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        });
+
+        $('#prize-8').on('beforeItemAdd', function(event) {
+            var tag = event.item;
+            if ($.isNumeric(tag)) {
+            }else{
+                event.cancel = true;
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Only Numeric value is Valid.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        });
+
     </script>
 
 @endsection
@@ -103,6 +240,70 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 1</label>
+                                <div class="col-lg-9">
+                                    <input type="text" id="prize-1" data-role="tagsinput" value="1232">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 2</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="inputTage" id="prize-2" data-role="tagsinput" value="1232">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 3</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="inputTage" id="prize-3" data-role="tagsinput" value="1232">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 4</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="inputTage" id="prize-4" data-role="tagsinput" value="1232">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 5</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="inputTage" id="prize-5" data-role="tagsinput" value="1232">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 6</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="inputTage" id="prize-6" data-role="tagsinput" value="1232">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 7</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="inputTage" id="prize-7" data-role="tagsinput" value="1232">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 8</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="inputTage" id="prize-8" data-role="tagsinput" value="1232">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 9</label>
+                                <div class="col-lg-9">
+                                    <input type="text" id="prize-9" data-role="tagsinput" value="1232">
+                                </div>
+                            </div>
+
                             {{--<div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Meta Title</label>
                                 <div class="col-lg-9">
