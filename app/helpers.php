@@ -1,7 +1,6 @@
 <?php
 
 use App\NewsModel;
-use Carbon\Carbon;
 use Goutte\Client;
 use App\Result;
 use App\RegionCompany;
@@ -1048,7 +1047,6 @@ function searchForId($id, $array) {
 
 function getResultRegionByDayCompany($day,$region){
     $dayName = date('l',strtotime($day));
-   // $dayName = $orig_date->toDateTime()->format('l');
     $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
     $key = array_search($dayName,$bindArrayDay);
     $list = dayWiseArray($key);
