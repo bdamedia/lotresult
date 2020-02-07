@@ -18,18 +18,6 @@
     </script>
 @endsection
 
-@section('js')
-    <script type="application/javascript">
-        function setDelete($url){
-            $('#DeleteForm').attr('action', $url);
-            $('#myModal').modal('show');
-            return false;
-        }
-        $(function () {
-            $("#usersTable").DataTable();
-        });
-    </script>
-@endsection
 
 @section('title', 'AdminLTE')
 
@@ -68,7 +56,7 @@
                                 <td class="has-action">
                                     <a href="/admin/results/{{ $news->id }}" title="Show Details"><i class="far fa-eye"></i></a>
                                     <a href="/admin/results/{{ $news->id }}/edit" title="Edit"><i class="far fa-edit"></i></a>
-                                    <a href="javascript:void(0)" title="Delete" onclick="setDelete('/admin/results/{{ $news->id }}')"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="javascript:void(0)" title="Delete" onclick="setDelete('/admin/results/{{ $news->id }}/delete')"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                             @php $count++; @endphp
@@ -97,7 +85,7 @@
                         Are you sure ?
                         <form id="DeleteForm" action="" method="post">
                             {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
+                            {{ method_field('POST') }}
                         </form>
                     </div>
                     <div class="modal-footer">
