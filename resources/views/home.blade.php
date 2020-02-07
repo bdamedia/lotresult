@@ -8,6 +8,9 @@
                 <div class="row">
                     @include('todayResult')
                     <div class="col-xs-12 {{ $region }}">
+
+                        @include('todayVietlottResult')
+        
                         @php $vietlottPower = 1; @endphp
                         @php $vietlottMega = 1; @endphp
                         @php $vietlott4d = 1; @endphp

@@ -128,9 +128,9 @@
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/ket-qua-vietlott/kqvietlott-mega-645" title="Thống kê lô">Mega 6/45</a></li>
+                                <li><a href="/ket-qua-vietlott/kqvietlott-max-4d" title="Thống kê 3 càng">Max 4D</a></li>
                                 <li><a href="/ket-qua-vietlott/kqvietlott-power-655" title="Thống kê lô gan">Power 6/55</a></li>
                                 <li><a href="/ket-qua-vietlott/kqvietlott-xo-so-max-3d" title="Thống kê 3 càng">Max 3D</a></li>
-                                <li><a href="/ket-qua-vietlott/kqvietlott-max-4d" title="Thống kê 3 càng">Max 4D</a></li>
                             </ul>
                         </div>
                     </li>
