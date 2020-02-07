@@ -2,10 +2,8 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('vendor/datatables/css/dataTables.bootstrap4.css') }}">
 @endsection
-
+@section('plugins.Datatables', true)
 @section('js')
-    <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script type="application/javascript">
         function setDelete($url){
             $('#DeleteForm').attr('action', $url);

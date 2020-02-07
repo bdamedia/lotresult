@@ -38,5 +38,13 @@ class ResultsController extends Controller
         return $res = getResultRegionByDayCompany($day,$region);
     }
 
+    public function edit(Request $request,$id){
+        $all = Result::where('_id',$id)->first();
+        $data['data'] = $all;
+        $regions = RegionCompany::orderBy('lottery_region','asc')->groupBy('lottery_region')->get();
+        $data['region'] = $regions;
+        return view('admin/results/edit')->with($data);
+    }
+
 
 }

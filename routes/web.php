@@ -113,6 +113,7 @@ Route::get('admin/results/', 'admin\ResultsController@index')->name('results_ind
 Route::get('admin/results/create', 'admin\ResultsController@create')->name('results_create')->middleware('auth');
 Route::get('admin/results/{id}', 'admin\ResultsController@view')->name('results_view')->middleware('auth');
 Route::post('admin/results/{id}/delete', 'admin\ResultsController@delete')->name('results_delete')->middleware('auth');
+Route::get('admin/results/{id}/edit', 'admin\ResultsController@edit')->name('results_edit')->middleware('auth');
 Route::post('admin/results/ajaxCompany', 'admin\ResultsController@ajaxCompany')->name('results_ajax')->middleware('auth');
 //Route::post('admin/cron/tt/{region}', 'admin\CronManualController@cronButtonStart')->name('cron_xsmb')->middleware('auth');
 
