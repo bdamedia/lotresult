@@ -68,6 +68,47 @@
 
     <h2 class="hide">Right side bar</h2>
 
+    <div class="hidden-xs hidden-sm item-menu border-margin" style="margin-top:10px">
+        <div class="title-item">
+            <h3 class="show-border-clor-left list_border"><a href="/ket-qua-vietlott">Xổ Số Điện Toán</a></h3></div>
+        <div class="content-item">
+            <ul>
+                <li><a href="/ket-qua-vietlott/kqvietlott-mega-645" title="XS Mega 6/45" class="text-black-bold">XS Mega 6/45</a>
+                    <ul class="sub-content">
+                        <li><a href="/ket-qua-vietlott/xs-mega-thu-4" title="XS Mega 6/45 thứ 4">Thứ 4</a></li>
+                        <li><a href="/ket-qua-vietlott/xs-mega-thu-6" title="XS Mega 6/45 thứ 6">Thứ 6</a></li>
+                        <li><a href="/ket-qua-vietlott/xs-mega-chu-nhat" title="XS Mega 6/45 chủ nhật">Chủ Nhật</a></li>
+                    </ul>
+                </li>
+                <li><a href="/ket-qua-vietlott/kqvietlott-max-4d" title="XS Max 4D" class="text-black-bold">XS Max 4D</a>
+                    <ul class="sub-content">
+                        <li><a href="/ket-qua-vietlott/xs-max-4d-thu-3" title="XS Max 4D thứ 3">Thứ 3</a></li>
+                        <li><a href="/ket-qua-vietlott/xs-max-4d-thu-5" title="XS Max 4D thứ 5">Thứ 5</a></li>
+                        <li><a href="/ket-qua-vietlott/xs-max-4d-thu-7" title="XS Max 4D thứ 7">Thứ 7</a></li>
+                    </ul>
+                </li>
+                <li><a href="/ket-qua-vietlott/kqvietlott-power-655" title="XS Power 6/55" class="text-black-bold">XS Power 6/55</a>
+                    <ul class="sub-content">
+                        <li><a href="/ket-qua-vietlott/power-655-thu-3" title="XS Power thứ 3">Thứ 3</a></li>
+                        <li><a href="/ket-qua-vietlott/power-655-thu-5" title="XS Power thứ 5">Thứ 5</a></li>
+                        <li><a href="/ket-qua-vietlott/power-655-thu-7" title="XS Power thứ 7">Thứ 7</a></li>
+                    </ul>
+                </li>
+                <li><a href="/ket-qua-vietlott/kqvietlott-xo-so-max-3d" title="XS Max 3D" class="text-black-bold">XS Max 3D</a>
+                    <ul class="sub-content">
+                        <li><a href="/ket-qua-vietlott/xs-max-3d-thu-2" title="XS Max 3D thứ 2">Thứ 2</a></li>
+                        <li><a href="/ket-qua-vietlott/xs-max-3d-thu-4" title="XS Max 3D thứ 4">Thứ 4</a></li>
+                        <li><a href="/ket-qua-vietlott/xs-max-3d-thu-6" title="XS Max 3D thứ 6">Thứ 6</a></li>
+                    </ul>
+                </li>
+                <!-- <li><a href="/xo-so-dien-toan-6x36.html" title="XS Điện toán 6x36" class="text-black-bold">XS Điện toán 6x36</a></li>
+                <li><a href="/xo-so-dien-toan-123.html" title="XS Điện toán 123" class="text-black-bold">XS Điện toán 123</a></li>
+                <li><a href="/xo-so-than-tai.html" title="XS Thần tài 4" class="text-black-bold">XS Thần tài 4</a></li> -->
+            </ul>
+        </div>
+    </div>
+
+
     <div class="item-menu border-margin margin-top-setting">
         <div class="title-item"><h3 class="show-border-clor-left list_border"><a href="#">Dò vé số - May mắn mỗi ngày</a></h3></div>
         <div class="form-doveso">

@@ -8,7 +8,15 @@
                 <div class="row">
                     @include('todayResult')
                     <div class="col-xs-12 {{ $region }}">
-                                                @php $g = 1;  $tr ='<tr>'; @endphp
+
+                        @include('todayVietlottResult')
+        
+                        @php $vietlottPower = 1; @endphp
+                        @php $vietlottMega = 1; @endphp
+                        @php $vietlott4d = 1; @endphp
+                        @php $vietlott3d = 1; @endphp
+
+                        @php $g = 1;  $tr ='<tr>'; @endphp
                         @foreach($content as $key=>$printresult)
                             {{--{{ $key }}--}}
                             @php $date = $key; @endphp
@@ -177,19 +185,19 @@
                                     @php $tdr8 = '<td class="'.key($prize_9).'" style="width: 15%">'.key($prize_9).'</td>'; @endphp
                                 @else
                                     @php $current = current($printresult);  @endphp
-
                                     <!-- {{$current['lottery_company']}}     -->  
-
-                                    @if($current['lottery_company'] == 'Power 6/55')
+                                    @if($current['lottery_company'] == 'Power 6/55' && $vietlottPower == 1)
                                         @include('vietlottPower')
-                                    @elseif($current['lottery_company'] == 'XS Mega')
+                                        @php $vietlottPower = 2; @endphp
+                                    @elseif($current['lottery_company'] == 'XS Mega'  && $vietlottMega == 1)
                                         @include('vietlottMega')
-                                    @elseif($current['lottery_company'] == 'XS Max 4D') 
+                                        @php $vietlottMega = 2; @endphp
+                                    @elseif($current['lottery_company'] == 'XS Max 4D' && $vietlott4d == 1) 
                                         @include('vietlott4d')
-                                    @elseif($current['lottery_company'] == 'XS Max 3D') 
+                                        @php $vietlott4d = 2; @endphp
+                                    @elseif($current['lottery_company'] == 'XS Max 3D' && $vietlott3d == 1) 
                                         @include('vietlott3d')
-                                    @else
-                                        @include('vietlott3d')
+                                        @php $vietlott3d = 2; @endphp
                                     @endif
                                     
                               @endif    

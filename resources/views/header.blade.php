@@ -107,7 +107,7 @@
                         </div>
                     </li>
                     
-                    <li class="list_border last-ul-value-second  @php if(in_array('ket-qua-xo-so-mien-trung',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xo-so-mien-trung" title="XSMT">XSMT</a>
+                    <li class="list_border last-ul-value-second  @php if(in_array('ket-qua-xsmt',$reload)){ echo "active"; } @endphp"><a href="/ket-qua-xsmt" title="XSMT">XSMT</a>
 
                         <div class="menu-lv2-down">
                             <ul>
@@ -128,9 +128,9 @@
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/ket-qua-vietlott/kqvietlott-mega-645" title="Thống kê lô">Mega 6/45</a></li>
+                                <li><a href="/ket-qua-vietlott/kqvietlott-max-4d" title="Thống kê 3 càng">Max 4D</a></li>
                                 <li><a href="/ket-qua-vietlott/kqvietlott-power-655" title="Thống kê lô gan">Power 6/55</a></li>
                                 <li><a href="/ket-qua-vietlott/kqvietlott-xo-so-max-3d" title="Thống kê 3 càng">Max 3D</a></li>
-                                <li><a href="/ket-qua-vietlott/kqvietlott-max-4d" title="Thống kê 3 càng">Max 4D</a></li>
                             </ul>
                         </div>
                     </li>
@@ -182,6 +182,12 @@
 
                 </li>
                 <li><a href="/ket-qua-xsmt/kqxsmt-truc-tiep" title="Trực tiếp XSMT">- Trực tiếp XSMT</a></li>
+
+            
+                <li><a href="/ket-qua-vietlott" title="Trực tiếp XSMT">Vietlott</a></li>
+                <li><a href="/thong-ke-kqxs/thong-ke-lo" title="Trực tiếp XSMT">Thống kê</a></li>
+                <li><a href="/tin-xo-so" title="Trực tiếp XSMT">Tin tức</a></li>
+
 
                 <li class="btn-close"><i class="fa fa-times" aria-hidden="true"></i> Đóng danh mục</li>
             </ul>

@@ -355,7 +355,7 @@ $gh = count($content[$key]);
                 var D = Date.parse(page);
                 var date = new Date(D);
                 var newDate = new Date(date.getFullYear(),date.getMonth(),date.getDate());
-                newDate = new Date(newDate.setDate(newDate.getDate()-4));
+                newDate = new Date(newDate.setDate(newDate.getDate()-7));
                 $('#loadmore').attr('data-date',newDate.getFullYear()+'-'+(newDate.getMonth()+1)+'-'+newDate.getDate());
             })
             .fail(function(jqXHR, ajaxOptions, thrownError)
