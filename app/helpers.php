@@ -308,7 +308,7 @@ function crawlUrlModifiedVitXoSoPower($url=null){
             $megadetailValue[] = $value->nodeValue ? array_filter(explode(',',preg_replace('/\s+/', ',',  $value->nodeValue))) : '';
         }
     }
-    
+
     $res = [];
     $i = 0;
     foreach ($links as $link){
@@ -339,7 +339,7 @@ function crawlUrlModifiedVitXoSoPower($url=null){
                 }
             }
         }
-            
+
         if(count($res1) > 0){
                 $res[]['data'] = $res1;
                 if(isset($dateReturn[$i])){
@@ -360,7 +360,7 @@ function crawlUrlModifiedVitXoSoPower($url=null){
                 //$res[0]['titleItem'] = $titleItem;
                 if(isset($dateReturn[$i])){
                     $res[$i]['data']['board'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
-                }               
+                }
             $i++;
         }
     }
@@ -429,7 +429,7 @@ function crawlUrlModifiedVitXoSoMega($url=null){
             $megadetailValue[] = $value->nodeValue ? array_filter(explode(',',preg_replace('/\s+/', ',',  $value->nodeValue))) : ''; //$value->nodeValue;
         }
     }
-    
+
     $res = [];
     $i = 0;
     foreach ($links as $link){
@@ -461,7 +461,7 @@ function crawlUrlModifiedVitXoSoMega($url=null){
                 }
             }
         }
-            
+
         if(count($res1) > 0){
                 $res[]['data'] = $res1;
                 if(isset($dateReturn[$i])){
@@ -481,7 +481,7 @@ function crawlUrlModifiedVitXoSoMega($url=null){
                 $res[$i]['data']['titleItem'] = $titleItem;
                 if(isset($dateReturn[$i])){
                     $res[$i]['data']['board'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
-                }               
+                }
             $i++;
         }
     }
@@ -634,7 +634,7 @@ function getRegionsCompanyVitlot(){
         foreach ($regionName1 as $res1){
             $gf = $res1->getElementsByTagName('a');
 
-            foreach ($gf as $rf){ 
+            foreach ($gf as $rf){
                  $name = explode('-', $rf->getAttribute('href') );
                 $companyRegion[$t]['name'] = strtoupper(str_replace('/','',str_replace('Xổ Số ','',$rf->nodeValue)));
                 $companyRegion[$t]['url'] = $rf->getAttribute('href');
@@ -1042,4 +1042,22 @@ function searchForId($id, $array) {
         }
     }
     return null;
+}
+
+
+function getResultRegionByDayCompany($day,$region){
+
+    $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+    $key = array_search($day,$bindArrayDay);
+    if(isset($bindArrayDay[$key])){
+        $dayName = $day;
+    }else{
+        $dayName = date('l',strtotime($day));
+        $key = array_search($dayName,$bindArrayDay);
+    }
+
+    $list = dayWiseArray($key);
+    $all = RegionCompany::where('lottery_region',$region)->whereIn('lottery_company', $list)->get();
+    return $all;
+
 }

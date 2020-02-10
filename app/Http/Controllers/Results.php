@@ -59,17 +59,22 @@ class Results extends Controller
                 $t= "prize_{$it}";
                 //Decode json into array of each prize
                 $fNewResult = json_decode($print_result->{$t});
-                foreach ($fNewResult as $keyValues => $mainValue) {
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    if($fNewResult) {
+                        if(is_array($fNewResult)) {
+                            foreach ($fNewResult as $keyValues => $mainValue) {
+                                if (is_array($mainValue)) {
+                                    $lot3Val[] = array_values((array)$mainValue);
 
-                    if(is_array($mainValue)) {
-                        $lot3Val[] = array_values((array) $mainValue);
-
-                    } else if ($keyValues == 'Mã ĐB') {
-                        $specialLot3Val[] = array_values((array) $mainValue);
-                    }else if ($keyValues == 'G.DB') {
-                        $specialLot3Val[] = array_values((array) $mainValue);
-                    } else {
-                        $lot3Val[] = array_values((array) $mainValue);
+                                } else if ($keyValues == 'Mã ĐB') {
+                                    $specialLot3Val[] = array_values((array)$mainValue);
+                                } else if ($keyValues == 'G.DB') {
+                                    $specialLot3Val[] = array_values((array)$mainValue);
+                                } else {
+                                    $lot3Val[] = array_values((array)$mainValue);
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -303,12 +308,12 @@ class Results extends Controller
             $dates = $request->input('page');
             $dates1 = Carbon::createFromFormat('!Y-m-d',$dates);
             $dates2 = Carbon::createFromFormat('!Y-m-d',$dates);
-            $dates2 = $dates2->subDay(4);
+            $dates2 = $dates2->subDay(7);
             $result = Result::where('lottery_region', 'XSMN')->where('result_day_time','>=',$dates2)->where('result_day_time','<',$dates1)->orderBy('result_day_time', 'desc')->get();
         }else{
             $date = Carbon::today()->format('Y-m-d');
             $dates2 = Carbon::createFromFormat("!Y-m-d",$date);
-            $dates2 = $dates2->subDay(4);
+            $dates2 = $dates2->subDay(7);
             $result = Result::where('lottery_region', 'XSMN')->where('result_day_time','>=',$dates2)->orderBy('result_day_time', 'desc')->get();
         }
        // $result = Result::where('lottery_region', 'XSMN')->where('result_day_time','>=',$dates1)->where('result_day_time','<',$dates2)->orderBy('result_day_time', 'desc')->get();
@@ -366,6 +371,7 @@ class Results extends Controller
 
             }
         }
+
         $data['region'] = "xsmn";
         $data['companyName'] = strtoupper("xsmn");
         $data['content'] = $new;
@@ -789,9 +795,42 @@ class Results extends Controller
 
         $valuesViet = getVietlottValue($dayParams);
 
-        $list = dayWiseArray($day);
+        if ($day =='chu-nhat' || $day == 'thu-3' || $day == 'thu-5' || $day == 'thu-7' || $day == 'thu-2' || $day == 'thu-4' || $day == 'thu-6'){
+            if($day == 'thu-2') {
+                $list = dayWiseArray('thu-hai');
+                $day = 'thu-hai';
+            } else if($day == 'thu-4') {
+                $list = dayWiseArray('thu-tu');
+                $day = 'thu-tu';
+            } else if($day == 'thu-6') {
+                $list = dayWiseArray('thu-sau');
+                $day = 'thu-sau';
+            
+            } else if($day == 'thu-3') {
+                $list = dayWiseArray('thu-ba');
+                $day = 'thu-ba';
+            } else if($day == 'thu-5') {
+                $list = dayWiseArray('thu-nam');
+                $day = 'thu-nam';
+            } else if($day == 'thu-7') {
+                $list = dayWiseArray('thu-bay');
+                $day = 'thu-bay';
+            } else if($day == 'chu-nhat') {
+                $list = dayWiseArray('chu-nhat');
+                $day = 'chu-nhat';    
+            }
+
+            $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+        } else {
+            $list = dayWiseArray($day);
+            $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+        }
         $result = Result::where('lottery_region','Vietlott')->where('lottery_company', $valuesViet[0])->orderBy('result_day_time', 'desc')->paginate(21);
-        $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+
+        //old ode
+        //$list = dayWiseArray($day);
+        //$result = Result::where('lottery_region','Vietlott')->where('lottery_company', $valuesViet[0])->orderBy('result_day_time', 'desc')->paginate(21);
+        //$bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
         $new = array();
         $t = 0;
         foreach ($result as $res){
@@ -956,6 +995,7 @@ class Results extends Controller
         $data['companyName'] = $region;
         $data['content'] = $new;
         $data['enableTab'] = true;
+        $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
         return view('allCompanyDate')->with($data);
     }
     public function dateLoto(Request $request,$day){
@@ -1065,7 +1105,7 @@ class Results extends Controller
         }
     }
 
-  
+
     public function loto2view(Request $request){
          //Dynamic date selection
         $duration = 10;
@@ -1123,12 +1163,12 @@ class Results extends Controller
                                     $lotto2[] = array_values((array) $mainValue);
                                 }
                             }
-                        }   
+                        }
 
-                    }    
+                    }
                 }
             }
-        }   
+        }
 
         //Final lotto 2 array
         if(!empty($lotto2)){
@@ -1140,7 +1180,7 @@ class Results extends Controller
                     }
                 }
             }
-        }   
+        }
        /* //Final special lotto 2 array
         foreach ($spclLott2Val as $newSpecialFullValue) {
             if(!empty($newSpecialFullValue)) {

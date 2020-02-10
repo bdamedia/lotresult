@@ -107,7 +107,7 @@
         } 
     @endphp
         
-    <div class="list-link backgroud-hide">
+    <div class="list-link left100 backgroud-hide">
         <h2 class="class-title-list-link class-title-list-link-left">
             @php $dayName = $current['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$current['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
             <a href="/{{ getRegionSlug($current['lottery_region']) }}" title="{{ $current['lottery_region'] }}" class="u-line">
@@ -126,7 +126,7 @@
     </div>
 
     <p class="para text-black-bold">Kỳ 549: Chủ Nhật, {{ $current['result_day_time'] }}</p>
-    <div class="mega-detail mega-detail-new">
+    <div class="power-detail">
         <ul>
            @php if($boards){ 
                 for($m = 0; $m < 7; $m++) {
