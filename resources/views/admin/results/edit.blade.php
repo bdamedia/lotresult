@@ -220,7 +220,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Select Region</label>
                                 <div class="col-lg-9">
-
+{{ print_r($region) }}
                                     <select class="region" name="region">
                                         <option>Select Region</option>
                                         @foreach($region as $val)
@@ -233,7 +233,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Select Region</label>
                                 <div class="col-lg-9">
-                                @php $res = getResultRegionByDayCompany($data->result_day_time->toDateTime()->format('l'),strtoupper($data->lottery_region)); @endphp
+                                @php $a=''; $res = getResultRegionByDayCompany($data->result_day_time->toDateTime()->format('l'),strtoupper($data->lottery_region)); @endphp
                                     <select class="company" name="company">
                                         @foreach($res as $val1)
                                         <option @php  if(strtoupper($data->lottery_company) == strtoupper($val1->lottery_company)){ echo "selected"; } @endphp value="{{ $val1->lottery_company }}" >{{ $val1->lottery_company_names }}</option>
@@ -245,63 +245,180 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 1</label>
                                 <div class="col-lg-9">
-                                    <input type="text" id="prize-1" data-role="tagsinput" value="1232">
+                                  {{--  @php if($data->prize_1){
+                                             $p1 =  json_decode($data->prize_1);
+                                    }
+                        $a='';
+if(is_array((array) $p1) && count((array)$p1) > 0){
+    foreach($p1 as $p1v){
+         foreach($p1v as $p1av){
+            $a = $a.','.$p1av;
+        }
+    }
+}else{
+  //  $a = $p1v;
+}  @endphp
+                                    <input type="text" id="prize-1" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 2</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-2" data-role="tagsinput" value="1232">
+                                    @php if($data->prize_2){
+                                             $p1 =  json_decode($data->prize_2);
+                                    }
+                        $a='';
+if(is_array((array) $p1) && count((array)$p1) > 0){
+    foreach($p1 as $p1v){
+         foreach($p1v as $p1av){
+            $a = $a.','.$p1av;
+        }
+    }
+}else{
+  //  $a = $p1v;
+}  @endphp
+                                    <input type="text" class="inputTage" id="prize-2" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 3</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-3" data-role="tagsinput" value="1232">
+                                    @php if($data->prize_3){
+                                             $p1 =  json_decode($data->prize_3);
+                                    }
+                        $a='';
+if(is_array((array) $p1) && count((array)$p1) > 0){
+    foreach($p1 as $p1v){
+         foreach($p1v as $p1av){
+            $a = $a.','.$p1av;
+        }
+    }
+}else{
+  //  $a = $p1v;
+}  @endphp
+                                    <input type="text" class="inputTage" id="prize-3" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 4</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-4" data-role="tagsinput" value="1232">
+                                    @php if($data->prize_4){
+                                             $p1 =  json_decode($data->prize_4);
+                                    }
+                        $a='';
+if(is_array((array) $p1) && count((array)$p1) > 0){
+    foreach($p1 as $p1v){
+         foreach($p1v as $p1av){
+            $a = $a.','.$p1av;
+        }
+    }
+}else{
+  //  $a = $p1v;
+}  @endphp
+                                    <input type="text" class="inputTage" id="prize-4" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 5</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-5" data-role="tagsinput" value="1232">
+                                    @php if($data->prize_5){
+                                             $p1 =  json_decode($data->prize_5);
+                                    }
+                        $a='';
+if(is_array((array) $p1) && count((array)$p1) > 0){
+    foreach($p1 as $p1v){
+         foreach($p1v as $p1av){
+            $a = $a.','.$p1av;
+        }
+    }
+}else{
+  //  $a = $p1v;
+}  @endphp
+                                    <input type="text" class="inputTage" id="prize-5" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 6</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-6" data-role="tagsinput" value="1232">
+                                    @php if($data->prize_6){
+                                             $p1 =  json_decode($data->prize_6);
+                                    }
+                        $a='';
+if(is_array((array) $p1) && count((array)$p1) > 0){
+    foreach($p1 as $p1v){
+         foreach($p1v as $p1av){
+            $a = $a.','.$p1av;
+        }
+    }
+}else{
+  //  $a = $p1v;
+}  @endphp
+                                    <input type="text" class="inputTage" id="prize-6" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 7</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-7" data-role="tagsinput" value="1232">
+                                    @php if($data->prize_7){
+                                             $p1 =  json_decode($data->prize_7);
+                                    }
+                        $a='';
+if(is_array((array) $p1) && count((array)$p1) > 0){
+    foreach($p1 as $p1v){
+         foreach($p1v as $p1av){
+            $a = $a.','.$p1av;
+        }
+    }
+}else{
+  //  $a = $p1v;
+}  @endphp
+                                    <input type="text" class="inputTage" id="prize-7" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 8</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-8" data-role="tagsinput" value="1232">
+                                    @php if($data->prize_8){
+                                             $p1 =  json_decode($data->prize_8);
+                                    }
+                        $a='';
+if(is_array((array) $p1) && count((array)$p1) > 0){
+    foreach($p1 as $p1v){
+         foreach($p1v as $p1av){
+            $a = $a.','.$p1av;
+        }
+    }
+}else{
+  //  $a = $p1v;
+}  @endphp
+                                    <input type="text" class="inputTage" id="prize-8" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 9</label>
                                 <div class="col-lg-9">
-                                    <input type="text" id="prize-9" data-role="tagsinput" value="1232">
+                                    @php if($data->prize_9){
+                                             $p1 =  json_decode($data->prize_9);
+                                    }
+                        $a='';
+if(is_array((array) $p1) && count((array)$p1) > 0){
+    foreach($p1 as $p1v){
+         foreach($p1v as $p1av){
+            $a = $a.','.$p1av;
+        }
+    }
+}else{
+  //  $a = $p1v;
+}  @endphp--}}
+                                    <input type="text" id="prize-9" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
