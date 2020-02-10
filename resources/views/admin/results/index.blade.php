@@ -46,6 +46,8 @@
                         @php $count = 1; @endphp
 
                         @foreach($data as $news)
+
+                            @php if(($news->lottery_region != 'XSMB') && ($news->lottery_region == $news->lottery_company)) { continue; }@endphp
                             <tr>
                                 <td>{{ $count }}</td>
                                 <td>{{ $news->lottery_region }}</td>
