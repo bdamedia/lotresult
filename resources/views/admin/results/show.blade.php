@@ -627,12 +627,12 @@
                     <div class="mega-detail">
                         <ul>
                             @php if($board){
-                for($m = 0; $m < 5; $m++) {
-                     foreach($board as $kk=>$bb) {
-                         echo "<li>".$board[$kk][$m]."</li>";
-                     }
-                }
-            }
+                                for($m = 0; $m < 5; $m++) {
+                                     foreach($board as $kk=>$bb) {
+                                         echo "<li>".$board[$kk][$m]."</li>";
+                                     }
+                                }
+                            }
                             @endphp
                         </ul>
                     </div>

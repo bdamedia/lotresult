@@ -9,6 +9,7 @@ class Result extends Eloquent
 {
     protected $connection = 'mongodb';
     protected $collection = 'results';
+    protected $guarded = [];
 
 
 }
