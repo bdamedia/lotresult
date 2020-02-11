@@ -78,7 +78,7 @@
         <h1>{{ $title }} {{ $current['lottery_company'] }} ngày {{ $current['result_day_time'] }}</h1>
     </div>
 
-    @php    
+    @php
         if($prize_6) {
             echo '<div class="result-jackpot">
                 <div class="head-result">
@@ -89,9 +89,9 @@
                 </div>
             </div>
             <p class="para open-next">' . $prize_8->titleItem .'</p>';
-        } 
+        }
     @endphp
-        
+
     <div class="list-link backgroud-hide">
         <h2 class="class-title-list-link class-title-list-link-left">
             @php $dayName = $current['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$current['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
@@ -102,7 +102,7 @@
             <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ preg_replace('/\s+/', '-', strtolower($current['lottery_company'])) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ engToVit($current['day'])  }}" class="u-line">
                 {{ $current['lottery_company'] }} {{ engToVit($current['day'])  }}
             </a><span> » </span>
-            <a href="/ket-qua-vietlott-new/{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line"> 
+            <a href="/ket-qua-vietlott-new/{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line">
                  {{ $current['lottery_company'] }} {{ $current['result_day_time'] }}
             </a>
 
@@ -112,7 +112,7 @@
     <p class="para text-black-bold">Kỳ 549: Chủ Nhật, {{ $current['result_day_time'] }}</p>
     <div class="mega-detail">
         <ul>
-           @php if($boards){ 
+           @php if($boards){
                 for($m = 0; $m < 5; $m++) {
                      foreach($boards as $kk=>$bb) {
                          echo "<li>".$boards[$kk][$m]."</li>";
@@ -123,7 +123,7 @@
         </ul>
     </div>
     <p class="text-sm">Các con số dự thưởng phải trùng với số kết quả nhưng không cần theo đúng thứ tự</p>
-   
+
     <div class="prize-detail">
         <table class="table table-bordered table-striped table-{{ strtolower($lot["lottery_region"]) }} text-table livetn3">
             <thead>
@@ -165,40 +165,4 @@
     </div>
     <hr class="line-header"/>
 
-
-    {{--<p class="text-right margin-10 hidden-xs hidden-sm">
-        <a href="/in-ve-do.html" data-date="13-12-2019" data-groupname="xsmb" class="btn btn-danger btn-invedo"
-           role="button">In Vé Dò</a>
-    </p>--}}
-
-    {{--<div class="block-main-content view-loto">
-        <p class="padding10">
-            <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ getRegionLotoSlug($current['lottery_region']) }}"  class="u-line">Lô tô {{ $current['lottery_region'] }}</a><span> » </span>
-            <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ getRegionLotoSlug($current['lottery_region']) }}/kqlt{{ substr(strtolower($current['lottery_region']),2,4) }}-{{ $dayName   }}" title="{{ $current['lottery_region'] }}  {{ $current['day'] }}" class="u-line">Lô tô  {{ $current['lottery_region'] }} {{ engToVit($current['day']) }} </a>
-        </p>
-        <table class="table table-bordered table-loto">
-            <tbody>
-            <tr>
-                <th class="col-md-2" style="width: 10%;">Đầu</th>
-
-                @php if($th){ echo $th; }else{ echo "<th> Lô tô  </th>"; } @endphp
-
-            </tr>
-
-            @php $value = []; @endphp
-            @php
-
-                for($m = 0; $m < 10; $m++)
-                {
-                  echo "<tr>";
-                  echo "<td class='show_center'>".$m."</td>";
-                     foreach($boards as $kk=>$bb)
-                     {
-                         echo "<td>".$boards[$kk][$m]."</td>";
-                     }
-                     echo "</tr>";
-                 }
-            @endphp
-            </tbody></table>
-    </div>--}}
 </div>

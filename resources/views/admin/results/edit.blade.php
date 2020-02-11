@@ -220,7 +220,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Select Region</label>
                                 <div class="col-lg-9">
-{{ print_r($region) }}
+
                                     <select class="region" name="region">
                                         <option>Select Region</option>
                                         @foreach($region as $val)
@@ -231,12 +231,23 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Select Region</label>
+                                <label class="col-lg-3 col-form-label form-control-label">Select Company</label>
                                 <div class="col-lg-9">
-                                @php $a=''; $res = getResultRegionByDayCompany($data->result_day_time->toDateTime()->format('l'),strtoupper($data->lottery_region)); @endphp
+                                @php $a=''; $res = getResultRegionByDayCompany($data->result_day_time->toDateTime()->format('l'),strtoupper($data->lottery_region));  @endphp
                                     <select class="company" name="company">
                                         @foreach($res as $val1)
-                                        <option @php  if(strtoupper($data->lottery_company) == strtoupper($val1->lottery_company)){ echo "selected"; } @endphp value="{{ $val1->lottery_company }}" >{{ $val1->lottery_company_names }}</option>
+                                            @php
+                                                if($data->lottery_region == 'Vietlott'){ @endphp
+                                                    <option @php  if($data->lottery_company == str_replace('Xổ Số','XS',$val1->lottery_company_name)){ echo "selected"; } @endphp value="{{ $val1->lottery_company }}" >{{ $val1->lottery_company_names }}</option>
+
+                                            @php
+                                            }else{
+                                            @endphp
+                                            <option @php  if(strtoupper($data->lottery_company) == strtoupper($val1->lottery_company)){ echo "selected"; } @endphp value="{{ $val1->lottery_company }}" >{{ $val1->lottery_company_names }}</option>
+                                            @php
+                                            }
+
+                                            @endphp
                                         @endforeach
                                     </select>
                                 </div>
@@ -245,7 +256,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 1</label>
                                 <div class="col-lg-9">
-                                  {{--  @php if($data->prize_1){
+                                    @php if($data->prize_1){
                                              $p1 =  json_decode($data->prize_1);
                                     }
                         $a='';
@@ -417,7 +428,7 @@ if(is_array((array) $p1) && count((array)$p1) > 0){
     }
 }else{
   //  $a = $p1v;
-}  @endphp--}}
+}  @endphp
                                     <input type="text" id="prize-9" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
