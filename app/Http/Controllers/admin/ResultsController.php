@@ -18,6 +18,7 @@ class ResultsController extends Controller
     public function view(Request $request,$id){
         $all = Result::where('_id',$id)->first();
         $data['data'] = $all;
+        $data['day'] = engToVit($all->result_day_time->toDateTime()->format('l'));
         return view('admin/results/show')->with($data);
     }
 
