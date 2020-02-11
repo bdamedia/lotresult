@@ -269,7 +269,7 @@ if(is_array((array) $p1) && count((array)$p1) > 0){
 }else{
   //  $a = $p1v;
 }  @endphp
-                                    <input type="text" id="prize-1" data-role="tagsinput" value="{{ $a }}">
+                                    <input type="text" id="prize-1" name="prize-1" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
@@ -289,7 +289,7 @@ if(is_array((array) $p1) && count((array)$p1) > 0){
 }else{
   //  $a = $p1v;
 }  @endphp
-                                    <input type="text" class="inputTage" id="prize-2" data-role="tagsinput" value="{{ $a }}">
+                                    <input type="text" class="inputTage" id="prize-2" name="prize-2" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
@@ -309,7 +309,7 @@ if(is_array((array) $p1) && count((array)$p1) > 0){
 }else{
   //  $a = $p1v;
 }  @endphp
-                                    <input type="text" class="inputTage" id="prize-3" data-role="tagsinput" value="{{ $a }}">
+                                    <input type="text" class="inputTage" id="prize-3" name="prize-3" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
@@ -329,7 +329,7 @@ if(is_array((array) $p1) && count((array)$p1) > 0){
 }else{
   //  $a = $p1v;
 }  @endphp
-                                    <input type="text" class="inputTage" id="prize-4" data-role="tagsinput" value="{{ $a }}">
+                                    <input type="text" class="inputTage" id="prize-4" name="prize-4" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
@@ -349,7 +349,7 @@ if(is_array((array) $p1) && count((array)$p1) > 0){
 }else{
   //  $a = $p1v;
 }  @endphp
-                                    <input type="text" class="inputTage" id="prize-5" data-role="tagsinput" value="{{ $a }}">
+                                    <input type="text" class="inputTage" id="prize-5" name="prize-5" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
@@ -369,7 +369,7 @@ if(is_array((array) $p1) && count((array)$p1) > 0){
 }else{
   //  $a = $p1v;
 }  @endphp
-                                    <input type="text" class="inputTage" id="prize-6" data-role="tagsinput" value="{{ $a }}">
+                                    <input type="text" class="inputTage" id="prize-6" name="prize-6" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
@@ -389,7 +389,7 @@ if(is_array((array) $p1) && count((array)$p1) > 0){
 }else{
   //  $a = $p1v;
 }  @endphp
-                                    <input type="text" class="inputTage" id="prize-7" data-role="tagsinput" value="{{ $a }}">
+                                    <input type="text" class="inputTage" id="prize-7" name="prize-7" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
@@ -409,7 +409,7 @@ if(is_array((array) $p1) && count((array)$p1) > 0){
 }else{
   //  $a = $p1v;
 }  @endphp
-                                    <input type="text" class="inputTage" id="prize-8" data-role="tagsinput" value="{{ $a }}">
+                                    <input type="text" class="inputTage" id="prize-8" name="prize-8" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
@@ -429,7 +429,7 @@ if(is_array((array) $p1) && count((array)$p1) > 0){
 }else{
   //  $a = $p1v;
 }  @endphp
-                                    <input type="text" id="prize-9" data-role="tagsinput" value="{{ $a }}">
+                                    <input type="text" id="prize-9" name="prize-9" data-role="tagsinput" value="{{ $a }}">
                                 </div>
                             </div>
 
