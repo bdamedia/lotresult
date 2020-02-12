@@ -38,7 +38,12 @@
                     @elseif($data->lottery_region == 'Vietlott') 
                         {{ "/ket-qua-vietlott/kqvietlott-" }}{{ $data->lottery_company_slug }}  
                     @endif">
-                    <span id="cache1" style="">{{ $data->lottery_company_names }}</span>
+
+                     @php if($data->lottery_region == 'Vietlott') { @endphp
+                        <span id="cache1" style="">{{getVietlottText($data->lottery_company_slug)}}</span>
+                    @php } else { @endphp
+                        <span id="cache1" style="">{{ $data->lottery_company_names }}</span>
+                    @php } @endphp
                 </a>
             </div>
         </div>
