@@ -10,7 +10,7 @@
                     <div class="col-xs-12 {{ $region }}">
 
                         @include('todayVietlottResult')
-        
+
                         @php $vietlottPower = 1; @endphp
                         @php $vietlottMega = 1; @endphp
                         @php $vietlott4d = 1; @endphp
@@ -59,9 +59,9 @@
                                       }
 
                                 @endphp
-                                   
+
                                 @if($lot["lottery_region"] != 'Vietlott')
-                                
+
                                     @php $prize_1 = json_decode($lot['prize_1']); @endphp
                                     @php $prize_2 = json_decode($lot['prize_2']); @endphp
                                     @php $prize_3 = json_decode($lot['prize_3']); @endphp
@@ -85,7 +85,17 @@
 
                                     @php $td3 .= '<td class="text-center">'; @endphp
                                     @if($lot["lottery_company"] == 'XSMB')
-                                        @php $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_2->{key($prize_2)}.'</span></br>'; @endphp
+                                        @if(count((array) $prize_2) <= 1)
+                                            @foreach($prize_2 as $k=>$p2)
+                                                @php if(count((array)$p2) > 0 && is_array($p2)){ foreach ($p2 as $p21) { $td3 .= "<span class='col-xs-12 number-black-bold div-horizontal' >$p21</span>"; } }else{ echo "<span class='col-xs-12 number-black-bold div-horizontal' >$p2</span>"; }  @endphp
+                                                {{-- <span class="number-black-bold div-horizontal">{{ $p2 }} </span>--}}
+                                            @endforeach
+                                        @else
+                                            @foreach($prize_2->{key($prize_2)} as $k=>$p2)
+                                                @php $td3 .= '<span class="col-xs-4 special-code div-horizontal">{{ $p2 }} </span></br>'; @endphp
+                                            @endforeach
+                                        @endif
+                                       {{-- @php $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_2->{key($prize_2)}.'</span></br>'; @endphp--}}
                                     @else
                                         @foreach($prize_2->{key($prize_2)} as $k=>$p2)
                                             @php $td3 .= '<span class=" number-black-bold div-horizontal">'.$p2.'</span></br>'; @endphp
@@ -96,7 +106,17 @@
 
                                     @php $td4 .= '<td class="text-center">'; @endphp
                                     @if($lot["lottery_company"] == 'XSMB')
-                                        @php $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_3->{key($prize_3)}.'</span></br>'; @endphp
+                                        @if(count((array) $prize_3) <= 1)
+                                            @foreach($prize_3 as $k=>$p3)
+                                                @php if(count((array)$p3) > 0 && is_array($p3)){ foreach ($p3 as $p31) { $td4 .= "<span class='col-xs-12 number-black-bold div-horizontal' >$p31</span>"; } }else{ echo "<span class='col-xs-12 number-black-bold div-horizontal' >$p3</span>"; }  @endphp
+                                                {{--  <span class="number-black-bold div-horizontal">{{ $p3 }} </span>--}}
+                                            @endforeach
+                                        @else
+                                            @foreach($prize_3->{key($prize_3)} as $k=>$p3)
+                                                @php $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$p3.'</span></br>'; @endphp
+                                            @endforeach
+                                        @endif
+                                       {{-- @php $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_3->{key($prize_3)}.'</span></br>'; @endphp--}}
                                     @else
                                         @foreach($prize_3->{key($prize_3)} as $k=>$p3)
                                             @php $td4 .= '<span class=" number-black-bold div-horizontal">'.$p3.'</span></br>'; @endphp
@@ -185,8 +205,8 @@
                                     @php $tdr8 = '<td class="'.key($prize_9).'" style="width: 15%">'.key($prize_9).'</td>'; @endphp
                                 @else
                                     @php $current = current($printresult);  @endphp
-                                    <!-- {{$current['lottery_company']}}     -->  
-                                    <!-- {{ request()->segment(count(request()->segments()))}}   
+                                    <!-- {{$current['lottery_company']}}     -->
+                                    <!-- {{ request()->segment(count(request()->segments()))}}
                                     {{count(request()->segments())}} -->
                                     @if(request()->segment(count(request()->segments())) == 'ket-qua-vietlott' || count(request()->segments()) == 0)
                                         @if($current['lottery_company'] == 'Power 6/55' && $vietlottPower == 1)
@@ -195,10 +215,10 @@
                                         @elseif($current['lottery_company'] == 'XS Mega'  && $vietlottMega == 1)
                                             @include('vietlottMega')
                                             @php $vietlottMega = 2; @endphp
-                                        @elseif($current['lottery_company'] == 'XS Max 4D' && $vietlott4d == 1) 
+                                        @elseif($current['lottery_company'] == 'XS Max 4D' && $vietlott4d == 1)
                                             @include('vietlott4d')
                                             @php $vietlott4d = 2; @endphp
-                                        @elseif($current['lottery_company'] == 'XS Max 3D' && $vietlott3d == 1) 
+                                        @elseif($current['lottery_company'] == 'XS Max 3D' && $vietlott3d == 1)
                                             @include('vietlott3d')
                                             @php $vietlott3d = 2; @endphp
                                         @endif
@@ -209,15 +229,15 @@
                                         @elseif($current['lottery_company'] == 'XS Mega')
                                             @include('vietlottMega')
                                             @php $vietlottMega = 2; @endphp
-                                        @elseif($current['lottery_company'] == 'XS Max 4D') 
+                                        @elseif($current['lottery_company'] == 'XS Max 4D')
                                             @include('vietlott4d')
                                             @php $vietlott4d = 2; @endphp
-                                        @elseif($current['lottery_company'] == 'XS Max 3D') 
+                                        @elseif($current['lottery_company'] == 'XS Max 3D')
                                             @include('vietlott3d')
                                             @php $vietlott3d = 2; @endphp
                                         @endif
                                     @endif
-                              @endif    
+                              @endif
 
                             @endforeach
 
@@ -350,7 +370,7 @@
                                             </tbody></table>
                                     </div>
                                 </div>
-                                @endif  
+                                @endif
                             @php $g++; @endphp
                         @endforeach
 
