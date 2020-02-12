@@ -99,6 +99,7 @@
 
 @section('content')
 
+        @if($data->lottery_region != 'Vietlott')
         <div style="margin: 0 auto;" class="remove-margin block col-md-6" id='{{ $data->lottery_region }}'>
             <div class="block-main-heading">
                 <h1>
@@ -295,7 +296,724 @@
             </div>
 
         </div>
+@else
+            @php $vietlottPower = 1; @endphp
+            @php $vietlottMega = 1; @endphp
+            @php $vietlott4d = 1; @endphp
+            @php $vietlott3d = 1; @endphp
+            @php $current = $lot =  $data->toArray();  @endphp
 
+            @if($current['lottery_company'] == 'Power 6/55' && $vietlottPower == 1)
+
+                @php  $title = "Xổ Số";
+                $th = ''; @endphp
+                @php $prize_1 = json_decode($lot['prize_1']); @endphp
+                @php $prize_2 = json_decode($lot['prize_2']); @endphp
+                @php $prize_3 = json_decode($lot['prize_3']); @endphp
+                @php $prize_4 = json_decode($lot['prize_4']); @endphp
+                @php $prize_5 = json_decode($lot['prize_5']); @endphp
+                @php $prize_6 = json_decode($lot['prize_6']); @endphp
+                @php $prize_7 = json_decode($lot['prize_7']); @endphp
+                @php $prize_8 = json_decode($lot['prize_8']); @endphp
+                @php $td2 = ''; $td3 = ''; $td4 = '';  $td5 = ''; $td6 = ''; $g= 'power' @endphp
+
+                @php $board = json_decode($lot['board']); @endphp
+
+                @php $td2 .= '<td class="text-center circle-no"><i></i><i></i><i></i><i></i><i></i><i></i></td>'; @endphp
+                @foreach($prize_1->{key($prize_1)} as $k=>$p1)
+                    @if($lot["lottery_company"] == 'XSMB')
+                        @php $td2 .= '<td class="col-xs-4 special-code div-horizontal">'.$p1.'</td>'; @endphp
+                    @else
+                        @php $td2 .= '<td class="col-xs-3  div-horizontal">'.$p1.'</td>'; @endphp
+                    @endif
+                @endforeach
+                @php $td2; @endphp
+
+                @php $td3 .= '<td class="text-center circle-no special"><i></i><i></i><i></i><i></i><i></i><i></i></td>'; @endphp
+                @if($lot["lottery_company"] == 'XSMB')
+                    @php $td3 .= '<td class="col-xs-12  div-horizontal">'.$prize_2->{key($prize_2)}.'</td></br>'; @endphp
+                @else
+                    @foreach($prize_2->{key($prize_2)} as $k=>$p2)
+                        @php $td3 .= '<td class="col-xs-3  div-horizontal">'.$p2.'</td>'; @endphp
+                    @endforeach
+                @endif
+
+                @php $td3; @endphp
+
+                @php $td4 .= '<td class="text-center circle-no"><i></i><i></i><i></i><i></i><i></i></td>'; @endphp
+                @if($lot["lottery_company"] == 'XSMB')
+                    @php $td4 .= '<td class="col-xs-12  div-horizontal">'.$prize_3->{key($prize_3)}.'</td></br>'; @endphp
+                @else
+                    @foreach($prize_3->{key($prize_3)} as $k=>$p3)
+                        @php $td4 .= '<td class="col-xs-3  div-horizontal">'.$p3.'</td>'; @endphp
+                    @endforeach
+                @endif
+
+                @php $td4 .= '</td>'; @endphp
+
+                @php $td5 .= '<td class="text-center circle-no"><i></i><i></i><i></i><i></i>'; @endphp
+                @foreach($prize_4->{key($prize_4)} as $k=>$p4)
+                    @if($lot["lottery_company"] == 'XSMB')
+                        @php $td5 .= '<td class="col-xs-6  div-horizontal">'.$p4.'</td>'; @endphp
+                    @else
+                        @php $td5 .= '<td class="col-xs-3  div-horizontal">'.$p4.'</td>'; @endphp
+                    @endif
+                @endforeach
+                @php $td5 .= '</td>'; @endphp
+
+
+                @php $td6 .= '<td class="text-center circle-no"><i></i><i></i><i></i>'; @endphp
+                @foreach($prize_5->{key($prize_5)} as $k=>$p5)
+                    @if($lot["lottery_company"] == 'XSMB')
+                        @php $td6 .= '<td class="col-xs-6  div-horizontal">'.$p5.'</td>'; @endphp
+                    @else
+                        @php $td6 .= '<td class="col-xs-6  div-horizontal">'.$p5.'</td>'; @endphp
+                    @endif
+                @endforeach
+                @php $td6 .= '</td>'; @endphp
+
+
+                @if($board)
+                    @php $boardRes = $board @endphp
+
+                    @foreach($boardRes as $ke=>$bingoData)
+                        @php  $boards[$g][] = $bingoData; @endphp
+                    @endforeach
+
+                @endif
+
+
+                @php $td1 = '<td class="" style="width: 15%"><span class="text-red">'.key($prize_1).'</span></td>'; @endphp
+                @php $tdr1 = '<td class="'.key($prize_2).'" style="width: 15%">'.key($prize_2).'</td>'; @endphp
+                @php $tdr2 = '<td class="'.key($prize_3).'" style="width: 15%">'.key($prize_3).'</td>'; @endphp
+                @php $tdr3 = '<td class="'.key($prize_4).'" style="width: 15%">'.key($prize_4).'</td>'; @endphp
+                @php $tdr4 = '<td class="'.key($prize_5).'" style="width: 15%">'.key($prize_5).'</td>'; @endphp
+
+
+
+
+                <div class="block remove-margin" id='xsmb-{{ $g }}'>
+                    <div class="block-main-heading">
+                        <h1>{{ $title }} {{ $current['lottery_company'] }} ngày {{ $current['result_day_time'] }}</h1>
+                    </div>
+
+                    @php
+                        if($prize_7 && $g==0) {
+                           echo '<div class="result-jackpot">
+                                <div class="head-result">
+                                    <h3 class="title-result-jackpot">'.$prize_7->resultTitle.'</h3>
+                                </div>
+                                <div class="prize-value">
+                                    <p class="title-prize">Giá trị jackpot 1</p>
+                                    <span class="result-jackpot">'. $prize_8->jackpotResult[0] .'</span>
+                                    <hr class="line-prize">
+                                    <p class="title-prize">Giá trị jackpot 2</p>
+                                    <span class="result-jackpot">'. $prize_8->jackpotResult[1] .'</span>
+                                </div>
+                            </div> <p class="para open-next"></p>';
+                        }
+                    @endphp
+
+                    <div class="list-link left100 backgroud-hide">
+                        <h2 class="class-title-list-link class-title-list-link-left">
+                            @php $dayName = $day; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$current['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
+                            <a href="/{{ getRegionSlug($current['lottery_region']) }}" title="{{ $current['lottery_region'] }}" class="u-line">
+                                {{ $current['lottery_company'] }}
+                            </a><span> » </span>
+
+                            <a href="/{{ getRegionSlug($current['lottery_region']) }}/power-655-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ $day  }}" class="u-line">
+
+                                {{ $current['lottery_company'] }} {{ $day  }}
+                            </a><span> » </span>
+                            <a href="/ket-qua-vietlott-new/{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $day }}" class="u-line">
+                                {{ $current['lottery_company'] }} {{ $current['result_day_time'] }}
+                            </a>
+
+                        </h2>
+                    </div>
+
+                    <p class="para text-black-bold">Kỳ 549: Chủ Nhật, {{ $current['result_day_time'] }}</p>
+                    <div class="power-detail">
+                        <ul>
+                            @php if($boards){
+                                for($m = 0; $m < 7; $m++) {
+                                     foreach($boards as $kk=>$bb) {
+
+                                     if(isset($boards[$kk][$m])){
+                                         echo "<li>".$boards[$kk][$m]."</li>";
+                                     }
+
+                                     }
+                                }
+                            }
+                            @endphp
+                        </ul>
+                    </div>
+                    <p class="text-sm">Các con số dự thưởng phải trùng với số kết quả nhưng không cần theo đúng thứ tự</p>
+
+                    <div class="prize-detail prize-power">
+                        <table class="table table-bordered table-striped table-{{ strtolower($lot["lottery_region"]) }} text-table livetn3">
+                            <thead>
+                            <tr>
+                                <th class="col-xs-2">Giải thưởng</th>
+                                <th class="col-xs-4">Trùng khớp</th>
+                                <th class="text-right col-xs-2">Số lượng giải</th>
+                                <th class="text-right col-xs-4">Giá trị giải (đ)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                @php echo $td1; @endphp
+                                @php echo $td2; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr1; @endphp
+
+                                @php echo $td3; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr2; @endphp
+
+                                @php echo $td4; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr3; @endphp
+
+                                @php echo $td5; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr4; @endphp
+
+                                @php echo $td6; @endphp
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <hr class="line-header"/>
+
+
+                </div>
+
+
+
+
+                @php $vietlottPower = 2; @endphp
+            @elseif($current['lottery_company'] == 'XS Mega'  && $vietlottMega == 1)
+
+
+                @php $prize_1 = json_decode($lot['prize_1']); @endphp
+                @php $prize_2 = json_decode($lot['prize_2']); @endphp
+                @php $prize_3 = json_decode($lot['prize_3']); @endphp
+                @php $prize_4 = json_decode($lot['prize_4']); @endphp
+                @php
+                    $td2 = '';
+                    $td3 = '';
+                    $td4 = '';
+                    $td5 = '';
+                    if(isset($current['board'])){
+                        $board = json_decode($current['board']);
+                    }else{
+                        $board = array();
+                    }
+                    $g = '';
+                    $title ='';
+                    @endphp
+
+                @php $td2 .= '<td class="text-center circle-no"><i></i><i></i><i></i><i></i><i></i><i></i></td>'; @endphp
+                @foreach($prize_1->{key($prize_1)} as $k=>$p1)
+                    @if($lot["lottery_company"] == 'XSMB')
+                        @php $td2 .= '<td class="col-xs-4 special-code div-horizontal">'.$p1.'</td>'; @endphp
+                    @else
+                        @php $td2 .= '<td class="col-xs-3  div-horizontal">'.$p1.'</td>'; @endphp
+                    @endif
+                @endforeach
+                @php $td2; @endphp
+
+                @php $td3 .= '<td class="text-center circle-no"><i></i><i></i><i></i><i></i><i></i></td>'; @endphp
+                @if($lot["lottery_company"] == 'XSMB')
+                    @php $td3 .= '<td class="col-xs-12  div-horizontal">'.$prize_2->{key($prize_2)}.'</td></br>'; @endphp
+                @else
+                    @foreach($prize_2->{key($prize_2)} as $k=>$p2)
+                        @php $td3 .= '<td class="col-xs-3  div-horizontal">'.$p2.'</td>'; @endphp
+                    @endforeach
+                @endif
+
+                @php $td3; @endphp
+
+                @php $td4 .= '<td class="text-center circle-no"><i></i><i></i><i></i><i></i></td>'; @endphp
+                @if($lot["lottery_company"] == 'XSMB')
+                    @php $td4 .= '<td class="col-xs-12  div-horizontal">'.$prize_3->{key($prize_3)}.'</td></br>'; @endphp
+                @else
+                    @foreach($prize_3->{key($prize_3)} as $k=>$p3)
+                        @php $td4 .= '<td class="col-xs-3  div-horizontal">'.$p3.'</td>'; @endphp
+                    @endforeach
+                @endif
+
+                @php $td4 .= '</td>'; @endphp
+
+                @php $td5 .= '<td class="text-center circle-no"><i></i><i></i><i></i>'; @endphp
+                @foreach($prize_4->{key($prize_4)} as $k=>$p4)
+                    @if($lot["lottery_company"] == 'XSMB')
+                        @php $td5 .= '<td class="col-xs-6  div-horizontal">'.$p4.'</td>'; @endphp
+                    @else
+                        @php $td5 .= '<td class="col-xs-3  div-horizontal">'.$p4.'</td>'; @endphp
+                    @endif
+                @endforeach
+                @php $td5 .= '</td>'; @endphp
+
+
+                @if($board)
+                    @php $boardRes = $board @endphp
+
+                    @foreach($boardRes as $ke=>$bingoData)
+                        @php  $boards[$g][] = $bingoData; @endphp
+                    @endforeach
+
+                @endif
+
+
+                @php $td1 = '<td class="" style="width: 15%"><span class="text-red">'.key($prize_1).'</span></td>'; @endphp
+                @php $tdr1 = '<td class="'.key($prize_2).'" style="width: 15%">'.key($prize_2).'</td>'; @endphp
+                @php $tdr2 = '<td class="'.key($prize_3).'" style="width: 15%">'.key($prize_3).'</td>'; @endphp
+                @php $tdr3 = '<td class="'.key($prize_4).'" style="width: 15%">'.key($prize_4).'</td>'; @endphp
+
+
+
+
+                <div class="block remove-margin" id='xsmb-{{ $g }}'>
+                    <div class="block-main-heading">
+                        <h1>{{ $title }} {{ $current['lottery_company'] }} ngày {{ $current['result_day_time'] }}</h1>
+                    </div>
+
+                    @php
+                        if(isset($prize_6)) {
+                            echo '<div class="result-jackpot">
+                                <div class="head-result">
+                                    <h3 class="title-result-jackpot">'.$prize_6->resultTitle .'</h3>
+                                </div>
+                                <div class="prize-value">
+                                    <span class="result-jackpot">' . $prize_7->jackpotResult .'</span>
+                                </div>
+                            </div>
+                            <p class="para open-next">' . $prize_8->titleItem .'</p>';
+                        }
+                    @endphp
+
+                    <div class="list-link backgroud-hide">
+                        <h2 class="class-title-list-link class-title-list-link-left">
+                            @php $dayName = $day; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$current['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
+                            <a href="/{{ getRegionSlug($current['lottery_region']) }}" title="{{ $current['lottery_region'] }}" class="u-line">
+                                {{ $current['lottery_company'] }}
+                            </a><span> » </span>
+
+                            <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ preg_replace('/\s+/', '-', strtolower($current['lottery_company'])) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ $day  }}" class="u-line">
+                                {{ $current['lottery_company'] }} {{ $day  }}
+                            </a><span> » </span>
+                            <a href="/ket-qua-vietlott-new/{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $day }}" class="u-line">
+                                {{ $current['lottery_company'] }} {{ $current['result_day_time'] }}
+                            </a>
+
+                        </h2>
+                    </div>
+
+                    <p class="para text-black-bold">Kỳ 549: Chủ Nhật, {{ $current['result_day_time'] }}</p>
+                    <div class="mega-detail">
+                        <ul>
+                            @php if($board){
+                                for($m = 0; $m < 5; $m++) {
+                                     foreach($board as $kk=>$bb) {
+                                         echo "<li>".$board[$kk][$m]."</li>";
+                                     }
+                                }
+                            }
+                            @endphp
+                        </ul>
+                    </div>
+                    <p class="text-sm">Các con số dự thưởng phải trùng với số kết quả nhưng không cần theo đúng thứ tự</p>
+
+                    <div class="prize-detail">
+                        <table class="table table-bordered table-striped table-{{ strtolower($lot["lottery_region"]) }} text-table livetn3">
+                            <thead>
+                            <tr>
+                                <th class="col-xs-2">Giải thưởng</th>
+                                <th class="col-xs-4">Trùng khớp</th>
+                                <th class="text-right col-xs-2">Số lượng giải</th>
+                                <th class="text-right col-xs-4">Giá trị giải (đ)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                @php echo $td1; @endphp
+                                @php echo $td2; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr1; @endphp
+
+                                @php echo $td3; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr2; @endphp
+
+                                @php echo $td4; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr3; @endphp
+
+                                @php echo $td5; @endphp
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <hr class="line-header"/>
+
+                </div>
+
+
+
+                @php $vietlottMega = 2; @endphp
+            @elseif($current['lottery_company'] == 'XS Max 4D' && $vietlott4d == 1)
+
+
+                @php $prize_1 = json_decode($lot['prize_1']); @endphp
+                @php $prize_2 = json_decode($lot['prize_2']); @endphp
+                @php $prize_3 = json_decode($lot['prize_3']); @endphp
+                @php $prize_4 = json_decode($lot['prize_4']); @endphp
+                @php $prize_5 = json_decode($lot['prize_5']); @endphp
+                @php
+                    $td2 = '';
+                    $td3 = '';
+                    $td4 = '';
+                    $td5 = '';
+                    $td6 = '';
+                    $g ='';
+                    $title = '';
+                    $th = '';
+                @endphp
+
+                @php $board = json_decode($lot['board']); @endphp
+
+                @php $td2 .= '<td class="text-center">'; @endphp
+                @foreach($prize_1->{key($prize_1)} as $k=>$p1)
+                    @if($lot["lottery_company"] == 'XSMB')
+                        @php $td2 .= '<span class="col-xs-4 special-code div-horizontal">'.$p1.'</span>'; @endphp
+                    @else
+                        @php $td2 .= '<span class="special-prize-lg">'.$p1.'</span>'; @endphp
+                    @endif
+                @endforeach
+                @php $td2 .= '</td>'; @endphp
+
+                @php $td3 .= '<td class="text-center">'; @endphp
+                @if($lot["lottery_company"] == 'XSMB')
+                    @php $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_2->{key($prize_2)}.'</span></br>'; @endphp
+                @else
+                    @foreach($prize_2->{key($prize_2)} as $k=>$p2)
+                        @php $td3 .= '<span class="col-xs-6 number-black-bold">'.$p2.'</span>'; @endphp
+                    @endforeach
+                @endif
+
+                @php $td3 .= '</td>'; @endphp
+
+                @php $td4 .= '<td class="text-center">'; @endphp
+                @if($lot["lottery_company"] == 'XSMB')
+                    @php $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_3->{key($prize_3)}.'</span></br>'; @endphp
+                @else
+                    @foreach($prize_3->{key($prize_3)} as $k=>$p3)
+                        @php $td4 .= '<span class="col-xs-4 number-black-bold">'.$p3.'</span>'; @endphp
+                    @endforeach
+                @endif
+
+                @php $td4 .= '</td>'; @endphp
+
+                @php $td5 .= '<td class="text-center">'; @endphp
+                @foreach($prize_4->{key($prize_4)} as $k=>$p4)
+                    @if($lot["lottery_company"] == 'XSMB')
+                        @php $td5 .= '<span class="col-xs-6 number-black-bold div-horizontal">'.$p4.'</span>'; @endphp
+                    @else
+                        @php $td5 .= '<span class="number-black-bold">'.$p4.'</span>'; @endphp
+                    @endif
+                @endforeach
+                @php $td5 .= '</td>'; @endphp
+
+                @php $td6 .= '<td class="text-center">'; @endphp
+                @foreach($prize_5->{key($prize_5)} as $k=>$p5)
+                    @if($lot["lottery_company"] == 'XSMB')
+                        @php $td6 .= '<span class="col-xs-4 number-black-bold div-horizontal">'.$p5.'</span>'; @endphp
+                    @else
+                        @php $td6 .= '<span class="number-black-bold">'.$p5.'</span></br>'; @endphp
+                    @endif
+                @endforeach
+                @php $td6 .= '</td>'; @endphp
+
+
+                @if($board)
+                    @php $boardRes = $board @endphp
+
+                    @foreach($boardRes as $ke=>$bingoData)
+                        @php  $boards[$g][] = $bingoData; @endphp
+                    @endforeach
+
+                @endif
+
+                @php $td1 = '<td class="" style="width: 15%">'.key($prize_1).'</td>'; @endphp
+                @php $tdr1 = '<td class="'.key($prize_2).'" style="width: 15%">'.key($prize_2).'</td>'; @endphp
+                @php $tdr2 = '<td class="'.key($prize_3).'" style="width: 15%">'.key($prize_3).'</td>'; @endphp
+                @php $tdr3 = '<td class="'.key($prize_4).'" style="width: 15%">'.key($prize_4).'</td>'; @endphp
+                @php $tdr4 = '<td class="'.key($prize_5).'" style="width: 15%">'.key($prize_5).'</td>'; @endphp
+
+
+
+
+                <div class="block remove-margin" id='xsmb-{{ $g }}'>
+                    <div class="block-main-heading">
+                        <h1>{{ $title }} {{ $current['lottery_company'] }} ngày {{ $current['result_day_time'] }}</h1>
+                    </div>
+                    <div class="list-link">
+                        <h2 class="class-title-list-link">
+                            @php $dayName = $day; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$current['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
+                            <a href="/{{ getRegionSlug($current['lottery_region']) }}" title="{{ $current['lottery_region'] }}" class="u-line">
+                                {{ $current['lottery_company'] }}
+                            </a><span> » </span>
+
+                            <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ preg_replace('/\s+/', '-', strtolower($current['lottery_company'])) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ $day  }}" class="u-line">
+                                {{ $current['lottery_company'] }} {{ $day  }}
+                            </a><span> » </span>
+                            <a href="/ket-qua-vietlott-new/{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $day }}" class="u-line">
+                                {{ $current['lottery_company'] }} {{ $current['result_day_time'] }}
+                            </a>
+
+                        </h2>
+                    </div>
+                    <div class="block-main-content">
+                        <table class="table table-bordered table-striped table-xsmb table-vietlot-new table-{{ strtolower($lot["lottery_region"]) }} text-table livetn3">
+                            <thead>
+                            <tr>
+                                @php if($th){
+                                @endphp
+                                <th class="text-center">Giải</th>
+                                @php echo $th; } @endphp
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                @php echo $td1; @endphp
+                                @php echo $td2; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr1; @endphp
+
+                                @php echo $td3; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr2; @endphp
+
+                                @php echo $td4; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr3; @endphp
+
+                                @php echo $td5; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr4; @endphp
+
+                                @php echo $td6; @endphp
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <hr class="line-header"/>
+
+
+                    <div class="block-main-content view-loto">
+                        <table class="table table-bordered table-loto">
+                            <tbody>
+                            <tr class="bg">
+                                <td colspan="4" class="text-left"><span class="text-blue-bold">Ký hiệu bộ số</span></td>
+                            </tr>
+
+                            @php $char = array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G'); $value = []; @endphp
+                            @php
+                                $ab = 0;
+                                for($m = 0; $m < 6; $m++)
+                                {
+                                    if($m == 0 || $m == 2 || $m == 4) {
+                                        echo "<tr class='text-center'>";
+                                    }
+                                    if(isset($char[$m])){
+                                        echo "<td class='bg' style='width: 10%'>".$char[$m]."</td>";
+                                    echo "<td><span class='number-black-bold'>".$boards[$g][$m]."</span></td>";
+                                    }
+
+
+                                    if($m == 1 || $m == 3 || $m == 5) {
+                                        echo "</tr>";
+                                    }
+                                 }
+                            @endphp
+                            </tbody></table>
+                    </div>
+                </div>
+
+
+
+                @php $vietlott4d = 2; @endphp
+            @elseif($current['lottery_company'] == 'XS Max 3D' && $vietlott3d == 1)
+
+                @php $prize_1 = json_decode($lot['prize_1']); @endphp
+                @php $prize_2 = json_decode($lot['prize_2']); @endphp
+                @php $prize_3 = json_decode($lot['prize_3']); @endphp
+                @php $prize_4 = json_decode($lot['prize_4']); @endphp
+                @php
+                    $td2 = '';
+                    $td3 = '';
+                    $td4 = '';
+                    $td5 = '';
+
+                    @endphp
+
+
+
+                @php $td2 .= '<td>'; @endphp
+                @foreach($prize_1->{key($prize_1)} as $k=>$p1)
+                    @if($lot["lottery_company"] == 'XSMB')
+                        @php $td2 .= '<span class="col-xs-4 special-code div-horizontal">'.$p1.'</span>'; @endphp
+                    @else
+                        @php $td2 .= '<span class="col-xs-6 special-prize-lg div-horizontal">'.$p1.'</span>'; @endphp
+                    @endif
+                @endforeach
+                @php $td2 .= '</td>'; @endphp
+
+                @php $td3 .= '<td>'; @endphp
+                @if($lot["lottery_company"] == 'XSMB')
+                    @php $td3 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_2->{key($prize_2)}.'</span></br>'; @endphp
+                @else
+                    @foreach($prize_2->{key($prize_2)} as $k=>$p2)
+                        @php $td3 .= '<span class="col-xs-3 number-black-bold div-horizontal">'.$p2.'</span>'; @endphp
+                    @endforeach
+                @endif
+
+                @php $td3 .= '</td>'; @endphp
+
+                @php $td4 .= '<td>'; @endphp
+                @if($lot["lottery_company"] == 'XSMB')
+                    @php $td4 .= '<span class="col-xs-12 number-black-bold div-horizontal">'.$prize_3->{key($prize_3)}.'</span></br>'; @endphp
+                @else
+                    @foreach($prize_3->{key($prize_3)} as $k=>$p3)
+                        @php $td4 .= '<span class="col-xs-4 number-black-bold div-horizontal">'.$p3.'</span>'; @endphp
+                    @endforeach
+                @endif
+
+                @php $td4 .= '</td>'; @endphp
+
+                @php $td5 .= '<td>'; @endphp
+                @foreach($prize_4->{key($prize_4)} as $k=>$p4)
+                    @if($lot["lottery_company"] == 'XSMB')
+                        @php $td5 .= '<span class="col-xs-6 number-black-bold div-horizontal">'.$p4.'</span>'; @endphp
+                    @else
+                        @php $td5 .= '<span class="col-xs-3 number-black-bold div-horizontal">'.$p4.'</span>'; @endphp
+                    @endif
+                @endforeach
+                @php $td5 .= '</td>'; @endphp
+
+                @php $td1 = '<td class="" style="width: 15%">'.key($prize_1).'</td>'; @endphp
+                @php $tdr1 = '<td class="'.key($prize_2).'" style="width: 15%">'.key($prize_2).'</td>'; @endphp
+                @php $tdr2 = '<td class="'.key($prize_3).'" style="width: 15%">'.key($prize_3).'</td>'; @endphp
+                @php $tdr3 = '<td class="'.key($prize_4).'" style="width: 15%">'.key($prize_4).'</td>'; @endphp
+                @php  $title = "Xổ Số";
+                $th = ''; @endphp
+
+                <div class="block remove-margin" id='{{ $lot["lottery_company"] }}'>
+                    <div class="block-main-heading">
+                        <h1>{{ $title }} {{ $current['lottery_company'] }} ngày {{ $current['result_day_time'] }}</h1>
+                    </div>
+                    <div class="list-link">
+                        <h2 class="class-title-list-link">
+                            @php $dayName = $day; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$current['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
+                            <a href="/{{ getRegionSlug($current['lottery_region']) }}/kqvietlott-xo-so-max-3d" title="{{ $current['lottery_region'] }}" class="u-line">
+                                {{ $current['lottery_company'] }}
+                            </a><span> » </span>
+
+                            <a href="/{{ getRegionSlug($current['lottery_region']) }}/{{ preg_replace('/\s+/', '-', strtolower($current['lottery_company'])) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ $day  }}" class="u-line">
+                                {{ $current['lottery_company'] }} {{ $day  }}
+                            </a><span> » </span>
+                            <a href="/ket-qua-vietlott-new/{{ strtolower($current['lottery_region']) }}-ngay-{{ $dateexp }}" title="{{ $current['lottery_region'] }}  {{ $day }}" class="u-line">
+                                {{ $current['lottery_company'] }} {{ $current['result_day_time'] }}
+                            </a>
+
+                        </h2>
+                    </div>
+                    <div class="block-main-content">
+                        <table class="table table-bordered table-striped table-xsmb table-vietlot-new table-{{ strtolower($lot["lottery_region"]) }} text-table livetn3">
+                            <thead>
+                            <tr>
+                                @php if($th){
+                                @endphp
+                                <th class="text-center">Giải</th>
+                                @php echo $th; } @endphp
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                @php echo $td1; @endphp
+                                @php echo $td2; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr1; @endphp
+
+                                @php echo $td3; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr2; @endphp
+
+                                @php echo $td4; @endphp
+                            </tr>
+
+                            <tr>
+                                @php echo $tdr3; @endphp
+
+                                @php echo $td5; @endphp
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <hr class="line-header"/>
+                </div>
+
+
+                @php $vietlott3d = 2; @endphp
+            @endif
+
+    @endif
 
 
 

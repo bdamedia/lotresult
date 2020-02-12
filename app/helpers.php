@@ -763,23 +763,39 @@ function getDayofCompany($companyCode){
 
 function arrayDayBind(){
     $bindArray = array();
+   // $bindArrayDay = array('power-655'=>'Power 6/55','mega-645'=>'XS Mega', 'max-4d'=>'XS Max 4D','xo-so-max-3d'=>'XS Max 3D');
 
     $result  = RegionCompany::all();
     foreach ($result as $d){
+
         if(in_array($d->lottery_company,array('XSKG','XSTG','XSDL','XSKT','XSKH'))){
-            $bindArray['Sunday']  = array('XSKG','XSTG','XSDL','XSKT','XSKH','XSMB');
+
+            $bindArray['Sunday']  = array('XSKG','XSTG','XSDL','XSKT','XSKH','XSMB','MEGA 645');
+
         }elseif (in_array($d->lottery_company,array('XSLA','XSHCM','XSBP','XSHG','XSQNG','XSDNA','XSDNO'))){
-            $bindArray['Saturday']  = array('XSLA','XSHCM','XSBP','XSHG','XSQNG','XSDNA','XSDNO','XSMB');
+
+            $bindArray['Saturday']  = array('XSLA','XSHCM','XSBP','XSHG','XSQNG','XSDNA','XSDNO','XSMB','POWER 655','MAX 4D');
+
         }elseif (in_array($d->lottery_company,array('XSVL','XSBD','XSTV','XSNT','XSGL'))){
-            $bindArray['Friday']  = array('XSVL','XSBD','XSTV','XSNT','XSGL','XSMB');
+
+            $bindArray['Friday']  = array('XSVL','XSBD','XSTV','XSNT','XSGL','XSMB','MEGA 645','MAX 3D');
+
         }elseif (in_array($d->lottery_company,array('XSAG','XSTN','XSQB','XSBTH','XSBDI','XSQT'))){
-            $bindArray['Thursday']  = array('XSAG','XSTN','XSQB','XSBTH','XSBDI','XSQT','XSMB');
+
+            $bindArray['Thursday']  = array('XSAG','XSTN','XSQB','XSBTH','XSBDI','XSQT','XSMB','MAX 4D','POWER 655');
+
         }elseif (in_array($d->lottery_company,array('XSDN','XSST','XSCT','XSKH','XSDNA'))){
-            $bindArray['Wednesday']  = array('XSDN','XSST','XSCT','XSKH','XSDNA','XSMB');
+
+            $bindArray['Wednesday']  = array('XSDN','XSST','XSCT','XSKH','XSDNA','XSMB','MEGA 645','MAX 3D');
+
         }elseif (in_array($d->lottery_company,array('XSVT','XSBTR','XSBL','XSDLK','XSQNA'))){
-            $bindArray['Tuesday']  = array('XSVT','XSBTR','XSBL','XSDLK','XSQNA','XSMB');
+
+            $bindArray['Tuesday']  = array('XSVT','XSBTR','XSBL','XSDLK','XSQNA','XSMB','POWER 655','MAX 4D');
+
         }elseif (in_array($d->lottery_company,array('XSTTH','XSPY','XSDT','XSHCM','XSCM'))){
-            $bindArray['Monday']  = array('XSTTH','XSPY','XSDT','XSHCM','XSCM','XSMB');
+
+            $bindArray['Monday']  = array('XSTTH','XSPY','XSDT','XSHCM','XSCM','XSMB','MAX 3D');
+
         }
     }
     return $bindArray;
@@ -822,6 +838,12 @@ function stripVN($str) {
     return $str;
 }
 
+function getVietlottText($day) {
+    $bindArrayDay = array(
+        'power-655'=>'Power 6/55','mega-645'=>'Mega 6/45', 'max-4d'=>'Max 4D','xo-so-max-3d'=>'Max 3D'
+    );
+    return $bindArrayDay[$day];
+}
 
 function getTodayResultCompany(){
 
@@ -1057,6 +1079,10 @@ function getResultRegionByDayCompany($day,$region){
     }
 
     $list = dayWiseArray($key);
+    if($region == 'VIETLOTT'){
+        $region = ucfirst(strtolower($region));
+    }
+
     $all = RegionCompany::where('lottery_region',$region)->whereIn('lottery_company', $list)->get();
     return $all;
 
