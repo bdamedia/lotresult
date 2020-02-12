@@ -186,20 +186,37 @@
                                 @else
                                     @php $current = current($printresult);  @endphp
                                     <!-- {{$current['lottery_company']}}     -->  
-                                    @if($current['lottery_company'] == 'Power 6/55' && $vietlottPower == 1)
-                                        @include('vietlottPower')
-                                        @php $vietlottPower = 2; @endphp
-                                    @elseif($current['lottery_company'] == 'XS Mega'  && $vietlottMega == 1)
-                                        @include('vietlottMega')
-                                        @php $vietlottMega = 2; @endphp
-                                    @elseif($current['lottery_company'] == 'XS Max 4D' && $vietlott4d == 1) 
-                                        @include('vietlott4d')
-                                        @php $vietlott4d = 2; @endphp
-                                    @elseif($current['lottery_company'] == 'XS Max 3D' && $vietlott3d == 1) 
-                                        @include('vietlott3d')
-                                        @php $vietlott3d = 2; @endphp
+                                    <!-- {{ request()->segment(count(request()->segments()))}}   
+                                    {{count(request()->segments())}} -->
+                                    @if(request()->segment(count(request()->segments())) == 'ket-qua-vietlott' || count(request()->segments()) == 0)
+                                        @if($current['lottery_company'] == 'Power 6/55' && $vietlottPower == 1)
+                                            @include('vietlottPower')
+                                            @php $vietlottPower = 2; @endphp
+                                        @elseif($current['lottery_company'] == 'XS Mega'  && $vietlottMega == 1)
+                                            @include('vietlottMega')
+                                            @php $vietlottMega = 2; @endphp
+                                        @elseif($current['lottery_company'] == 'XS Max 4D' && $vietlott4d == 1) 
+                                            @include('vietlott4d')
+                                            @php $vietlott4d = 2; @endphp
+                                        @elseif($current['lottery_company'] == 'XS Max 3D' && $vietlott3d == 1) 
+                                            @include('vietlott3d')
+                                            @php $vietlott3d = 2; @endphp
+                                        @endif
+                                    @elseif(count(request()->segments()) == 2)
+                                         @if($current['lottery_company'] == 'Power 6/55' )
+                                            @include('vietlottPower')
+                                            @php $vietlottPower = 2; @endphp
+                                        @elseif($current['lottery_company'] == 'XS Mega')
+                                            @include('vietlottMega')
+                                            @php $vietlottMega = 2; @endphp
+                                        @elseif($current['lottery_company'] == 'XS Max 4D') 
+                                            @include('vietlott4d')
+                                            @php $vietlott4d = 2; @endphp
+                                        @elseif($current['lottery_company'] == 'XS Max 3D') 
+                                            @include('vietlott3d')
+                                            @php $vietlott3d = 2; @endphp
+                                        @endif
                                     @endif
-                                    
                               @endif    
 
                             @endforeach
