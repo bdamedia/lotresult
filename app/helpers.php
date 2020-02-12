@@ -838,6 +838,12 @@ function stripVN($str) {
     return $str;
 }
 
+function getVietlottText($day) {
+    $bindArrayDay = array(
+        'power-655'=>'Power 6/55','mega-645'=>'Mega 6/45', 'max-4d'=>'Max 4D','xo-so-max-3d'=>'Max 3D'
+    );
+    return $bindArrayDay[$day];
+}
 
 function getTodayResultCompany(){
 
