@@ -87,7 +87,7 @@
                                     @if($lot["lottery_company"] == 'XSMB')
                                         @if(count((array) $prize_2) <= 1)
                                             @foreach($prize_2 as $k=>$p2)
-                                                @php if(count((array)$p2) > 0 && is_array($p2)){ foreach ($p2 as $p21) { $td3 .= "<span class='col-xs-12 number-black-bold div-horizontal' >$p21</span>"; } }else{ echo "<span class='col-xs-12 number-black-bold div-horizontal' >$p2</span>"; }  @endphp
+                                                @php if(count((array)$p2) > 0 && is_array($p2)){ foreach ($p2 as $p21) { $td3 .= "<span class='col-xs-12 number-black-bold div-horizontal' >$p21</span>"; } }else{ $td3 .= "<span class='col-xs-12 number-black-bold div-horizontal' >$p2</span>"; }  @endphp
                                                 {{-- <span class="number-black-bold div-horizontal">{{ $p2 }} </span>--}}
                                             @endforeach
                                         @else
@@ -108,7 +108,7 @@
                                     @if($lot["lottery_company"] == 'XSMB')
                                         @if(count((array) $prize_3) <= 1)
                                             @foreach($prize_3 as $k=>$p3)
-                                                @php if(count((array)$p3) > 0 && is_array($p3)){ foreach ($p3 as $p31) { $td4 .= "<span class='col-xs-12 number-black-bold div-horizontal' >$p31</span>"; } }else{ echo "<span class='col-xs-12 number-black-bold div-horizontal' >$p3</span>"; }  @endphp
+                                                @php if(count((array)$p3) > 0 && is_array($p3)){ foreach ($p3 as $p31) { $td4 .= "<span class='col-xs-12 number-black-bold div-horizontal' >$p31</span>"; } }else{ $td4 .= "<span class='col-xs-12 number-black-bold div-horizontal' >$p3</span>"; }  @endphp
                                                 {{--  <span class="number-black-bold div-horizontal">{{ $p3 }} </span>--}}
                                             @endforeach
                                         @else
