@@ -91,7 +91,7 @@
     </div>
 
     @php    
-        if($prize_7 && $g==0) {
+        if($prize_7 && $g==0 && $vietlottMega < 2) {
            echo '<div class="result-jackpot">
                 <div class="head-result">
                     <h3 class="title-result-jackpot">'.$prize_7->resultTitle.'</h3>

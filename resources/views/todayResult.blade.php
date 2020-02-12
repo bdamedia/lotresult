@@ -29,7 +29,17 @@
         <div id="u119" class="ax_default table_cell remove-line-height" style="cursor: pointer;">
 
             <div id="u119_text" class="text ">
-                 <a href="@if($data->lottery_region == 'XSMN') {{ "/ket-qua-xsmn/kqxsmn-" }}{{ $data->lottery_company_slug }}  @elseif($data->lottery_region == 'XSMT') {{ "/ket-qua-xsmt/kqxsmt-" }}{{ $data->lottery_company_slug }}  @elseif($data->lottery_region == 'XSMB') {{ "ket-qua-xsmb/" }}{{ $data->lottery_company_slug }}  @endif" ><span id="cache1" style="">{{ $data->lottery_company_names }}</span></a>
+                 <a href="@if($data->lottery_region == 'XSMN') 
+                        {{ "/ket-qua-xsmn/kqxsmn-" }}{{ $data->lottery_company_slug }}
+                    @elseif($data->lottery_region == 'XSMT') 
+                        {{ "/ket-qua-xsmt/kqxsmt-" }}{{ $data->lottery_company_slug }}  
+                    @elseif($data->lottery_region == 'XSMB') 
+                        {{ "ket-qua-xsmb/" }}{{ $data->lottery_company_slug }}  
+                    @elseif($data->lottery_region == 'Vietlott') 
+                        {{ "/ket-qua-vietlott/kqvietlott-" }}{{ $data->lottery_company_slug }}  
+                    @endif">
+                    <span id="cache1" style="">{{ $data->lottery_company_names }}</span>
+                </a>
             </div>
         </div>
             @endforeach
