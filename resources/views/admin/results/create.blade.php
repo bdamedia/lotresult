@@ -66,7 +66,16 @@
                     });
             });
         });
-
+        @php if(Session::has('message')){ @endphp
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: '@php echo Session::get('message'); @endphp',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        @php  }
+         @endphp
         $('#prize-1').tagsinput();
         $('.inputTage').tagsinput();
 
@@ -208,13 +217,12 @@
                         <h4>New Result</h4>
                     </div>
                     <div class="card-body">
-                        <form class="form" method="post" enctype="multipart/form-data" action="/admin/results/add" role="form" autocomplete="off">
+                        <form class="form" method="post" enctype="multipart/form-data" action="/admin/results/create" role="form" autocomplete="off">
                             @csrf
-
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Result Date</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" name="date" type="datetime-local" >
+                                    <input class="form-control" datetimeformat="dd-MM-y" name="date" type="date" >
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -244,63 +252,63 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 1</label>
                                 <div class="col-lg-9">
-                                    <input type="text" id="prize-1" data-role="tagsinput" value="1232">
+                                    <input type="text" id="prize-1" name="prize-1" data-role="tagsinput" value="1232">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 2</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-2" data-role="tagsinput" value="1232">
+                                    <input type="text" class="inputTage" id="prize-2" name="prize-2" data-role="tagsinput" value="1232">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 3</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-3" data-role="tagsinput" value="1232">
+                                    <input type="text" class="inputTage" id="prize-3" name="prize-3" data-role="tagsinput" value="1232">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 4</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-4" data-role="tagsinput" value="1232">
+                                    <input type="text" class="inputTage" id="prize-4" name="prize-4" data-role="tagsinput" value="1232">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 5</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-5" data-role="tagsinput" value="1232">
+                                    <input type="text" class="inputTage" id="prize-5" name="prize-5" data-role="tagsinput" value="1232">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 6</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-6" data-role="tagsinput" value="1232">
+                                    <input type="text" class="inputTage" id="prize-6" name="prize-6" data-role="tagsinput" value="1232">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 7</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-7" data-role="tagsinput" value="1232">
+                                    <input type="text" class="inputTage" id="prize-7" name="prize-7" data-role="tagsinput" value="1232">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 8</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="inputTage" id="prize-8" data-role="tagsinput" value="1232">
+                                    <input type="text" class="inputTage" id="prize-8" name="prize-8" data-role="tagsinput" value="1232">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Add Input for Prize 9</label>
                                 <div class="col-lg-9">
-                                    <input type="text" id="prize-9" data-role="tagsinput" value="1232">
+                                    <input type="text" id="prize-9" name="prize-9" data-role="tagsinput" value="1232">
                                 </div>
                             </div>
 
