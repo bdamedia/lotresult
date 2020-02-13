@@ -308,7 +308,7 @@ function crawlUrlModifiedVitXoSoPower($url=null){
             $megadetailValue[] = $value->nodeValue ? array_filter(explode(',',preg_replace('/\s+/', ',',  $value->nodeValue))) : '';
         }
     }
-    
+
     $res = [];
     $i = 0;
     foreach ($links as $link){
@@ -339,7 +339,7 @@ function crawlUrlModifiedVitXoSoPower($url=null){
                 }
             }
         }
-            
+
         if(count($res1) > 0){
                 $res[]['data'] = $res1;
                 if(isset($dateReturn[$i])){
@@ -360,7 +360,7 @@ function crawlUrlModifiedVitXoSoPower($url=null){
                 //$res[0]['titleItem'] = $titleItem;
                 if(isset($dateReturn[$i])){
                     $res[$i]['data']['board'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
-                }               
+                }
             $i++;
         }
     }
@@ -429,7 +429,7 @@ function crawlUrlModifiedVitXoSoMega($url=null){
             $megadetailValue[] = $value->nodeValue ? array_filter(explode(',',preg_replace('/\s+/', ',',  $value->nodeValue))) : ''; //$value->nodeValue;
         }
     }
-    
+
     $res = [];
     $i = 0;
     foreach ($links as $link){
@@ -461,7 +461,7 @@ function crawlUrlModifiedVitXoSoMega($url=null){
                 }
             }
         }
-            
+
         if(count($res1) > 0){
                 $res[]['data'] = $res1;
                 if(isset($dateReturn[$i])){
@@ -481,7 +481,7 @@ function crawlUrlModifiedVitXoSoMega($url=null){
                 $res[$i]['data']['titleItem'] = $titleItem;
                 if(isset($dateReturn[$i])){
                     $res[$i]['data']['board'] = $megadetailValue[$i] ? $megadetailValue[$i] : '';
-                }               
+                }
             $i++;
         }
     }
@@ -634,7 +634,7 @@ function getRegionsCompanyVitlot(){
         foreach ($regionName1 as $res1){
             $gf = $res1->getElementsByTagName('a');
 
-            foreach ($gf as $rf){ 
+            foreach ($gf as $rf){
                  $name = explode('-', $rf->getAttribute('href') );
                 $companyRegion[$t]['name'] = strtoupper(str_replace('/','',str_replace('Xổ Số ','',$rf->nodeValue)));
                 $companyRegion[$t]['url'] = $rf->getAttribute('href');
@@ -763,23 +763,39 @@ function getDayofCompany($companyCode){
 
 function arrayDayBind(){
     $bindArray = array();
+   // $bindArrayDay = array('power-655'=>'Power 6/55','mega-645'=>'XS Mega', 'max-4d'=>'XS Max 4D','xo-so-max-3d'=>'XS Max 3D');
 
     $result  = RegionCompany::all();
     foreach ($result as $d){
+
         if(in_array($d->lottery_company,array('XSKG','XSTG','XSDL','XSKT','XSKH'))){
-            $bindArray['Sunday']  = array('XSKG','XSTG','XSDL','XSKT','XSKH','XSMB');
+
+            $bindArray['Sunday']  = array('XSKG','XSTG','XSDL','XSKT','XSKH','XSMB','MEGA 645');
+
         }elseif (in_array($d->lottery_company,array('XSLA','XSHCM','XSBP','XSHG','XSQNG','XSDNA','XSDNO'))){
-            $bindArray['Saturday']  = array('XSLA','XSHCM','XSBP','XSHG','XSQNG','XSDNA','XSDNO','XSMB');
+
+            $bindArray['Saturday']  = array('XSLA','XSHCM','XSBP','XSHG','XSQNG','XSDNA','XSDNO','XSMB','POWER 655','MAX 4D');
+
         }elseif (in_array($d->lottery_company,array('XSVL','XSBD','XSTV','XSNT','XSGL'))){
-            $bindArray['Friday']  = array('XSVL','XSBD','XSTV','XSNT','XSGL','XSMB');
+
+            $bindArray['Friday']  = array('XSVL','XSBD','XSTV','XSNT','XSGL','XSMB','MEGA 645','MAX 3D');
+
         }elseif (in_array($d->lottery_company,array('XSAG','XSTN','XSQB','XSBTH','XSBDI','XSQT'))){
-            $bindArray['Thursday']  = array('XSAG','XSTN','XSQB','XSBTH','XSBDI','XSQT','XSMB');
+
+            $bindArray['Thursday']  = array('XSAG','XSTN','XSQB','XSBTH','XSBDI','XSQT','XSMB','MAX 4D','POWER 655');
+
         }elseif (in_array($d->lottery_company,array('XSDN','XSST','XSCT','XSKH','XSDNA'))){
-            $bindArray['Wednesday']  = array('XSDN','XSST','XSCT','XSKH','XSDNA','XSMB');
+
+            $bindArray['Wednesday']  = array('XSDN','XSST','XSCT','XSKH','XSDNA','XSMB','MEGA 645','MAX 3D');
+
         }elseif (in_array($d->lottery_company,array('XSVT','XSBTR','XSBL','XSDLK','XSQNA'))){
-            $bindArray['Tuesday']  = array('XSVT','XSBTR','XSBL','XSDLK','XSQNA','XSMB');
+
+            $bindArray['Tuesday']  = array('XSVT','XSBTR','XSBL','XSDLK','XSQNA','XSMB','POWER 655','MAX 4D');
+
         }elseif (in_array($d->lottery_company,array('XSTTH','XSPY','XSDT','XSHCM','XSCM'))){
-            $bindArray['Monday']  = array('XSTTH','XSPY','XSDT','XSHCM','XSCM','XSMB');
+
+            $bindArray['Monday']  = array('XSTTH','XSPY','XSDT','XSHCM','XSCM','XSMB','MAX 3D');
+
         }
     }
     return $bindArray;
@@ -822,6 +838,12 @@ function stripVN($str) {
     return $str;
 }
 
+function getVietlottText($day) {
+    $bindArrayDay = array(
+        'power-655'=>'Power 6/55','mega-645'=>'Mega 6/45', 'max-4d'=>'Max 4D','xo-so-max-3d'=>'Max 3D'
+    );
+    return $bindArrayDay[$day];
+}
 
 function getTodayResultCompany(){
 
@@ -1042,4 +1064,26 @@ function searchForId($id, $array) {
         }
     }
     return null;
+}
+
+
+function getResultRegionByDayCompany($day,$region){
+
+    $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
+    $key = array_search($day,$bindArrayDay);
+    if(isset($bindArrayDay[$key])){
+        $dayName = $day;
+    }else{
+        $dayName = date('l',strtotime($day));
+        $key = array_search($dayName,$bindArrayDay);
+    }
+
+    $list = dayWiseArray($key);
+    if($region == 'VIETLOTT'){
+        $region = ucfirst(strtolower($region));
+    }
+
+    $all = RegionCompany::where('lottery_region',$region)->whereIn('lottery_company', $list)->get();
+    return $all;
+
 }

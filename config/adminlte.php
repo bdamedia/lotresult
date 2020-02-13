@@ -195,6 +195,12 @@ return [
             'icon'        => 'far fa-fw fa-file',
 
         ],
+        [
+            'text'        => 'Results',
+            'url'         => 'admin/results',
+            'icon'        => 'far fa-fw fa-file',
+
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'Cron Jobs XSMN',

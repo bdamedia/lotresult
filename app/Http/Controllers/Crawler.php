@@ -23,7 +23,7 @@ class Crawler extends Controller
     public function getCompanyRegions(){
 
         $allCompany = getRegionsCompany();
-            
+
             foreach ($allCompany as $company){
                 $data = RegionCompany::where('lottery_region', 'XSMN')->where('lottery_company', $company['code'])->get();
                 if ($data->count()) {
@@ -46,7 +46,7 @@ class Crawler extends Controller
         public function getCompanyRegionsVit(){
 
         $allCompany = getRegionsCompanyVitlot();
-           
+
             foreach ($allCompany as $company){
                 $data = RegionCompany::where('lottery_region', 'Vietlott')->where('lottery_company', $company['code'])->get();
                 if ($data->count()) {
@@ -344,6 +344,9 @@ class Crawler extends Controller
         $all = getTodayResultCompany();
 
         foreach ($all as $c){
+            if($c->lottery_company == 'Vietlott'){
+                continue;
+            }
             echo $c->lottery_company_url;
             $this->xsmtCurrentResult($request,$c->lottery_company_url);
         }
@@ -488,7 +491,7 @@ class Crawler extends Controller
         } else {
             $url = "https://xosodaiphat.com/xs-mega-xo-so-mega-645.html";
             $data = crawlUrlModifiedVitXoSoMega($url);
-          
+
             $url = "https://xosodaiphat.com/xo-so-max4d.html";
             $data = crawlUrlModifiedVit($url);
 
