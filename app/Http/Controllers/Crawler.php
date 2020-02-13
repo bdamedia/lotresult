@@ -374,7 +374,11 @@ class Crawler extends Controller
         $date2 = Carbon::createFromFormat('!Y-m-d',$date);
         $date2 = $date2->addDay(1);
         $day = $date1->toDateTime()->format('l');
-        $result = Result::where('lottery_company',$company)->where('result_day_time','>=',$date1)->where('result_day_time','<',$date2)->get();
+        
+        if($company == 'POWER 655' || $company == 'MEGA 645' || $company == 'MAX 4D' || $company == 'MAX 4D') {
+            $company = getVietlottValueForSideBar($company);
+        }
+        $result = Result::where('lottery_company', $company)->where('result_day_time','>=',$date1)->where('result_day_time','<',$date2)->get();
          $checkViewRegion = collect($result)->first()->lottery_region;
 
         $data['content'] = $result;
@@ -385,6 +389,8 @@ class Crawler extends Controller
         }elseif ($checkViewRegion == 'XSMT'){
                 $view = view('xsmtPaginate', $data)->render();
             }elseif ($checkViewRegion == 'XSMN'){
+                $view = view('xsmnSinglePaginate', $data)->render();
+            }elseif ($checkViewRegion == 'Vietlott'){
                 $view = view('xsmnSinglePaginate', $data)->render();
             }
             return response()->json(['html'=>$view]);
