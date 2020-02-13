@@ -63,7 +63,7 @@ Route::get("/ket-qua-vietlott/{day}", "Results@vietlottDayVise");
 Route::get("/ket-qua-vietlott-new/vietlott-{day}", "Results@vietlottDayViseRecord");
 
 //update current records
-Route::get("/updatedatabase/{link}", "Crawler@saveDatabase");
+/*Route::get("/updatedatabase/{link}", "Crawler@saveDatabase");*/
 Route::get("/updatexsmt/{link}", "Crawler@xsmtCurrentResult");
 Route::get("/reload/{link}", "Crawler@reloadCurrentResult");
 Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
@@ -117,6 +117,8 @@ Route::post('admin/results/{id}/delete', 'admin\ResultsController@delete')->name
 Route::get('admin/results/{id}/edit', 'admin\ResultsController@edit')->name('results_edit')->middleware('auth');
 Route::post('admin/results/{id}/edit', 'admin\ResultsController@edit')->name('results_edit')->middleware('auth');
 Route::post('admin/results/ajaxCompany', 'admin\ResultsController@ajaxCompany')->name('results_ajax')->middleware('auth');
+Route::get('admin/cron/dien-toan', 'admin\CronManualController@get_dien_toan')->name('dien_toan')->middleware('auth');
+Route::post('admin/cron/dien-toan', 'admin\CronManualController@get_dien_toan')->name('dien_toan')->middleware('auth');
 //Route::post('admin/cron/tt/{region}', 'admin\CronManualController@cronButtonStart')->name('cron_xsmb')->middleware('auth');
 
 
