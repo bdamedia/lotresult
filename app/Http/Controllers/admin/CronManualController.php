@@ -183,9 +183,12 @@ class CronManualController extends Controller
         foreach ($all as $c) {
             if ($c->lottery_region == $region) {
                  $url = "https://xosodaiphat.com" . $c->lottery_company_url;
+                 //
                 $data = crawlUrlModified($url);
                 if($autoSave == 1){
-                    Crawler::xsmtCurrentResult($request,$url);
+                    $url1 = $c->lottery_company_url;
+                    $cr = new Crawler();
+                    $cr->xsmtCurrentResult($request,$url1);
                 }
                 $mytime = Carbon::now();
 
