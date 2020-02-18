@@ -205,9 +205,6 @@
                                     @php $tdr8 = '<td class="'.key($prize_9).'" style="width: 15%">'.key($prize_9).'</td>'; @endphp
                                 @else
                                     @php $current = current($printresult);  @endphp
-                                    <!-- {{$current['lottery_company']}}     -->
-                                    <!-- {{ request()->segment(count(request()->segments()))}}
-                                    {{count(request()->segments())}} -->
                                     @if(request()->segment(count(request()->segments())) == 'ket-qua-vietlott' || count(request()->segments()) == 0)
                                         @if($current['lottery_company'] == 'Power 6/55' && $vietlottPower == 1)
                                             @include('vietlottPower')

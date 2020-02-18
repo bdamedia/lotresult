@@ -155,6 +155,9 @@ class Results extends Controller
         $new = array();
         $t = 0;
         foreach ($result as $res){
+            if($res->lottery_region == 'Điện Toán'){
+                continue;
+            }
             if($res->prize_1){
                 $k = $res->lottery_region.'_'.$res->result_day_time->toDateTime()->format('d/m/Y');
                 $new[$k][$t]['lottery_region'] = $res->lottery_region;
