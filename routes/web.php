@@ -14,6 +14,9 @@
 Route::get("/crawler", "Crawler@index");
 Route::get("/crawler/cJob", "Crawler@CroneJob");
 Route::get("/crawler/cJob/all/", "Crawler@CroneJobFull");
+Route::get('/ket-qua-dien-toan/kqxs-dien-toan-6-36/','Results@dienToanIndex');
+Route::get('/ket-qua-dien-toan/kqxs-dien-toan-123/','Results@dienToan123');
+Route::get('/ket-qua-dien-toan/kqxs-dien-toan-than-tai-4/','Results@dienToanTai4');
 Route::get('/ket-qua-xsmb/kqxsmb-truc-tiep/','Results@trucTiep');
 Route::get('/ket-qua-xsmt/kqxsmt-truc-tiep/','Results@trucTiep');
 Route::get('/ket-qua-xsmn/kqxsmn-truc-tiep/','Results@trucTiep');
@@ -33,6 +36,7 @@ Route::get('/kqxs-da-nang-{date}','Results@allCompanyDate');
 Route::get("/ket-qua-xsmb", "Results@xsmb");
 Route::get("/ket-qua-xsmt", "Results@xsmtIndex");
 Route::get("/ket-qua-xsmn", "Results@xsmnIndex");
+Route::get("/ket-qua-dien-toan", "Results@dienToanIndex");
 Route::get("crawler/old", "Crawler@getOldResult");
 Route::get("/cau-mien-bac/{kqxs_dien_toan}", "Results@kqxs");
 Route::get("/thond-keys/{thond_keys}", "Results@thonds");

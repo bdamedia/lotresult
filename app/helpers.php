@@ -874,7 +874,7 @@ $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesd
 return array_search($dayName,$bindArrayDay);
 }
 function getRegionSlug($code){
-    $reg = array('XSMN'=>'ket-qua-xsmn','XSMT'=>'ket-qua-xsmt','XSMB'=>'ket-qua-xsmb', 'Vietlott'=>'ket-qua-vietlott');
+    $reg = array('XSMN'=>'ket-qua-xsmn','XSMT'=>'ket-qua-xsmt','XSMB'=>'ket-qua-xsmb', 'Vietlott'=>'ket-qua-vietlott','Điện Toán'=>'ket-qua-dien-toan');
     return $reg[$code];
 }
 
