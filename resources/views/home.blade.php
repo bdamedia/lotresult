@@ -206,7 +206,7 @@
 
                                 @elseif($lot["lottery_region"] == "Điện Toán")
                                     @php $current = $lot; @endphp
-
+                                    <div class="block remove-margin" id='xsmb-{{ $g }}'>
                                         <div style="text-align:left;border-bottom: 2px solid #ccc;" class="block-main-heading">
                                             <h1>Xổ Số Điện toán ({{ $current['lottery_region'] }})</h1>
                                         </div>
@@ -243,7 +243,9 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <hr class="line-header"/>
+                                        <hr class="line-header"/>
+                                    </div>
+
                                    @php $current = ''; @endphp
                                 @else
 
