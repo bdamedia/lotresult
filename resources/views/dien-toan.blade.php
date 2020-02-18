@@ -7,9 +7,12 @@
         padding-top: 8px;
     }
     .class-title-list-link {
-       
+
         text-align: left;
         padding-left: 15px;
+    }
+    .class-title-list-link a{
+        color:#000;
     }
     .special-code {
         color: #000;
