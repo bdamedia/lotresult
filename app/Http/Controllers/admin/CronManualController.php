@@ -8,6 +8,7 @@ use App\Result;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Crawler;
+use MongoDB\BSON\UTCDateTime;
 
 class CronManualController extends Controller
 {
@@ -222,5 +223,74 @@ class CronManualController extends Controller
 
 
 
+    }
+
+    public function get_dien_toan(Request $request){
+        if ($request->isMethod('post')) {
+            $post_data = $request->input();
+            /*$request->validate([
+                'check'=>'required',
+            ]);*/
+            $link = array('https://xosodaiphat.com/xo-so-dien-toan-6x36.html','https://xosodaiphat.com/xo-so-dien-toan-123.html','https://xosodaiphat.com/xo-so-than-tai.html');
+            foreach($link as $l){
+                $result = crawlUrlDienToan($l);
+
+                foreach ($result as $res) {
+                    if (isset($res['lottery_region'])) {
+                        $result = new Result();
+                        $da = explode('-', $res['result_day_time']);
+
+                        $orig_date = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+                        $orig_date1 = Carbon::createFromFormat("!Y-m-d",$da[2].'-'.$da[1].'-'.$da[0]);
+                        $orig_date1 = $orig_date1->addDay(1);
+                        $data = Result::where('lottery_region', $res['lottery_region'])->where('lottery_company', $res['lottery_company'])->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->get();
+
+                        if ($data->count() > 0) {
+                            Result::where('lottery_region', $res['lottery_region'])->where('lottery_company', $res['lottery_company'])->where('result_day_time' ,'>=', $orig_date)->where('result_day_time' ,'<', $orig_date1)->first()->delete();
+                            $result->lottery_region = $res['lottery_region'];
+                            $result->lottery_company = $res['lottery_company'];
+                            $orig_date = Carbon::createFromDate($da[2], $da[1], $da[0]);
+                            $result->result_day_time = new UTCDateTime($orig_date);
+                            $i = 1;
+                            foreach ($res['data'] as $key => $detailsData) {
+                                if ($key == 'board') {
+                                    $name = $key;
+                                    $result->{$name} = json_encode($res['data'][$key]);
+                                } else {
+                                    $name = "prize_" . $i;
+                                    $result->{$name} = json_encode(array($key => $res['data'][$key]));
+                                    $i++;
+                                }
+                            }
+
+                            $result->save();
+                        } else {
+
+                            $result->lottery_region = $res['lottery_region'];
+                            $result->lottery_company = $res['lottery_company'];
+                            $orig_date = Carbon::createFromDate($da[2], $da[1], $da[0]);
+                            $result->result_day_time = new UTCDateTime($orig_date);
+                            $i = 1;
+                            foreach ($res['data'] as $key => $detailsData) {
+                                if ($key == 'board') {
+                                    $name = $key;
+                                    $result->{$name} = json_encode($res['data'][$key]);
+                                } else {
+                                    $name = "prize_" . $i;
+                                    $result->{$name} = json_encode(array($key => $res['data'][$key]));
+                                    $i++;
+                                }
+                            }
+
+                            $result->save();
+                        }
+                    }
+
+                }
+            }
+
+           // print_r($result);
+        }
+        return view('admin/cron/dien-toan'); // ->with($data);
     }
 }

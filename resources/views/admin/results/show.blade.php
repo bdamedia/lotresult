@@ -99,7 +99,7 @@
 
 @section('content')
 
-        @if($data->lottery_region != 'Vietlott')
+        @if($data->lottery_region == 'XSMB' && $data->lottery_region == 'XSMN' && $data->lottery_region == 'XSMT')
         <div style="margin: 0 auto;" class="remove-margin block col-md-6" id='{{ $data->lottery_region }}'>
             <div class="block-main-heading">
                 <h1>
@@ -296,7 +296,8 @@
             </div>
 
         </div>
-@else
+    @elseif($data->lottery_region == 'Vietlott')
+
             @php $vietlottPower = 1; @endphp
             @php $vietlottMega = 1; @endphp
             @php $vietlott4d = 1; @endphp
@@ -1012,6 +1013,12 @@
 
                 @php $vietlott3d = 2; @endphp
             @endif
+
+    @elseif($data->lottery_region == 'Điện Toán')
+           {{-- <pre>
+            {{ print_r($data) }}--}}
+
+        @include('admin/cron/dien-toan-section')
 
     @endif
 

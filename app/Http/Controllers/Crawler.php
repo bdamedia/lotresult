@@ -189,7 +189,7 @@ class Crawler extends Controller
     }
 
 
-    public function saveDatabase(Request $request, $link)
+    /*public function saveDatabase(Request $request, $link)
     {
         $url = "https://xosodaiphat.com/" . $link;
         $resultData = crawlUrlModified($url);
@@ -227,7 +227,7 @@ class Crawler extends Controller
             }
         }
         //exit();
-    }
+    }*/
 
     public function xsmtCurrentResult(Request $request, $link)
     {

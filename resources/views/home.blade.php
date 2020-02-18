@@ -60,7 +60,7 @@
 
                                 @endphp
 
-                                @if($lot["lottery_region"] != 'Vietlott')
+                                @if($lot["lottery_region"] != 'Vietlott' && $lot["lottery_region"] != 'Điện Toán')
 
                                     @php $prize_1 = json_decode($lot['prize_1']); @endphp
                                     @php $prize_2 = json_decode($lot['prize_2']); @endphp
@@ -205,9 +205,6 @@
                                     @php $tdr8 = '<td class="'.key($prize_9).'" style="width: 15%">'.key($prize_9).'</td>'; @endphp
                                 @else
                                     @php $current = current($printresult);  @endphp
-                                    <!-- {{$current['lottery_company']}}     -->
-                                    <!-- {{ request()->segment(count(request()->segments()))}}
-                                    {{count(request()->segments())}} -->
                                     @if(request()->segment(count(request()->segments())) == 'ket-qua-vietlott' || count(request()->segments()) == 0)
                                         @if($current['lottery_company'] == 'Power 6/55' && $vietlottPower == 1)
                                             @include('vietlottPower')
@@ -241,7 +238,7 @@
 
                             @endforeach
 
-                            @if($lot["lottery_region"] != 'Vietlott')
+                            @if($lot["lottery_region"] != 'Vietlott' && $lot["lottery_region"] != 'Điện Toán')
 
                                 @php $current = current($printresult);  @endphp
 
@@ -290,7 +287,7 @@
                                             </tr>
 
                                             <tr>
-                                                @php echo $tdr3; @endphp
+                                                @php echo $tdr3 ?? ''; @endphp
 
                                                 @php echo $td5; @endphp
                                             </tr>

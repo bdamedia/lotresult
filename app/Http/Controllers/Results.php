@@ -155,6 +155,9 @@ class Results extends Controller
         $new = array();
         $t = 0;
         foreach ($result as $res){
+            /*if($res->lottery_region == 'Điện Toán'){
+                continue;
+            }*/
             if($res->prize_1){
                 $k = $res->lottery_region.'_'.$res->result_day_time->toDateTime()->format('d/m/Y');
                 $new[$k][$t]['lottery_region'] = $res->lottery_region;
@@ -805,7 +808,7 @@ class Results extends Controller
             } else if($day == 'thu-6') {
                 $list = dayWiseArray('thu-sau');
                 $day = 'thu-sau';
-            
+
             } else if($day == 'thu-3') {
                 $list = dayWiseArray('thu-ba');
                 $day = 'thu-ba';
@@ -817,7 +820,7 @@ class Results extends Controller
                 $day = 'thu-bay';
             } else if($day == 'chu-nhat') {
                 $list = dayWiseArray('chu-nhat');
-                $day = 'chu-nhat';    
+                $day = 'chu-nhat';
             }
 
             $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesday','thu-nam'=>'Thursday','thu-sau'=>'Friday','thu-bay'=>'Saturday','chu-nhat'=>'Sunday');
@@ -1465,5 +1468,27 @@ class Results extends Controller
         $data['optionText'] = $optionText;
         $data['orig_date'] = $date;
         return view('thondsResult')->with($data);
+    }
+
+
+    public function dienToanIndex(){
+
+        $result = Result::where('lottery_region', 'Điện Toán')->where('lottery_company', 'Điện toán 6x36')->orderBy('result_day_time', 'desc')->get();
+        $data['content'] = $result;
+        return view('dien-toan')->with($data);
+    }
+
+    public function dienToan123(){
+
+        $result = Result::where('lottery_region', 'Điện Toán')->where('lottery_company', 'Điện toán 123')->orderBy('result_day_time', 'desc')->get();
+        $data['content'] = $result;
+        return view('dien-toan')->with($data);
+    }
+
+    public function dienToanTai4(){
+
+        $result = Result::where('lottery_region', 'Điện Toán')->where('lottery_company', 'XS Thần tài')->orderBy('result_day_time', 'desc')->get();
+        $data['content'] = $result;
+        return view('dien-toan')->with($data);
     }
 }
