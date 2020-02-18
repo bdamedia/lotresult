@@ -207,11 +207,10 @@
                                 @elseif($lot["lottery_region"] == "Điện Toán")
                                     @php $current = $lot; @endphp
 
-                                    @if($g == 1)
                                         <div style="text-align:left;border-bottom: 2px solid #ccc;" class="block-main-heading">
                                             <h1>Xổ Số Điện toán ({{ $current['lottery_region'] }})</h1>
                                         </div>
-                                    @endif
+
                                     <div  style="   color:#000; background-color: #edf2fa;" class="list-link">
                                         <h2 style="text-align:left;padding: 8px;" class="class-title-list-link">
                                             @php $dayName = $current['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$current['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
