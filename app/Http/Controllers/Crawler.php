@@ -375,14 +375,17 @@ class Crawler extends Controller
         $date2 = $date2->addDay(1);
         $day = $date1->toDateTime()->format('l');
         
-        if($company == 'POWER 655' || $company == 'MEGA 645' || $company == 'MAX 4D' || $company == 'MAX 4D') {
+        if($company == 'POWER 655' || $company == 'MEGA 645' || $company == 'MAX 3D' || $company == 'MAX 4D') {
             $company = getVietlottValueForSideBar($company);
         }
         $result = Result::where('lottery_company', $company)->where('result_day_time','>=',$date1)->where('result_day_time','<',$date2)->get();
-         $checkViewRegion = collect($result)->first()->lottery_region;
+        $checkViewRegion = collect($result)->first()->lottery_region;
+        $checkViewCompany = collect($result)->first()->lottery_company;
 
         $data['content'] = $result;
-
+       /* echo "<pre>";
+        print_r($result);*/
+        
         if ($request->ajax()) {
             if ($checkViewRegion == 'XSMB'){
                 $view = view('xsmbPaginate', $data)->render();
@@ -390,9 +393,22 @@ class Crawler extends Controller
                 $view = view('xsmtPaginate', $data)->render();
             }elseif ($checkViewRegion == 'XSMN'){
                 $view = view('xsmnSinglePaginate', $data)->render();
-            }elseif ($checkViewRegion == 'Vietlott'){
-                $view = view('xsmnSinglePaginate', $data)->render();
             }
+
+            elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 4D'){
+                $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+                $view = view('vietlott4dSinglePaginate', $data)->render();
+            }
+            elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 3D'){
+                $view = view('vietlott3dSinglePaginate', $data)->render();
+            }
+            elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'Power 6/55'){
+                $view = view('vietlottPowerSinglePaginate', $data)->render();
+            }
+            elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Mega'){
+                $view = view('vietlottMegaSinglePaginate', $data)->render();
+            }
+
             return response()->json(['html'=>$view]);
         }
        // return view('xsmtPaginate')->with($result);
