@@ -36,10 +36,12 @@
                 <p><span><a href="/ket-qua-xsmn/kqxs-{{ getCompanySlug($printresult->lottery_company) }}-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}">Xổ Số  {{ getCompanyName($printresult->lottery_company) }} {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a></span></p>
             </div>
         </div> -->
-
         @php    
-        if($prize_7 && $g==0 && $vietlottMega < 2) {
-           echo '<div class="result-jackpot">
+        if($printresult->prize_7) {
+            $prize_7 = json_decode($printresult->prize_7);
+            $prize_8 = json_decode($printresult->prize_8);
+            $prize_8_Second = json_decode($printresult->prize_8);
+            echo '<div class="result-jackpot">
                 <div class="head-result">
                     <h3 class="title-result-jackpot">'.$prize_7->resultTitle.'</h3>
                 </div>
@@ -48,50 +50,96 @@
                     <span class="result-jackpot">'. $prize_8->jackpotResult[0] .'</span>
                     <hr class="line-prize">
                     <p class="title-prize">Giá trị jackpot 2</p>
-                    <span class="result-jackpot">'. $prize_8->jackpotResult[1] .'</span>
+                    <span class="result-jackpot">'. $prize_8_Second->jackpotResult[1] .'</span>
                 </div>
             </div> <p class="para open-next"></p>';
         } 
         @endphp
 
-        <div class="block-main-content">
-            <table class="table table-bordered table-striped table-xsmn">
+        <div class="list-link left100 backgroud-hide">
+            <h2 class="class-title-list-link class-title-list-link-left">
+                @php $dayName = $printresult['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$printresult->result_day_time); $dateexp = implode('-',$dateexp); @endphp
+                <a href="/{{ getRegionSlug($printresult->lottery_region) }}" title="{{ $printresult->lottery_region }}" class="u-line">
+                    {{ $printresult->lottery_company}}
+                </a><span> » </span>
+
+                 <a href="/{{ getRegionSlug($printresult->lottery_region) }}/power-655-{{$dayName}}" title="{{ $printresult->lottery_region }}" class="u-line">
+                    {{ $printresult->lottery_company }} 
+                </a><span> » </span>
+                <a href="/ket-qua-vietlott-new/{{ strtolower($printresult->lottery_region) }}-ngay-{{ $dateexp }}" title="{{ $printresult->lottery_region }}" class="u-line"> 
+                     {{ $printresult->lottery_company }} {{ $printresult->result_day_time }}
+                </a>
+            </h2>
+        </div>
+
+        <p class="para text-black-bold">Kỳ 549: Chủ Nhật, {{ $printresult->result_day_time }}</p>
+        <div class="power-detail">
+            <ul>
+               @php 
+               $boards = json_decode($printresult->board);
+               if($boards){ 
+                     foreach($boards as $kk=>$bb) {
+                         if(isset($boards->$kk)){
+                             echo "<li>". $bb. "</li>";
+                         }
+                     }
+                }
+                @endphp
+            </ul>
+        </div>
+    <p class="text-sm">Các con số dự thưởng phải trùng với số kết quả nhưng không cần theo đúng thứ tự</p>
+   
+        <div class="prize-detail prize-power">
+            <table class="table table-bordered table-striped text-table livetn3">
+                <thead>
+                <tr>
+                    <th class="col-xs-2">Giải thưởng</th>
+                    <th class="col-xs-4">Trùng khớp</th>
+                    <th class="text-right col-xs-2">Số lượng giải</th>
+                    <th class="text-right col-xs-4">Giá trị giải (đ)</th>
+                </tr>
+                </thead>
+
                 <tbody>
                 <tr> @php $prize_1 = json_decode($printresult->prize_1); @endphp
-                    <td class="ĐB {{ key($prize_1) }}" style="width: 15%">  {{ key($prize_1) }}</td>
-                    <td class="text-center">
+                    <td class="{{ key($prize_1) }}" > {{ key($prize_1) }}</td>
+                    <td class="text-center circle-no"><i></i><i></i><i></i><i></i><i></i><i></i></td>
+                    @if(count((array) $prize_1) <= 1)
                         @foreach($prize_1->{key($prize_1)} as $k=>$p1)
-                            <span class=" number-black-bold div-horizontal ">{{ $p1 }} </span>
+                            <td class="col-xs-3  div-horizontal">{{ $p1 }}</td>
                         @endforeach
-                    </td>
+                    @else
+                        @foreach($prize_1->{key($prize_1)} as $k=>$p2)
+                            <td class="col-xs-3  div-horizontal">{{ $p1 }}</td>
+                        @endforeach
+                    @endif
+
                 </tr>
 
                 <tr> @php $prize_2 = json_decode($printresult->prize_2);   @endphp
                     <td class="{{ key($prize_2) }}" > {{ key($prize_2) }}</td>
-                    <td class="text-center">
-                        @if(count((array) $prize_2) <= 1)
-                            @foreach($prize_2->{key($prize_2)} as $k=>$p2)
-
-                                <span class="number-black-bold div-horizontal">{{ $p2 }} </span>
-                            @endforeach
-                        @else
-                            @foreach($prize_2->{key($prize_2)} as $k=>$p2)
-                                <span class="col-xs-4 special-code div-horizontal">{{ $p2 }} </span>
-                            @endforeach
-                        @endif
-                    </td>
+                    <td class="text-center circle-no special"><i></i><i></i><i></i><i></i><i></i><i></i></td>
+                    @if(count((array) $prize_2) <= 1)
+                        @foreach($prize_2->{key($prize_2)} as $k=>$p2)
+                            <td class="col-xs-3  div-horizontal">{{ $p2 }}</td>
+                        @endforeach
+                    @else
+                        @foreach($prize_2->{key($prize_2)} as $k=>$p2)
+                            <td class="col-xs-3  div-horizontal">{{ $p2 }}</td>
+                        @endforeach
+                    @endif
                 </tr>
 
                 <tr> @php $prize_3 = json_decode($printresult->prize_3);  @endphp
                     <td class="{{ key($prize_3) }}" > {{ key($prize_3) }}</td>
-                    <td class="text-center">
+                    <td class="text-center circle-no"><i></i><i></i><i></i><i></i><i></i></td>
                         @if(count((array) $prize_3) <= 1)
                             @foreach($prize_3->{key($prize_3)} as $k=>$p3)
-                                <span class="number-black-bold div-horizontal">{{ $p3 }} </span>
+                                <td class="col-xs-3  div-horizontal">{{ $p3 }} </td>
                             @endforeach
                         @else
                             @foreach($prize_3->{key($prize_3)} as $k=>$p3)
-                                <span class="number-black-bold div-horizontal">{{ $p3 }} </span>
+                                <td class="col-xs-3  div-horizontal">{{ $p3 }} </td>
                             @endforeach
                         @endif
                     </td>
@@ -99,41 +147,42 @@
 
                 <tr> @php $prize_4 = json_decode($printresult->prize_4);  @endphp
                     <td class="{{ key($prize_4) }}" > {{ key($prize_4) }}</td>
-                    <td class="text-center">
+                    <td class="text-center circle-no"><i></i><i></i><i></i><i></i></td>
+                    
                         @if(count((array) $prize_4) <= 1)
 
                             @foreach($prize_4->{key($prize_4)} as $k=>$p4)
-                                <span class="number-black-bold div-horizontal">{{ $p4 }} </span>
+                                <td class="col-xs-3  div-horizontal">{{ $p4 }} </td>
                             @endforeach
                         @else
                             @foreach($prize_4->{key($prize_4)} as $k=>$p4)
-                                <span class="number-black-bold div-horizontal">{{ $p4 }} </span>
+                                <td class="col-xs-3  div-horizontal">{{ $p4 }} </td>
                             @endforeach
                         @endif
-                    </td>
+                    
                 </tr>
 
-                <tr> @php $prize_5 = json_decode($printresult->prize_5);  @endphp
-                    <td class="{{ key($prize_5) }}" > {{ key($prize_5) }}</td>
-                    <td class="text-center">
-                        @if(count((array) $prize_5) <= 1)
-                            @foreach($prize_5 as $k=>$p5)
-                                <span class="number-black-bold div-horizontal">@php if(count((array) $p5) > 0 ){ $tp = 1; foreach ($p5 as $p51) { if($tp > 3){ echo "<span class='col-xs-3' >$p51</span>"; }else{ echo "<span class='col-xs-4' >$p51</span>";  } $tp++; } }  @endphp </span>
-                            @endforeach
+                 <tr> @php $prize_5 = json_decode($printresult->prize_5);  @endphp
+                    <td class="{{ key($prize_4) }}" > {{ key($prize_5) }}</td>
+                    <td class="text-center circle-no"><i></i><i></i><i></i></td>
+                    @if(count((array) $prize_5) <= 1)
 
-                        @else
-                            @foreach($prize_5->{key($prize_5)} as $k=>$p5)
-                                <span class="number-black-bold div-horizontal">{{ $p5 }} </span>
-                            @endforeach
-                        @endif
-                    </td>
+                        @foreach($prize_5->{key($prize_5)} as $k=>$p4)
+                            <td class="col-xs-3  div-horizontal">{{ $p4 }} </td>
+                        @endforeach
+                    @else
+                        @foreach($prize_5->{key($prize_5)} as $k=>$p4)
+                            <td class="col-xs-3  div-horizontal">{{ $p4 }} </td>
+                        @endforeach
+                    @endif
                 </tr>
 
                 </tbody>
             </table>
         </div>
         <hr class="line-header"/>
-        <div class="block-main-content">
+        
+        <!-- <div class="block-main-content">
             <div class="block-main-content view-loto">
                 <table class="table table-bordered table-loto">
                     <tbody>
@@ -162,7 +211,7 @@
                         @endphp
                     </tbody></table>
             </div>
-        </div>
+        </div> -->
 
     </div>
     @php $g++;  @endphp
