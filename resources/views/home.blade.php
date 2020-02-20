@@ -19,7 +19,7 @@
                         @php $g = 1;  $tr ='<tr>'; @endphp
                         @foreach($content as $key=>$printresult)
                             {{--{{ $key }}--}}
-                            @php $date = $key; @endphp
+                            @php  $date = $key; @endphp
                             @php    $th ='';
                                     $td1 = '';
                                     $td2 = '';
@@ -60,7 +60,7 @@
 
                                 @endphp
 
-                                @if($lot["lottery_region"] != 'Vietlott')
+                                @if($lot["lottery_region"] != 'Vietlott' && $lot["lottery_region"] != 'Điện Toán')
 
                                     @php $prize_1 = json_decode($lot['prize_1']); @endphp
                                     @php $prize_2 = json_decode($lot['prize_2']); @endphp
@@ -203,11 +203,53 @@
                                     @php $tdr6 = '<td class="'.key($prize_7).'" style="width: 15%">'.key($prize_7).'</td>'; @endphp
                                     @php $tdr7 = '<td class="'.key($prize_8).'" style="width: 15%">'.key($prize_8).'</td>'; @endphp
                                     @php $tdr8 = '<td class="'.key($prize_9).'" style="width: 15%">'.key($prize_9).'</td>'; @endphp
+
+                                @elseif($lot["lottery_region"] == "Điện Toán")
+                                    @php $current = $lot; @endphp
+                                    <div class="block remove-margin" id='xsmb-{{ $g }}'>
+                                        <div style="text-align:left;border-bottom: 2px solid #ccc;" class="block-main-heading">
+                                            <h1>Xổ Số Điện toán ({{ $current['lottery_region'] }})</h1>
+                                        </div>
+
+                                    <div  style="   color:#000; background-color: #edf2fa;" class="list-link">
+                                        <h2 style="text-align:left;padding: 8px;" class="class-title-list-link">
+                                            @php $dayName = $current['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$current['result_day_time']); $dateexp = implode('-',$dateexp); @endphp
+
+                                            <a style="color:#000;" href="/{{ getRegionSlug($current['lottery_region']) }}" title="{{ $current['lottery_region'] }}">{{ $current['lottery_region'] }}</a><span> » </span>
+                                            <a style="color:#000;" href="/{{ getRegionSlug($current['lottery_region']) }}/kq{{ strtolower($current['lottery_region']) }}-{{$dayName}}" title="{{ $current['lottery_region'] }} {{ $current['day'] }}">{{ $current['lottery_company'] }} {{ engToVit($current['day']) }}</a><span> » </span>
+                                            <a style="color:#000;" href="/{{ getRegionSlug($current['lottery_region']) }}/kqxsmb-ngay-{{ $current['result_day_time'] }}" title="{{ $current['lottery_region'] }}  {{ $current['result_day_time'] }}"> {{ $current['lottery_region'] }}  {{ $current['result_day_time'] }}</a>
+                                        </h2>
+                                    </div>
+                                    <div class="block-main-content">
+                                        <table class="table table-bordered table-striped table-xsmb">
+                                            <tbody>
+                                            <tr>
+                                                @php $prize_1 = json_decode($current['prize_1']); $prize_1 = json_decode($prize_1->prize_1); @endphp
+                                                <td style="padding:0px" class="text-center">
+                                                    <ul>
+                                                        @foreach($prize_1 as $k=>$p1)
+                                                            @if(count((array)$prize_1->{key($prize_1)}) > 3 )
+                                                                <li style="color:#000;width:10%;display: inline-block;" class="col-xs-3 special-code div-horizontal">{{ $p1 }}</li>
+                                                            @else
+                                                                <li style="color:#000;width:10%;display: inline-block;" class="special-code div-horizontal">{{ $p1 }}</li>
+                                                            @endif
+                                                        @endforeach
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                        <hr class="line-header"/>
+                                    </div>
+
+                                   @php $current = ''; @endphp
                                 @else
+
                                     @php $current = current($printresult);  @endphp
-                                    <!-- {{$current['lottery_company']}}     -->
-                                    <!-- {{ request()->segment(count(request()->segments()))}}
-                                    {{count(request()->segments())}} -->
                                     @if(request()->segment(count(request()->segments())) == 'ket-qua-vietlott' || count(request()->segments()) == 0)
                                         @if($current['lottery_company'] == 'Power 6/55' && $vietlottPower == 1)
                                             @include('vietlottPower')
@@ -241,7 +283,7 @@
 
                             @endforeach
 
-                            @if($lot["lottery_region"] != 'Vietlott')
+                            @if($lot["lottery_region"] != 'Vietlott' && $lot["lottery_region"] != 'Điện Toán')
 
                                 @php $current = current($printresult);  @endphp
 
@@ -290,7 +332,7 @@
                                             </tr>
 
                                             <tr>
-                                                @php echo $tdr3; @endphp
+                                                @php echo $tdr3 ?? ''; @endphp
 
                                                 @php echo $td5; @endphp
                                             </tr>

@@ -881,7 +881,7 @@ $bindArrayDay = array('thu-hai'=>'Monday','thu-ba'=>'Tuesday','thu-tu'=>'Wednesd
 return array_search($dayName,$bindArrayDay);
 }
 function getRegionSlug($code){
-    $reg = array('XSMN'=>'ket-qua-xsmn','XSMT'=>'ket-qua-xsmt','XSMB'=>'ket-qua-xsmb', 'Vietlott'=>'ket-qua-vietlott');
+    $reg = array('XSMN'=>'ket-qua-xsmn','XSMT'=>'ket-qua-xsmt','XSMB'=>'ket-qua-xsmb', 'Vietlott'=>'ket-qua-vietlott','Điện Toán'=>'ket-qua-dien-toan');
     return $reg[$code];
 }
 
@@ -1093,4 +1093,49 @@ function getResultRegionByDayCompany($day,$region){
     $all = RegionCompany::where('lottery_region',$region)->whereIn('lottery_company', $list)->get();
     return $all;
 
+}
+
+
+function crawlUrlDienToan($url=null){
+
+    $html = file_get_contents($url);
+    $dom = new DOMDocument;
+
+    @$dom->loadHTML($html);
+
+
+    $finder = new DomXPath($dom);
+    $links = $finder->query("//*[contains(@class, 'list-link')]");
+
+    $res = [];
+    $i = 0;
+    foreach($links as $link){
+        $t = $finder->query("//*[contains(@class, 'dientoan-detail')]");
+        $region = $link->getElementsByTagName('ul')->item(0);
+
+        $date = $link->getElementsByTagName('ul')->item(0);
+
+        $region = $region->getElementsByTagName('a')->item(0)->nodeValue;
+
+        $date = $date->getElementsByTagName('li')->item(1)->nodeValue;
+        $date = preg_replace('/\s+/', '',  $date);
+        $date = explode(',',$date);
+        $d = explode(',',preg_replace('/\s+/', ',',  $link->nodeValue));
+        if($t->item($i)){
+            $v = $t->item($i)->nodeValue;
+            $v = explode(',',preg_replace('/\s+/', ',',  $v));
+        }else{
+            $v = array();
+        }
+        if(stripos($link->getAttribute('class'),'list-link-footer') !== false) {
+        continue;
+        }else{
+            $res[$i]['lottery_company'] = $region;
+            $res[$i]['lottery_region'] = 'Điện Toán';
+            $res[$i]['result_day_time'] = end($date);
+            $res[$i]['data']['prize_1'] = json_encode(array_filter($v));
+            $i++;
+        }
+    }
+    return $res;
 }

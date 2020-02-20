@@ -14,6 +14,9 @@
 Route::get("/crawler", "Crawler@index");
 Route::get("/crawler/cJob", "Crawler@CroneJob");
 Route::get("/crawler/cJob/all/", "Crawler@CroneJobFull");
+Route::get('/ket-qua-dien-toan/kqxs-dien-toan-6-36/','Results@dienToanIndex');
+Route::get('/ket-qua-dien-toan/kqxs-dien-toan-123/','Results@dienToan123');
+Route::get('/ket-qua-dien-toan/kqxs-dien-toan-than-tai-4/','Results@dienToanTai4');
 Route::get('/ket-qua-xsmb/kqxsmb-truc-tiep/','Results@trucTiep');
 Route::get('/ket-qua-xsmt/kqxsmt-truc-tiep/','Results@trucTiep');
 Route::get('/ket-qua-xsmn/kqxsmn-truc-tiep/','Results@trucTiep');
@@ -33,6 +36,7 @@ Route::get('/kqxs-da-nang-{date}','Results@allCompanyDate');
 Route::get("/ket-qua-xsmb", "Results@xsmb");
 Route::get("/ket-qua-xsmt", "Results@xsmtIndex");
 Route::get("/ket-qua-xsmn", "Results@xsmnIndex");
+Route::get("/ket-qua-dien-toan", "Results@dienToanIndex");
 Route::get("crawler/old", "Crawler@getOldResult");
 Route::get("/cau-mien-bac/{kqxs_dien_toan}", "Results@kqxs");
 Route::get("/thond-keys/{thond_keys}", "Results@thonds");
@@ -63,7 +67,7 @@ Route::get("/ket-qua-vietlott/{day}", "Results@vietlottDayVise");
 Route::get("/ket-qua-vietlott-new/vietlott-{day}", "Results@vietlottDayViseRecord");
 
 //update current records
-Route::get("/updatedatabase/{link}", "Crawler@saveDatabase");
+/*Route::get("/updatedatabase/{link}", "Crawler@saveDatabase");*/
 Route::get("/updatexsmt/{link}", "Crawler@xsmtCurrentResult");
 Route::get("/reload/{link}", "Crawler@reloadCurrentResult");
 Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
@@ -117,6 +121,8 @@ Route::post('admin/results/{id}/delete', 'admin\ResultsController@delete')->name
 Route::get('admin/results/{id}/edit', 'admin\ResultsController@edit')->name('results_edit')->middleware('auth');
 Route::post('admin/results/{id}/edit', 'admin\ResultsController@edit')->name('results_edit')->middleware('auth');
 Route::post('admin/results/ajaxCompany', 'admin\ResultsController@ajaxCompany')->name('results_ajax')->middleware('auth');
+Route::get('admin/cron/dien-toan', 'admin\CronManualController@get_dien_toan')->name('dien_toan')->middleware('auth');
+Route::post('admin/cron/dien-toan', 'admin\CronManualController@get_dien_toan')->name('dien_toan')->middleware('auth');
 //Route::post('admin/cron/tt/{region}', 'admin\CronManualController@cronButtonStart')->name('cron_xsmb')->middleware('auth');
 
 

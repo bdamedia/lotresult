@@ -101,9 +101,9 @@
                         <li><a href="/ket-qua-vietlott/xs-max-3d-thu-6" title="XS Max 3D thứ 6">Thứ 6</a></li>
                     </ul>
                 </li>
-                <!-- <li><a href="/xo-so-dien-toan-6x36.html" title="XS Điện toán 6x36" class="text-black-bold">XS Điện toán 6x36</a></li>
-                <li><a href="/xo-so-dien-toan-123.html" title="XS Điện toán 123" class="text-black-bold">XS Điện toán 123</a></li>
-                <li><a href="/xo-so-than-tai.html" title="XS Thần tài 4" class="text-black-bold">XS Thần tài 4</a></li> -->
+                <li><a href="/ket-qua-dien-toan/kqxs-dien-toan-6-36/" title="XS Điện toán 6x36" class="text-black-bold">XS Điện toán 6x36</a></li>
+                <li><a href="/ket-qua-dien-toan/kqxs-dien-toan-123/" title="XS Điện toán 123" class="text-black-bold">XS Điện toán 123</a></li>
+                <li><a href="/ket-qua-dien-toan/kqxs-dien-toan-than-tai-4/" title="XS Thần tài 4" class="text-black-bold">XS Thần tài 4</a></li>
             </ul>
         </div>
     </div>
