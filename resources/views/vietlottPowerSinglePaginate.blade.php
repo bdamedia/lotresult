@@ -58,21 +58,22 @@
 
         <div class="list-link left100 backgroud-hide">
             <h2 class="class-title-list-link class-title-list-link-left">
-                @php $dayName = $printresult['day']; $dayName = getDaySlug($dayName); $dateexp  = explode('/',$printresult->result_day_time); $dateexp = implode('-',$dateexp); @endphp
+                @php $dayName = $printresult->result_day_time->toDateTime()->format('l'); $dayName = getDaySlug($dayName); @endphp
+
                 <a href="/{{ getRegionSlug($printresult->lottery_region) }}" title="{{ $printresult->lottery_region }}" class="u-line">
                     {{ $printresult->lottery_company}}
                 </a><span> » </span>
-
-                 <a href="/{{ getRegionSlug($printresult->lottery_region) }}/power-655-{{$dayName}}" title="{{ $printresult->lottery_region }}" class="u-line">
-                    {{ $printresult->lottery_company }} 
+            
+                 <a href="/{{ getRegionSlug($printresult->lottery_region) }}/power-655-{{$dayName}}" class="u-line">
+                    {{ $printresult->lottery_company }} {{ engToVit($printresult->result_day_time->toDateTime()->format('l')) }}
                 </a><span> » </span>
-                <a href="/ket-qua-vietlott-new/{{ strtolower($printresult->lottery_region) }}-ngay-{{ $dateexp }}" title="{{ $printresult->lottery_region }}" class="u-line"> 
-                     {{ $printresult->lottery_company }} {{ $printresult->result_day_time }}
+                <a href="/ket-qua-vietlott-new/{{ strtolower($printresult->lottery_region) }}-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}" class="u-line"> 
+                     {{ $printresult->lottery_company }} {{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}
                 </a>
             </h2>
         </div>
 
-        <p class="para text-black-bold">Kỳ 549: Chủ Nhật, {{ $printresult->result_day_time }}</p>
+        <p class="para text-black-bold">Kỳ 549: Chủ Nhật, {{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}</p>
         <div class="power-detail">
             <ul>
                @php 
