@@ -376,6 +376,7 @@ class Crawler extends Controller
         $day = $date1->toDateTime()->format('l');
         
         if($company == 'POWER 655' || $company == 'MEGA 645' || $company == 'MAX 3D' || $company == 'MAX 4D') {
+            $company_old = $company;
             $company = getVietlottValueForSideBar($company);
         }
         $result = Result::where('lottery_company', $company)->where('result_day_time','>=',$date1)->where('result_day_time','<',$date2)->get();
@@ -399,6 +400,12 @@ class Crawler extends Controller
 
                 elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 4D'){
                     $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+
+                    $data['selected_date'] =  Carbon::createFromFormat('Y-m-d', $date);
+                    $data['selected_chon'] =  $company_old;
+                    $data['selected_number'] =  $number;
+                    $data['result_count'] = $result->count();
+
                     $view = view('vietlott4dSinglePaginate', $data)->render();
                 }
                 elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 3D'){
