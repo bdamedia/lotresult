@@ -379,37 +379,43 @@ class Crawler extends Controller
             $company = getVietlottValueForSideBar($company);
         }
         $result = Result::where('lottery_company', $company)->where('result_day_time','>=',$date1)->where('result_day_time','<',$date2)->get();
-        $checkViewRegion = collect($result)->first()->lottery_region;
-        $checkViewCompany = collect($result)->first()->lottery_company;
 
-        $data['content'] = $result;
-       /* echo "<pre>";
-        print_r($result);*/
-        
-        if ($request->ajax()) {
-            if ($checkViewRegion == 'XSMB'){
-                $view = view('xsmbPaginate', $data)->render();
-        }elseif ($checkViewRegion == 'XSMT'){
-                $view = view('xsmtPaginate', $data)->render();
-            }elseif ($checkViewRegion == 'XSMN'){
-                $view = view('xsmnSinglePaginate', $data)->render();
-            }
+        if($result->count()) {
+            $checkViewRegion = collect($result)->first()->lottery_region;
+            $checkViewCompany = collect($result)->first()->lottery_company;
 
-            elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 4D'){
-                $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
-                $view = view('vietlott4dSinglePaginate', $data)->render();
-            }
-            elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 3D'){
-                $view = view('vietlott3dSinglePaginate', $data)->render();
-            }
-            elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'Power 6/55'){
-                $view = view('vietlottPowerSinglePaginate', $data)->render();
-            }
-            elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Mega'){
-                $view = view('vietlottMegaSinglePaginate', $data)->render();
-            }
+            $data['content'] = $result;
+           /* echo "<pre>";
+            print_r($result);*/
+            
+            if ($request->ajax()) {
+                if ($checkViewRegion == 'XSMB'){
+                    $view = view('xsmbPaginate', $data)->render();
+            }elseif ($checkViewRegion == 'XSMT'){
+                    $view = view('xsmtPaginate', $data)->render();
+                }elseif ($checkViewRegion == 'XSMN'){
+                    $view = view('xsmnSinglePaginate', $data)->render();
+                }
 
-            return response()->json(['html'=>$view]);
+                elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 4D'){
+                    $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+                    $view = view('vietlott4dSinglePaginate', $data)->render();
+                }
+                elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 3D'){
+                    $view = view('vietlott3dSinglePaginate', $data)->render();
+                }
+                elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'Power 6/55'){
+                    $view = view('vietlottPowerSinglePaginate', $data)->render();
+                }
+                elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Mega'){
+                    $view = view('vietlottMegaSinglePaginate', $data)->render();
+                }
+
+                return response()->json(['html'=>$view]);
+            }
+        } else {
+            $message = "The product failed to load!";
+            return $message;
         }
        // return view('xsmtPaginate')->with($result);
         //return $result;
