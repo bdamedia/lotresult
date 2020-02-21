@@ -834,21 +834,33 @@ $gh = count($content[$key]);
                                         if($lot["lottery_region"] == 'XSMT'){
                                   $title = "Kết Quả Xổ số miền Trung";
               $th .= '<th class="text-center"><a href="/ket-qua-xsmt/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+                                     $prize_1 = json_decode($lot['prize_1']['G.8']);
+                                     $prize_2 = json_decode($lot['prize_2']['G.7']);
+                                     $prize_3 = json_decode($lot['prize_3']['G.6']);
+                                     $prize_4 = json_decode($lot['prize_4']['G.5']);
+                                     $prize_5 = json_decode($lot['prize_5']['G.4']);
+                                     $prize_6 = json_decode($lot['prize_6']['G.3']);
+                                     $prize_7 = json_decode($lot['prize_7']['G.2']);
+                                     $prize_8 = json_decode($lot['prize_8']['G.1']);
+                                     $prize_9 = json_decode($lot['prize_9']['ĐB']);
+
                                           }elseif ($lot["lottery_region"] == 'XSMN'){
           $title = "Kết Quả Xổ số miền Nam";
               $th .= '<th class="text-center"><a href="/ket-qua-xsmt/kq'.strtolower($lot["lottery_region"]).'-'.getCompanySlug($lot["lottery_company"]).'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+                                     $prize_1 = (array) json_decode($lot['prize_1']); $prize_1 = $prize_1['G.8'];
+                                     $prize_2 = (array) json_decode($lot['prize_2']); $prize_2 = $prize_2['G.7'];
+                                     $prize_3 = (array) json_decode($lot['prize_3']); $prize_3 = $prize_3['G.6'];
+                                     $prize_4 = (array) json_decode($lot['prize_4']); $prize_4 = $prize_4['G.5'];
+                                     $prize_5 = (array) json_decode($lot['prize_5']); $prize_5 = $prize_5['G.4'];
+                                     $prize_6 = (array) json_decode($lot['prize_6']); $prize_6 = $prize_6['G.3'];
+                                     $prize_7 = (array) json_decode($lot['prize_7']); $prize_7 = $prize_7['G.2'];
+                                     $prize_8 = (array) json_decode($lot['prize_8']); $prize_8 = $prize_8['G.1'];
+                                     $prize_9 = (array) json_decode($lot['prize_9']); $prize_9 = $prize_9['ĐB'];
+
                                           }
 
                                     @endphp
-                                    @php $prize_1 = json_decode($lot['prize_1']['G.8']); @endphp
-                                    @php $prize_2 = json_decode($lot['prize_2']['G.7']); @endphp
-                                    @php $prize_3 = json_decode($lot['prize_3']['G.6']); @endphp
-                                    @php $prize_4 = json_decode($lot['prize_4']['G.5']); @endphp
-                                    @php $prize_5 = json_decode($lot['prize_5']['G.4']); @endphp
-                                    @php $prize_6 = json_decode($lot['prize_6']['G.3']); @endphp
-                                    @php $prize_7 = json_decode($lot['prize_7']['G.2']); @endphp
-                                    @php $prize_8 = json_decode($lot['prize_8']['G.1']); @endphp
-                                    @php $prize_9 = json_decode($lot['prize_9']['ĐB']); @endphp
+
                                     @php $board = json_decode($lot['board']); @endphp
 
                                     @php $td2 .= '<td class="text-center">'; @endphp
