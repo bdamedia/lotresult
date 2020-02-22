@@ -379,20 +379,39 @@ class Crawler extends Controller
             $company_old = $company;
             $company = getVietlottValueForSideBar($company);
         }
-        $result = Result::where('lottery_company', $company)->where('result_day_time','>=',$date1)->where('result_day_time','<',$date2)->get();
+
+        if(empty($number)) {
+            $result = Result::where('lottery_company', $company)->where('result_day_time','>=',$date1)->where('result_day_time','<',$date2)->get();
+        } else {
+            $result = Result::where('lottery_company', $company)
+                ->where('result_day_time','>=',$date1)
+                ->where('result_day_time','<',$date2)
+                ->orWhere('prize_2', 'like', "%{$number}%")
+                ->orWhere('prize_3', 'like', "%{$number}%")
+                ->orWhere('prize_4', 'like', "%{$number}%")
+                ->orWhere('prize_5', 'like', "%{$number}%")
+                ->orWhere('prize_6', 'like', "%{$number}%")
+                ->orWhere('prize_7', 'like', "%{$number}%")
+                ->orWhere('prize_8', 'like', "%{$number}%")
+                ->orWhere('prize_9', 'like', "%{$number}%")
+                ->get();
+        }
 
         if($result->count()) {
             $checkViewRegion = collect($result)->first()->lottery_region;
             $checkViewCompany = collect($result)->first()->lottery_company;
 
             $data['content'] = $result;
-           /* echo "<pre>";
-            print_r($result);*/
-            
+
+            $data['selected_date'] =  Carbon::createFromFormat('Y-m-d', $date);
+            $data['selected_chon'] =  $company_old;
+            $data['selected_number'] =  $number;
+            $data['result_count'] = $result->count();
+
             if ($request->ajax()) {
                 if ($checkViewRegion == 'XSMB'){
                     $view = view('xsmbPaginate', $data)->render();
-            }elseif ($checkViewRegion == 'XSMT'){
+                }elseif ($checkViewRegion == 'XSMT'){
                     $view = view('xsmtPaginate', $data)->render();
                 }elseif ($checkViewRegion == 'XSMN'){
                     $view = view('xsmnSinglePaginate', $data)->render();
@@ -400,40 +419,15 @@ class Crawler extends Controller
 
                 elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 4D'){
                     $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
-
-                    $data['selected_date'] =  Carbon::createFromFormat('Y-m-d', $date);
-                    $data['selected_chon'] =  $company_old;
-                    $data['selected_number'] =  $number;
-                    $data['result_count'] = $result->count();
-
                     $view = view('vietlott4dSinglePaginate', $data)->render();
-                }
-                elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 3D'){
-                    $data['selected_date'] =  Carbon::createFromFormat('Y-m-d', $date);
-                    $data['selected_chon'] =  $company_old;
-                    $data['selected_number'] =  $number;
-                    $data['result_count'] = $result->count();
-
+                }elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 3D'){
                     $view = view('vietlott3dSinglePaginate', $data)->render();
-                }
-                elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'Power 6/55'){
-                    $data['selected_date'] =  Carbon::createFromFormat('Y-m-d', $date);
-                    $data['selected_chon'] =  $company_old;
-                    $data['selected_number'] =  $number;
-                    $data['result_count'] = $result->count();
-
+                }elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'Power 6/55'){
                     $view = view('vietlottPowerSinglePaginate', $data)->render();
-                }
-                elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Mega'){
-                    $data['selected_date'] =  Carbon::createFromFormat('Y-m-d', $date);
-                    $data['selected_chon'] =  $company_old;
-                    $data['selected_number'] =  $number;
-                    $data['result_count'] = $result->count();
-                    
+                }elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Mega'){
                     $view = view('vietlottMegaSinglePaginate', $data)->render();
                 }
-
-                return response()->json(['html'=>$view]);
+            return response()->json(['html'=>$view]);
             }
         } else {
             $message = "The product failed to load!";
