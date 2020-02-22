@@ -11,11 +11,14 @@
         <div class="form-doveso">
             <div class="form-inline">
                 <div class="form-group"><label for="ngaydoheader" class="lable-text">Chọn ngày:</label>
-                    <input type="text" class="form-control form-group hasDatepicker" size="30" id="ngaydo" name="" placeholder="Pick a date" value="{{$selected_date->toDateTime()->format('d-m-Y')}}">
+                    <input style="line-height: 21px" type="date" 
+                    class="form-control form-group" size="9" id="ngaydoheader1" required="required"
+                    placeholder="Chọn ngày" value="{{$selected_date->toDateTime()->format('Y-m-d')}}" title="Ngày dò">
                 </div>
+
                 <div class="form-group">
                     <label for="tinhheader" class="lable-text">Chọn tỉnh:</label>
-                    <select class="form-control form-group" id="tinhheader_new">
+                    <select class="form-control form-group" id="tinhheader1">
                         <option selected="selected" value="{{ $selected_chon }}" data-lotterydesc="/xsmb-xo-so-mien-bac.html">{{ $selected_chon }}</option>
                         @php $todayCompanies = getTodayResultCompany(); @endphp
                         @foreach($todayCompanies as $cmp)
@@ -27,7 +30,7 @@
                 </div><br/>
                 <div class="form-group-new">
                     <input type="text" class="form-control form-group" name="nhapso" 
-                    id="inputNumberDo" required="required" placeholder="Nhập dãy số" size="9" title="Nhập dãy số"
+                    id="inputNumberDo1" required="required" placeholder="Nhập dãy số" size="9" title="Nhập dãy số"
                     value="{{$selected_number}}"
                     >
                     <button type="button"  class="btn btn-red-blue-lite form-group" id="btndoSo_New" title="Kết quả">Kết quả</button>
@@ -78,13 +81,40 @@
     </div>
 </div>
 <script type="text/javascript">
+
+    $('#ngaydoheader1').on('change',function(){
+        $.ajax({
+            url: '/getCompanyByday',
+            data: {
+                date: $(this).val(),
+            },
+            type: 'POST',
+            success: function(data) {
+                console.log(data);
+                $('#tinhheader1').empty();
+                $("#tinhheader1").append('<option>--Select Company--</option>');
+                if(data) {
+                    $.each(data,function(key,value){
+                        console.log(value)
+                        $('#tinhheader1').append($("<option/>", {
+                            value: value.lottery_company,
+                            text: value.lottery_company_names
+                        }));
+                    });
+                }
+                //$("#ddlProvinces").html(data);
+            }
+        });
+        console.log($(this).val())
+    })
+    
     $('#btndoSo_New').on('click',function(){
         $.ajax({
             url: '/getSearchBydayandNumber',
             data: {
-                date: $('#ngaydoheader').val(),
-                number: $('#inputNumberDo').val(),
-                company: $('#tinhheader_new option:selected').val(),
+                date: $('#ngaydoheader1').val(),
+                number: $('#inputNumberDo1').val(),
+                company: $('#tinhheader1 option:selected').val(),
             },
             type: 'POST',
             success: function(data) {

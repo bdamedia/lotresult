@@ -409,12 +409,27 @@ class Crawler extends Controller
                     $view = view('vietlott4dSinglePaginate', $data)->render();
                 }
                 elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 3D'){
+                    $data['selected_date'] =  Carbon::createFromFormat('Y-m-d', $date);
+                    $data['selected_chon'] =  $company_old;
+                    $data['selected_number'] =  $number;
+                    $data['result_count'] = $result->count();
+
                     $view = view('vietlott3dSinglePaginate', $data)->render();
                 }
                 elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'Power 6/55'){
+                    $data['selected_date'] =  Carbon::createFromFormat('Y-m-d', $date);
+                    $data['selected_chon'] =  $company_old;
+                    $data['selected_number'] =  $number;
+                    $data['result_count'] = $result->count();
+
                     $view = view('vietlottPowerSinglePaginate', $data)->render();
                 }
                 elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Mega'){
+                    $data['selected_date'] =  Carbon::createFromFormat('Y-m-d', $date);
+                    $data['selected_chon'] =  $company_old;
+                    $data['selected_number'] =  $number;
+                    $data['result_count'] = $result->count();
+                    
                     $view = view('vietlottMegaSinglePaginate', $data)->render();
                 }
 
