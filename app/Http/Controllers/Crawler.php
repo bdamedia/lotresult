@@ -418,7 +418,8 @@ class Crawler extends Controller
                 }
 
                 elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 4D'){
-                    $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+                    //$data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+                    $data['char']= getVietlottChars();
                     $view = view('vietlott4dSinglePaginate', $data)->render();
                 }elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 3D'){
                     $view = view('vietlott3dSinglePaginate', $data)->render();

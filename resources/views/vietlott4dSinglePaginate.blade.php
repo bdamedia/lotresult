@@ -104,7 +104,16 @@
                     <td class="text-center">
                         @if(count((array) $prize_5) <= 1)
                             @foreach($prize_5 as $k=>$p5)
-                                <span class="number-black-bold div-horizontal">@php if(count((array) $p5) > 0 ){ $tp = 1; foreach ($p5 as $p51) { if($tp > 3){ echo "<span class='col-xs-3' >$p51</span>"; }else{ echo "<span class='col-xs-4' >$p51</span>";  } $tp++; } }  @endphp </span>
+                                <span class="number-black-bold div-horizontal">
+                                    @php if(count((array) $p5) > 0 ){ $tp = 1; foreach ($p5 as $p51) { 
+                                        if($tp > 3){ 
+                                            echo "<span>$p51</span>"; 
+                                        } else{ 
+                                            echo "<span>$p51</span>";  
+                                        } 
+                                        $tp++; 
+                                    } }  
+                                    @endphp </span>
                             @endforeach
 
                         @else
