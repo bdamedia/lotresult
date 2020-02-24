@@ -756,6 +756,12 @@ function getVietlottValueForSideBar($day){
     return $bindArrayDay[$day];
 }
 
+function getVietlottChars(){
+    $bindArray = array();
+    $bindArrayDay = array('A','D','B','E','C', 'G');
+    return $bindArrayDay;
+}
+
 
 function getDayofCompany($companyCode){
     $data = arrayDayBind();
