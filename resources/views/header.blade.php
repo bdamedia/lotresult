@@ -135,8 +135,8 @@
                         </div>
                     </li>
 
-                    <li class="list_border last-ul-value  @php if(in_array('ket-qua-vietlott',$reload)){ echo "active"; } @endphp">
-                        <a href="/ket-qua-dien-toan/" title="Vietlott">XS Điện toán</a>
+                    <li class="list_border last-ul-value  @php if(in_array('ket-qua-dien-toan',$reload)){ echo "active"; } @endphp">
+                        <a href="/ket-qua-dien-toan" title="Vietlott">XS Điện toán</a>
                         <div class="menu-lv2-down">
                             <ul>
                                 <li><a href="/ket-qua-dien-toan/kqxs-dien-toan-6-36/" title="XS Điện toán 6/36">XS Điện toán 6/36</a></li>
