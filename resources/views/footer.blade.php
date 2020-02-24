@@ -87,6 +87,9 @@
                 console.log(data);
                 if(data != 'The product failed to load!') {
                     $('.xsmt').html(data.html);
+                    $('.xsmn').html(data.html);
+                    $('.xsmb').html(data.html);
+                    $('.vietlott').html(data.html);
                 } else {
                     $('.ui-dialog-buttons').css('display', 'block');
                     $('.ui-widget-overlay').css('display', 'block');
