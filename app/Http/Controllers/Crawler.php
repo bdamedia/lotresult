@@ -382,6 +382,7 @@ class Crawler extends Controller
 
         if(empty($number)) {
             $result = Result::where('lottery_company', $company)->where('result_day_time','>=',$date1)->where('result_day_time','<',$date2)->get();
+            //$result = Result::where('lottery_company', $company)->get();
         } else {
             $result = Result::where('lottery_company', $company)
                 ->where('result_day_time','>=',$date1)
@@ -409,7 +410,7 @@ class Crawler extends Controller
             $data['result_count'] = $result->count();
 
             if ($request->ajax()) {
-                if($checkViewRegion == 'XSMB' || $checkViewRegion == 'XSMT' || $checkViewRegion == 'XSMN'){
+                if($checkViewRegion == 'XSMB' || $checkViewRegion == 'XSMT'){
                     $t = 0;
                     $new = array();
                     foreach ($result as $res){
@@ -460,7 +461,7 @@ class Crawler extends Controller
                     $data['content'] = $new;
                     $view = view('xsmtPaginate', $data)->render();
                 }elseif ($checkViewRegion == 'XSMN'){
-                    $data['content'] = $new;
+                    //$data['content'] = $new;
                     $view = view('xsmnSinglePaginate', $data)->render();
                 }
                 elseif ($checkViewRegion == 'Vietlott' && $checkViewCompany == 'XS Max 4D'){
