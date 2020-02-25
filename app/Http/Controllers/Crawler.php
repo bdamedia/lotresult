@@ -380,10 +380,10 @@ class Crawler extends Controller
             $company = getVietlottValueForSideBar($company);
         }
 
-        if(empty($number)) {
-            $result = Result::where('lottery_company', $company)->where('result_day_time','>=',$date1)->where('result_day_time','<',$date2)->get();
-            //$result = Result::where('lottery_company', $company)->get();
-        } else {
+       /* if(empty($number)) {*/
+        $result = Result::where('lottery_company', $company)->where('result_day_time','>=',$date1)->where('result_day_time','<',$date2)->get();
+        //$result = Result::where('lottery_company', $company)->get();
+        /*} else {
             $result = Result::where('lottery_company', $company)
                 ->where('result_day_time','>=',$date1)
                 ->where('result_day_time','<',$date2)
@@ -396,7 +396,7 @@ class Crawler extends Controller
                 ->orWhere('prize_8', 'like', "%{$number}%")
                 ->orWhere('prize_9', 'like', "%{$number}%")
                 ->get();
-        }
+        }*/
 
         if($result->count()) {
             $checkViewRegion = collect($result)->first()->lottery_region;
