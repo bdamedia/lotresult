@@ -375,8 +375,8 @@ class Crawler extends Controller
         $date2 = $date2->addDay(1);
         $day = $date1->toDateTime()->format('l');
         
+        $company_old = $company;
         if($company == 'POWER 655' || $company == 'MEGA 645' || $company == 'MAX 3D' || $company == 'MAX 4D') {
-            $company_old = $company;
             $company = getVietlottValueForSideBar($company);
         }
 
