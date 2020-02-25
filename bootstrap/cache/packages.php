@@ -1,4 +1,15 @@
 <?php return array (
+  'alaouy/youtube' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Alaouy\\Youtube\\YoutubeServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Youtube' => 'Alaouy\\Youtube\\Facades\\Youtube',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 
@@ -17,6 +28,17 @@
       0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     ),
   ),
+  'jenssegers/agent' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Jenssegers\\Agent\\AgentServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Agent' => 'Jenssegers\\Agent\\Facades\\Agent',
+    ),
+  ),
   'jenssegers/mongodb' => 
   array (
     'providers' => 
@@ -25,11 +47,11 @@
       1 => 'Jenssegers\\Mongodb\\MongodbQueueServiceProvider',
     ),
   ),
-  'laravel/passport' => 
+  'jeroennoten/laravel-adminlte' => 
   array (
     'providers' => 
     array (
-      0 => 'Laravel\\Passport\\PassportServiceProvider',
+      0 => 'JeroenNoten\\LaravelAdminLte\\AdminLteServiceProvider',
     ),
   ),
   'laravel/tinker' => 
@@ -37,13 +59,6 @@
     'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    ),
-  ),
-  'narwy/laravel-mongodb-passport' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Narwy\\Mongodb\\MongodbPassportServiceProvider',
     ),
   ),
   'nesbot/carbon' => 
@@ -58,6 +73,13 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'silber/page-cache' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Silber\\PageCache\\LaravelServiceProvider',
     ),
   ),
 );

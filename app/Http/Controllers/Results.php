@@ -181,7 +181,7 @@ class Results extends Controller
         $data['companyName'] = strtoupper("xsmt");
         $data['content'] = $new;
         $data['enableTab'] = true;
-        $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+        $data['char']= getVietlottChars();
         return view('home')->with($data);
     }
     public function xsmb(Request $request,$company='XSMB'){
@@ -717,7 +717,7 @@ class Results extends Controller
             $data['companyName'] = strtoupper("Vietlott");
             $data['content'] = $new;
             $data['enableTab'] = true;
-            $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+            $data['char']= getVietlottChars();
             return view('home')->with($data);
 
         } else {
@@ -768,7 +768,8 @@ class Results extends Controller
             $data['companyName'] = strtoupper("Vietlott");
             $data['content'] = $new;
             $data['enableTab'] = true;
-            $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+            //$data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+            $data['char']= getVietlottChars();
             return view('home')->with($data);
         }
     }
@@ -863,7 +864,7 @@ class Results extends Controller
         $data['companyName'] = strtoupper("Vietlott");
         $data['content'] = $new;
         $data['enableTab'] = true;
-        $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+        $data['char']= getVietlottChars();
         return view('home')->with($data);
     }
 
@@ -904,7 +905,7 @@ class Results extends Controller
         $data['companyName'] = strtoupper("Vietlott");
         $data['content'] = $new;
         $data['enableTab'] = true;
-        $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+        $data['char']= getVietlottChars();
         if ($request->ajax()) {
             $view = view('xsmbDyaPaginate',$data)->render();
             return response()->json(['html'=>$view]);
@@ -961,7 +962,7 @@ class Results extends Controller
         $data['companyName'] = strtoupper("xsmt");
         $data['content'] = $new;
         $data['enableTab'] = true;
-        $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+        $data['char']= getVietlottChars();
         return view('allCompanyDate')->with($data);
     }
     public function allRegionDate(Request $request,$date,$region){
@@ -998,7 +999,7 @@ class Results extends Controller
         $data['companyName'] = $region;
         $data['content'] = $new;
         $data['enableTab'] = true;
-        $data['char']= array('0'=>'A','1'=>'D','2'=>'B','3'=>'E','4'=>'C', '5'=>'G');
+        $data['char']= getVietlottChars();
         return view('allCompanyDate')->with($data);
     }
     public function dateLoto(Request $request,$day){

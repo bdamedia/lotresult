@@ -2,7 +2,7 @@
 <div class="main-content home">
     <div class="container">
         <div class="row margin-b">
-          <div class="col-xs-12 col-sm-12 col-md-6">
+          <div class="col-xs-12 col-sm-12 col-md-6 xsmn">
             <div class="row">
               @include('todayResult')
               <div class="margin-40 col-md-12">

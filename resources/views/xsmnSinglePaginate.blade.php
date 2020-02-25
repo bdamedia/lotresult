@@ -1,4 +1,7 @@
 @php $g = 1; $lastDate=''; @endphp
+
+@include('vietlottTopSearch')
+
 @foreach($content as $printresult)
 
 

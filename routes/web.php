@@ -9,7 +9,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+ 
 
 Route::get("/crawler", "Crawler@index");
 Route::get("/crawler/cJob", "Crawler@CroneJob");

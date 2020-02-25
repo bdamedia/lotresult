@@ -54,7 +54,7 @@
         </div>
         <div class="content-item"><ul>
                 @foreach($sidebarVietlott as $content)
-                    <li><a href="/ket-qua-vietlott/kqvietlott-{{ $content->lottery_company_slug }}" title="{{ $content->lottery_company_names }}">{{ $content->lottery_company_names }}</a></li>
+                    <li><a href="/ket-qua-vietlott/kqvietlott-{{ $content->lottery_company_slug }}" title="{{ $content->lottery_company_names }}">{{getVietlottText($content->lottery_company_slug)}}</a></li>
                     @endforeach
             </ul>
         </div>

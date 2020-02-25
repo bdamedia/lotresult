@@ -85,13 +85,49 @@
             type: 'POST',
             success: function(data) {
                 console.log(data);
-                $('.xsmt').html(data.html);
+                if(data != 'The product failed to load!') {
+                    $('.xsmt').html(data.html);
+                    $('.xsmn').html(data.html);
+                    $('.xsmb').html(data.html);
+                    $('.vietlott').html(data.html);
+                } else {
+                    $('.ui-dialog-buttons').css('display', 'block');
+                    $('.ui-widget-overlay').css('display', 'block');
+                }
 
             }
         });
         console.log($(this).val())
     })
+
+    $(function(){
+        $('#hide-alert-message').click(function() {
+            $('.ui-dialog-buttons').css('display', 'none');
+            $('.ui-widget-overlay').css('display', 'none');
+        });
+    });
+
+    $(function(){
+        $('#hide-alert-message-second').click(function() {
+            $('.ui-dialog-buttons').css('display', 'none');
+            $('.ui-widget-overlay').css('display', 'none');
+        });
+    });
+
 </script>
 </div>
+
+    <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable" style="height: auto; width: 300px; top: 739px; left: 769px; display: none; z-index: 101;" tabindex="-1" role="dialog" aria-describedby="ui-id-11" aria-labelledby="ui-id-12">
+        <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix ui-draggable-handle">
+            <span id="ui-id-12" class="ui-dialog-title">Thông báo</span>
+            <button id='hide-alert-message' type="button" class="ui-dialog-titlebar-close"></button>
+        </div>
+        <div id="ui-id-11" style="display: block; width: auto; min-height: 0px; max-height: none; height: 77.5px;" class="ui-dialog-content ui-widget-content"><p style="padding:15px;">Bạn chưa nhập số cần dò</p></div>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <div class="ui-dialog-buttonset"><button id='hide-alert-message-second' type="button">Đóng</button></div>
+        </div>
+    </div>
+    <div class="ui-widget-overlay ui-front" style="z-index: 100; display: none"></div>
+
 </body>
 </html>

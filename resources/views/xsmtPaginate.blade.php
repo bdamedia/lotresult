@@ -1,4 +1,7 @@
 @php $g = 1;  $tr ='<tr>'; @endphp
+
+@include('vietlottTopSearch')
+
 @foreach($content as $key=>$printresult)
     {{--{{ $key }}--}}
     @php $date = $key; @endphp
@@ -44,64 +47,157 @@ $th .= '<th class="text-center"><a href="/ket-qua-xsmn/kq'.strtolower($lot["lott
         @php $prize_9 = json_decode($lot['prize_9']); @endphp
         @php $board = json_decode($lot['board']); @endphp
 
+        @php $pattern = '/^'.$selected_number.'/'; @endphp
+
         @php $td2 .= '<td class="text-center">'; @endphp
         @foreach($prize_1->{key($prize_1)} as $k=>$p1)
-            @php $td2 .= '<span class=" number-black-bold div-horizontal">'.$p1.'</span></br>'; @endphp
+            @php
+                $subject = $p1;
+                $count = strlen($selected_number);
+                $selected_values = substr($subject, -$count);
+                $not_selected_values = substr($subject, 0, -$count);
+            @endphp
+            @if($selected_values == $selected_number)
+                @php $td2 .= '<span class="number-black-bold">'.$not_selected_values.'<span style="color:red">'.$selected_values.'</span></span>'; @endphp
+            @else
+                @php $td2 .= '<span class=" number-black-bold div-horizontal ">'.$p1 .'</span>'; @endphp
+            @endif
         @endforeach
         @php $td2 .= '</td>'; @endphp
 
         @php $td3 .= '<td class="text-center">'; @endphp
         @foreach($prize_2->{key($prize_2)} as $k=>$p2)
-            @php $td3 .= '<span class=" number-black-bold div-horizontal">'.$p2.'</span></br>'; @endphp
+            @php
+                $subject = $p2;
+                $count = strlen($selected_number);
+                $selected_values = substr($subject, -$count);
+                $not_selected_values = substr($subject, 0, -$count);
+            @endphp
+            @if($selected_values == $selected_number)
+                @php $td3 .= '<span class="number-black-bold">'.$not_selected_values.'<span style="color:red">'.$selected_values.'</span></span></br>'; @endphp
+            @else
+                @php $td3 .= '<span class=" number-black-bold div-horizontal ">'.$p2 .'</span></br>'; @endphp
+            @endif
+
         @endforeach
         @php $td3 .= '</td>'; @endphp
 
         @php $td4 .= '<td class="text-center">'; @endphp
         @foreach($prize_3->{key($prize_3)} as $k=>$p3)
+            @php
+                $subject = $p3;
+                $count = strlen($selected_number);
+                $selected_values = substr($subject, -$count);
+                $not_selected_values = substr($subject, 0, -$count);
+            @endphp
+            @if($selected_values == $selected_number)
+                @php $td4 .= '<span class="number-black-bold">'.$not_selected_values.'<span style="color:red">'.$selected_values.'</span></span></br>'; @endphp
+            @else
+                @php $td4 .= '<span class=" number-black-bold div-horizontal ">'.$p3 .'</span></br>'; @endphp
+            @endif
 
-            @php $td4 .= '<span class=" number-black-bold div-horizontal">'.$p3.'</span></br>'; @endphp
         @endforeach
         @php $td4 .= '</td>'; @endphp
 
         @php $td5 .= '<td class="text-center">'; @endphp
         @foreach($prize_4->{key($prize_4)} as $k=>$p4)
+            @php
+                $subject = $p4;
+                $count = strlen($selected_number);
+                $selected_values = substr($subject, -$count);
+                $not_selected_values = substr($subject, 0, -$count);
+            @endphp
+            @if($selected_values == $selected_number)
+                @php $td5 .= '<span class="number-black-bold">'.$not_selected_values.'<span style="color:red">'.$selected_values.'</span></span></br>'; @endphp
+            @else
+                @php $td5 .= '<span class=" number-black-bold div-horizontal ">'.$p4 .'</span></br>'; @endphp
+            @endif
 
-            @php $td5 .= '<span class=" number-black-bold div-horizontal">'.$p4.'</span></br>'; @endphp
         @endforeach
         @php $td5 .= '</td>'; @endphp
 
         @php $td6 .= '<td class="text-center">'; @endphp
         @foreach($prize_5->{key($prize_5)} as $k=>$p5)
+            @php
+                $subject = $p5;
+                $count = strlen($selected_number);
+                $selected_values = substr($subject, -$count);
+                $not_selected_values = substr($subject, 0, -$count);
+            @endphp
+            @if($selected_values == $selected_number)
+                @php $td6 .= '<span class="number-black-bold">'.$not_selected_values.'<span style="color:red">'.$selected_values.'</span></span></br>'; @endphp
+            @else
+                @php $td6 .= '<span class=" number-black-bold div-horizontal ">'.$p5 .'</span></br>'; @endphp
+            @endif
 
-            @php $td6 .= '<span class=" number-black-bold div-horizontal">'.$p5.'</span></br>'; @endphp
         @endforeach
         @php $td6 .= '</td>'; @endphp
 
         @php $td7 .= '<td class="text-center">'; @endphp
         @foreach($prize_6->{key($prize_6)} as $k=>$p6)
+            @php
+                $subject = $p6;
+                $count = strlen($selected_number);
+                $selected_values = substr($subject, -$count);
+                $not_selected_values = substr($subject, 0, -$count);
+            @endphp
+            @if($selected_values == $selected_number)
+                @php $td7 .= '<span class="number-black-bold">'.$not_selected_values.'<span style="color:red">'.$selected_values.'</span></span></br>'; @endphp
+            @else
+                @php $td7 .= '<span class=" number-black-bold div-horizontal ">'.$p6 .'</span></br>'; @endphp
+            @endif
 
-            @php $td7 .= '<span class=" number-black-bold div-horizontal">'.$p6.'</span></br>'; @endphp
         @endforeach
         @php $td7 .= '</td>'; @endphp
 
         @php $td8 .= '<td class="text-center">'; @endphp
         @foreach($prize_7->{key($prize_7)} as $k=>$p7)
+            @php
+                $subject = $p7;
+                $count = strlen($selected_number);
+                $selected_values = substr($subject, -$count);
+                $not_selected_values = substr($subject, 0, -$count);
+            @endphp
+            @if($selected_values == $selected_number)
+                @php $td8 .= '<span class="number-black-bold">'.$not_selected_values.'<span style="color:red">'.$selected_values.'</span></span></br>'; @endphp
+            @else
+                @php $td8 .= '<span class=" number-black-bold div-horizontal ">'.$p7 .'</span></br>'; @endphp
+            @endif
 
-            @php $td8 .= '<span class=" number-black-bold div-horizontal">'.$p7.'</span></br>'; @endphp
         @endforeach
         @php $td8 .= '</td>'; @endphp
 
         @php $td9 .= '<td class="text-center">'; @endphp
         @foreach($prize_8->{key($prize_8)} as $k=>$p8)
+            @php
+                $subject = $p8;
+                $count = strlen($selected_number);
+                $selected_values = substr($subject, -$count);
+                $not_selected_values = substr($subject, 0, -$count);
+            @endphp
+            @if($selected_values == $selected_number)
+                @php $td9 .= '<span class="number-black-bold">'.$not_selected_values.'<span style="color:red">'.$selected_values.'</span></span></br>'; @endphp
+            @else
+                @php $td9 .= '<span class=" number-black-bold div-horizontal ">'.$p8 .'</span></br>'; @endphp
+            @endif
 
-            @php $td9 .= '<span class=" number-black-bold div-horizontal">'.$p8.'</span></br>'; @endphp
         @endforeach
         @php $td9 .= '</td>'; @endphp
 
         @php $td10 .= '<td class="text-center">'; @endphp
         @foreach($prize_9->{key($prize_9)} as $k=>$p9)
+            @php
+                $subject = $p9;
+                $count = strlen($selected_number);
+                $selected_values = substr($subject, -$count);
+                $not_selected_values = substr($subject, 0, -$count);
+            @endphp
+            @if($selected_values == $selected_number)
+                @php $td10 .= '<span class="number-black-bold">'.$not_selected_values.'<span style="color:red">'.$selected_values.'</span></span></br>'; @endphp
+            @else
+                @php $td10 .= '<span class=" number-black-bold div-horizontal ">'.$p9 .'</span></br>'; @endphp
+            @endif
 
-            @php $td10 .= '<span class=" number-black-bold div-horizontal">'.$p9.'</span></br>'; @endphp
         @endforeach
         @php $td10 .= '</td>'; @endphp
 

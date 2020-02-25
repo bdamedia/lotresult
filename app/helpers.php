@@ -748,6 +748,19 @@ function getVietlottValue($day){
     return array($bindArrayDay[$day]);
 }
 
+function getVietlottValueForSideBar($day){
+    $bindArray = array();
+    $bindArrayDay = array(
+        'POWER 655'=>'Power 6/55','MEGA 645'=>'XS Mega', 'MAX 4D'=>'XS Max 4D','MAX 3D'=>'XS Max 3D'
+    );
+    return $bindArrayDay[$day];
+}
+
+function getVietlottChars(){
+    $bindArray = array();
+    $bindArrayDay = array('A','D','B','E','C', 'G');
+    return $bindArrayDay;
+}
 
 
 function getDayofCompany($companyCode){
