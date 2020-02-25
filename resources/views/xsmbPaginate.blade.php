@@ -1,4 +1,7 @@
 @php $g = 1; @endphp
+
+@include('vietlottTopSearch')
+
 @foreach($content as $printresult)
     {{-- {{ print_r($printresult) }}--}}
     <div class="remove-margin block {{ $printresult->lottery_region }}" id='xsmb-{{ $g }}'>
