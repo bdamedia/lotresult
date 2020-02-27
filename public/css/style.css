@@ -1400,7 +1400,7 @@ table.table-xsmb span.col-xs-6 {
     font-weight: 700
 }
 .number-black-bold {
-    color: #000;
+    color: #000!important;
     font-size: 28px;
     font-weight: 700
 }

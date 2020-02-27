@@ -169,12 +169,45 @@
                     <td class="text-center">
                         @if(count((array) $prize_5) <= 1)
                             @foreach($prize_5 as $k=>$p5)
-                                <span class="number-black-bold div-horizontal">@php if(count((array) $p5) > 0 ){ $tp = 1; foreach ($p5 as $p51) { if($tp > 3){ echo "<span class='col-xs-3' >$p51</span>"; }else{ echo "<span class='col-xs-4' >$p51</span>";  } $tp++; } }  @endphp </span>
+                                <span class="number-black-bold div-horizontal">
+                                @php if(count((array) $p5) > 0 ){ 
+                                $tp = 1;
+                                foreach ($p5 as $p51) { 
+                                    $subject = $p51;
+                                    $count = strlen($selected_number);
+                                    $selected_values = substr($subject, -$count);
+                                    $not_selected_values = substr($subject, 0, -$count);
+                                    if($tp > 3){ 
+                                        if($selected_values == $selected_number) {
+                                            echo "<p class='col-xs-3' style='margin: 0px'>$not_selected_values</span><span style='color:red'>$selected_values</span></p>";  
+                                        } else {
+                                            echo "<span class='col-xs-3'>$p51</span>"; 
+                                        }
+                                    } else{ 
+                                        if($selected_values == $selected_number) {
+                                            echo "<p class='col-xs-3' style='margin: 0px'>$not_selected_values</span><span style='color:red'>$selected_values</span></p>";  
+                                        } else {
+                                            echo "<span class='col-xs-3'>$p51</span>"; 
+                                        }
+                                    } 
+                                    $tp++; 
+                                }
+                            }@endphp </span>
                             @endforeach
 
                         @else
                             @foreach($prize_5->{key($prize_5)} as $k=>$p5)
-                                <span class="number-black-bold div-horizontal">{{ $p5 }} </span>
+                                @php
+                                    $subject = $p5;
+                                    $count = strlen($selected_number);
+                                    $selected_values = substr($subject, -$count);
+                                    $not_selected_values = substr($subject, 0, -$count);
+                                @endphp
+                                @if($selected_values == $selected_number)
+                                    <span class="number-black-bold">{{$not_selected_values}}<span style="color:red">{{$selected_values}}</span></span>
+                                @else
+                                    <span class="number-black-bold div-horizontal">{{ $p5 }} </span>
+                                @endif
                             @endforeach
                         @endif
                     </td>
@@ -185,11 +218,41 @@
                     <td class="text-center">
                         @if(count((array) $prize_6) <= 1)
                             @foreach($prize_6 as $k=>$p6)
-                                <span class="number-black-bold div-horizontal">@php if(count((array) $p6) > 0 ){ foreach ($p6 as $p61) { echo "<span class='col-xs-6' >$p61</span>"; } }  @endphp  </span>
+                                <span class="number-black-bold div-horizontal">
+                                @php 
+                                if(count((array) $p6) > 0 ){ 
+                                    foreach ($p6 as $p61) { 
+                                    $subject = $p61;
+                                    $count = strlen($selected_number);
+                                    $selected_values = substr($subject, -$count);
+                                    $not_selected_values = substr($subject, 0, -$count);
+                                    @endphp
+
+                                    @if($selected_values == $selected_number)
+                                        <span class="col-xs-6">{{$not_selected_values}}<span style="color:red">{{$selected_values}}</span></span>
+                                    @else
+                                        <span class="col-xs-6">{{ $p61 }} </span>
+                                    @endif
+
+                                    @php 
+                                        
+                                    } 
+                                }  
+                                @endphp</span>
                             @endforeach
                         @else
                             @foreach($prize_6->{key($prize_6)} as $k=>$p6)
-                                <span class="number-black-bold div-horizontal">{{ $p6 }} </span>
+                                @php
+                                    $subject = $p6;
+                                    $count = strlen($selected_number);
+                                    $selected_values = substr($subject, -$count);
+                                    $not_selected_values = substr($subject, 0, -$count);
+                                @endphp
+                                @if($selected_values == $selected_number)
+                                    <span class="number-black-bold">{{$not_selected_values}}<span style="color:red">{{$selected_values}}</span></span>
+                                @else
+                                    <span class="number-black-bold div-horizontal">{{ $p6 }} </span>
+                                @endif
                             @endforeach
                         @endif
                     </td>
@@ -200,11 +263,38 @@
                     <td class="text-center">
                         @if(count((array) $prize_7) <= 1)
                             @foreach($prize_7 as $k=>$p7)
-                                <span class="number-black-bold div-horizontal">@php if(count((array) $p7) > 0 ){ foreach ($p7 as $p71) { echo "<span class='col-xs-12' >$p71</span>"; } }  @endphp </span>
+                                <span class="number-black-bold div-horizontal">
+                                    @php if(count((array) $p7) > 0 ){ 
+                                        foreach ($p7 as $p71) { 
+                                            $subject = $p71;
+                                            $count = strlen($selected_number);
+                                            $selected_values = substr($subject, -$count);
+                                            $not_selected_values = substr($subject, 0, -$count);
+                                            @endphp
+                                                @if($selected_values == $selected_number)
+                                                    <span class="col-xs-12">{{$not_selected_values}}<span style="color:red">{{$selected_values}}</span></span>
+                                                @else
+                                                    <span class="col-xs-12">{{ $p71 }} </span>
+                                                @endif
+                                            @php
+                                        } 
+                                    }  @endphp 
+                                </span>
                             @endforeach
                         @else
                             @foreach($prize_7->{key($prize_7)} as $k=>$p7)
-                                <span class="number-black-bold div-horizontal">{{ $p7 }} </span>
+                                @php
+                                    $subject = $p7;
+                                    $count = strlen($selected_number);
+                                    $selected_values = substr($subject, -$count);
+                                    $not_selected_values = substr($subject, 0, -$count);
+                                @endphp
+                                @if($selected_values == $selected_number)
+                                    <span class="number-black-bold">{{$not_selected_values}}<span style="color:red">{{$selected_values}}</span></span>
+                                @else
+                                    <span class="number-black-bold div-horizontal">{{ $p7 }} </span>
+                                @endif
+
                             @endforeach
                         @endif
                     </td>
@@ -215,11 +305,38 @@
                     <td class="text-center">
                         @if(count((array) $prize_8) <= 1)
                             @foreach($prize_8 as $k=>$p8)
-                                <span class="number-black-bold div-horizontal">@php if(count((array) $p8) > 0 ){ $p8 = implode(', ',(array) $p8); }  @endphp {{ $p8 }} </span>
+                                <span class="number-black-bold div-horizontal">
+                                    @php 
+                                        if(count((array) $p8) > 0 )
+                                        { 
+                                            $p8 = implode(', ',(array) $p8); 
+                                        } 
+                                        $subject = $p8;
+                                        $count = strlen($selected_number);
+                                        $selected_values = substr($subject, -$count);
+                                        $not_selected_values = substr($subject, 0, -$count);
+                                        @endphp
+                                        @if($selected_values == $selected_number)
+                                            <span class="col-xs-12">{{$not_selected_values}}<span style="color:red">{{$selected_values}}</span></span>
+                                        @else
+                                            <span class="col-xs-12">{{ $p8 }} </span>
+                                        @endif
+                                    </span>
                             @endforeach
                         @else
                             @foreach($prize_8->{key($prize_8)} as $k=>$p8)
-                                <span class="number-black-bold div-horizontal">{{ $p8 }} </span>
+                                @php
+                                    $subject = $p8;
+                                    $count = strlen($selected_number);
+                                    $selected_values = substr($subject, -$count);
+                                    $not_selected_values = substr($subject, 0, -$count);
+                                @endphp
+                                @if($selected_values == $selected_number)
+                                    <span class="number-black-bold">{{$not_selected_values}}<span style="color:red">{{$selected_values}}</span></span>
+                                @else
+                                    <span class="number-black-bold div-horizontal">{{ $p8 }} </span>
+                                @endif
+
                             @endforeach
                         @endif
                     </td>
@@ -230,11 +347,37 @@
                     <td class="text-center">
                         @if(count((array) $prize_9) <= 1)
                             @foreach($prize_9 as $k=>$p9)
-                                <span class="number-black-bold div-horizontal">@php if(count((array) $p9) > 0 ){ $p9 = implode(', ',(array) $p9); }  @endphp {{ $p9 }} </span>
+                                <span class="number-black-bold div-horizontal">
+                                    @php 
+                                    if(count((array) $p9) > 0 ){ 
+                                        $p9 = implode(', ',(array) $p9); 
+                                    }  
+                                    
+                                    $subject = $p9;
+                                    $count = strlen($selected_number);
+                                    $selected_values = substr($subject, -$count);
+                                    $not_selected_values = substr($subject, 0, -$count);
+                                    @endphp
+                                    @if($selected_values == $selected_number)
+                                        <span class="col-xs-12">{{$not_selected_values}}<span style="color:red">{{$selected_values}}</span></span>
+                                    @else
+                                        <span class="col-xs-12">{{ $p9 }} </span>
+                                    @endif
+                                </span>
                             @endforeach
                         @else
                             @foreach($prize_9->{key($prize_9)} as $k=>$p9)
-                                <span class="number-black-bold div-horizontal">{{ $p9 }} </span>
+                                @php
+                                    $subject = $p9;
+                                    $count = strlen($selected_number);
+                                    $selected_values = substr($subject, -$count);
+                                    $not_selected_values = substr($subject, 0, -$count);
+                                @endphp
+                                @if($selected_values == $selected_number)
+                                    <span class="number-black-bold">{{$not_selected_values}}<span style="color:red">{{$selected_values}}</span></span>
+                                @else
+                                    <span class="number-black-bold div-horizontal">{{ $p9 }} </span>
+                                @endif
                             @endforeach
                         @endif
                     </td>

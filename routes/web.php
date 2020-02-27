@@ -44,6 +44,10 @@ Route::get("/thond-keys/{thond_keys}", "Results@thonds");
 Route::get("/tin-xo-so", "admin\NewsController@newsList");
 Route::get("/tin-xo-so/{slug}", "admin\NewsController@newsFront");
 
+Route::get('/ket-qua-dien-toan/kqxs-dien-toan-6-36-{day}','Results@dienToanSearchRecord');
+Route::get('/ket-qua-dien-toan/kqxs-dien-toan-123-{day}','Results@dienToanSearchRecord');
+Route::get('/ket-qua-dien-toan/kqxs-dien-toan-than-tai-4-{day}','Results@dienToanSearchRecord');
+
 
 Route::post("/getCompanyByday", "Crawler@listCompanyDaywise");
 Route::post("/getSearchBydayandNumber", "Crawler@getSearchBydayandNumber");
