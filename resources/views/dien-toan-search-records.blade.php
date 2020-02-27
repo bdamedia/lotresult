@@ -68,64 +68,62 @@
 
 
 
-                            @php $g = 1; @endphp
-                            @foreach($content as $printresult)
+                            @php 
+                            $g = 1; 
+                            $indexValues = 0;
+                            @endphp
+                            @foreach($content as $key=>$printresult)
+                                @php 
+                                        
+                                @endphp
                                     @if($g == 1)
                                     <div style="border-bottom: 2px solid #ccc;" class="block-main-heading">
-                                        <h1>Xổ Số {{$link_text}} ({{ $printresult->lottery_region }})</h1>
+                                        <h1>Xổ Số {{$link_text}} {{ engToVit($printresult[$indexValues]['day']) }} ({{ $printresult[$indexValues]['lottery_region'] }})</h1>
                                     </div>
                                 @endif
                                     <div class="list-link">
                                         <h2 class="class-title-list-link">
-                                            @php $dayName = $printresult->result_day_time->toDateTime()->format('l'); $dayName = getDaySlug($dayName); @endphp
+                                            @php $dayName = $printresult[$indexValues]['day_new']; @endphp
 
-                                            @if(request()->segment(count(request()->segments())) == 'ket-qua-dien-toan')
-                                                <a href="/{{ getRegionSlug($printresult->lottery_region) }}" title="{{ $printresult->lottery_region }}">{{ $printresult->lottery_region }}</a><span> » </span>
-                                            @else
-                                                 <a href="/ket-qua-dien-toan/{{ request()->segment(count(request()->segments())) }}" title="{{ $printresult->lottery_region }}">{{ $printresult->lottery_region }}</a><span> » </span>
-                                            @endif
+                                            <a href="/ket-qua-dien-toan/{{$link_view}}" title="{{ $printresult[$indexValues]['lottery_region'] }}">{{ $printresult[$indexValues]['lottery_region'] }}</a><span> » </span>
 
-                    
-                                            <!-- <a href="/{{ getRegionSlug($printresult->lottery_region) }}/kq{{ strtolower($printresult->lottery_region) }}-{{$dayName}}" title="{{ $printresult->lottery_region }} {{ $printresult->result_day_time->toDateTime()->format('l') }}">{{ $printresult->lottery_company }} {{ engToVit($printresult->result_day_time->toDateTime()->format('l')) }}</a> -->
+                                            <a
+                                            href="/{{ getRegionSlug($printresult[$indexValues]['lottery_region']) }}/{{$link_view}}-{{$dayName}}" 
+                                            title="{{ $printresult[$indexValues]['lottery_region']}} {{ $printresult[$indexValues]['result_day_time']}}">
+                                            {{ $printresult[$indexValues]['lottery_company'] }} {{ engToVit($printresult[$indexValues]['day']) }}
 
-                                            <a 
-                                            href="/{{ getRegionSlug($printresult->lottery_region) }}/{{$link_view}}-{{$dayName}}" 
-                                            title="{{ $printresult->lottery_region }} {{ $printresult->result_day_time->toDateTime()->format('l') }}">
-                                            {{ $printresult->lottery_company }} {{ engToVit($printresult->result_day_time->toDateTime()->format('l')) }}
-                                            </a>
-
-                                            <span> » </span>
-                                            <!-- <a href="/{{ getRegionSlug($printresult->lottery_region) }}/kqxsmb-ngay-{{ $printresult->result_day_time->toDateTime()->format('d-m-Y') }}" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}"> {{ $printresult->lottery_region }}  {{ $printresult->result_day_time->toDateTime()->format('d/m/y') }}</a> -->
-                                            {{ $printresult->result_day_time->toDateTime()->format('d/m/Y') }}
+                                            </a><span> » </span>
+                                            {{ $printresult[$indexValues]['result_day_time'] }}
 
                                         </h2>
                                     </div>
                                     <div class="block-main-content">
                                         <table class="table table-bordered table-striped table-xsmb">
                                             <tbody>
-                                            <tr>
-                                                 @php $prize_1 = json_decode($printresult->prize_1); $prize_1 = json_decode($prize_1->prize_1); @endphp
-                                                <td style="padding:0px" class="text-center">
-                                                  <ul>
-                                                    @foreach($prize_1 as $k=>$p1)
-                                                        @if(count((array)$prize_1->{key($prize_1)}) > 3 )
-                                                            <li class="col-xs-3 special-code div-horizontal">{{ $p1 }}</li>
-                                                        @else
-                                                            <li class="special-code div-horizontal">{{ $p1 }}</li>
-                                                        @endif
-                                                    @endforeach
-                                                  </ul>
-                                                </td>
-                                            </tr>
-
-
-
+                                                <tr>
+                                                    @php 
+                                                    $prize_1 = json_decode($printresult[$indexValues]['prize_1']); 
+                                                    $prize_1 = json_decode($prize_1->prize_1); 
+                                                    @endphp
+                                                    <td style="padding:0px" class="text-center">
+                                                      <ul>
+                                                        @foreach($prize_1 as $k=>$p1)
+                                                            @if(count((array)$prize_1->{key($prize_1)}) > 3 )
+                                                                <li class="col-xs-3 special-code div-horizontal">{{ $p1 }}</li>
+                                                            @else
+                                                                <li class="special-code div-horizontal">{{ $p1 }}</li>
+                                                            @endif
+                                                        @endforeach
+                                                      </ul>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                     <hr class="line-header"/>
 
                                 @php $g++; @endphp
+                                @php $indexValues++; @endphp
                             @endforeach
 
                     </div>
